@@ -39,7 +39,7 @@
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Plan</h5>
-                                            <h2 class="mb-0 text-dark text-center">90%</h2>
+                                            <h2 class="mb-0 text-dark text-center">100%</h2>
                                         </div>
                                     </div>
                                 </div>
