@@ -38,7 +38,7 @@
                                 <div class="card" style="height: 80%; background: linear-gradient(to top, var(--bs-success) 0%, var(--bs-success) 90%, #ffffff 0%, #ffffff 100%);">
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
-                                            <h5 class="card-title text-truncate font-size-14 mb-2">Rencana</h5>
+                                            <h5 class="card-title text-truncate font-size-14 mb-2">Plan</h5>
                                             <h2 class="mb-0 text-dark text-center">90%</h2>
                                         </div>
                                     </div>
