@@ -10,7 +10,7 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="dashboard" class="waves-effect">
+                    <a href="<?= route_to('dashboard') ?>" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
