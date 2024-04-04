@@ -23,9 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	// public $baseURL = 'https://digision.id/Admin/public/';
-	public $baseURL = 'http://sas-pp.me/';
-
+	// public $baseURL = 'http://inpormasi.me/Admin/public';
+	public $baseURL = 'http://inpormasi.me/';
 
 	/**
 	 * --------------------------------------------------------------------------

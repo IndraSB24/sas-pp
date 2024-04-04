@@ -37,7 +37,6 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Landing::index');
 $routes->get('login', 'Auth::login');
 //$routes->get('dashboard', 'Home::index', ['filter' => 'filter_is_login']);
-$routes->get('test', 'Home::test');
 $routes->get('dashboard', 'Home::index');
 $routes->get('project-list', 'Home::show_project_list');
 $routes->get('document-list', 'Home::show_document_list');
@@ -53,6 +52,7 @@ $routes->get('project-show-over-prog-month', 'Project::show_over_prog_month_deta
 // Project Detail Engineering Doc
 $routes->get('engineering-dashboard', 'Project_detail_engineering::index');
 $routes->get('document-timeline/(:segment)', 'Project_detail_engineering::show_doc_timeline/$1');
+$routes->get('commentPdf/(:segment)', 'Project_detail_engineering::show_pdf/$1');
 // $routes->get('document-timeline', 'Project_detail_engineering::show_doc_timeline');
 $routes->get('show', 'Project_detail_engineering@show');
 $routes->get('engineering-doc-list/(:segment)', 'Project_detail_engineering::show_doc_list/$1');

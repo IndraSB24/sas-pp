@@ -15,12 +15,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?= base_url('test') ?>" class="waves-effect">
-                        <i class="ri-dashboard-line"></i>
-                        <span>test</span>
-                    </a>
-                </li>
             </ul>
         </div>
         <!-- Sidebar -->

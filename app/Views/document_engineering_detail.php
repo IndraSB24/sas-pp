@@ -942,10 +942,12 @@
         $("#btn-approval-approve").data("version", $(this).data('version'));
         
         // btn reject set
+        const id_doc = document.getElementById("approval_id_doc").value;
+        const link = "<?= base_url('commentPdf/') ?>"
         $("#btn-approval-reject")
             .data("step", $(this).data('step'))
             .data("version", $(this).data('version'))
-            .attr("href", "<?= base_url('test'); ?>");
+            .attr("href", `${link}/${id_doc}`);
 
         // Call Modal Approval
         $('#modal-approval').modal('show');
