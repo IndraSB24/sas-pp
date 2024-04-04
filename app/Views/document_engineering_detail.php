@@ -1032,41 +1032,41 @@
         formData.append('file_status', 'ifa_rejected');
         swalTitle = 'Reject '+fileDesc+' Version '+version+' ?';
         
-        Swal.fire({
-            title: swalTitle,
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonText: 'Ya',
-            cancelButtonText: 'Batal'
-        }).then(function(result) {
-            if (result.value) {
-                $.ajax({
-                    url:  path+'/'+id_doc,
-                    method: 'POST',
-                    data:formData,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                });
-                Swal.fire({
-                    title: 'Approved!',
-                    icon: 'success',
-                    text: 'This Version is Approved.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen:function () {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function () {
-                        location.reload()
-                    }
-                })
-            }
-        })
+        // Swal.fire({
+        //     title: swalTitle,
+        //     icon: 'info',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Ya',
+        //     cancelButtonText: 'Batal'
+        // }).then(function(result) {
+        //     if (result.value) {
+        //         $.ajax({
+        //             url:  path+'/'+id_doc,
+        //             method: 'POST',
+        //             data:formData,
+        //             contentType: false,
+        //             cache: false,
+        //             processData: false,
+        //         });
+        //         Swal.fire({
+        //             title: 'Approved!',
+        //             icon: 'success',
+        //             text: 'This Version is Approved.',
+        //             timer: 1000,
+        //             confirmButtonColor: "#5664d2",
+        //             onBeforeOpen:function () {
+        //                 //Swal.showLoading()
+        //                 timerInterval = setInterval(function() {
+        //                 Swal.getContent().querySelector('strong')
+        //                     .textContent = Swal.getTimerLeft()
+        //                 }, 100)
+        //             },
+        //             onClose: function () {
+        //                 location.reload()
+        //             }
+        //         })
+        //     }
+        // })
     })
 
 // waiting btn clicked swal
