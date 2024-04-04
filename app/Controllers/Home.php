@@ -20,6 +20,15 @@ class Home extends BaseController
 		];
 		return view('index', $data);
 	}
+
+	public function test()
+	{
+		$data = [
+			'title_meta' => view('partials/title-meta', ['title' => 'Test']),
+			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project List'])
+		];
+		return view('test_view', $data);
+	}
 	
 	
 	

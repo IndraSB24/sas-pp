@@ -15,6 +15,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="test" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>test</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

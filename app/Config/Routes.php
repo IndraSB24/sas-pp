@@ -37,6 +37,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Landing::index');
 $routes->get('login', 'Auth::login');
 //$routes->get('dashboard', 'Home::index', ['filter' => 'filter_is_login']);
+$routes->get('test', 'Home::test');
 $routes->get('dashboard', 'Home::index');
 $routes->get('project-list', 'Home::show_project_list');
 $routes->get('document-list', 'Home::show_document_list');
