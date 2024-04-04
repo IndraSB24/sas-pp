@@ -125,3 +125,11 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# Ignore App.php and Database.php files
+/App.php
+/Database.php
+
+# Ignore .htaccess file
+/.htaccess
+
+
