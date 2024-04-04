@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="test" class="waves-effect">
+                    <a href="<?= base_url('test') ?>" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>test</span>
                     </a>
