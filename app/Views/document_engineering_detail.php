@@ -942,8 +942,10 @@
         $("#btn-approval-approve").data("version", $(this).data('version'));
         
         // btn reject set
-        $("#btn-approval-reject").data("step", $(this).data('step'));
-        $("#btn-approval-reject").data("version", $(this).data('version'));
+        $("#btn-approval-reject")
+            .data("step", $(this).data('step'))
+            .data("version", $(this).data('version'))
+            .attr("href", "<?= base_url('test'); ?>");
 
         // Call Modal Approval
         $('#modal-approval').modal('show');
