@@ -640,12 +640,12 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="approval_id_doc" />
-                        <button type="button" class="btn btn-danger waves-effect" id="btn-approval-reject"
+                        <a type="button" class="btn btn-danger waves-effect" id="btn-approval-reject"
                             data-step="#"
                             data-version="#"
                         > 
                             Reject with Comment 
-                        </button>
+                         </a>
                         &nbsp;or&nbsp;
                         <button type="button" class="btn btn-success" id="btn-approval-approve"
                             data-path="#"
