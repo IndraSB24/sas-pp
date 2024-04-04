@@ -70,7 +70,7 @@ class Model_procurement_doc_comment extends Model
         return $this->get()->getResult();
     }
 
-    // ajax for  list item
+    // ajax for  list
     protected $main_column_searchable = [
         'transaksi.id'
     ];
