@@ -385,12 +385,11 @@ class Project_detail_engineering extends BaseController
             // save file name to database
             $data = [
                 'id' => $id_doc,
-                'actual_ifr_file'   => $uploaded_file->getName(),
-                'actual_ifr'        => date_now(),
-                'actual_ifr_version'=> $version
+                'actual_ifr' => date_now(),
+                'file' => $uploaded_file->getName(),
+                'file_version' => $version
             ];
-            return $this->response->setJSON($data);
-            // $this->doc_engineering_model->updateAllFields($id_doc, $data);
+            $this->doc_engineering_model->save($data);
             
             // $data_timeline = [
             //     'doc_id'                => $id_doc,
@@ -403,6 +402,8 @@ class Project_detail_engineering extends BaseController
             //     'file_status'           => $data['actual_ifr_version']
             // ];
             // $this->timeline_doc_model->save($data_timeline);
+
+            // return $this->response->setJSON($data);
         }else {
             die("No file specified!");
         }
