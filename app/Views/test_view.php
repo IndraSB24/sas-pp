@@ -67,7 +67,7 @@
                             <div class="col-md-4 align-items-end" style="display: flex; justify-content:left; gap: 10px; ">
                                 <button class="btn btn-sm btn-primary waves-effect waves-light" id="prev">Prev</button>
                                 <div style='width: 70px'>
-                                    <input type="number" class="form-control form-control-sm" value='1' id="page" />
+                                    <input type="number" class="form-control form-control-sm" v-model="currentPage" id="page" />
                                 </div>
                                 <button class="btn btn-sm btn-primary waves-effect waves-light" id="next">Next</button>
                             </div>
@@ -295,6 +295,8 @@
                 fontColor: '#ff3838',
                 isAddText: false,
                 typeAction: '',
+                totalPagePdf: 0,
+                currentPage: 1,
                 listComment: [{
                         filename: 'Revisi001.jpg',
                         user: 'Budi',
@@ -561,6 +563,7 @@
                 PDFJS.getDocument(url).then(function(pdf) {
                     // you can now use *pdf* here
                     console.log("the pdf has ", pdf.numPages, "page(s).")
+                    this.totalPagePdf = pdf.numPages;
                     pdf.getPage(1).then(function(page) {
                         // you can now use *page* here
                         var viewport = page.getViewport(2.0);
@@ -593,7 +596,7 @@
                 }
 
                 function dataURLtoBlob(dataUrl) {
-                    const filename = 'fuadi.jpeg'
+                    const filename = 'fuadi.png'
                     var arr = dataUrl.split(',');
                     var mime = arr[0].match(/:(.*?);/)[1];
                     var bstr = atob(arr[1]);
@@ -694,23 +697,11 @@
                     // Convert data URL to Blob
                     var blob = dataURLtoBlob(dataUrl);
                     var formData = new FormData();
-                    formData.append('image', blob, 'image');
+                    formData.append('image', blob, 'image.png');
                     formData.append('id_doc', 22);
                     formData.append('page_detail', 2);
-                    // Create FormData
-                    // a.href = dataUrl;
-                    // a.download = 'canvas.jpg'; // Nama file yang akan diunduh
-                    // document.body.appendChild(a); // Menambahkan tautan ke dalam dokumen
-                    // a.click(); // Klik tautan secara otomatis untuk memulai unduhan
-                    // document.body.removeChild(a); // Menghapus taut
-                    // pdf.addImage(dataUrl, 'PNG', 0, 0, 210, 297);
-                    // pdf.save('canvas.pdf');
-                    // var a = document.createElement('a');
-                    // a.href = dataUrl;
-                    // a.download = 'canvas.jpg'; // Nama file yang akan diunduh
-                    // document.body.appendChild(a); // Menambahkan tautan ke dalam dokumen
-                    // // a.click(); // Klik tautan secara otomatis untuk memulai unduhan
-                    // document.body.removeChild(a); // Menghapus tautan setelah selesai
+                    console.log(blob);
+                    
                     $.ajax({
                         type: 'POST',
                         url: '<?= base_url('Project_detail_engineering/add_comment') ?>',
