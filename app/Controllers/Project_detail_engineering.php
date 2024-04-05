@@ -388,7 +388,7 @@ class Project_detail_engineering extends BaseController
                 'actual_ifr'        => date_now(),
                 'actual_ifr_version'=> $version
             ];
-            die ($data);
+            return $data;
             $this->doc_engineering_model->updateAllFields($id_doc, $data);
             
             $data_timeline = [
