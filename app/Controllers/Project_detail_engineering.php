@@ -368,6 +368,7 @@ class Project_detail_engineering extends BaseController
     public function up_ifr(){
         // read the file
         $uploaded_file = $this->request->getFile('file');
+        $id_doc = $this->request->getPost('id_doc');
                 
         // store the file
         if($uploaded_file){
@@ -387,10 +388,10 @@ class Project_detail_engineering extends BaseController
                 'actual_ifr'        => date_now(),
                 'actual_ifr_version'=> $version
             ];
-            $this->doc_engineering_model->update($id_update, $data);
+            $this->doc_engineering_model->update($id_doc, $data);
             
             $data_timeline = [
-                'doc_id'                => $id_update,
+                'doc_id'                => $id_doc,
                 'detail_type'           => 'engineering',
                 'time'                  => $data['actual_ifr'],
                 'timeline_title'        => 'IFR File Upload',
@@ -399,7 +400,6 @@ class Project_detail_engineering extends BaseController
                 'new_file'              => $data['actual_ifr_file'],
                 'file_status'           => $data['actual_ifr_version']
             ];
-            $this->timeline_doc_model->reset_increment();
             $this->timeline_doc_model->save($data_timeline);
         }
         else {
