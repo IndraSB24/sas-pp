@@ -420,7 +420,7 @@ class Project_detail_engineering extends BaseController
                 'id_doc' => $this->request->getPost('id_doc'),
                 'comment_file' => $uploaded_file->getName(),
                 'page_detail' => $this->request->getPost('page_detail'),
-                // 'created_by' => sess('active_user_id')
+                'created_by' => sess('active_user_id')
             ];
             $this->Model_engineering_doc_comment->save($data_add);
             
