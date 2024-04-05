@@ -465,7 +465,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data" data-object="Project_detail_engineering/add/doc_engineering">Add</button>
+                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data">
+                        Add
+                    </button>
                 </div>
             </div>
             </form>
@@ -665,7 +667,6 @@
 // btn simpan document
 // ==========================================================================================================================================================================
     $(document).on('click','#btn-simpan-doc',function(){
-        const objek = $(this).data('object')
         const level_code    = document.getElementById("level_code").value;
         const description   = document.getElementById("description").value;
         const weight_factor = document.getElementById("weight_factor").value;
@@ -682,7 +683,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek,
+                    url:  "<?= base_url('Project_detail_engineering/add/doc_engineering') ?>",
                     method: 'POST',
                     dataType: "JSON",
                     data : {
