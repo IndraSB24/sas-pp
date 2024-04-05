@@ -659,8 +659,8 @@
     
 </html>
 
-<script src="assets/libs/jquery-knob/jquery.knob.min.js"></script> 
-<script src="assets/js/pages/jquery-knob.init.js"></script> 
+<script src="<?= base_url('assets/libs/jquery-knob/jquery.knob.min.js') ?>"></script> 
+<script src="<?= base_url('assets/js/pages/jquery-knob.init.js') ?>"></script> 
 <script>
 // btn simpan document
 // ==========================================================================================================================================================================
