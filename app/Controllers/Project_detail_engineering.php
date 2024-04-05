@@ -418,21 +418,21 @@ class Project_detail_engineering extends BaseController
             // save file name to database
             $data_add = [
                 'id_doc' => $this->request->getPost('id_doc'),
-                'comment_file' => $file->getName(),
+                'comment_file' => $uploaded_file->getName(),
                 'page_detail' => $this->request->getPost('page_detail'),
                 'created_by' => sess('active_user_id')
             ];
             $this->Model_engineering_doc_comment->save($data_add);
             
             $data_timeline = [
-                'doc_id'                => $id_update,
+                'doc_id'                => $data_add['id_doc'],
                 'detail_type'           => 'engineering',
-                'time'                  => $data['actual_ifr'],
-                'timeline_title'        => 'IFR File Upload',
+                'time'                  => date_now(),
+                'timeline_title'        => 'Engineering Comment',
                 'timeline_description'  => 'no desc',
                 'timeline_status'       => 'late',
-                'new_file'              => $data['actual_ifr_file'],
-                'file_status'           => $data['actual_ifr_version']
+                'new_file'              => $data_add['comment_file'],
+                'file_status'           => ''
             ];
             $this->timeline_doc_model->save($data_timeline);
         }
