@@ -411,7 +411,6 @@ class Project_detail_engineering extends BaseController
     // add comment
     public function add_comment(){
         $uploaded_file = $this->request->getFile('image');
-        var_dump($uploaded_file);die;
         // store the file
         if($uploaded_file){
             $uploaded_file->move('upload/engineering_doc/comment');
