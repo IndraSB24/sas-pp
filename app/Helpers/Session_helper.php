@@ -11,11 +11,11 @@
     
     function sess($parameter){
         $session = session();
-        if($parameter == 'act_id'){
+        if($parameter == 'active_user_id'){
             return $session->get('activeId');
-        }else if($parameter == 'act_username'){
+        }else if($parameter == 'active_username'){
             return $session->get('username');
-        }else if($parameter == 'act_nama'){
+        }else if($parameter == 'active_user_name'){
             return $session->get('nama');
         }
     }

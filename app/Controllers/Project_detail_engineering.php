@@ -15,6 +15,7 @@ class Project_detail_engineering extends BaseController
         $this->project_model = new Model_project();
         $this->timeline_doc_model = new Model_timeline_doc();
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
+        helper(['session_helper']);
     }
     
 	public function index($project_id=null){
@@ -363,15 +364,82 @@ class Project_detail_engineering extends BaseController
         
     }
 
+    // upload IFR
+    public function up_ifr(){
+        // read the file
+        $uploaded_file = $this->request->getFile('file');
+                
+        // store the file
+        if($uploaded_file){
+            $file   = $this->request->getFile('file');
+            $version= $this->request->getPost('version');
+            $file->move('upload/engineering_doc/list');
+            
+            if($version != "nothing"){
+                $version = autoVersioning($version, 'issued');
+            }else{
+                $version = "0A";
+            }
+            
+            // save file name to database
+            $data = [
+                'actual_ifr_file'   => $file->getName(),
+                'actual_ifr'        => date_now(),
+                'actual_ifr_version'=> $version
+            ];
+            $this->doc_engineering_model->update($id_update, $data);
+            
+            $data_timeline = [
+                'doc_id'                => $id_update,
+                'detail_type'           => 'engineering',
+                'time'                  => $data['actual_ifr'],
+                'timeline_title'        => 'IFR File Upload',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'late',
+                'new_file'              => $data['actual_ifr_file'],
+                'file_status'           => $data['actual_ifr_version']
+            ];
+            $this->timeline_doc_model->reset_increment();
+            $this->timeline_doc_model->save($data_timeline);
+        }
+        else {
+            die("No file specified!");
+        }
+    }
+
     // add comment
     public function add_comment(){
-        $data_add = [
-            'id_doc' => $this->request->getPost('id_doc'),
-            'comment_file' => $this->request->getPost('comment_file'),
-            'page_detail' => $this->request->getPost('page_detail'),
-            'created_by' => $this->request->getPost('created_by')
-        ];
+        $uploaded_file = $this->request->getFile('comment_file');
 
-        $this->Model_engineering_doc_comment->save($data_add);
+        // store the file
+        if($uploaded_file){
+            $uploaded_file->move('upload/engineering_doc/list');
+            
+            // save file name to database
+            $data_add = [
+                'id_doc' => $this->request->getPost('id_doc'),
+                'comment_file' => $file->getName(),
+                'page_detail' => $this->request->getPost('page_detail'),
+                'created_by' => sess('active_user_id')
+            ];
+            $this->Model_engineering_doc_comment->save($data_add);
+            
+            $data_timeline = [
+                'doc_id'                => $id_update,
+                'detail_type'           => 'engineering',
+                'time'                  => $data['actual_ifr'],
+                'timeline_title'        => 'IFR File Upload',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'late',
+                'new_file'              => $data['actual_ifr_file'],
+                'file_status'           => $data['actual_ifr_version']
+            ];
+            $this->timeline_doc_model->save($data_timeline);
+        }
+        else {
+            die("No file specified!");
+        }
+
+        
     }
 }
