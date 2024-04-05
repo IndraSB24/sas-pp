@@ -2,7 +2,7 @@
 
     <head>
         <?= $title_meta ?>
-        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" /> -->
         <?= $this->include('partials/head-css') ?>
     </head>
     
@@ -1082,5 +1082,5 @@
 
     
 </script>
-<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/libs/dropzone/min/dropzone.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
