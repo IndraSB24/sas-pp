@@ -56,4 +56,10 @@ class Model_doc_engineering extends Model
         
         return $this->get()->getResult();
     }
+
+    // Update all fields based on the provided data
+    public function updateAllFields($id, $data)
+    {
+        return $this->update($id, $data);
+    }
 }
