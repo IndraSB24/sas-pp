@@ -699,7 +699,7 @@
                     title: 'Disimpan!',
                     icon: 'success',
                     text: 'Data berhasil disimpan.',
-                    // timer: 1000,
+                    timer: 1000,
                     confirmButtonColor: "#5664d2",
                     onBeforeOpen:function () {
                         //Swal.showLoading()
@@ -884,6 +884,7 @@
         file    = i[0].files[0];
         formData.append('file',file);
         formData.append('version',version);
+        formData.append('id_doc', id_doc);
         swalTitle = 'Upload File '+fileDesc;
         
         Swal.fire({
@@ -895,7 +896,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  path+'/'+id_doc,
+                    url:  "<?= base_url('Project_detail_engineering/up_ifr') ?>",
                     method: 'POST',
                     data:formData,
                     contentType: false,
@@ -906,7 +907,7 @@
                     title: 'Diupload!',
                     icon: 'success',
                     text: 'File Berhasil Diupload.',
-                    timer: 1000,
+                    // timer: 1000,
                     confirmButtonColor: "#5664d2",
                     onBeforeOpen:function () {
                         //Swal.showLoading()
