@@ -698,7 +698,7 @@
                     title: 'Disimpan!',
                     icon: 'success',
                     text: 'Data berhasil disimpan.',
-                    timer: 1000,
+                    // timer: 1000,
                     confirmButtonColor: "#5664d2",
                     onBeforeOpen:function () {
                         //Swal.showLoading()
