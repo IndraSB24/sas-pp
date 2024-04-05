@@ -56,6 +56,14 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-sm-6 text-center"></div>
+                                            <div class="col-sm-6 text-center">
+                                                <a href="engineering-doc-list/1" class="btn btn-sm btn-info mb-3">
+                                                    Show Detail
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <!--structural chart-->
                                             <div class="col-md-3 m-0 p-0 text-center">
                                                 <div id="structural_chart" class="apex-charts" ></div>
