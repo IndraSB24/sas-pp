@@ -5,6 +5,7 @@ use App\Models\Model_project;
 use App\Models\Model_doc_engineering;
 use App\Models\Model_timeline_doc;
 use App\Models\Model_engineering_doc_comment;
+use CodeIgniter\CLI\Console;
 
 class Project_detail_engineering extends BaseController
 {
@@ -409,8 +410,7 @@ class Project_detail_engineering extends BaseController
 
     // add comment
     public function add_comment(){
-        $uploaded_file = $this->request->getFile('comment_file');
-
+        $uploaded_file = $this->request->getFile('image');
         // store the file
         if($uploaded_file){
             $uploaded_file->move('upload/engineering_doc/list');
