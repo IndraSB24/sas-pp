@@ -384,11 +384,12 @@ class Project_detail_engineering extends BaseController
             
             // save file name to database
             $data = [
+                'id' => $id_doc,
                 'actual_ifr_file'   => $uploaded_file->getName(),
                 'actual_ifr'        => date_now(),
                 'actual_ifr_version'=> $version
             ];
-            $this->doc_engineering_model->update($id_doc, $data);
+            $this->doc_engineering_model->save($data);
             
             $data_timeline = [
                 'doc_id'                => $id_doc,
