@@ -43,6 +43,7 @@ $routes->get('document-list', 'Home::show_document_list');
 
 // Home
 $routes->get('dashboard-get-project-list', 'Home::get_datatable');
+$routes->put('submitPdf', 'Project_detail_engineering::add_comment');
 
 // Project
 $routes->get('project-dashboard', 'Project::index');

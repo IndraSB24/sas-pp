@@ -568,6 +568,25 @@
 
                 });
 
+                function dataURItoBlob(dataURI) {
+                    var byteString;
+                    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                        byteString = atob(dataURI.split(',')[1]);
+                    else
+                        byteString = unescape(dataURI.split(',')[1]);
+
+                    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+                    var ia = new Uint8Array(byteString.length);
+                    for (var i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+
+                    return new Blob([ia], {
+                        type: mimeString
+                    });
+                }
+
                 function renderPage(pageNum) {
                     clearCanvas()
                     PDFJS.getDocument(url).then(function(pdf) {
@@ -630,34 +649,46 @@
                 document.getElementById('saveBtn').addEventListener('click', () => {
                     var pdf = new jsPDF();
                     var dataUrl = canvas.toDataURL('image/png');
-                    // pdf.addImage(dataUrl, 'PNG', 0, 0, 210, 297);
-                    // pdf.save('canvas.pdf');
-                    var a = document.createElement('a');
-                    a.href = dataUrl;
-                    a.download = 'canvas.jpg'; // Nama file yang akan diunduh
-                    document.body.appendChild(a); // Menambahkan tautan ke dalam dokumen
-                    // a.click(); // Klik tautan secara otomatis untuk memulai unduhan
-                    document.body.removeChild(a); // Menghapus tautan setelah selesai
-                    Swal.fire({
-                        title: 'Disimpan!',
-                        icon: 'success',
-                        text: 'Data berhasil disimpan.',
-                        timer: 1000,
-                        confirmButtonColor: "#5664d2",
-                        onBeforeOpen: () => {
-                            this.listComment = [{
-                                filename: 'Revisi005.jpg',
-                                user: 'Badu',
-                                date: '30/03/2024',
-                                src: 'upload/doc_engineering/canvas (1).jpg'
-                            }, ...this.listComment];
-                            //Swal.showLoading()
-                            timerInterval = setInterval(function() {
-                                Swal.getContent().querySelector('strong')
-                                    .textContent = Swal.getTimerLeft()
-                            }, 100)
+                    var blobData = dataURItoBlob(dataUrl);
+                    var formData = new FormData();
+                    formData.append('comment_file', blobData, 'canvas.png');
+                    formData.append('id_doc', 22); // Menambahkan id_doc ke FormData
+                    formData.append('page_detail', 2); // Menambahkan page_detail ke FormData
+                    $.ajax({
+                        type: 'PUT',
+                        url: '<?= base_url('Project_detail_engineering/add_comment') ?>',
+                        processData: false, // Memproses data menjadi string tidak diperlukan
+                        contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
+                        data: formData,
+                        success: function(response) {
+                            // Menampilkan respons dari server jika berhasil
+                            console.log(response);
                         },
-                    })
+                        error: function(xhr, status, error) {
+                            // Menampilkan pesan kesalahan jika terjadi kesalahan
+                            console.error('Terjadi kesalahan: ' + status + ' - ' + error);
+                        }
+                    });
+                    // Swal.fire({
+                    //     title: 'Disimpan!',
+                    //     icon: 'success',
+                    //     text: 'Data berhasil disimpan.',
+                    //     timer: 1000,
+                    //     confirmButtonColor: "#5664d2",
+                    //     onBeforeOpen: () => {
+                    //         this.listComment = [{
+                    //             filename: 'Revisi005.jpg',
+                    //             user: 'Badu',
+                    //             date: '30/03/2024',
+                    //             src: 'upload/doc_engineering/canvas (1).jpg'
+                    //         }, ...this.listComment];
+                    //         //Swal.showLoading()
+                    //         timerInterval = setInterval(function() {
+                    //             Swal.getContent().querySelector('strong')
+                    //                 .textContent = Swal.getTimerLeft()
+                    //         }, 100)
+                    //     },
+                    // })
                 });
                 // $('#downloadBtn').on('click', function () {
                 //     // Mendapatkan attachment PDF
