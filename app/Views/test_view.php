@@ -392,6 +392,25 @@
                     grid: 10,
                 });
 
+                function convertDataURIToBlob(dataURI) {
+                    var byteString;
+                    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                        byteString = atob(dataURI.split(',')[1]);
+                    else
+                        byteString = unescape(dataURI.split(',')[1]);
+
+                    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+                    var ia = new Uint8Array(byteString.length);
+                    for (var i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+
+                    return new Blob([ia], {
+                        type: mimeString
+                    });
+                }
+
                 $('#mode').on('change', (evt) => {
                     this.typeAction = evt.target.value;
                     if (this.typeAction === 'freeDraw') {
@@ -568,22 +587,26 @@
 
                 });
 
-                function dataURItoBlob(dataURI) {
-                    var byteString;
-                    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-                        byteString = atob(dataURI.split(',')[1]);
-                    else
-                        byteString = unescape(dataURI.split(',')[1]);
+                function dataURItoBlob(blob, fileName) {
+                    const file = new File([blob], fileName)
+                    return file;
+                }
 
-                    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-                    var ia = new Uint8Array(byteString.length);
-                    for (var i = 0; i < byteString.length; i++) {
-                        ia[i] = byteString.charCodeAt(i);
+                function dataURLtoBlob(dataUrl) {
+                    const filename = 'fuadi.jpeg'
+                    var arr = dataUrl.split(',');
+                    var mime = arr[0].match(/:(.*?);/)[1];
+                    var bstr = atob(arr[1]);
+                    var n = bstr.length;
+                    var u8arr = new Uint8Array(n);
+                    while (n--) {
+                        u8arr[n] = bstr.charCodeAt(n);
                     }
-
-                    return new Blob([ia], {
-                        type: mimeString
+                    // Create a new File object with the Blob and the filename
+                    return new File([new Blob([u8arr], {
+                        type: mime
+                    })], filename, {
+                        type: mime
                     });
                 }
 
@@ -649,13 +672,28 @@
                 document.getElementById('saveBtn').addEventListener('click', () => {
                     var pdf = new jsPDF();
                     var dataUrl = canvas.toDataURL('image/png');
-                    var blobData = dataURItoBlob(dataUrl);
+                    // Convert data URL to Blob
+                    var blob = dataURLtoBlob(dataUrl);
                     var formData = new FormData();
-                    formData.append('comment_file', blobData, 'canvas.png');
-                    formData.append('id_doc', 22); // Menambahkan id_doc ke FormData
-                    formData.append('page_detail', 2); // Menambahkan page_detail ke FormData
+                    formData.append('image', blob, 'image');
+                    formData.append('id_doc', 22);
+                    formData.append('page_detail', 2);
+                    // Create FormData
+                    // a.href = dataUrl;
+                    // a.download = 'canvas.jpg'; // Nama file yang akan diunduh
+                    // document.body.appendChild(a); // Menambahkan tautan ke dalam dokumen
+                    // a.click(); // Klik tautan secara otomatis untuk memulai unduhan
+                    // document.body.removeChild(a); // Menghapus taut
+                    // pdf.addImage(dataUrl, 'PNG', 0, 0, 210, 297);
+                    // pdf.save('canvas.pdf');
+                    // var a = document.createElement('a');
+                    // a.href = dataUrl;
+                    // a.download = 'canvas.jpg'; // Nama file yang akan diunduh
+                    // document.body.appendChild(a); // Menambahkan tautan ke dalam dokumen
+                    // // a.click(); // Klik tautan secara otomatis untuk memulai unduhan
+                    // document.body.removeChild(a); // Menghapus tautan setelah selesai
                     $.ajax({
-                        type: 'PUT',
+                        type: 'POST',
                         url: '<?= base_url('Project_detail_engineering/add_comment') ?>',
                         processData: false, // Memproses data menjadi string tidak diperlukan
                         contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
