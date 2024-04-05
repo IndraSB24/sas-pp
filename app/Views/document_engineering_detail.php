@@ -204,7 +204,7 @@
                                                         }
                                                         
                                                         
-                                                        $linkFile = base_url('upload/doc_engineering/'.$row->file);
+                                                        $linkFile = base_url('upload/engineering_doc/list/'.$row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
                                                         // set actual IFR status
                                                         if($row->actual_ifr){
@@ -587,7 +587,7 @@
     </div>
     
     <!--Modal Approval Document-->
-    <div class="modal fade" id="modal-approval" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_approval" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form action="#" method="POST" id="form-modal-approval" enctype="multipart/form-data">
                 <div class="modal-content">
@@ -607,11 +607,11 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <label class="form-label">Submitted By</label>
-                                <input type="text" class="form-control" name="approval_submitted_by" id="approval_submitted_by" value="John Submit" readonly />
+                                <input type="text" class="form-control" name="approval_submitted_by" id="approval_submitted_by" readonly />
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Submitted At</label>
-                                <input type="text" class="form-control" name="approval_submitted_at" id="approval_submitted_at" value="20-07-2023" readonly />
+                                <input type="text" class="form-control" name="approval_submitted_at" id="approval_submitted_at" readonly />
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Submitted File</label>
@@ -626,14 +626,6 @@
                             <div class="col-md-12">
                                 <label class="form-label">Comment</label>
                                 <textarea id="approval_comment_text" name="approval_comment_text" class="form-control" maxlength="1000" rows="3" placeholder="type your comment"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="form-label">Upload Commented File (Optional)</label>
-                            <div>
-                                <label for="approval_comment_file" id="approval_btn_comment_file" class="btn btn-info">Choose File</label>
-                                <input name="approval_comment_file" id="approval_comment_file" type="file" multiple="multiple" style="display: none;" />
-                                &nbsp;<span id="approval_file_name">No File Choosen</span>
                             </div>
                         </div>
                     </div>
@@ -949,7 +941,7 @@
             .attr("href", `${link}/${id_doc}`);
 
         // Call Modal Approval
-        $('#modal-approval').modal('show');
+        $('#modal_approval').modal('show');
     })
     
     $(document).ready(function() {

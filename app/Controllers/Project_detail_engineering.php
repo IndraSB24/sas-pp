@@ -391,17 +391,17 @@ class Project_detail_engineering extends BaseController
             ];
             $this->doc_engineering_model->save($data);
             
-            // $data_timeline = [
-            //     'doc_id'                => $id_doc,
-            //     'detail_type'           => 'engineering',
-            //     'time'                  => $data['actual_ifr'],
-            //     'timeline_title'        => 'IFR File Upload',
-            //     'timeline_description'  => 'no desc',
-            //     'timeline_status'       => 'late',
-            //     'new_file'              => $data['actual_ifr_file'],
-            //     'file_status'           => $data['actual_ifr_version']
-            // ];
-            // $this->timeline_doc_model->save($data_timeline);
+            $data_timeline = [
+                'doc_id'                => $id_doc,
+                'detail_type'           => 'engineering',
+                'time'                  => $data['actual_ifr'],
+                'timeline_title'        => 'IFR File Upload',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'late',
+                'new_file'              => $data['actual_ifr_file'],
+                'file_status'           => $data['actual_ifr_version']
+            ];
+            $this->timeline_doc_model->save($data_timeline);
 
             // return $this->response->setJSON($data);
         }else {
