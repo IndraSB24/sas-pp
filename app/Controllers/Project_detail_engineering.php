@@ -345,7 +345,7 @@ class Project_detail_engineering extends BaseController
                 // store the file
                 if($uploaded_file){
                     $file = $this->request->getFile('file');
-                    $file->move('upload/doc_engineering');
+                    $file->move('upload/engineering_doc/list');
                     
                     // save file name to database
                     $data = [
@@ -373,9 +373,8 @@ class Project_detail_engineering extends BaseController
                 
         // store the file
         if($uploaded_file){
-            $file   = $this->request->getFile('file');
             $version= $this->request->getPost('version');
-            $file->move('upload/engineering_doc/list');
+            $uploaded_file->move('upload/engineering_doc/list');
             
             if($version != "nothing"){
                 $version = autoVersioning($version, 'issued');
@@ -385,7 +384,7 @@ class Project_detail_engineering extends BaseController
             
             // save file name to database
             $data = [
-                'actual_ifr_file'   => $file->getName(),
+                'actual_ifr_file'   => $uploaded_file->getName(),
                 'actual_ifr'        => date_now(),
                 'actual_ifr_version'=> $version
             ];
@@ -413,7 +412,7 @@ class Project_detail_engineering extends BaseController
         $uploaded_file = $this->request->getFile('image');
         // store the file
         if($uploaded_file){
-            $uploaded_file->move('upload/engineering_doc/list');
+            $uploaded_file->move('upload/engineering_doc/comment');
             
             // save file name to database
             $data_add = [
