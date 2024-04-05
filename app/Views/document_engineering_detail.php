@@ -882,8 +882,8 @@
         id_doc = document.getElementById("upload_id_doc").value;
         i       = $('#upload_uploaded_file'),
         file    = i[0].files[0];
-        formData.append('file',file);
-        formData.append('version',version);
+        formData.append('file', file);
+        formData.append('version', version);
         formData.append('id_doc', id_doc);
         swalTitle = 'Upload File '+fileDesc;
         
