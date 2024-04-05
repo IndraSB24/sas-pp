@@ -403,9 +403,6 @@
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-        <?= $this->include('partials/right-sidebar') ?>
-
         <!-- JAVASCRIPT -->
         <?= $this->include('partials/vendor-scripts') ?>
     </body>
