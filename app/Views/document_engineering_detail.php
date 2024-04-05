@@ -2,7 +2,7 @@
 
     <head>
         <?= $title_meta ?>
-        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" /> -->
         <?= $this->include('partials/head-css') ?>
     </head>
     
@@ -403,9 +403,6 @@
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-        <?= $this->include('partials/right-sidebar') ?>
-
         <!-- JAVASCRIPT -->
         <?= $this->include('partials/vendor-scripts') ?>
     </body>
@@ -468,7 +465,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data" data-object="Project_detail_engineering/add/doc_engineering">Add</button>
+                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data">
+                        Add
+                    </button>
                 </div>
             </div>
             </form>
@@ -662,13 +661,12 @@
     
 </html>
 
-<script src="assets/libs/jquery-knob/jquery.knob.min.js"></script> 
-<script src="assets/js/pages/jquery-knob.init.js"></script> 
+<script src="<?= base_url('assets/libs/jquery-knob/jquery.knob.min.js') ?>"></script> 
+<script src="<?= base_url('assets/js/pages/jquery-knob.init.js') ?>"></script> 
 <script>
 // btn simpan document
 // ==========================================================================================================================================================================
     $(document).on('click','#btn-simpan-doc',function(){
-        const objek = $(this).data('object')
         const level_code    = document.getElementById("level_code").value;
         const description   = document.getElementById("description").value;
         const weight_factor = document.getElementById("weight_factor").value;
@@ -685,7 +683,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek,
+                    url:  "<?= base_url('Project_detail_engineering/add/doc_engineering') ?>",
                     method: 'POST',
                     dataType: "JSON",
                     data : {
@@ -701,7 +699,7 @@
                     title: 'Disimpan!',
                     icon: 'success',
                     text: 'Data berhasil disimpan.',
-                    timer: 1000,
+                    // timer: 1000,
                     confirmButtonColor: "#5664d2",
                     onBeforeOpen:function () {
                         //Swal.showLoading()
@@ -1085,5 +1083,5 @@
 
     
 </script>
-<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/libs/dropzone/min/dropzone.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
