@@ -4,15 +4,17 @@ namespace App\Controllers;
 use App\Models\Model_project;
 use App\Models\Model_doc_engineering;
 use App\Models\Model_timeline_doc;
+use App\Models\Model_engineering_doc_comment;
 
 class Project_detail_engineering extends BaseController
 {
-    protected $doc_engineering_model, $project_model, $timeline_doc_model;
+    protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment;
  
     function __construct(){
         $this->doc_engineering_model = new Model_doc_engineering();
         $this->project_model = new Model_project();
         $this->timeline_doc_model = new Model_timeline_doc();
+        $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
     }
     
 	public function index($project_id=null){
@@ -78,7 +80,17 @@ class Project_detail_engineering extends BaseController
 		return view('timeline-document', $data);
 	}
 	
-    // Show ================================================================================================================================================================	
+    // Show ==============================================================================================================
+    public function show_doc_comment($doc_id, $id_approver) {
+		$data = [   
+			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
+			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
+            ''
+		];
+		return view('test_view', $data);
+    }
+
+
 	public function show(request $param){
         switch($param->kode){
             case 'document_timeline':
@@ -349,5 +361,17 @@ class Project_detail_engineering extends BaseController
     
     public function pagination(){
         
+    }
+
+    // add comment
+    public function add_comment(){
+        $data_add = [
+            'id_doc' => $this->request->getPost('id_doc'),
+            'comment_file' => $this->request->getPost('comment_file'),
+            'page_detail' => $this->request->getPost('page_detail'),
+            'created_by' => $this->request->getPost('created_by')
+        ];
+
+        $this->Model_engineering_doc_comment->save($data_add);
     }
 }
