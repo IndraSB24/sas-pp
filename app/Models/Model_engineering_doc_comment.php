@@ -54,18 +54,9 @@ class Model_engineering_doc_comment extends Model
     // get by id
     public function get_by_engineering_doc_id($id){
         $this->select('
-            transaksi.*,
-            r.kode as kode_transaksi,
-            p.kode_pasien as kode_pasien,
-            p.nama as nama_pasien,
-            k1.nama as payment_method,
-            k2.nama as payment_status
+            *
         ')
-        ->join('registration r', 'r.id=transaksi.id_registration', 'LEFT')
-        ->join('pasien p', 'p.id=transaksi.id_pasien', 'LEFT')
-        ->join('kategori k1', 'k1.id=transaksi.id_payment_method', 'LEFT')
-        ->join('kategori k2', 'k2.id=transaksi.id_payment_status', 'LEFT')
-        ->where('item.id', $id);
+        ->where('doc_id', $id);
         
         return $this->get()->getResult();
     }

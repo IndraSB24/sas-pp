@@ -408,7 +408,7 @@
     </body>
     
     <!--Modal Add Document-->
-    <div class="modal fade" id="modal-add-document" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="modal-add-document" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form action="#" method="POST">
             <div class="modal-content">
@@ -541,7 +541,7 @@
     </div>
     
     <!--Modal Upload All File-->
-    <div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="modal-upload-file" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form action="#" method="POST" id="form-modal-upload-file" enctype="multipart/form-data">
                 <div class="modal-content">
