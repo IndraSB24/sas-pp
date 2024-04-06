@@ -66,8 +66,8 @@ class Project_detail_engineering extends BaseController
 			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
             'doc_id' => $doc_id,
-            'file_name' => 'test.pdf'
-            // 'data_doc' => $this->doc_engineering_model->findById($doc_id)
+            'file_name' => 'test.pdf',
+            'filename' => $this->doc_engineering_model->get_filename_by_doc_id($doc_id)
 		];
 		return view('test_view', $data);
     }
