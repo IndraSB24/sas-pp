@@ -421,7 +421,7 @@ class Project_detail_engineering extends BaseController
             
             // save file name to database
             $data_add = [
-                'id_doc' => $this->request->getPost('id_doc'),
+                'doc_id' => $this->request->getPost('id_doc'),
                 'comment_file' => $uploaded_file->getName(),
                 'page_detail' => $this->request->getPost('page_detail'),
                 'created_by' => sess('active_user_id')
