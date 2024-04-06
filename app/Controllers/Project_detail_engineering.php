@@ -472,7 +472,7 @@ class Project_detail_engineering extends BaseController
             'id_approver' => $id_approver
         ];
         $fetched_data = $this->Model_engineering_doc_comment->get_by_idDoc_idApprover($payload);
-        
+        var_dump($fetched_data);
         // Check if comments are fetched successfully
         if ($fetched_data) {
             // Return the fetched comments in JSON format
