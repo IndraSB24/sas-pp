@@ -52,7 +52,7 @@ class Model_engineering_doc_comment extends Model
     }
 
     // get by id
-    public function getByDocIdAndApprover($payload) {
+    public function get_by_idDoc_idApprover($payload) {
         // Validate that id_doc is provided
         if (!isset($payload['id_doc'])) {
             return [];

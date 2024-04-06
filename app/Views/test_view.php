@@ -125,8 +125,8 @@
                                                 <small for="event-category">Action</small>
                                             </div>
                                             <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
-                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
+                                                <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> </button>
                                                 <button class="btn btn-sm btn-info waves-effect waves-light" id="saveBtn"><i class="far fa-hdd"></i> Submit</button>
                                             </div>
 
@@ -312,6 +312,33 @@
                         b = parseInt(hex.slice(5, 7), 16);
 
                     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+                },
+                getLitComment() {
+                    console.log('fuadiiii');
+                    const payload = {
+                        id_doc: <?= $doc_id ?>,
+                        id_approver: 2,
+                    }
+                    var formData = new FormData();
+                    formData.append('id_doc', <?= $doc_id ?>);
+                    formData.append('id_approver', 2);
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= base_url('Project_detail_engineering/ajax_get_comment') ?>',
+                        processData: false, // Memproses data menjadi string tidak diperlukan
+                        contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
+                        dataType: "JSON",
+                        data: formData,
+                        success: function(response) {
+                            // Menampilkan respons dari server jika berhasil
+                            console.log(response, 'fuadi')
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            // Menampilkan pesan kesalahan jika terjadi kesalahan
+                            console.error('Terjadi kesalahan: ' + status + ' - ' + error);
+                        }
+                    });
                 }
             },
             mounted: function() {
@@ -331,6 +358,8 @@
                     selection: false,
                     grid: 10,
                 });
+
+                this.getLitComment();
 
                 function convertDataURIToBlob(dataURI) {
                     var byteString;
