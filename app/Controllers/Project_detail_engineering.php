@@ -429,7 +429,7 @@ class Project_detail_engineering extends BaseController
             $this->Model_engineering_doc_comment->save($data_add);
             
             $data_timeline = [
-                'doc_id'                => $data_add['id_doc'],
+                'doc_id'                => $data_add['doc_id'],
                 'detail_type'           => 'engineering',
                 'time'                  => date_now(),
                 'timeline_title'        => 'Engineering Comment',
