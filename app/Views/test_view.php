@@ -142,15 +142,17 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Comment list</th>
+                                                <th>page</th>
                                                 <th>Comment by</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item, index) in listComment" :key="index">
-                                                <td><a href="#" class="text-info fw-bold" @click.prevent="showModal(item)"> {{ item.filename }} </a> </td>
-                                                <td><span class="fw-bold">{{ item.user }}</span></td>
-                                                <td><span class="fw-bold">{{ item.date }}</span></td>
+                                                <td><a href="#" class="text-info fw-bold" @click.prevent="showModal(item)"> {{ item.comment_file }} </a> </td>
+                                                <td><a href="#" class="changePage text-info fw-bold" @click="nextImage"> {{ item.page_detail }} </a> </td>
+                                                <td><span class="fw-bold">{{ item.created_by }}</span></td>
+                                                <td><span class="fw-bold">{{ item.created_at }}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -295,49 +297,6 @@
 
                     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
                 },
-                getLitComment() {
-                    console.log('fuadiiii');
-                    const payload = {
-                        id_doc: <?= $doc_id ?>,
-                        id_approver: 2,
-                    }
-                    var formData = new FormData();
-                    formData.append('id_doc', <?= $doc_id ?>);
-                    // formData.append('id_approver', 2);
-                    // $.ajax({
-                    //     type: 'POST',
-                    //     url: '<?= base_url('Project_detail_engineering/ajax_get_comment') ?>',
-                    //     processData: false, // Memproses data menjadi string tidak diperlukan
-                    //     contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
-                    //     dataType: "json",
-                    //     data: formData,
-                    //     // success: function(response) {
-                    //     //     console.log('hai');
-                    //     //     // Menampilkan respons dari server jika berhasil
-                    //     //     // this.listComment = response
-                    //     //     console.log(response, 'fuadi res')
-                    //     // },
-                    //     // error: function(xhr, status, error) {
-                    //     //     // Menampilkan pesan kesalahan jika terjadi kesalahan
-                    //     //     console.error('Terjadi kesalahan: ' + status + ' - ' + error);
-                    //     // }
-                    // }).done((resp) => {
-                    //     console.log('hoii');
-                    //     console.log(resp);
-
-                    // });
-                    $.ajax({
-                        method: 'GET',
-                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/'.$doc_id) ?>`,
-                        dataType: 'json',
-                        delay: 250,
-                    }).done((resp) => {
-                        console.log(resp)
-                        this.listComment = resp;
-                    }).fail((err) => {
-                        console.log(err, 'fuadi error');
-                    })
-                }
             },
             mounted: function() {
                 // Kode yang akan dijalankan setelah instance Vue di-mount
@@ -356,7 +315,19 @@
                     grid: 10,
                 });
 
-                this.getLitComment();
+                $.ajax({
+                    method: 'GET',
+                    url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    delay: 250,
+                }).done((resp) => {
+                    console.log(this.listComment, 'fff')
+                    this.listComment = resp
+                    console.log(resp, 'fuadi succes');
+                }).fail((err) => {
+                    console.log(err, 'error fuadi');
+                })
 
                 function convertDataURIToBlob(dataURI) {
                     var byteString;
@@ -629,6 +600,23 @@
                     });
                 }
 
+                // function changePage(value) {
+                //     console.log(value)
+                //     this.currentPage = value
+                //     renderPage(page);
+                // }
+
+                // $('.changePage').on('click', () => {
+                //     var dataValue = $(this).data('value');
+                //     console.log(dataValue)
+                //     this.currentPage = dataValue
+                //     renderPage(dataValue);
+                // });
+
+                $('.changePage').on('click', () => {
+                    var dataValue = $(this).data('value');
+                    console.log('Nilai data-value:', dataValue);
+                });
                 $('#next').on('click', () => {
                     if (this.currentPage === this.totalPagePdf) return;
                     const page = parseInt(this.currentPage, 10) + 1;
