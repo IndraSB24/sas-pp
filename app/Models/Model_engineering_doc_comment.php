@@ -52,18 +52,24 @@ class Model_engineering_doc_comment extends Model
     }
 
     // get by id
-    public function get_by_idDoc_idApprover($payload){
+    public function getByDocIdAndApprover($payload) {
+        // Validate that id_doc is provided
+        if (!isset($payload['id_doc'])) {
+            return [];
+        }
+    
         $this->select('
             *
         ')
         ->where('doc_id', $payload['id_doc']);
-
-        if($payload['id_approver'] != null){
+    
+        if (isset($payload['id_approver']) && $payload['id_approver'] !== null) {
             $this->where('created_by', $payload['id_approver']);
         }
         
         return $this->get()->getResult();
     }
+    
 
     // ajax for  list item
     protected $main_column_searchable = [

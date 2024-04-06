@@ -464,14 +464,26 @@ class Project_detail_engineering extends BaseController
 
     // list comment
     public function ajax_get_comment(){
+        // Validate and retrieve input parameters
+        $id_doc = $this->request->getPost('id_doc');
+        $id_approver = $this->request->getPost('id_approver') ?: null;
+    
+        // Fetch comments based on the provided parameters
         $payload = [
-            'id_doc' => $this->request->getPost('id_doc'),
-            'id_approver' => $this->request->getPost('id_approver') || null
+            'id_doc' => $id_doc,
+            'id_approver' => $id_approver
         ];
-
         $fetched_data = $this->Model_engineering_doc_comment->get_by_idDoc_idApprover($payload);
         
-        // Return the data in JSON format
-        return $this->response->setJSON($fetched_data);
+        // Check if comments are fetched successfully
+        if ($fetched_data) {
+            // Return the fetched comments in JSON format
+            return $this->response->setJSON($fetched_data);
+        } else {
+            // Handle the case where no comments are found or an error occurs
+            // You can return an empty array or an appropriate error response
+            return $this->response->setJSON([]);
+        }
     }
+    
 }
