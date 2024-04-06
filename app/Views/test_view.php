@@ -251,25 +251,7 @@
                 typeAction: 'off',
                 totalPagePdf: 0,
                 currentPage: 1,
-                listComment: [{
-                        filename: 'image_1.png',
-                        user: 'Budi',
-                        date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_1.png') ?>'
-                    },
-                    {
-                        filename: 'image_2.png',
-                        user: 'Jhon',
-                        date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_2.png') ?>'
-                    },
-                    {
-                        filename: 'image_3.png',
-                        user: 'Toni',
-                        date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_3.png') ?>'
-                    },
-                ],
+                listComment: [],
                 selectedFile: {},
                 show: false,
                 currentIndex: 0,
@@ -321,31 +303,46 @@
                     }
                     var formData = new FormData();
                     formData.append('id_doc', <?= $doc_id ?>);
-                    formData.append('id_approver', 2);
+                    // formData.append('id_approver', 2);
+                    // $.ajax({
+                    //     type: 'POST',
+                    //     url: '<?= base_url('Project_detail_engineering/ajax_get_comment') ?>',
+                    //     processData: false, // Memproses data menjadi string tidak diperlukan
+                    //     contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
+                    //     dataType: "json",
+                    //     data: formData,
+                    //     // success: function(response) {
+                    //     //     console.log('hai');
+                    //     //     // Menampilkan respons dari server jika berhasil
+                    //     //     // this.listComment = response
+                    //     //     console.log(response, 'fuadi res')
+                    //     // },
+                    //     // error: function(xhr, status, error) {
+                    //     //     // Menampilkan pesan kesalahan jika terjadi kesalahan
+                    //     //     console.error('Terjadi kesalahan: ' + status + ' - ' + error);
+                    //     // }
+                    // }).done((resp) => {
+                    //     console.log('hoii');
+                    //     console.log(resp);
+
+                    // });
                     $.ajax({
-                        type: 'POST',
-                        url: '<?= base_url('Project_detail_engineering/ajax_get_comment') ?>',
-                        processData: false, // Memproses data menjadi string tidak diperlukan
-                        contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
-                        dataType: "JSON",
-                        data: formData,
-                        success: function(response) {
-                            // Menampilkan respons dari server jika berhasil
-                            console.log(response, 'fuadi')
-                            console.log(response);
-                        },
-                        error: function(xhr, status, error) {
-                            // Menampilkan pesan kesalahan jika terjadi kesalahan
-                            console.error('Terjadi kesalahan: ' + status + ' - ' + error);
-                        }
-                    });
+                        method: 'GET',
+                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/'.$doc_id) ?>`,
+                        dataType: 'json',
+                        delay: 250,
+                    }).done((resp) => {
+                        console.log(resp)
+                        this.listComment = resp;
+                    }).fail((err) => {
+                        console.log(err, 'fuadi error');
+                    })
                 }
             },
             mounted: function() {
-                console.log('Nilai dari message:', this.isDraw);
                 // Kode yang akan dijalankan setelah instance Vue di-mount
                 console.log('Vue instance has been mounted!');
-                const url = "<?= base_url('upload/engineering_doc/list/'.$doc_data[0]->file) ?>";
+                const url = "<?= base_url('upload/engineering_doc/list/' . $doc_data[0]->file) ?>";
 
                 function clearCanvas() {
                     canvas.clear();
