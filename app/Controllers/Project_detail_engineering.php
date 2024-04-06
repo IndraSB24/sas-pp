@@ -463,12 +463,10 @@ class Project_detail_engineering extends BaseController
     }
 
     // list comment
-    public function ajax_get_comment(){
-        // Validate and retrieve input parameters
-        $id_doc = $this->request->getPost('id_doc');
-        $id_approver = $this->request->getPost('id_approver') ?: null;
+    public function ajax_get_comment($id_doc, $id_approver=null){
+        // $id_doc = $this->request->getPost('id_doc');
+        // $id_approver = $this->request->getPost('id_approver') ?: null;
     
-        // Fetch comments based on the provided parameters
         $payload = [
             'id_doc' => $id_doc,
             'id_approver' => $id_approver
