@@ -52,11 +52,15 @@ class Model_engineering_doc_comment extends Model
     }
 
     // get by id
-    public function get_by_engineering_doc_id($id){
+    public function get_by_idDoc_idApprover($payload){
         $this->select('
             *
         ')
-        ->where('doc_id', $id);
+        ->where('doc_id', $payload['id_doc']);
+
+        if($payload['id_approver'] != null){
+            $this->where('created_by', $payload['id_approver']);
+        }
         
         return $this->get()->getResult();
     }

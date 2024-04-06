@@ -427,7 +427,7 @@ class Project_detail_engineering extends BaseController
                 'page_detail' => $this->request->getPost('page_detail'),
                 'created_by' => sess('active_user_id')
             ];
-            $this->Model_engineering_doc_comment->save($data_add);
+            $save_file = $this->Model_engineering_doc_comment->save($data_add);
             
             $data_timeline = [
                 'doc_id'                => $data_add['doc_id'],
@@ -440,17 +440,37 @@ class Project_detail_engineering extends BaseController
                 'file_status'           => ''
             ];
             $this->timeline_doc_model->save($data_timeline);
+
+            if ($save_file) {
+                $response = [
+                    'success' => true,
+                    'message' => 'Comment added successfully.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to add comment.'
+                ];
+            }
         }
         else {
-            die("No file specified!");
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
         }
 
-        
+        return $this->response->setJSON($response);
     }
 
     // list comment
-    public function ajax_get_comment($id_doc){
-        $fetched_data = $this->Model_engineering_doc_comment->get_by_engineering_doc_id($id_doc);
+    public function ajax_get_comment(){
+        $payload = [
+            'id_doc' => $this->request->getPost('id_doc'),
+            'id_approver' => $this->request->getPost('id_approver') || null
+        ]
+
+        $fetched_data = $this->Model_engineering_doc_comment->get_by_idDoc_idApprover($payload);
         
         // Return the data in JSON format
         return $this->response->setJSON($fetched_data);
