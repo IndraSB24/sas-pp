@@ -324,7 +324,10 @@
                     delay: 250,
                 }).done((resp) => {
                     const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                    const tmp = resp.map(d => ({...d, link: baseUrl + d.comment_file}))
+                    const tmp = resp.map(d => ({
+                        ...d,
+                        link: baseUrl + d.comment_file
+                    }))
                     console.log(tmp, 'fuadi t')
                     this.listComment = tmp
                     console.log(resp, 'fuadi succes');
@@ -696,7 +699,13 @@
                                         delay: 250,
                                     }).done((resp) => {
                                         console.log(this.listComment, 'fff')
-                                        this.listComment = resp
+                                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                                        const tmp = resp.map(d => ({
+                                            ...d,
+                                            link: baseUrl + d.comment_file
+                                        }))
+                                        console.log(tmp, 'fuadi t')
+                                        this.listComment = tmp
                                         console.log(resp, 'fuadi succes');
                                     }).fail((err) => {
                                         console.log(err, 'error fuadi');
