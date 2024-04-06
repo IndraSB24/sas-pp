@@ -468,7 +468,7 @@ class Project_detail_engineering extends BaseController
         $payload = [
             'id_doc' => $this->request->getPost('id_doc'),
             'id_approver' => $this->request->getPost('id_approver') || null
-        ]
+        ];
 
         $fetched_data = $this->Model_engineering_doc_comment->get_by_idDoc_idApprover($payload);
         
