@@ -180,7 +180,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title mt-0" id="myLargeModalLabel">
-                                <h5 class="modal-title">{{ selectedFile.filename }} (by: {{ selectedFile.user }})</h5>
+                                <h5 class="modal-title">{{ selectedFile.comment_file }} (by: {{ selectedFile.created_by }})</h5>
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -189,7 +189,8 @@
                                 <button class="btn btn-primary waves-effect waves-light" @click="prevImage" id="prev">Prev</button>
                                 <button class="btn btn-primary waves-effect waves-light" @click="nextImage" style="margin-left: 5px" id="next">Next</button>
                             </div>
-                            <img :src="selectedFile.src" alt="File">
+                            <!-- <img :src="selectedFile.comment_file" alt="File"> -->
+                            <img :src="selectedFile.link" alt="File">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
@@ -322,8 +323,10 @@
                     contentType: 'application/json; charset=utf-8',
                     delay: 250,
                 }).done((resp) => {
-                    console.log(this.listComment, 'fff')
-                    this.listComment = resp
+                    const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                    const tmp = resp.map(d => ({...d, link: baseUrl + d.comment_file}))
+                    console.log(tmp, 'fuadi t')
+                    this.listComment = tmp
                     console.log(resp, 'fuadi succes');
                 }).fail((err) => {
                     console.log(err, 'error fuadi');
@@ -675,34 +678,37 @@
                         processData: false, // Memproses data menjadi string tidak diperlukan
                         contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
                         data: formData,
-                        success: function(response) {
+                        success: (response) => {
                             // Menampilkan respons dari server jika berhasil
                             console.log(response);
+                            Swal.fire({
+                                title: 'Disimpan!',
+                                icon: 'success',
+                                text: 'Data berhasil disimpan.',
+                                timer: 1000,
+                                confirmButtonColor: "#5664d2",
+                                onBeforeOpen: () => {
+                                    $.ajax({
+                                        method: 'GET',
+                                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                                        dataType: "json",
+                                        contentType: 'application/json; charset=utf-8',
+                                        delay: 250,
+                                    }).done((resp) => {
+                                        console.log(this.listComment, 'fff')
+                                        this.listComment = resp
+                                        console.log(resp, 'fuadi succes');
+                                    }).fail((err) => {
+                                        console.log(err, 'error fuadi');
+                                    })
+                                },
+                            })
                         },
                         error: function(xhr, status, error) {
                             // Menampilkan pesan kesalahan jika terjadi kesalahan
                             console.error('Terjadi kesalahan: ' + status + ' - ' + error);
                         }
                     });
-                    Swal.fire({
-                        title: 'Disimpan!',
-                        icon: 'success',
-                        text: 'Data berhasil disimpan.',
-                        timer: 1000,
-                        confirmButtonColor: "#5664d2",
-                        onBeforeOpen: () => {
-                            this.listComment = [{
-                                filename: 'image_4.png',
-                                user: 'Badu',
-                                date: '30/03/2024',
-                                src: '<?= base_url('upload/engineering_doc/comment/image_4.png') ?>'
-                            }, ...this.listComment];
-                            timerInterval = setInterval(function() {
-                                Swal.getContent().querySelector('strong')
-                                    .textContent = Swal.getTimerLeft()
-                            }, 100)
-                        },
-                    })
                 });
             }
         });
