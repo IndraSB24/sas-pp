@@ -65,11 +65,11 @@
                     <div class="col-md-8">
                         <div class='row mb-3'>
                             <div class="col-md-4 align-items-end" style="display: flex; justify-content:left; gap: 10px; ">
-                                <button class="btn btn-sm btn-primary waves-effect waves-light" id="prev">Prev</button>
+                                <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === 1" id="prev">Prev</button>
                                 <div style='width: 70px'>
                                     <input type="number" class="form-control form-control-sm" v-model="currentPage" id="page" />
                                 </div>
-                                <button class="btn btn-sm btn-primary waves-effect waves-light" id="next">Next</button>
+                                <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === this.totalPagePdf" id="next">Next</button>
                             </div>
                             <div class="col-md-8" style="padding-right: 20px">
                                 <div class="card" style="border: 1px solid #a19d9d;border-radius: 10px;padding: 10px; margin: 0">
@@ -298,22 +298,22 @@
                 totalPagePdf: 0,
                 currentPage: 1,
                 listComment: [{
-                        filename: 'Revisi001.jpg',
+                        filename: 'image_1.png',
                         user: 'Budi',
                         date: '30/03/2024',
-                        src: 'upload/doc_engineering/canvas (1).jpg'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_1.png')?>'
                     },
                     {
-                        filename: 'Revisi002.jpg',
+                        filename: 'image_2.png',
                         user: 'Jhon',
                         date: '30/03/2024',
-                        src: 'upload/doc_engineering/canvas (2).jpg'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_2.png')?>'
                     },
                     {
-                        filename: 'Revisi003.jpg',
+                        filename: 'image_3.png',
                         user: 'Toni',
                         date: '30/03/2024',
-                        src: 'upload/doc_engineering/canvas (3).jpg'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_3.png')?>'
                     },
                 ],
                 selectedFile: {},
@@ -352,12 +352,6 @@
                 colorChanged(evt) {
                     this.fontColor = evt.target.value
                 },
-                // changeWidth(evt) {
-                //     this.weightBrush = evt.target.value
-                //     canvas.isDrawingMode = true; // Aktifkan mode menggambar bebas
-                //     canvas.freeDrawingBrush.color = 'red'; // Atur warna kuas
-                //     canvas.freeDrawingBrush.width = evt.target.value; // Atur lebar kuas
-                // },
                 hexToRGBA(hex, alpha) {
                     var r = parseInt(hex.slice(1, 3), 16),
                         g = parseInt(hex.slice(3, 5), 16),
@@ -365,16 +359,6 @@
 
                     return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
                 }
-                // handleChangeFabricMode(evt) {
-                //     this.typeAction = evt.target.value;
-                //     if (this.typeAction === 'freeDraw') {
-                //         canvas.isDrawingMode = true; // Aktifkan mode menggambar bebas
-                //         canvas.freeDrawingBrush.color = 'red'; // Atur warna kuas
-                //         canvas.freeDrawingBrush.width = 5; // Atur lebar kuas
-                //     } else {
-                //         canvas.isDrawingMode = false; // Nonaktifkan mode menggambar bebas jika bukan mode free draw
-                //     }
-                // }
             },
             mounted: function() {
                 console.log('Nilai dari message:', this.isDraw);
@@ -560,7 +544,7 @@
                 // end fabric
 
                 // new render PDF
-                PDFJS.getDocument(url).then(function(pdf) {
+                PDFJS.getDocument(url).then((pdf) => {
                     // you can now use *pdf* here
                     console.log("the pdf has ", pdf.numPages, "page(s).")
                     this.totalPagePdf = pdf.numPages;
@@ -628,7 +612,9 @@
                     var byteArray = new Uint8Array(byteNumbers);
 
                     // Create Blob
-                    return new Blob([byteArray], { type: mimeString });
+                    return new Blob([byteArray], {
+                        type: mimeString
+                    });
                 }
 
 
@@ -663,17 +649,32 @@
                     });
                 }
 
-                $('#next').on('click', function() {
-                    const page = parseInt($('#page').val(), 10) + 1;
-                    $('#page').val(page)
+                $('#next').on('click', () => {
+                    if (this.currentPage === this.totalPagePdf) return;
+                    const page = parseInt(this.currentPage, 10) + 1;
+                    this.currentPage = page
                     renderPage(page);
                 });
 
-                $('#prev').on('click', function() {
-                    const page = parseInt($('#page').val(), 10) - 1;
-                    $('#page').val(page)
+                $('#prev').on('click', () => {
+                    if (this.currentPage === 1) return;
+                    const page = parseInt(this.currentPage, 10) - 1;
+                    this.currentPage = page
                     renderPage(page);
                 });
+                $('#page').on('change', (evt) => {
+                    const value = evt.target.value
+                    let page;
+                    if (value > this.totalPagePdf) {
+                        page = this.totalPagePdf
+                    } else if (value < 1) {
+                        page = 1
+                    } else {
+                        page = value
+                    }
+                    this.currentPage = page
+                    renderPage(page);
+                })
                 // end new render pdf
 
 
@@ -681,8 +682,6 @@
                 document.getElementById('downloadBtn').addEventListener('click', () => {
                     var pdf = new jsPDF();
                     var dataUrl = canvas.toDataURL('image/png');
-                    // pdf.addImage(dataUrl, 'PNG', 0, 0, 210, 297);
-                    // pdf.save('canvas.pdf');
                     var a = document.createElement('a');
                     a.href = dataUrl;
                     a.download = 'canvas.jpg'; // Nama file yang akan diunduh
@@ -698,10 +697,10 @@
                     var blob = dataURLtoBlob(dataUrl);
                     var formData = new FormData();
                     formData.append('image', blob, 'image.png');
-                    formData.append('id_doc', 22);
-                    formData.append('page_detail', 2);
+                    formData.append('id_doc', <?= $doc_id ?>);
+                    formData.append('page_detail', this.currentPage);
                     console.log(blob);
-                    
+
                     $.ajax({
                         type: 'POST',
                         url: '<?= base_url('Project_detail_engineering/add_comment') ?>',
@@ -717,32 +716,27 @@
                             console.error('Terjadi kesalahan: ' + status + ' - ' + error);
                         }
                     });
+                     Swal.fire({
+                        title: 'Disimpan!',
+                        icon: 'success',
+                        text: 'Data berhasil disimpan.',
+                        timer: 1000,
+                        confirmButtonColor: "#5664d2",
+                        onBeforeOpen: () => {
+                            this.listComment = [{
+                                filename: 'image_4.png',
+                                user: 'Badu',
+                                date: '30/03/2024',
+                                src: '<?= base_url('upload/engineering_doc/comment/image_4.png')?>'
+                            }, ...this.listComment];
+                            //Swal.showLoading()
+                            timerInterval = setInterval(function() {
+                                Swal.getContent().querySelector('strong')
+                                    .textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                    })
                 });
-                // $('#downloadBtn').on('click', function () {
-                //     // Mendapatkan attachment PDF
-                //     var pdfAttachment = file; // Fungsi ini harus diimplementasikan sesuai dengan kebutuhan
-
-                //     // Membuat objek Blob dari attachment PDF
-                //     var blob = new Blob([pdfAttachment], { type: 'application/pdf' });
-
-                //     // Membuat elemen a baru untuk tautan
-                //     var downloadLink = document.createElement("a");
-
-                //     // Mengatur atribut href dengan URL Blob
-                //     downloadLink.href = URL.createObjectURL(blob);
-
-                //     // Menetapkan atribut download untuk memberi nama file yang diunduh
-                //     downloadLink.download = "attached_file.pdf";
-
-                //     // Menambahkan elemen ke dalam dokumen
-                //     document.body.appendChild(downloadLink);
-
-                //     // Simulasi klik pada tautan untuk memulai unduhan
-                //     downloadLink.click();
-
-                //     // Menghapus elemen a dari dokumen setelah unduhan selesai
-                //     document.body.removeChild(downloadLink);
-                // });
             }
         });
     </script>

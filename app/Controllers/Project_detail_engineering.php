@@ -65,6 +65,7 @@ class Project_detail_engineering extends BaseController
 		$data = [   
 			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
+            'doc_id' => $doc_id
 		];
 		return view('test_view', $data);
     }
