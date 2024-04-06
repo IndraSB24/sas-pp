@@ -480,9 +480,12 @@ class Project_detail_engineering extends BaseController
             // Return the fetched comments in JSON format
             return $this->response->setJSON($fetched_data);
         } else {
-            // Handle the case where no comments are found or an error occurs
-            // You can return an empty array or an appropriate error response
-            return $this->response->setJSON([]);
+            $response = [
+                'success' => false,
+                'message' => 'No Data.'
+            ];
+            
+            return $this->response->setJSON($response);
         }
     }
     
