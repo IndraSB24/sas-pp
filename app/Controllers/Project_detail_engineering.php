@@ -399,8 +399,8 @@ class Project_detail_engineering extends BaseController
                 'timeline_title'        => 'IFR File Upload',
                 'timeline_description'  => 'no desc',
                 'timeline_status'       => 'late',
-                'new_file'              => $data['actual_ifr_file'],
-                'file_status'           => $data['actual_ifr_version']
+                'new_file'              => $data['file'],
+                'file_status'           => $data['file_version']
             ];
             $this->timeline_doc_model->save($data_timeline);
 
