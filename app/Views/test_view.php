@@ -32,14 +32,9 @@
             /* background-color: red; */
             background-color: rgba(200, 200, 200, 0.5);
             /* Warna latar belakang dengan opasitas */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
             overflow: auto;
             /* Adjust the height as needed */
-        }
-
-        #downloadBtn {
-            margin-bottom: 10px;
-            /* Optional: Add some spacing between the button and canvas */
         }
     </style>
 </head>
@@ -63,124 +58,83 @@
                 <!-- end page title -->
                 <div class='row'>
                     <div class="col-md-8">
-                        <div class='row mb-3'>
-                            <div class="col-md-4 align-items-end" style="display: flex; justify-content:left; gap: 10px; ">
-                                <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === 1" id="prev">Prev</button>
-                                <div style='width: 70px'>
-                                    <input type="number" class="form-control form-control-sm" v-model="currentPage" id="page" />
-                                </div>
-                                <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === this.totalPagePdf" id="next">Next</button>
-                            </div>
-                            <div class="col-md-8" style="padding-right: 20px">
-                                <div class="card" style="border: 1px solid #a19d9d;border-radius: 10px;padding: 10px; margin: 0">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <div class="mb-3">
-                                                    <div style="text-align: left">
-                                                        <small for="event-category">Select Mode</small>
-                                                    </div>
-                                                    <select class="form-select form-control-sm" name="mode" id="mode">
-                                                        <option selected> Off </option>
-                                                        <option value="text">Text</option>
-                                                        <!-- <option value="line">Line</option> -->
-                                                        <option value="square">Square</option>
-                                                        <option value="circle">Circle</option>
-                                                        <option value="freeDraw">Free Draw</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm row">
-                                                <div class="d-flex flex-column flex-sm-row">
-                                                    <div class='col-sm mb-2'>
-                                                        <div style="text-align: left">
-                                                            <small for="event-category">Color</small>
-                                                        </div>
-                                                        <input type="color" class="form-control form-control-color mw-100" v-model="fontColor" @input="colorChanged" id="colorInput" value="#5664d2" title="Choose your color">
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-column flex-sm-row">
-                                                    <div v-show="typeAction === 'freeDraw'" class='col-sm mb-2'>
-                                                        <div style="text-align: left">
-                                                            <small for="event-category">Weight Brush {{weightBrush}}px</small>
-                                                        </div>
-                                                        <input type="range" class="form-range" id="customRange1" v-model="weightBrush">
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-column flex-sm-row">
-                                                    <div v-show="typeAction === 'text'" class='col-sm mb-2'>
-                                                        <div style="text-align: left">
-                                                            <small for="event-category">Font Size (px)</small>
-                                                        </div>
-                                                        <input type="number" class="form-control" name="level_code" id="level_code" v-model="fontSize" @change="changeFontSize" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm">
-                                                <div style="text-align: left">
-                                                    <small for="event-category">Action</small>
-                                                </div>
-                                                <div class="d-flex flex-column flex-sm-row">
-                                                    <div class='col-sm mb-2'>
-                                                        <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i></button>
-                                                    </div>
-                                                    <div class='col-sm mb-2'>
-                                                        <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i></button>
-                                                    </div>
-                                                    <div class='col-sm'>
-                                                        <button class="btn btn-sm btn-info waves-effect waves-light" id="saveBtn"> Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="card" style="padding: 30px">
+                            <div class='row mb-3'>
+                                <div class="align-items-end" style="display: flex; justify-content:center; gap: 10px; ">
+                                    <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === 1" id="prev">Prev</button>
+                                    <div style='width: 70px'>
+                                        <input type="number" class="form-control form-control-sm" v-model="currentPage" id="page" />
                                     </div>
+                                    <button class="btn btn-sm btn-primary waves-effect waves-light" :disabled="this.currentPage === this.totalPagePdf" id="next">Next</button>
                                 </div>
                             </div>
-                        </div>
-                        <div id="canvasContainer" class="card">
-                            <!-- <div class="mb-3">
-                                <div style="text-align: center">
-                                    <label for="event-category">Select Mode</label>
-                                </div>
-                                <select class="form-select" name="mode" id="mode">
-                                    <option selected> Off </option>
-                                    <option value="text">Text</option>
-                                    <option value="line">Line</option>
-                                    <option value="square">square</option>
-                                    <option value="circle">circle</option>
-                                    <option value="freeDraw">Free Draw</option>
-                                </select>
-                            </div> -->
-                            <!-- <div class='row'>
-                                <div class='col-md-6'>
-                                    <div class='row'>
-                                        <div class='col-md-4'>
-                                            <button @click="toggleAddText" class="btn non-active waves-effect waves-light" id="addText"><i class="fas fa-font"></i></button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input class="form-control" style="height: 100%;" @input="colorChanged" v-model="fontColor" type="color">
-                                        </div>
-                                        <div class='col-md-4'>
-                                            <button class="btn btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='row'>
-                                        <div class='col-md-6'>
-                                            <button class="btn btn-info waves-effect waves-light" id="saveBtn">Simpan</button>
-                                        </div>
-                                        <div class='col-md-6'>
-                                            <button class="btn btn-secondary waves-effect waves-light" id="downloadBtn">Download</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <canvas id="canvas" width="750" height="1000"></canvas>
-                            <input id='currentPdf' type="hidden">
+                            <div id="canvasContainer" class="card" style="padding: 20px">
+                                <canvas id="canvas" width="750" height="1000"></canvas>
+                                <input id='currentPdf' type="hidden">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card" style="border: 1px solid #eff2f7;border-radius: 10px;padding: 10px; margin: 0">
+                                    <div class="container">
+                                        <div class="col-sm">
+                                            <div class="mb-3">
+                                                <div style="text-align: left">
+                                                    <small for="event-category">Select Mode</small>
+                                                </div>
+                                                <select class="form-select form-control-sm" name="mode" id="mode">
+                                                    <option value="off" selected> Off </option>
+                                                    <option value="text">Text</option>
+                                                    <!-- <option value="line">Line</option> -->
+                                                    <option value="square">Square</option>
+                                                    <option value="circle">Circle</option>
+                                                    <option value="freeDraw">Free Draw</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm row">
+                                            <div class="d-flex flex-column flex-sm-row">
+                                                <div class='col-sm mb-2' v-show="typeAction !== 'off'">
+                                                    <div style="text-align: left">
+                                                        <small for="event-category">Color</small>
+                                                    </div>
+                                                    <input type="color" class="form-control form-control-color mw-100" v-model="fontColor" @input="colorChanged" id="colorInput" value="#5664d2" title="Choose your color">
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row">
+                                                <div v-show="typeAction === 'freeDraw'" class='col-sm mb-2'>
+                                                    <div style="text-align: left">
+                                                        <small for="event-category">Weight Brush {{weightBrush}}px</small>
+                                                    </div>
+                                                    <input type="range" class="form-range" id="customRange1" v-model="weightBrush">
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row">
+                                                <div v-show="typeAction === 'text'" class='col-sm mb-2'>
+                                                    <div style="text-align: left">
+                                                        <small for="event-category">Font Size (px)</small>
+                                                    </div>
+                                                    <input type="number" class="form-control" name="level_code" id="level_code" v-model="fontSize" @change="changeFontSize" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm mb-2">
+                                            <div style="text-align: left">
+                                                <small for="event-category">Action</small>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
+                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="saveBtn"><i class="far fa-hdd"></i> Submit</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -294,26 +248,26 @@
                 isTransparant: true,
                 fontColor: '#ff3838',
                 isAddText: false,
-                typeAction: '',
+                typeAction: 'off',
                 totalPagePdf: 0,
                 currentPage: 1,
                 listComment: [{
                         filename: 'image_1.png',
                         user: 'Budi',
                         date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_1.png')?>'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_1.png') ?>'
                     },
                     {
                         filename: 'image_2.png',
                         user: 'Jhon',
                         date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_2.png')?>'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_2.png') ?>'
                     },
                     {
                         filename: 'image_3.png',
                         user: 'Toni',
                         date: '30/03/2024',
-                        src: '<?= base_url('upload/engineering_doc/comment/image_3.png')?>'
+                        src: '<?= base_url('upload/engineering_doc/comment/image_3.png') ?>'
                     },
                 ],
                 selectedFile: {},
@@ -716,7 +670,7 @@
                             console.error('Terjadi kesalahan: ' + status + ' - ' + error);
                         }
                     });
-                     Swal.fire({
+                    Swal.fire({
                         title: 'Disimpan!',
                         icon: 'success',
                         text: 'Data berhasil disimpan.',
@@ -727,7 +681,7 @@
                                 filename: 'image_4.png',
                                 user: 'Badu',
                                 date: '30/03/2024',
-                                src: '<?= base_url('upload/engineering_doc/comment/image_4.png')?>'
+                                src: '<?= base_url('upload/engineering_doc/comment/image_4.png') ?>'
                             }, ...this.listComment];
                             timerInterval = setInterval(function() {
                                 Swal.getContent().querySelector('strong')
