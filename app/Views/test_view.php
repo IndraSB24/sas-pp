@@ -364,7 +364,7 @@
                 console.log('Nilai dari message:', this.isDraw);
                 // Kode yang akan dijalankan setelah instance Vue di-mount
                 console.log('Vue instance has been mounted!');
-                const url = "<?= base_url('upload/engineering_doc/list/test.pdf') ?>";
+                const url = "<?= base_url('upload/engineering_doc/list/'.$data_doc->file) ?>";
 
                 function clearCanvas() {
                     canvas.clear();
@@ -729,7 +729,6 @@
                                 date: '30/03/2024',
                                 src: '<?= base_url('upload/engineering_doc/comment/image_4.png')?>'
                             }, ...this.listComment];
-                            //Swal.showLoading()
                             timerInterval = setInterval(function() {
                                 Swal.getContent().querySelector('strong')
                                     .textContent = Swal.getTimerLeft()

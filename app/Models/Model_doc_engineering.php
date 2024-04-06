@@ -62,4 +62,13 @@ class Model_doc_engineering extends Model
     {
         return $this->update($id, $data);
     }
+
+    // select all
+    public function get_filename_by_doc_id($id_doc){
+        $query = $this->db
+            ->where('id', $doc_id)
+            ->get($table);
+        
+        return $query->result();
+    }
 }
