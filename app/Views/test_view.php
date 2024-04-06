@@ -364,7 +364,7 @@
                 console.log('Nilai dari message:', this.isDraw);
                 // Kode yang akan dijalankan setelah instance Vue di-mount
                 console.log('Vue instance has been mounted!');
-                const url = "<?= base_url('upload/engineering_doc/list/'.$data_doc->file) ?>";
+                const url = "<?= base_url('upload/engineering_doc/list/'.$file_name) ?>";
 
                 function clearCanvas() {
                     canvas.clear();
