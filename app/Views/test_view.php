@@ -127,9 +127,8 @@
                                             <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
                                                 <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
                                                 <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> </button>
-                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="saveBtn"><i class="far fa-hdd"></i> Submit</button>
+                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit</button>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +149,7 @@
                                         <tbody>
                                             <tr v-for="(item, index) in listComment" :key="index">
                                                 <td><a href="#" class="text-info fw-bold" @click.prevent="showModal(item)"> {{ item.comment_file }} </a> </td>
-                                                <td><a href="#" class="changePage text-info fw-bold" @click="nextImage"> {{ item.page_detail }} </a> </td>
+                                                <td><span class="fw-bold" v-bind:data-page="item.page_data"> {{ item.page_detail }} </span> </td>
                                                 <td><span class="fw-bold">{{ item.created_by }}</span></td>
                                                 <td><span class="fw-bold">{{ item.created_at }}</span></td>
                                             </tr>
@@ -162,19 +161,42 @@
                     </div>
                 </div> <!-- container-fluid -->
             </div>
-            <!-- <div class="modal" tabindex="-1" role="dialog" v-show="show">
+            <!-- <div class="modal" id="title_comment_modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">{{ selectedFile.filename }}</h5>
+                            <h5 class="modal-title">Comment Title</h5>
                             <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <img :src="selectedFile.src" alt="File">
+                            masukan
                         </div>
                     </div>
                 </div>
             </div> -->
+            <div class="modal fade" id="title_comment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Comment Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="description_edit" id="comment_title" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" id="saveBtn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="modal-add-document" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -328,11 +350,10 @@
                         ...d,
                         link: baseUrl + d.comment_file
                     }))
-                    console.log(tmp, 'fuadi t')
                     this.listComment = tmp
-                    console.log(resp, 'fuadi succes');
+                    console.log(resp);
                 }).fail((err) => {
-                    console.log(err, 'error fuadi');
+                    console.log(err);
                 })
 
                 function convertDataURIToBlob(dataURI) {
@@ -372,7 +393,6 @@
                 });
 
                 $('#colorInput').on('change', (evt) => {
-                    console.log(typeof evt.target.value, 'fuadi')
                     canvas.freeDrawingBrush.color = evt.target.value; // Atur lebar kuas
                     canvas.freeDrawingBrush.width = this.weightBrush;; // Atur lebar kuas
                 });
@@ -606,10 +626,10 @@
                     });
                 }
 
-                // function changePage(value) {
-                //     console.log(value)
-                //     this.currentPage = value
-                //     renderPage(page);
+                // changePage (item) {
+                //     console.log(item);
+                //     console.log(this.currentPage)
+                //     renderPage(item);
                 // }
 
                 // $('.changePage').on('click', () => {
@@ -664,7 +684,21 @@
                     document.body.removeChild(a); // Menghapus tautan setelah selesai
                 });
 
+                $('#submitBtn').on('click', () => {
+                    $('#title_comment_modal').modal('show');
+                });
+
                 document.getElementById('saveBtn').addEventListener('click', () => {
+                    if ($('#comment_title').val() === '') {
+                        Swal.fire({
+                            title: 'Error!',
+                            icon: 'error',
+                            text: 'Title is required!',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                        })
+                        return;
+                    };
                     var pdf = new jsPDF();
                     var dataUrl = canvas.toDataURL('image/png');
                     // Convert data URL to Blob
@@ -673,6 +707,7 @@
                     formData.append('image', blob, 'image.png');
                     formData.append('id_doc', <?= $doc_id ?>);
                     formData.append('page_detail', this.currentPage);
+                    formData.append('comment_title', $('#comment_title').val());
                     console.log(blob);
 
                     $.ajax({
@@ -704,11 +739,12 @@
                                             ...d,
                                             link: baseUrl + d.comment_file
                                         }))
-                                        console.log(tmp, 'fuadi t')
                                         this.listComment = tmp
-                                        console.log(resp, 'fuadi succes');
+                                        $('#comment_title').val(null)
+                                        $('#title_comment_modal').modal('hide');
+                                        console.log(resp);
                                     }).fail((err) => {
-                                        console.log(err, 'error fuadi');
+                                        console.log(err);
                                     })
                                 },
                             })
