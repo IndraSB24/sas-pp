@@ -13,7 +13,8 @@ class Model_engineering_doc_comment extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'doc_id', 'comment_file', 'page_detail', 'created_by', 'updated_at', 'deleted_at', 'created_at'
+        'doc_id', 'comment_file', 'page_detail', 'created_by', 'updated_at', 'deleted_at', 'created_at',
+        'comment_title'
     ];
 
     protected $useTimestamps = true;
