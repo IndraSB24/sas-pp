@@ -140,7 +140,7 @@
                                     <table id="datatables" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Comment list</th>
+                                                <th>Comment Title</th>
                                                 <th>page</th>
                                                 <th>Comment by</th>
                                                 <th>Date</th>
@@ -148,7 +148,7 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item, index) in listComment" :key="index">
-                                                <td><a href="#" class="text-info fw-bold" @click.prevent="showModal(item)"> {{ item.comment_file }} </a> </td>
+                                                <td><a href="#" class="text-info fw-bold" @click.prevent="showModal(item)"> {{ item.comment_title }} </a> </td>
                                                 <td><span class="fw-bold" v-bind:data-page="item.page_data"> {{ item.page_detail }} </span> </td>
                                                 <td><span class="fw-bold">{{ item.created_by }}</span></td>
                                                 <td><span class="fw-bold">{{ item.created_at }}</span></td>
