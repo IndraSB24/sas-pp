@@ -78,7 +78,7 @@
                                                             <div class="timeline-album">
                                                                 <a  href="<?=
                                                                         $timeline_data[$i]->new_file ?
-                                                                        base_url('upload/doc_engineering/'.$timeline_data[$i]->new_file) :
+                                                                        base_url($timeline_data[$i]->new_file) :
                                                                         'javascript:noFileFoundError();'
                                                                     ?>" 
                                                                     class="me-1"

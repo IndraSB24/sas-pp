@@ -16,7 +16,7 @@ class Project_detail_engineering extends BaseController
         $this->project_model = new Model_project();
         $this->timeline_doc_model = new Model_timeline_doc();
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
-        helper(['session_helper']);
+        helper(['session_helper', 'upload_path_helper']);
     }
     
 	public function index($project_id=null){
@@ -436,7 +436,7 @@ class Project_detail_engineering extends BaseController
                 'timeline_title'        => 'Engineering Comment',
                 'timeline_description'  => 'no desc',
                 'timeline_status'       => 'late',
-                'new_file'              => $data_add['comment_file'],
+                'new_file'              => path_engineering_doc_comment($uploaded_file->getName()),
                 'file_status'           => ''
             ];
             $this->timeline_doc_model->save($data_timeline);
