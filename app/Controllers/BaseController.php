@@ -27,7 +27,10 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['Session_helper', 'Mandatory_helper', 'Datetime_helper', 'NumberFormat_helper', 'Versioning_helper'];
+	protected $helpers = [
+		'Session_helper', 'Mandatory_helper', 'Datetime_helper', 'NumberFormat_helper', 'Versioning_helper',
+		'Upload_path_helper'
+	];
 
 	/**
 	 * Constructor.
