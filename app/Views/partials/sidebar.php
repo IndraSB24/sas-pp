@@ -15,6 +15,13 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= base_url('karyawan') ?>" class="waves-effect">
+                        <i class="ri-group-line"></i>
+                    <!-- <i class="fas fa-users"></i> -->
+                        <span>Employee Master Data</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
