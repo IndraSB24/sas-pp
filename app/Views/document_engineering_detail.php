@@ -631,20 +631,20 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="approval_id_doc" />
-                        <a type="button" class="btn btn-danger waves-effect" id="btn-approval-reject"
+                        <a type="button" class="btn btn-primary waves-effect" id="btn-approval-reject"
                             data-step="#"
                             data-version="#"
                         > 
-                            Reject with Comment 
+                            Detail Document 
                          </a>
-                        &nbsp;or&nbsp;
+                        <!-- &nbsp;or&nbsp;
                         <button type="button" class="btn btn-success" id="btn-approval-approve"
                             data-path="#"
                             data-step="#"
                             data-version="#"
                         >
                             Approve
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </form>

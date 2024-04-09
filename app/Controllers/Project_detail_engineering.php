@@ -69,6 +69,7 @@ class Project_detail_engineering extends BaseController
             'file_name' => 'test.pdf',
             'doc_data' => $this->doc_engineering_model->get_filename_by_doc_id($doc_id)
 		];
+        // print_r($data['doc_data']);die;
 		return view('test_view', $data);
     }
 	
@@ -86,16 +87,6 @@ class Project_detail_engineering extends BaseController
 	}
 	
     // Show ==============================================================================================================
-    public function show_doc_comment($doc_id, $id_approver) {
-		$data = [   
-			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
-			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
-            ''
-		];
-		return view('test_view', $data);
-    }
-
-
 	public function show(request $param){
         switch($param->kode){
             case 'document_timeline':

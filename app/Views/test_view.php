@@ -125,9 +125,16 @@
                                                 <small for="event-category">Action</small>
                                             </div>
                                             <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
-                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
+                                                <button class="btn btn-sm btn-warning waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
                                                 <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> </button>
-                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit</button>
+                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit Comment</button>
+                                            </div>
+                                            <div style="text-align: left" class="mt-2">
+                                                <small for="event-category">Document Approval</small>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
+                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
+                                                <button class="btn btn-sm btn-success waves-effect waves-light" id="approveButton"><i class="fas fa-check"></i> Approve</button>
                                             </div>
                                         </div>
                                     </div>
@@ -407,6 +414,110 @@
                 $('#addText').on('click', () => {
                     $('#addText').toggleClass('non-active btn-primary');
                 });
+
+                $(document).on('click', '#approveButton', function() {
+                    const path = "Project_detail_engineering/update/approval";
+                    const fileDesc = $(this).data('step');
+                    const version = $(this).data('version');
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+
+                    id_doc = <?= $doc_id ?>;
+                    // if (fileDesc == "IFA") {
+                    //     formData.append('file_status', 'ifa_approved');
+                    // } else if (fileDesc == "IFC") {
+                    //     formData.append('file_status', 'ifc_approved');
+                    // }
+                    // swalTitle = 'Approve ' + fileDesc + ' Version ' + version + ' ?';
+                    swalTitle = 'Approve Document?';
+
+                    Swal.fire({
+                        title: swalTitle,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url: path + '/' + id_doc,
+                                method: 'POST',
+                                data: formData,
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                            });
+                            Swal.fire({
+                                title: 'Approved!',
+                                icon: 'success',
+                                text: 'This Version is Approved.',
+                                timer: 1000,
+                                confirmButtonColor: "#5664d2",
+                                onBeforeOpen: function() {
+                                    //Swal.showLoading()
+                                    timerInterval = setInterval(function() {
+                                        Swal.getContent().querySelector('strong')
+                                            .textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                onClose: function() {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                })
+
+                $(document).on('click', '#rejectButton', function() {
+                    const path = "Project_detail_engineering/update/approval";
+                    const fileDesc = $(this).data('step');
+                    const version = $(this).data('version');
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+
+                    id_doc = id_doc = <?= $doc_id ?>;
+                    formData.append('version', version);
+                    formData.append('file_status', 'ifa_rejected');
+                    swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
+
+                    Swal.fire({
+                        title: swalTitle,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url:  path+'/'+id_doc,
+                                method: 'POST',
+                                data:formData,
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                            });
+                            Swal.fire({
+                                title: 'Approved!',
+                                icon: 'success',
+                                text: 'This Version is Approved.',
+                                timer: 1000,
+                                confirmButtonColor: "#5664d2",
+                                onBeforeOpen:function () {
+                                    //Swal.showLoading()
+                                    timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                onClose: function () {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                })
 
                 canvas.on('mouse:down', (options) => {
                     if (this.typeAction === 'text') {
