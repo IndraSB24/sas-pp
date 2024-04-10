@@ -35,6 +35,8 @@ class Project_detail_engineering extends BaseController
 			'list_doc_engineering' => $this->doc_engineering_model->findAll()
 		];
 		return view('document_engineering_detail', $data);
+		// return view('document_engineering_detail_external', $data);
+		// return view('document_engineering_detail_internal', $data);
 	}
 	
 	public function show_project_list(){

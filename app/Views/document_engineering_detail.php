@@ -53,16 +53,25 @@
                                         <div style="overflow-x:auto;">
                                         <font size="2">
                                         <table class="table table-striped table-bordered dt-responsive">
-                                            <thead>
+                                            <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th rowspan="3">WBS CODE</th>
+                                                    <th colspan="3" class="text-center" style="border-left-width: 4px;"></th>
+                                                    <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
+                                                    <th colspan="11" class="text-center" style="border-left-width: 4px;border-right-width: 4px">EXTERNAL</th>
+                                                </tr>
+                                                <tr>
+                                                    <th rowspan="3" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="3">DOCUMENT NUMBER</th>
                                                     <th rowspan="3">DESCRIPTION</th>
+                                                    <th rowspan="3" style="border-left-width: 4px;">JEDHI TEKNIKA</th>
+                                                    <th rowspan="3">ENGINER PP</th>
+                                                    <th rowspan="3">HO PP</th>
+                                                    <th rowspan="3" style="border-right-width: 4px;">PEM PP</th>
                                                     <th rowspan="3">WEIGHT FACTOR</th>
                                                     <th colspan="4" class="text-center">PLAN</th>
                                                     <th colspan="4" class="text-center">ACTUAL</th>
                                                     <th rowspan="3" class="text-center">STATUS</th>
-                                                    <th rowspan="3" class="text-center">ACTION</th>
+                                                    <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">IFR</th>
@@ -332,9 +341,13 @@
                                                         }
                                                 ?>
                                                     <tr>
-                                                        <td nowrap><?= $row->level_code ?></td>
+                                                        <td nowrap style="border-left-width: 4px;"><?= $row->level_code ?></td>
                                                         <td class="text-center" nowrap> - </td>
                                                         <td><?= $row->description ?></td>
+                                                        <td class="text-center" style="border-left-width: 4px;"></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-center" style="border-right-width: 4px;"></td>
                                                         <td class="text-center"><?= $row->weight_factor ?>%</td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
@@ -349,7 +362,7 @@
                                                                 <?= $status ?>
                                                             </a>
                                                         </td>
-                                                        <td class="text-center" nowrap>
+                                                        <td class="text-center" nowrap style="border-right-width: 4px;">
                                                             <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit"
                                                                 data-id="<?= $row->id ?>"
                                                                 data-level_code="<?= $row->level_code ?>"
