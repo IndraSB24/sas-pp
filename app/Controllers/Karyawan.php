@@ -49,19 +49,43 @@ class Karyawan extends BaseController
     }
 
     // list karyawan
-    public function ajax_get_comment(){
-        $fetched_data = $this->model_karyawan->get_datatable_main();
-        // Check if comments are fetched successfully
-        if ($fetched_data) {
-            // Return the fetched comments in JSON format
-            return json_encode($fetched_data);
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'No Data.'
+	public function ajax_get_list(){
+        $returnedData = $this->Model_karyawan->get_datatable_main();
+
+        $data = [];
+        foreach ($returnedData['return_data'] as $itung => $baris) {
+            $aksi = "
+                <a class='btn btn-sm btn-info' id='btn_edit'
+                    data-id='$baris->id'
+                >
+                    <i class='far fa-edit'></i>
+                </a>
+                <a class='btn btn-sm btn-danger' id='btn_delete' 
+                    data-id='$baris->id'
+                    data-name='$baris->name'
+                > 
+                    <i class='fas fa-trash-alt'></i>
+                </a>
+            ";
+
+            $data[] = [
+                '<span class="text-center">' . ($itung + 1) . '</span>',
+                '<span class="text-center">' . $baris->name . '</span>',
+                '<span class="text-center">' . $baris->email . '</span>',
+                '<span class="text-center">' . $baris->phone . '</span>',
+                '<span class="text-center">' . $aksi . '</span>'
             ];
-            
-            return $this->response->setJSON($response);
         }
+
+        $output = [
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $returnedData['count_filtered'],
+            "recordsFiltered" => $returnedData['count_all'],
+            "data" => $data,
+        ];
+
+        // Output to JSON format
+        return $this->response->setJSON($output);
     }
+    
 }

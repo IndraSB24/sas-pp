@@ -38,9 +38,10 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <table id="table_main" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead class="table-light">
                                                     <tr>
+                                                        <th>No.</th>
                                                         <th>Name</th>
                                                         <th>Email</th>
                                                         <th>Phone</th>
@@ -48,18 +49,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Budi</td>
-                                                        <td>Budi@gmail.com</td>
-                                                        <td>085333333333</td>
-                                                        <td>
-                                                            <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
-                                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="fas fa-file-pdf"></i> Document</button>
-                                                                <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-edit"></i> Edit</button>
-                                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -151,3 +141,153 @@
 </body>
 
 </html>
+
+<script>
+    // var
+    const baseUrl = "<?= base_url() ?>";
+    var mainTable;
+
+    // Call the function when the document is ready
+    $(document).ready(function() {
+        mainDatatable();
+    });
+
+    // Initialize or reinitialize the DataTable
+    function mainDatatable() {
+        // Destroy the existing DataTable instance if it exists
+        if (mainTable) {
+            mainTable.destroy();
+        }
+
+        // Initialize the DataTable
+        mainTable = $('#table_main').DataTable({
+            "processing": true,
+            "serverSide": true,
+            language: {
+                "paginate": {
+                    "first": "&laquo",
+                    "last": "&raquo",
+                    "next": "&gt",
+                    "previous": "&lt"
+                },
+            },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                ['10', '25', '50', '100', 'ALL']
+            ],
+            ajax: {
+                "url": "<?= site_url('karyawan/ajax_get_list') ?>",
+                "type": "POST",
+                "data": function (data) {
+                    data.searchValue = $('#table_main_filter input').val();
+                }
+            },
+            columnDefs: [
+                { 
+                    "targets": [ 0, 1, 2, 3, 4 ],
+                    "className": "text-center"
+                },
+                { 
+                    "targets": [ 0, 4 ],
+                    "orderable": false,
+                },
+            ],
+        });
+    }
+
+    // simpan
+    $(document).on('click', '#btn_simpan', function () {
+        const path = "<?= site_url('item/add_item') ?>";
+        const data = {
+            kode_item: $('#kode_item').val(),
+            barcode: $('#barcode').val(),
+            nama: $('#nama').val(),
+            id_kategori_jenis: $('#jenis').val(),
+            id_satuan: $('#satuan').val(),
+            id_kategori_item: $('#kategori').val(),
+            id_brand: $('#merek').val(),
+            id_supplier: $('#supplier').val(),
+            stok_minimum: $('#stok_minimum').val(),
+            harga_dasar: $('#harga_dasar').val()
+        };
+        
+        loadQuestionalSwal(
+            path, data, 'Tambahkan Item dengan nama: '+$('#nama').val()+' ?', 
+            'Disimpan!', 'Item dengan nama: '+$('#nama').val()+' berhasil ditambahkan.', 'modal_add'
+        );
+    });
+
+    // delete
+    $(document).on('click', '#btn_delete', function () {
+        const thisData = $(this).data();
+        const path = "<?= site_url('item/delete_item') ?>";
+        const data = {
+            id : thisData['id']
+        };
+        
+        loadQuestionalSwal(
+            path, data, 'Hapus Item dengan nama: '+thisData['nama']+' ?', 
+            'Dihapus!', 'Item dengan nama: '+thisData['nama']+' berhasil dihapus.', ''
+        );
+    });
+
+    // load edit modal
+    $(document).on('click', '#btn_edit', function() {
+        var idItem = $(this).data('id');
+        const path = "<?= site_url('item/ajax_get_item_data') ?>";
+        const kode_urut = $(this).data('kode_urut');
+        
+        $.ajax({
+            url: path,
+            method: 'POST',
+            data: { id_item: idItem },
+            dataType: 'json',
+            success: function(response) {
+                // Populate modal fields with fetched data
+                $('#edit_id').val(idItem);
+                $('#kode_item_edit').val(response.kode_item);
+                $('#barcode_edit').val(response.barcode);
+                $('#nama_edit').val(response.nama);
+                $('#kategori_edit').val(response.id_kategori_item).trigger('change');
+                $('#jenis_edit').val(response.id_kategori_jenis).trigger('change');
+                $('#brand_edit').val(response.id_brand).trigger('change');
+                $('#supplier_edit').val(response.id_supplier).trigger('change');
+                $('#stok_minimum_edit').val(response.stok_minimum);
+                $('#satuan_edit').val(response.id_satuan).trigger('change');
+                $('#harga_dasar_edit').val(response.harga_dasar);
+                
+                // Show the modal
+                $('#modal_edit').modal('show');
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    // konfirmasi edit
+    $(document).on('click', '#btn_konfirmasi_edit', function () {
+        const thisData = $(this).data();
+        const path = "<?= site_url('item/edit_item') ?>";
+        const data = {
+            edit_id: $('#edit_id').val(),
+            kode_item: $('#kode_item_edit').val(),
+            barcode: $('#barcode_edit').val(),
+            nama: $('#nama_edit').val(),
+            id_kategori_jenis: $('#jenis_edit').val(),
+            id_satuan: $('#satuan_edit').val(),
+            id_kategori_item: $('#kategori_edit').val(),
+            id_brand: $('#brand_edit').val(),
+            id_supplier: $('#supplier_edit').val(),
+            stok_minimum: $('#stok_minimum_edit').val(),
+            harga_dasar: $('#harga_dasar_edit').val()
+        };
+        
+        loadQuestionalSwal(
+            path, data, 'Konfirmasi edit Item dengan Kode: '+ $('#kode_item_edit').val() +' ?', 
+            'Diedit!', 'Item dengan kode: '+ $('#kode_item_edit').val() +' berhasil diedit.', 'modal_edit'
+        );
+    });
+
+</script>
