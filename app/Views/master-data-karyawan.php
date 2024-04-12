@@ -87,7 +87,8 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Phone</label>
-                            <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
+                            <input type="text" class="form-control num-only" name="weight_factor" id="weight_factor" />
+                            <small class="text-muted">Please enter only numeric characters (0-9).</small>
                         </div>
                     </div>
                 </div>
