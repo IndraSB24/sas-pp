@@ -220,14 +220,14 @@
     // delete
     $(document).on('click', '#btn_delete', function () {
         const thisData = $(this).data();
-        const path = "<?= site_url('item/delete_item') ?>";
+        const path = "<?= site_url('karyawan/delete_karyawan') ?>";
         const data = {
             id : thisData['id']
         };
         
         loadQuestionalSwal(
-            path, data, 'Hapus Item dengan nama: '+thisData['nama']+' ?', 
-            'Dihapus!', 'Item dengan nama: '+thisData['nama']+' berhasil dihapus.', ''
+            path, data, 'Hapus Karyawan dengan nama: '+thisData['name']+' ?', 
+            'Dihapus!', 'Karyawan dengan nama: '+thisData['name']+' berhasil dihapus.', ''
         );
     });
 
