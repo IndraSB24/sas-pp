@@ -24,13 +24,14 @@ class Karyawan extends BaseController
 	}
 
 	// add karyawan
-    public function add_comment(){
+    public function add_karyawan(){
 		$data_add = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'name', 'email', 'phone'
+                'nama', 'email', 'phone'
             ])
         );
+        // echo '<pre>'; print_r( $data_add );die; echo '</pre>';
         $data['created_by'] = sess('active_user_id');
 		$save_file = $this->Model_karyawan->save($data_add);
 
@@ -86,7 +87,7 @@ class Karyawan extends BaseController
     // list karyawan
 	public function ajax_get_list(){
         $returnedData = $this->Model_karyawan->get_datatable_main();
-
+        // echo '<pre>'; print_r( $returnedData );die; echo '</pre>';
         $data = [];
         foreach ($returnedData['return_data'] as $itung => $baris) {
             $aksi = "
@@ -97,7 +98,7 @@ class Karyawan extends BaseController
                 </a>
                 <a class='btn btn-sm btn-danger' id='btn_delete' 
                     data-id='$baris->id'
-                    data-name='$baris->name'
+                    data-name='$baris->nama'
                 > 
                     <i class='fas fa-trash-alt'></i>
                 </a>
@@ -105,7 +106,7 @@ class Karyawan extends BaseController
 
             $data[] = [
                 '<span class="text-center">' . ($itung + 1) . '</span>',
-                '<span class="text-center">' . $baris->name . '</span>',
+                '<span class="text-center">' . $baris->nama . '</span>',
                 '<span class="text-center">' . $baris->email . '</span>',
                 '<span class="text-center">' . $baris->phone . '</span>',
                 '<span class="text-center">' . $aksi . '</span>'

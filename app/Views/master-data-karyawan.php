@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="d-flex flex-column flex-sm-row justify-content-end mb-3">
-                                    <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#modal-add"><i class="fas fa-plus"></i> Add Data</button>
+                                    <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#modal_add"><i class="fas fa-plus"></i> Add Data</button>
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
@@ -63,7 +63,7 @@
             </div>
         </div>
             <!--Modal Add Document-->
-    <div id="modal-add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form action="#" method="POST">
             <div class="modal-content">
@@ -75,26 +75,26 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="level_code" id="level_code" />
+                            <input type="text" class="form-control" name="level_code" id="name" />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Email</label>
-                        <input type="text" class="form-control" name="description" id="description" />
+                        <input type="text" class="form-control" name="description" id="email" />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <label class="form-label">Phone</label>
-                            <input type="text" class="form-control num-only" name="weight_factor" id="weight_factor" />
+                            <input type="text" class="form-control num-only" name="weight_factor" id="phone" />
                             <small class="text-muted">Please enter only numeric characters (0-9).</small>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data">
+                    <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
                         Add
                     </button>
                 </div>
@@ -198,23 +198,16 @@
 
     // simpan
     $(document).on('click', '#btn_simpan', function () {
-        const path = "<?= site_url('item/add_item') ?>";
+        const path = "<?= site_url('Karyawan/add_Karyawan') ?>";
         const data = {
-            kode_item: $('#kode_item').val(),
-            barcode: $('#barcode').val(),
-            nama: $('#nama').val(),
-            id_kategori_jenis: $('#jenis').val(),
-            id_satuan: $('#satuan').val(),
-            id_kategori_item: $('#kategori').val(),
-            id_brand: $('#merek').val(),
-            id_supplier: $('#supplier').val(),
-            stok_minimum: $('#stok_minimum').val(),
-            harga_dasar: $('#harga_dasar').val()
+            nama: $('#name').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
         };
         
         loadQuestionalSwal(
-            path, data, 'Tambahkan Item dengan nama: '+$('#nama').val()+' ?', 
-            'Disimpan!', 'Item dengan nama: '+$('#nama').val()+' berhasil ditambahkan.', 'modal_add'
+            path, data, 'Tambahkan karyawan dengan nama: '+$('#name').val()+' ?', 
+            'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil ditambahkan.', 'modal_add'
         );
     });
 
