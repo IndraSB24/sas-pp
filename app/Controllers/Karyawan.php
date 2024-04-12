@@ -84,6 +84,14 @@ class Karyawan extends BaseController
         return $this->response->setJSON($response);
     }
 
+    public function karyawan_doc_list($id) {
+        $data = [
+			'title_meta' => view('partials/title-meta', ['title' => 'Employee']),
+			'page_title' => view('partials/page-title', ['title' => 'Overal', 'pagetitle' => 'List Document'])
+		];
+		return view('karyawan-doc-list', $data);
+    }
+
     // list karyawan
 	public function ajax_get_list(){
         $returnedData = $this->Model_karyawan->get_datatable_main();
@@ -91,7 +99,8 @@ class Karyawan extends BaseController
         $data = [];
         foreach ($returnedData['return_data'] as $itung => $baris) {
             $aksi = "
-                <a class='btn btn-sm btn-info' id='btn_edit'
+                <button class='btn btn-sm btn-info waves-effect waves-light' data-id='$baris->id' id='showPdf'><i class='fas fa-file-pdf'></i> Document</button>
+                <a class='btn btn-sm btn-success' id='btn_edit'
                     data-id='$baris->id'
                 >
                     <i class='far fa-edit'></i>

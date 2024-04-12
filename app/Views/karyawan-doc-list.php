@@ -5,6 +5,8 @@
     <?= $title_meta ?>
 
     <?= $this->include('partials/head-css') ?>
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+
 
 </head>
 
@@ -42,14 +44,38 @@
                                                 <thead>
                                                     <tr class="bg-primary text-light">
                                                         <th>No.</th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>Phone</th>
+                                                        <th>Document Name</th>
+                                                        <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    
+                                                    <tr>
+                                                        <td> 1 </td>
+                                                        <td>Prosedur Pengelolaan EPC </td>
+                                                        <td>Approver </td>
+                                                        <td>
+                                                            <a class='btn btn-sm btn-success' id='btn_edit' data-id='$baris->id'>
+                                                                <i class='far fa-edit'></i>
+                                                            </a>
+                                                            <a class='btn btn-sm btn-danger' id='btn_delete' data-id='$baris->id' data-name='$baris->nama'>
+                                                                <i class='fas fa-trash-alt'></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> 2 </td>
+                                                        <td>Prosedur Progress Measurement system dan Kurva S </td>
+                                                        <td>Uploader </td>
+                                                        <td>
+                                                            <a class='btn btn-sm btn-success' id='btn_edit' data-id='$baris->id'>
+                                                                <i class='far fa-edit'></i>
+                                                            </a>
+                                                            <a class='btn btn-sm btn-danger' id='btn_delete' data-id='$baris->id' data-name='$baris->nama'>
+                                                                <i class='fas fa-trash-alt'></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -62,46 +88,48 @@
                 <!-- end row -->
             </div>
         </div>
-            <!--Modal Add Document-->
-    <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="level_code" id="name" />
+        <!--Modal Add Document-->
+        <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form action="#" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Document Name</label>
+                                    <select class="form-control select2" id="list-doc">
+                                        <option>Select</option>
+                                        <option value="AK">Prosedur Progress Measurement system dan Kurva S</option>
+                                        <option value="HI">Prosedur Pengelolaan EPC</option>
+                                        <option value="HI">Tata Cara Pembuatan Schedule yang benar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-control select2" id="list-doc">
+                                        <option>Select</option>
+                                        <option value="AK">Apporver</option>
+                                        <option value="HI">Uploader</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
+                                Add
+                            </button>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Email</label>
-                        <input type="text" class="form-control" name="description" id="email" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Phone</label>
-                            <input type="text" class="form-control num-only" name="weight_factor" id="phone" />
-                            <small class="text-muted">Please enter only numeric characters (0-9).</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
-                        Add
-                    </button>
-                </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
         <!-- End Page-content -->
 
         <?= $this->include('partials/footer') ?>
@@ -138,6 +166,7 @@
 
 <!-- App js -->
 <script src="assets/js/app.js"></script>
+<script src="assets/libs/select2/js/select2.min.js"></script>
 
 </body>
 
@@ -150,7 +179,8 @@
 
     // Call the function when the document is ready
     $(document).ready(function() {
-        mainDatatable();
+        // mainDatatable();
+        // setSearchableDropdown('list-doc', 10, path)
     });
 
     // Initialize or reinitialize the DataTable
@@ -179,17 +209,16 @@
             ajax: {
                 "url": "<?= site_url('karyawan/ajax_get_list') ?>",
                 "type": "POST",
-                "data": function (data) {
+                "data": function(data) {
                     data.searchValue = $('#table_main_filter input').val();
                 }
             },
-            columnDefs: [
-                { 
-                    "targets": [ 0, 1, 2, 3, 4 ],
+            columnDefs: [{
+                    "targets": [0, 1, 2, 3, 4],
                     "className": "text-center"
                 },
-                { 
-                    "targets": [ 0, 4 ],
+                {
+                    "targets": [0, 4],
                     "orderable": false,
                 },
             ],
@@ -197,38 +226,38 @@
     }
 
     // simpan
-    $(document).on('click', '#btn_simpan', function () {
+    $(document).on('click', '#btn_simpan', function() {
         const path = "<?= site_url('Karyawan/add_Karyawan') ?>";
         const data = {
             nama: $('#name').val(),
             email: $('#email').val(),
             phone: $('#phone').val(),
         };
-        
+
         loadQuestionalSwal(
-            path, data, 'Tambahkan karyawan dengan nama: '+$('#name').val()+' ?', 
-            'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil ditambahkan.', 'modal_add'
+            path, data, 'Tambahkan karyawan dengan nama: ' + $('#name').val() + ' ?',
+            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil ditambahkan.', 'modal_add'
         );
     });
 
 
     $(document).on('click', '#showPdf', function() {
         const id = $(this).data()['id'];
-        const link = "<?= base_url('karyawan-doc') ?>" + '/' +id
+        const link = "<?= base_url('karyawan-doc') ?>" + '/' + id
         window.location.href = link;
     })
 
     // delete
-    $(document).on('click', '#btn_delete', function () {
+    $(document).on('click', '#btn_delete', function() {
         const thisData = $(this).data();
         const path = "<?= site_url('karyawan/delete_karyawan') ?>";
         const data = {
-            id : thisData['id']
+            id: thisData['id']
         };
-        
+
         loadQuestionalSwal(
-            path, data, 'Hapus Karyawan dengan nama: '+thisData['name']+' ?', 
-            'Dihapus!', 'Karyawan dengan nama: '+thisData['name']+' berhasil dihapus.', ''
+            path, data, 'Hapus Karyawan dengan nama: ' + thisData['name'] + ' ?',
+            'Dihapus!', 'Karyawan dengan nama: ' + thisData['name'] + ' berhasil dihapus.', ''
         );
     });
 
@@ -237,11 +266,13 @@
         var idItem = $(this).data('id');
         const path = "<?= site_url('item/ajax_get_item_data') ?>";
         const kode_urut = $(this).data('kode_urut');
-        
+
         $.ajax({
             url: path,
             method: 'POST',
-            data: { id_item: idItem },
+            data: {
+                id_item: idItem
+            },
             dataType: 'json',
             success: function(response) {
                 // Populate modal fields with fetched data
@@ -256,7 +287,7 @@
                 $('#stok_minimum_edit').val(response.stok_minimum);
                 $('#satuan_edit').val(response.id_satuan).trigger('change');
                 $('#harga_dasar_edit').val(response.harga_dasar);
-                
+
                 // Show the modal
                 $('#modal_edit').modal('show');
             },
@@ -268,7 +299,7 @@
     });
 
     // konfirmasi edit
-    $(document).on('click', '#btn_konfirmasi_edit', function () {
+    $(document).on('click', '#btn_konfirmasi_edit', function() {
         const thisData = $(this).data();
         const path = "<?= site_url('item/edit_item') ?>";
         const data = {
@@ -284,11 +315,10 @@
             stok_minimum: $('#stok_minimum_edit').val(),
             harga_dasar: $('#harga_dasar_edit').val()
         };
-        
+
         loadQuestionalSwal(
-            path, data, 'Konfirmasi edit Item dengan Kode: '+ $('#kode_item_edit').val() +' ?', 
-            'Diedit!', 'Item dengan kode: '+ $('#kode_item_edit').val() +' berhasil diedit.', 'modal_edit'
+            path, data, 'Konfirmasi edit Item dengan Kode: ' + $('#kode_item_edit').val() + ' ?',
+            'Diedit!', 'Item dengan kode: ' + $('#kode_item_edit').val() + ' berhasil diedit.', 'modal_edit'
         );
     });
-
 </script>
