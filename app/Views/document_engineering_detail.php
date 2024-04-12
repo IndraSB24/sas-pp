@@ -273,7 +273,7 @@
                                                             <br>
                                                                 Issued V '.$row->file_version.'
                                                             <br>
-                                                                <a href="#" class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -318,7 +318,7 @@
                                                             <br>
                                                                 Issued V '.$row->file_version.'
                                                             <br>
-                                                                <a href="#" class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval"
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -648,7 +648,7 @@
                             data-step="#"
                             data-version="#"
                         > 
-                            Detail Document 
+                            Detail Document
                          </a>
                         <!-- &nbsp;or&nbsp;
                         <button type="button" class="btn btn-success" id="btn-approval-approve"
@@ -933,29 +933,29 @@
     
 // approval
 // ==========================================================================================================================================================================
-    $(document).on('click', '#btn-approval', function(){
-        // Set data from button to Form Approval
-        $('#approval_doc_desc').val( $(this).data('doc_desc') );
-        $('#approval_id_doc').val( $(this).data('id') );
-        $("#approval_link_file").attr("href", $(this).data('link_file'));
-        $('#approval_step_version').text($(this).data('step')+" Version "+$(this).data('version'));
-        $('#approval_file_name').text("No File Choosen");
+    // $(document).on('click', '#btn-approval', function(){
+    //     // Set data from button to Form Approval
+    //     $('#approval_doc_desc').val( $(this).data('doc_desc') );
+    //     $('#approval_id_doc').val( $(this).data('id') );
+    //     $("#approval_link_file").attr("href", $(this).data('link_file'));
+    //     $('#approval_step_version').text($(this).data('step')+" Version "+$(this).data('version'));
+    //     $('#approval_file_name').text("No File Choosen");
         
-        // btn approve set
-        $("#btn-approval-approve").data("step", $(this).data('step'));
-        $("#btn-approval-approve").data("version", $(this).data('version'));
+    //     // btn approve set
+    //     $("#btn-approval-approve").data("step", $(this).data('step'));
+    //     $("#btn-approval-approve").data("version", $(this).data('version'));
         
-        // btn reject set
-        const id_doc = document.getElementById("approval_id_doc").value;
-        const link = "<?= base_url('commentPdf/') ?>"
-        $("#btn-approval-reject")
-            .data("step", $(this).data('step'))
-            .data("version", $(this).data('version'))
-            .attr("href", `${link}/${id_doc}`);
+    //     // btn reject set
+    //     const id_doc = document.getElementById("approval_id_doc").value;
+    //     const link = "<?= base_url('commentPdf/') ?>"
+    //     $("#btn-approval-reject")
+    //         .data("step", $(this).data('step'))
+    //         .data("version", $(this).data('version'))
+    //         .attr("href", `${link}/${id_doc}`);
 
-        // Call Modal Approval
-        $('#modal_approval').modal('show');
-    })
+    //     // Call Modal Approval
+    //     $('#modal_approval').modal('show');
+    // })
     
     $(document).ready(function() {
       $('#approval_btn_comment_file').click(function(e) {
