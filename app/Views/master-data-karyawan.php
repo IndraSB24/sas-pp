@@ -64,7 +64,7 @@
         </div>
         
         <!--Modal Add Document-->
-        <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div id="modal_add" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <form action="#" method="POST">
                 <div class="modal-content">
@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        
+
         <!-- End Page-content -->
         <?= $this->include('partials/footer') ?>
 

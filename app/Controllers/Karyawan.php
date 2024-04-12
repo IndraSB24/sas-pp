@@ -99,7 +99,9 @@ class Karyawan extends BaseController
         $data = [];
         foreach ($returnedData['return_data'] as $itung => $baris) {
             $aksi = "
-                <button class='btn btn-sm btn-info waves-effect waves-light' data-id='$baris->id' id='showPdf'><i class='fas fa-file-pdf'></i> Document</button>
+                <button class='btn btn-sm btn-info waves-effect waves-light' data-id='$baris->id' id='showPdf'>
+					<i class='fas fa-file-pdf'></i> Document
+				</button>
                 <a class='btn btn-sm btn-success' id='btn_edit'
                     data-id='$baris->id'
                 >
