@@ -28,7 +28,7 @@ class Karyawan extends BaseController
 		$data_add = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'nama', 'email', 'phone'
+                'name', 'email', 'phone'
             ])
         );
         // echo '<pre>'; print_r( $data_add );die; echo '</pre>';
@@ -107,7 +107,7 @@ class Karyawan extends BaseController
                 </a>
                 <a class='btn btn-sm btn-danger' id='btn_delete' 
                     data-id='$baris->id'
-                    data-name='$baris->nama'
+                    data-name='$baris->name'
                 > 
                     <i class='fas fa-trash-alt'></i>
                 </a>
@@ -115,7 +115,7 @@ class Karyawan extends BaseController
 
             $data[] = [
                 '<span class="text-center">' . ($itung + 1) . '</span>',
-                '<span class="text-center">' . $baris->nama . '</span>',
+                '<span class="text-center">' . $baris->name . '</span>',
                 '<span class="text-center">' . $baris->email . '</span>',
                 '<span class="text-center">' . $baris->phone . '</span>',
                 '<span class="text-center">' . $aksi . '</span>'

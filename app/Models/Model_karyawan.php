@@ -13,7 +13,7 @@ class Model_karyawan extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'nama', 'email', 'phone', 'created_by'
+        'name', 'email', 'phone', 'created_by'
     ];
 
     protected $useTimestamps = true;
@@ -25,9 +25,9 @@ class Model_karyawan extends Model
     public function countNoFiltered()
     {
         $this->select('
-                *
-            ')
-            ->where('deleted_at', NULL);
+            *
+        ')
+        ->where('deleted_at', NULL);
 
         return $this->countAllResults();
     }

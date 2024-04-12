@@ -62,48 +62,50 @@
                 <!-- end row -->
             </div>
         </div>
-            <!--Modal Add Document-->
-    <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="level_code" id="name" />
+        
+        <!--Modal Add Document-->
+        <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form action="#" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="level_code" id="name" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="description" id="email" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control num-only" name="weight_factor" id="phone" />
+                                <small class="text-muted">Please enter only numeric characters (0-9).</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Email</label>
-                        <input type="text" class="form-control" name="description" id="email" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Phone</label>
-                            <input type="text" class="form-control num-only" name="weight_factor" id="phone" />
-                            <small class="text-muted">Please enter only numeric characters (0-9).</small>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
+                            Add
+                        </button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
-                        Add
-                    </button>
-                </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
-        <!-- End Page-content -->
 
+        
+        <!-- End Page-content -->
         <?= $this->include('partials/footer') ?>
 
     </div>
