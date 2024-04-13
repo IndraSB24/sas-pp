@@ -21,6 +21,16 @@ class Model_karyawan extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
+    // get list
+    public function get_list(){
+        $this->select('
+            *
+        ')
+        ->where('deleted_at', NULL);
+        
+        return $this->get()->getResult();
+    }
+
     // count all not deleted row
     public function countNoFiltered()
     {
@@ -30,16 +40,6 @@ class Model_karyawan extends Model
         ->where('deleted_at', NULL);
 
         return $this->countAllResults();
-    }
-
-    // get list
-    public function get_list(){
-        $this->select('
-            *
-        ')
-        ->where('deleted_at', NULL);
-        
-        return $this->get()->getResult();
     }
 
     // ajax for  list item
@@ -93,6 +93,16 @@ class Model_karyawan extends Model
         $result['count_all'] = $this->countNoFiltered();
 
         return $result;
+    }
+
+    // get by id
+    public function get_by_id($id){
+        $this->select('
+            *
+        ')
+        ->where('id', $id);
+        
+        return $this->get()->getResult();
     }
 
 }
