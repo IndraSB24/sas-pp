@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="d-flex flex-column flex-sm-row justify-content-end mb-3">
-                                    <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#modal_add"><i class="fas fa-plus"></i> Add Data</button>
+                                    <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#main_modal"><i class="fas fa-plus"></i> Add Data</button>
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
@@ -64,12 +64,12 @@
         </div>
         
         <!--Modal Add Document-->
-        <div id="modal_add" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div id="main_modal" class="modal fade" role="dialog" aria-labelledby="main_modal" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <form action="#" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Data</h5>
+                        <h5 class="modal-title mt-0">Add Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -97,6 +97,46 @@
                         <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success" id="btn_simpan" title="Add Data">
                             Add
+                        </button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div id="edit_modal" class="modal fade" role="dialog" aria-labelledby="edit_modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form action="#" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Edit Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="level_code" id="edit_name" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="description" id="edit_email" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control num-only" name="weight_factor" id="edit_phone" />
+                                <small class="text-muted">Please enter only numeric characters (0-9).</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="edit_id">
+                        <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="btn_update" title="Add Data">
+                            Save
                         </button>
                     </div>
                 </div>
@@ -202,14 +242,29 @@
     $(document).on('click', '#btn_simpan', function () {
         const path = "<?= site_url('Karyawan/add_Karyawan') ?>";
         const data = {
-            nama: $('#name').val(),
+            name: $('#name').val(),
             email: $('#email').val(),
             phone: $('#phone').val(),
         };
         
         loadQuestionalSwal(
             path, data, 'Tambahkan karyawan dengan nama: '+$('#name').val()+' ?', 
-            'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil ditambahkan.', 'modal_add'
+            'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil ditambahkan.', 'main_modal'
+        );
+    });
+
+    $(document).on('click', '#btn_update', function () {
+        const path = "<?= site_url('Karyawan/edit_karyawan') ?>";
+        const data = {
+            edit_id: $('#edit_id').val(),
+            name: $('#edit_name').val(),
+            email: $('#edit_email').val(),
+            phone: $('#edit_phone').val(),
+        };
+        
+        loadQuestionalSwal(
+            path, data, 'Edit data karyawan dengan nama: '+$('#edit_name').val()+' ?', 
+            'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil diedit.', 'edit_modal'
         );
     });
 
@@ -237,30 +292,22 @@
     // load edit modal
     $(document).on('click', '#btn_edit', function() {
         var idItem = $(this).data('id');
-        const path = "<?= site_url('item/ajax_get_item_data') ?>";
-        const kode_urut = $(this).data('kode_urut');
-        
+        console.log(idItem);
+        const path = "<?= site_url('karyawan/ajax_get_item_data') ?>";
         $.ajax({
             url: path,
             method: 'POST',
             data: { id_item: idItem },
             dataType: 'json',
             success: function(response) {
-                // Populate modal fields with fetched data
-                $('#edit_id').val(idItem);
-                $('#kode_item_edit').val(response.kode_item);
-                $('#barcode_edit').val(response.barcode);
-                $('#nama_edit').val(response.nama);
-                $('#kategori_edit').val(response.id_kategori_item).trigger('change');
-                $('#jenis_edit').val(response.id_kategori_jenis).trigger('change');
-                $('#brand_edit').val(response.id_brand).trigger('change');
-                $('#supplier_edit').val(response.id_supplier).trigger('change');
-                $('#stok_minimum_edit').val(response.stok_minimum);
-                $('#satuan_edit').val(response.id_satuan).trigger('change');
-                $('#harga_dasar_edit').val(response.harga_dasar);
+                console.log(response);
                 
-                // Show the modal
-                $('#modal_edit').modal('show');
+                // Populate modal fields with fetched data
+                $('#edit_id').val(response.id);
+                $('#edit_email').val(response.email);
+                $('#edit_name').val(response.name);
+                $('#edit_phone').val(response.phone);
+                $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
                 // Handle errors
