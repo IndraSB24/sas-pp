@@ -34,8 +34,19 @@
                     <div class="col-xl-12">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="d-flex flex-column flex-sm-row justify-content-end mb-3">
-                                    <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#modal_add"><i class="fas fa-plus"></i> Add Data</button>
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <div class="d-flex flex-column flex-sm-row justify-content-start mb-3">
+                                            <a class="btn btn-secondary waves-effect waves-light float-right" href='<?= base_url('karyawan') ?>'><i class="fas fa-chevron-left"></i> Back</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="d-flex flex-column flex-sm-row justify-content-end mb-3">
+                                            <button class="btn btn-primary waves-effect waves-light float-right" data-bs-toggle="modal" data-bs-target="#modal_add"><i class="fas fa-plus"></i> Add Data</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
