@@ -19,14 +19,16 @@ class Karyawan_doc_role extends BaseController
 		helper(['session_helper']);
     }
     
-	public function index()
+	public function index($id)
 	{
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Employee']),
 			'page_title' => view('partials/page-title', ['title' => 'Overal', 'pagetitle' => 'List Document']),
             'data_role' => $this->Model_role->get_by_type('doc_role'),
-            'data_engineering_doc' => $this->Model_doc_engineering->findAll()
+            'data_engineering_doc' => $this->Model_doc_engineering->findAll(),
+            'karyawan_id' => $id,
 		];
+        // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('karyawan-doc-list', $data);
 	}
 
@@ -94,6 +96,7 @@ class Karyawan_doc_role extends BaseController
     // list karyawan doc role
 	public function ajax_get_list($id_karyawan){
         $returnedData = $this->Model_karyawan_doc_role->get_datatable_main($id_karyawan);
+        // echo '<pre>'; print_r( $returnedData  );die; echo '</pre>';
         $data = [];
         foreach ($returnedData['return_data'] as $itung => $baris) {
             $aksi = "

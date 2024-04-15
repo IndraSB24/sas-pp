@@ -3,7 +3,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class Model_karyawan_doc_role extends Model
+class Model_role extends Model
 {
     protected $table      = 'role';
     protected $primaryKey = 'id';

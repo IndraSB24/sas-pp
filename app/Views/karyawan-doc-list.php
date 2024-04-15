@@ -5,7 +5,7 @@
     <?= $title_meta ?>
 
     <?= $this->include('partials/head-css') ?>
-    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -43,39 +43,14 @@
                                             <table id="table_main" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead>
                                                     <tr class="bg-primary text-light">
-                                                        <th>No.</th>
+                                                        <th>No</th>
                                                         <th>Document Name</th>
                                                         <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td> 1 </td>
-                                                        <td>Prosedur Pengelolaan EPC </td>
-                                                        <td>Approver </td>
-                                                        <td>
-                                                            <a class='btn btn-sm btn-success' id='btn_edit' data-id='$baris->id'>
-                                                                <i class='far fa-edit'></i>
-                                                            </a>
-                                                            <a class='btn btn-sm btn-danger' id='btn_delete' data-id='$baris->id' data-name='$baris->nama'>
-                                                                <i class='fas fa-trash-alt'></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 2 </td>
-                                                        <td>Prosedur Progress Measurement system dan Kurva S </td>
-                                                        <td>Uploader </td>
-                                                        <td>
-                                                            <a class='btn btn-sm btn-success' id='btn_edit' data-id='$baris->id'>
-                                                                <i class='far fa-edit'></i>
-                                                            </a>
-                                                            <a class='btn btn-sm btn-danger' id='btn_delete' data-id='$baris->id' data-name='$baris->nama'>
-                                                                <i class='fas fa-trash-alt'></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -88,9 +63,9 @@
                 <!-- end row -->
             </div>
         </div>
-        
+
         <!--Modal Add Document-->
-        <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div id="modal_add" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <form action="#" method="POST">
                     <div class="modal-content">
@@ -103,20 +78,19 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Document Name</label>
                                     <select class="form-control select2" id="list-doc">
-                                        <option>Select</option>
-                                        <option value="AK">Prosedur Progress Measurement system dan Kurva S</option>
-                                        <option value="HI">Prosedur Pengelolaan EPC</option>
-                                        <option value="HI">Tata Cara Pembuatan Schedule yang benar</option>
+                                        <?php foreach ($data_engineering_doc as $row) : ?>
+                                            <option value="<?= $row->id ?>"><?= $row->description ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Role</label>
-                                    <select class="form-control select2" id="list-doc">
-                                        <option>Select</option>
-                                        <option value="AK">Apporver</option>
-                                        <option value="HI">Uploader</option>
+                                    <select class="form-control select2" id="list-role">
+                                        <?php foreach ($data_role as $row) : ?>
+                                            <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -167,7 +141,7 @@
 
 <!-- App js -->
 <script src="assets/js/app.js"></script>
-<script src="assets/libs/select2/js/select2.min.js"></script>
+<script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 
 </body>
 
@@ -180,8 +154,11 @@
 
     // Call the function when the document is ready
     $(document).ready(function() {
-        // mainDatatable();
-        // setSearchableDropdown('list-doc', 10, path)
+        mainDatatable();
+        $('.select2').select2({
+            // placeholder: 'Pilih opsi',
+            // maximumSelectionLength: 2 // contoh konfigurasi tambahan
+        });
     });
 
     // Initialize or reinitialize the DataTable
@@ -190,7 +167,7 @@
         if (mainTable) {
             mainTable.destroy();
         }
-
+        const id = <?= $karyawan_id ?>
         // Initialize the DataTable
         mainTable = $('#table_main').DataTable({
             "processing": true,
@@ -208,18 +185,18 @@
                 ['10', '25', '50', '100', 'ALL']
             ],
             ajax: {
-                "url": "<?= site_url('karyawan/ajax_get_list') ?>",
+                "url": `<?= site_url('Karyawan_doc_role/ajax_get_list') ?>/${id}`,
                 "type": "POST",
                 "data": function(data) {
                     data.searchValue = $('#table_main_filter input').val();
                 }
             },
             columnDefs: [{
-                    "targets": [0, 1, 2, 3, 4],
+                    "targets": [0, 1, 2, 3],
                     "className": "text-center"
                 },
                 {
-                    "targets": [0, 4],
+                    "targets": [0, 3],
                     "orderable": false,
                 },
             ],
@@ -228,16 +205,31 @@
 
     // simpan
     $(document).on('click', '#btn_simpan', function() {
-        const path = "<?= site_url('Karyawan/add_Karyawan') ?>";
+        const path = "<?= site_url('Karyawan_doc_role/add') ?>";
         const data = {
-            nama: $('#name').val(),
-            email: $('#email').val(),
-            phone: $('#phone').val(),
+            id_doc: $('#list-doc').val(),
+            id_doc_role: $('#list-role').val(),
+            id_karyawan: <?= $karyawan_id ?>
         };
 
         loadQuestionalSwal(
-            path, data, 'Tambahkan karyawan dengan nama: ' + $('#name').val() + ' ?',
-            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil ditambahkan.', 'modal_add'
+            path, data, 'Tambahkan Document Role baru?',
+            'Disimpan!', 'berhasil ditambahkan.', 'modal_add'
+        );
+    });
+
+    $(document).on('click', '#btn_update', function() {
+        const path = "<?= site_url('Karyawan/edit_karyawan') ?>";
+        const data = {
+            edit_id: $('#edit_id').val(),
+            name: $('#edit_name').val(),
+            email: $('#edit_email').val(),
+            phone: $('#edit_phone').val(),
+        };
+
+        loadQuestionalSwal(
+            path, data, 'Edit data karyawan dengan nama: ' + $('#edit_name').val() + ' ?',
+            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil diedit.', 'edit_modal'
         );
     });
 
@@ -257,17 +249,16 @@
         };
 
         loadQuestionalSwal(
-            path, data, 'Hapus Karyawan dengan nama: ' + thisData['name'] + ' ?',
-            'Dihapus!', 'Karyawan dengan nama: ' + thisData['name'] + ' berhasil dihapus.', ''
+            path, data, 'Yakin ingin menghapus data ini ?',
+            'Dihapus!', 'Data berhasil dihapus', ''
         );
     });
 
     // load edit modal
     $(document).on('click', '#btn_edit', function() {
         var idItem = $(this).data('id');
-        const path = "<?= site_url('item/ajax_get_item_data') ?>";
-        const kode_urut = $(this).data('kode_urut');
-
+        console.log(idItem);
+        const path = "<?= site_url('karyawan/ajax_get_item_data') ?>";
         $.ajax({
             url: path,
             method: 'POST',
@@ -276,21 +267,14 @@
             },
             dataType: 'json',
             success: function(response) {
-                // Populate modal fields with fetched data
-                $('#edit_id').val(idItem);
-                $('#kode_item_edit').val(response.kode_item);
-                $('#barcode_edit').val(response.barcode);
-                $('#nama_edit').val(response.nama);
-                $('#kategori_edit').val(response.id_kategori_item).trigger('change');
-                $('#jenis_edit').val(response.id_kategori_jenis).trigger('change');
-                $('#brand_edit').val(response.id_brand).trigger('change');
-                $('#supplier_edit').val(response.id_supplier).trigger('change');
-                $('#stok_minimum_edit').val(response.stok_minimum);
-                $('#satuan_edit').val(response.id_satuan).trigger('change');
-                $('#harga_dasar_edit').val(response.harga_dasar);
+                console.log(response);
 
-                // Show the modal
-                $('#modal_edit').modal('show');
+                // Populate modal fields with fetched data
+                $('#edit_id').val(response.id);
+                $('#edit_email').val(response.email);
+                $('#edit_name').val(response.name);
+                $('#edit_phone').val(response.phone);
+                $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
                 // Handle errors
