@@ -35,14 +35,14 @@ class Karyawan_doc_role extends BaseController
 		$data_add = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'name', 'email', 'phone'
+                'id_karyawan', 'id_doc', 'id_doc_role'
             ])
         );
-        // echo '<pre>'; print_r( $data_add );die; echo '</pre>';
+        $data['doc_type'] = 'engineering';
         $data['created_by'] = sess('active_user_id');
-		$save_file = $this->Model_karyawan->save($data_add);
+		$add = $this->Model_karyawan_doc_role->save($data_add);
 
-		if ($save_file) {
+		if ($add) {
 			$response = [
 				'success' => true,
 				'message' => 'Employee added successfully.'
@@ -62,15 +62,15 @@ class Karyawan_doc_role extends BaseController
         $data = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'name', 'email', 'phone'
+                'id_karyawan', 'id_doc', 'id_doc_role'
             ])
         );
         $data['id'] = $this->request->getPost('edit_id');
         $data['created_by'] = sess('active_user_id');
 
-        $insertData = $this->Model_karyawan->save($data);
+        $updateData = $this->Model_karyawan_doc_role->save($data);
         
-        if ($insertData) {
+        if ($updateData) {
             $response = ['success' => true];
         } else {
             $response = ['success' => false];
