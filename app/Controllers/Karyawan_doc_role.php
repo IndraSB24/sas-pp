@@ -81,7 +81,7 @@ class Karyawan_doc_role extends BaseController
     // delete ===============================================================================================
     public function delete()
     {
-        $deleteData = $this->Model_karyawan->delete($this->request->getPost('id'));
+        $deleteData = $this->Model_karyawan_doc_role->delete($this->request->getPost('id'));
 
         if ($deleteData) {
             $response = ['success' => true];
