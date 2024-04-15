@@ -109,7 +109,7 @@ class Model_karyawan_doc_role extends Model
         ')
         ->join('role r', 'r.id=karyawan_doc_role.id_doc_role', 'LEFT')
         ->join('project_detail_engineering pde', 'pde.id=karyawan_doc_role.id_doc', 'LEFT')
-        ->where('id', $id);
+        ->where('karyawan_doc_role.id', $id);
         
         return $this->get()->getResult();
     }

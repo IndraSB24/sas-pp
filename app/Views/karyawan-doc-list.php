@@ -197,8 +197,8 @@
     $(document).ready(function() {
         mainDatatable();
         $('.select2').select2({
-            // placeholder: 'Pilih opsi',
-            // maximumSelectionLength: 2 // contoh konfigurasi tambahan
+            placeholder: 'Pilih opsi',
+            maximumSelectionLength: 2 // contoh konfigurasi tambahan
         });
     });
 
@@ -317,7 +317,6 @@
                 $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
-                $('#edit_modal').modal('show');
                 // Handle errors
                 console.error(xhr.responseText);
             }
