@@ -88,6 +88,7 @@
                 <!-- end row -->
             </div>
         </div>
+        
         <!--Modal Add Document-->
         <div id="modal_add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
