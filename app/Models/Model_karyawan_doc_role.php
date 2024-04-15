@@ -103,8 +103,12 @@ class Model_karyawan_doc_role extends Model
     // get by id
     public function get_by_id($id){
         $this->select('
-            *
+            karyawan_doc_role.*,
+            pde.description as doc_name,
+            r.name as role_name
         ')
+        ->join('role r', 'r.id=karyawan_doc_role.id_doc_role', 'LEFT')
+        ->join('project_detail_engineering pde', 'pde.id=karyawan_doc_role.id_doc', 'LEFT')
         ->where('id', $id);
         
         return $this->get()->getResult();
