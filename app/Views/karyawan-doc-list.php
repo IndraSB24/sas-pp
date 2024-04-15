@@ -105,6 +105,46 @@
                 </form>
             </div>
         </div>
+        <div id="edit_modal" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form action="#" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Document Name</label>
+                                    <select class="form-control select2" id="edit-list-doc">
+                                        <?php foreach ($data_engineering_doc as $row) : ?>
+                                            <option value="<?= $row->id ?>"><?= $row->description ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-control select2" id="edit-list-role">
+                                        <?php foreach ($data_role as $row) : ?>
+                                            <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" id="btn_update" title="Save Data">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- End Page-content -->
 
         <?= $this->include('partials/footer') ?>
@@ -243,7 +283,7 @@
     // delete
     $(document).on('click', '#btn_delete', function() {
         const thisData = $(this).data();
-        const path = "<?= site_url('karyawan/delete_karyawan') ?>";
+        const path = "<?= site_url('Karyawan_doc_role/delete') ?>";
         const data = {
             id: thisData['id']
         };
@@ -258,22 +298,20 @@
     $(document).on('click', '#btn_edit', function() {
         var idItem = $(this).data('id');
         console.log(idItem);
-        const path = "<?= site_url('karyawan/ajax_get_item_data') ?>";
+        const path = "<?= site_url('Karyawan_doc_role/ajax_get_karyawan_doc_role_data') ?>";
         $.ajax({
             url: path,
             method: 'POST',
             data: {
-                id_item: idItem
+                id: idItem
             },
             dataType: 'json',
             success: function(response) {
                 console.log(response);
 
                 // Populate modal fields with fetched data
-                $('#edit_id').val(response.id);
-                $('#edit_email').val(response.email);
-                $('#edit_name').val(response.name);
-                $('#edit_phone').val(response.phone);
+                $('#edit-list-doc').val(response.id);
+                $('#edit-list-role').val(response.email);
                 $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
