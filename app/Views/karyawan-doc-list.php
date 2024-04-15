@@ -136,9 +136,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <input type="hidden" id="edit_id">
                             <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-success" id="btn_update" title="Save Data">
-                                Add
+                                Save Data
                             </button>
                         </div>
                     </div>
@@ -259,17 +260,17 @@
     });
 
     $(document).on('click', '#btn_update', function() {
-        const path = "<?= site_url('Karyawan/edit_karyawan') ?>";
+        const path = "<?= site_url('Karyawan_doc_role/edit') ?>";
         const data = {
             edit_id: $('#edit_id').val(),
-            name: $('#edit_name').val(),
-            email: $('#edit_email').val(),
-            phone: $('#edit_phone').val(),
+            id_karyawan: <?= $karyawan_id ?>,
+            id_doc: $('#edit-list-doc').val(),
+            id_doc_role: $('#edit-list-role').val(),
         };
 
         loadQuestionalSwal(
-            path, data, 'Edit data karyawan dengan nama: ' + $('#edit_name').val() + ' ?',
-            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil diedit.', 'edit_modal'
+            path, data, 'Yakin ingin mengedit data ini ?',
+            'Disimpan!', 'Data berhasil diedit.', 'edit_modal'
         );
     });
 
@@ -312,9 +313,11 @@
                 // Populate modal fields with fetched data
                 $('#edit-list-doc').val(response.id);
                 $('#edit-list-role').val(response.email);
+                $('#edit_id').val(response.email);
                 $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
+                $('#edit_modal').modal('show');
                 // Handle errors
                 console.error(xhr.responseText);
             }
