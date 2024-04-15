@@ -77,7 +77,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Document Name</label>
-                                    <select class="form-control select2" id="list-doc">
+                                    <select class="form-control select2" id="doc-id">
                                         <?php foreach ($data_engineering_doc as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->description ?></option>
                                         <?php endforeach; ?>
@@ -87,7 +87,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Role</label>
-                                    <select class="form-control select2" id="list-role">
+                                    <select class="form-control select2" id="role-id">
                                         <?php foreach ($data_role as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->name ?></option>
                                         <?php endforeach; ?>
@@ -117,7 +117,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Document Name</label>
-                                    <select class="form-control select2" id="edit-list-doc">
+                                    <select class="form-control select2" id="edit-doc-id">
                                         <?php foreach ($data_engineering_doc as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->description ?></option>
                                         <?php endforeach; ?>
@@ -127,7 +127,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Role</label>
-                                    <select class="form-control select2" id="edit-list-role">
+                                    <select class="form-control select2" id="edit-role-id">
                                         <?php foreach ($data_role as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->name ?></option>
                                         <?php endforeach; ?>
@@ -248,8 +248,8 @@
     $(document).on('click', '#btn_simpan', function() {
         const path = "<?= site_url('Karyawan_doc_role/add') ?>";
         const data = {
-            id_doc: $('#list-doc').val(),
-            id_doc_role: $('#list-role').val(),
+            id_doc: $('#doc-id').val(),
+            id_doc_role: $('#role-id').val(),
             id_karyawan: <?= $karyawan_id ?>
         };
 
@@ -264,8 +264,8 @@
         const data = {
             edit_id: $('#edit_id').val(),
             id_karyawan: <?= $karyawan_id ?>,
-            id_doc: $('#edit-list-doc').val(),
-            id_doc_role: $('#edit-list-role').val(),
+            id_doc: $('#edit-doc-id').val(),
+            id_doc_role: $('#edit-role-id').val(),
         };
 
         loadQuestionalSwal(
@@ -311,9 +311,9 @@
                 console.log(response);
 
                 // Populate modal fields with fetched data
-                $('#edit-list-doc').val(response.id);
-                $('#edit-list-role').val(response.email);
-                $('#edit_id').val(response.email);
+                $('#edit-doc-id').val(response.id_doc);
+                $('#edit-role-id').val(response.id_doc_role);
+                $('#edit_id').val(response.id);
                 $('#edit_modal').modal('show');
             },
             error: function(xhr, status, error) {
