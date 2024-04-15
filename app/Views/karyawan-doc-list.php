@@ -117,7 +117,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label">Document Name</label>
-                                    <select class="form-control select2" id="edit-doc-id">
+                                    <select class="form-control select2"  id="edit-doc-id">
                                         <?php foreach ($data_engineering_doc as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->description ?></option>
                                         <?php endforeach; ?>
@@ -312,6 +312,8 @@
 
                 // Populate modal fields with fetched data
                 $('#edit-doc-id').val(response.id_doc);
+                $('#edit-doc-id').trigger('change');
+                $('#edit-role-id').trigger('change');
                 $('#edit-role-id').val(response.id_doc_role);
                 $('#edit_id').val(response.id);
                 $('#edit_modal').modal('show');
