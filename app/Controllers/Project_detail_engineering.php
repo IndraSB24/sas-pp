@@ -361,6 +361,58 @@ class Project_detail_engineering extends BaseController
         
     }
 
+    // upload originator
+    public function up_originator(){
+        // read the file
+        $uploaded_file = $this->request->getFile('file');
+                
+        // store the file
+        if($uploaded_file){
+            $id_doc = $this->request->getPost('id_doc');
+            $uploaded_file->move('upload/engineering_doc/list');
+            
+            // save file name to database
+            $data = [
+                'id' => $id_doc,
+                'file' => $uploaded_file->getName(),
+                'internal_originator_status' => 'uploaded'
+            ];
+            $save_file = $this->doc_engineering_model->save($data);
+            
+            $data_timeline = [
+                'doc_id'                => $id_doc,
+                'detail_type'           => 'internal_engineering',
+                'time'                  => date_now(),
+                'timeline_title'        => 'internal engineering file upload',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'on time',
+                'new_file'              => $data['file'],
+                'file_status'           => 'internal'
+            ];
+            $this->timeline_doc_model->save($data_timeline);
+
+            if ($save_file) {
+                $response = [
+                    'success' => true,
+                    'message' => 'File Uploaded successfully.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to Upload File.'
+                ];
+            }
+            
+        }else {
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
     // upload IFR
     public function up_ifr(){
         // read the file

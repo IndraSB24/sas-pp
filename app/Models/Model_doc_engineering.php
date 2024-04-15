@@ -14,14 +14,11 @@ class Model_doc_engineering extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_project',
-        'level_code',
-        'description',
-        'unit',
-        'weight_factor',
+        'id_project', 'level_code', 'description', 'unit', 'weight_factor',
         'plan_ifr', 'plan_ifa', 'plan_ifc',
         'actual_ifr', 'actual_ifa', 'actual_ifc',
-        'file', 'file_version', 'file_status', 'file_comment'
+        'file', 'file_version', 'file_status', 'file_comment',
+        'internal_engineer_status', 'internal_ho_status', 'internal_pem_status', 'internal_originator_status'
     ];
 
     protected $useTimestamps = true;
