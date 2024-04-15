@@ -47,7 +47,7 @@ class Model_karyawan_doc_role extends Model
         'pde.description', 'r.name'
     ];
     protected $main_column_orderable = [
-        'id', 'pde.description', 'r.name'
+        'karyawan_doc_role.id', 'pde.description', 'r.name'
     ];
     public function get_datatable_main($id_karyawan)
     {
