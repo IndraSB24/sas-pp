@@ -509,6 +509,7 @@ class Project_detail_engineering extends BaseController
     // reject doc
     public function reject(){
         $step = $this->request->getPost('step');
+        $id_doc = $this->request->getPost('id_doc');
 
         if($step == 'internal'){
             $data = [
@@ -519,7 +520,7 @@ class Project_detail_engineering extends BaseController
                 'internal_engineering_date' => date('Y-m-d H:i:s')
             ];
             $update_doc = $this->doc_engineering_model->save($data);
-            
+
             $data_timeline = [
                 'doc_id'                => $id_doc,
                 'detail_type'           => 'internal_engineering',
