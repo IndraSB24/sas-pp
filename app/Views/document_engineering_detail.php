@@ -216,7 +216,7 @@
                                                         $linkFile = base_url('upload/engineering_doc/list/'.$row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
                                                         // set actual JEDHI TEKNIKA status
-                                                        if($row->actual_ifr){
+                                                        if($row->internal_originator_status){
                                                             $actual_JEDHI = tgl_indo($row->actual_ifr).
                                                             '
                                                             <br>
@@ -249,6 +249,34 @@
                                                                 </a>
                                                             ';
                                                         }
+
+                                                        $enginerPP = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                &nbsp;WAITING&nbsp;
+                                                            </a>
+                                                        ';
+                                                        $hoPP = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                &nbsp;WAITING&nbsp;
+                                                            </a>
+                                                        ';
+                                                        $pemPP = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                &nbsp;WAITING&nbsp;
+                                                            </a>
+                                                        ';
                                                         
                                                         // set actual IFR status
                                                         if($row->actual_ifr){
@@ -373,9 +401,9 @@
                                                         <td class="text-center" nowrap> - </td>
                                                         <td><?= $row->description ?></td>
                                                         <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center" style="border-right-width: 4px;"></td>
+                                                        <td class="text-center"><?= $enginerPP ?></td>
+                                                        <td class="text-center"><?= $hoPP  ?></td>
+                                                        <td class="text-center" style="border-right-width: 4px;"><?= $pemPP   ?></td>
                                                         <td class="text-center"><?= $row->weight_factor ?>%</td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
