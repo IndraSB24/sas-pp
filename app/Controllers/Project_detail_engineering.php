@@ -10,7 +10,7 @@ use App\Models\Model_engineering_doc_file;
 
 class Project_detail_engineering extends BaseController
 {
-    protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment
+    protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment,
         $Model_engineering_doc_file;
  
     function __construct(){
