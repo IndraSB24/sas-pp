@@ -13,7 +13,7 @@ class Model_engineering_doc_comment extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_engineering_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by'
+        'id_engineering_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by',
         'comment_title'
     ];
 
