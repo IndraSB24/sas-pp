@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class Model_engineering_doc_file extends Model
 {
-    protected $table      = 'engineering_doc_comment';
+    protected $table      = 'engineering_doc_file';
     protected $primaryKey = 'id';
 
     protected $returnType     = 'object';
