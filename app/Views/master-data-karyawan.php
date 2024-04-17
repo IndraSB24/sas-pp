@@ -251,6 +251,10 @@
             path, data, 'Tambahkan karyawan dengan nama: '+$('#name').val()+' ?', 
             'Disimpan!', 'Karyawan dengan nama: '+$('#name').val()+' berhasil ditambahkan.', 'main_modal'
         );
+
+        $('#name').val(null)
+        $('#email').val(null)
+        $('#phone').val(null)
     });
 
     $(document).on('click', '#btn_update', function () {

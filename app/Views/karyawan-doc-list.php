@@ -270,6 +270,10 @@
             path, data, 'Tambahkan Document Role baru?',
             'Disimpan!', 'berhasil ditambahkan.', 'modal_add'
         );
+        $('#doc-id').val(null)
+        $('#role-id').val(null)
+        $('#doc-id').trigger('change');
+        $('#role-id').trigger('change');
     });
 
     $(document).on('click', '#btn_update', function() {
