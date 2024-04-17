@@ -1,21 +1,24 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\CLI\Console;
 use App\Models\Model_project;
 use App\Models\Model_doc_engineering;
 use App\Models\Model_timeline_doc;
 use App\Models\Model_engineering_doc_comment;
-use CodeIgniter\CLI\Console;
+use App\Models\Model_engineering_doc_file;
 
 class Project_detail_engineering extends BaseController
 {
-    protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment;
+    protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment
+        $Model_engineering_doc_file;
  
     function __construct(){
         $this->doc_engineering_model = new Model_doc_engineering();
         $this->project_model = new Model_project();
         $this->timeline_doc_model = new Model_timeline_doc();
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
+        $this->Model_engineering_doc_file = new Model_engineering_doc_file();
         helper(['session_helper', 'upload_path_helper']);
     }
     
@@ -370,6 +373,15 @@ class Project_detail_engineering extends BaseController
         if($uploaded_file){
             $id_doc = $this->request->getPost('id_doc');
             $uploaded_file->move('upload/engineering_doc/list');
+
+            // safe file to engineering doc file
+            $data = [
+                'id_doc' => $id_doc,
+                'filename' => $uploaded_file->getName(),
+                'version' => '',
+                'created_by' => sess('active_user_id')
+            ];
+            $save_file = $this->Model_engineering_doc_file->save($data);
             
             // save file name to database
             $data = [
@@ -378,7 +390,7 @@ class Project_detail_engineering extends BaseController
                 'internal_originator_status' => 'uploaded',
                 'internal_originator_date' => date_now()
             ];
-            $save_file = $this->doc_engineering_model->save($data);
+            $update_doc = $this->doc_engineering_model->save($data);
             
             $data_timeline = [
                 'doc_id'                => $id_doc,
@@ -392,7 +404,7 @@ class Project_detail_engineering extends BaseController
             ];
             $this->timeline_doc_model->save($data_timeline);
 
-            if ($save_file) {
+            if ($update_doc) {
                 $response = [
                     'success' => true,
                     'message' => 'File Uploaded successfully.'

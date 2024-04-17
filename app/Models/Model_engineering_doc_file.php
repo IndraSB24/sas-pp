@@ -13,7 +13,7 @@ class Model_engineering_doc_file extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'doc_id', 'filename', 'version', 'created_by'
+        'id_doc', 'filename', 'version', 'created_by'
     ];
 
     protected $useTimestamps = true;
