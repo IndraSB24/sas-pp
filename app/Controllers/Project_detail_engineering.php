@@ -389,7 +389,8 @@ class Project_detail_engineering extends BaseController
                 'file' => $uploaded_file->getName(),
                 'internal_originator_status' => 'uploaded',
                 'internal_originator_date' => date('Y-m-d H:i:s'),
-                'id_engineering_doc_file' => $returned_id
+                'id_engineering_doc_file' => $returned_id,
+                'file_status' => 'originator_upload'
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
