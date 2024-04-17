@@ -3,7 +3,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class Model_engineering_doc_comment extends Model
+class Model_engineering_doc_file extends Model
 {
     protected $table      = 'engineering_doc_comment';
     protected $primaryKey = 'id';
@@ -13,8 +13,7 @@ class Model_engineering_doc_comment extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_engineering_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by'
-        'comment_title'
+        'doc_id', 'filename', 'version', 'created_by'
     ];
 
     protected $useTimestamps = true;
