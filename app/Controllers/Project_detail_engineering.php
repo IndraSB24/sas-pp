@@ -383,7 +383,7 @@ class Project_detail_engineering extends BaseController
                 'doc_id'                => $id_doc,
                 'detail_type'           => 'internal_engineering',
                 'time'                  => date_now(),
-                'timeline_title'        => 'internal engineering file upload',
+                'timeline_title'        => 'originator file upload',
                 'timeline_description'  => 'no desc',
                 'timeline_status'       => 'on time',
                 'new_file'              => $data['file'],

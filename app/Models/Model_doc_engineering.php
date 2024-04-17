@@ -18,7 +18,8 @@ class Model_doc_engineering extends Model
         'plan_ifr', 'plan_ifa', 'plan_ifc',
         'actual_ifr', 'actual_ifa', 'actual_ifc',
         'file', 'file_version', 'file_status', 'file_comment',
-        'internal_engineer_status', 'internal_ho_status', 'internal_pem_status', 'internal_originator_status'
+        'internal_engineering_status', 'internal_ho_status', 'internal_pem_status', 'internal_originator_status',
+        'internal_engineering_date', 'internal_ho_date', 'internal_pem_date', 'internal_originator_date'
     ];
 
     protected $useTimestamps = true;
