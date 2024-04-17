@@ -390,7 +390,8 @@ class Project_detail_engineering extends BaseController
                 'internal_originator_status' => 'uploaded',
                 'internal_originator_date' => date('Y-m-d H:i:s'),
                 'id_engineering_doc_file' => $returned_id,
-                'file_status' => 'originator_upload'
+                'file_status' => 'originator_upload',
+                'internal_engineering_status' => 'progress',
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -508,15 +509,17 @@ class Project_detail_engineering extends BaseController
     // reject doc
     public function reject(){
         $step = $this->request->getPost('step');
-        
-        // save file name to database
-        $data = [
-            'id' => $id_doc,
-            'file_status' => 'reject'
-        ];
-        $update_doc = $this->doc_engineering_model->save($data);
 
         if($step == 'internal'){
+            $data = [
+                'id' => $id_doc,
+                'file_status' => 'reject',
+                'internal_originator_status' => 'progress',
+                'internal_engineering_status' => 'reject',
+                'internal_engineering_date' => date('Y-m-d H:i:s')
+            ];
+            $update_doc = $this->doc_engineering_model->save($data);
+            
             $data_timeline = [
                 'doc_id'                => $id_doc,
                 'detail_type'           => 'internal_engineering',
