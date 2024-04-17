@@ -505,6 +505,58 @@ class Project_detail_engineering extends BaseController
         $this->timeline_doc_model->save($data_timeline);
     }
 
+    // reject doc
+    public function reject(){
+        $step = $this->request->getPost('step');
+        
+        // save file name to database
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'reject'
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        if($step == 'internal'){
+            $data_timeline = [
+                'doc_id'                => $id_doc,
+                'detail_type'           => 'internal_engineering',
+                'time'                  => date('Y-m-d H:i:s'),
+                'timeline_title'        => 'internal review file reject',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'on time',
+                'new_file'              => '',
+                'file_status'           => 'internal'
+            ];
+        }else if($step == 'external'){
+            $data_timeline = [
+                'doc_id'                => $id_doc,
+                'detail_type'           => 'external_engineering',
+                'time'                  => date('Y-m-d H:i:s'),
+                'timeline_title'        => 'External IFA file reject',
+                'timeline_description'  => 'no desc',
+                'timeline_status'       => 'on time',
+                'new_file'              => '',
+                'file_status'           => 'external'
+            ];
+        }
+        
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
     // add comment
     public function add_comment(){
         $uploaded_file = $this->request->getFile('image');
