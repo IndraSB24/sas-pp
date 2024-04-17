@@ -89,6 +89,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Document Name</label>
                                     <select class="form-control select2" id="doc-id">
+                                        <option value="">Pilih Opsi</option>
                                         <?php foreach ($data_engineering_doc as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->description ?></option>
                                         <?php endforeach; ?>
@@ -99,6 +100,7 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Role</label>
                                     <select class="form-control select2" id="role-id">
+                                        <option value="">Pilih Opsi</option>
                                         <?php foreach ($data_role as $row) : ?>
                                             <option value="<?= $row->id ?>"><?= $row->name ?></option>
                                         <?php endforeach; ?>
