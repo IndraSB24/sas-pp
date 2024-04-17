@@ -242,7 +242,7 @@
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-path = "Project_detail_engineering/update/up_originator"
-                                                                    data-step = "IFC"
+                                                                    data-step = ""
                                                                     data-version = "'.$file_version.'"
                                                                 >
                                                                     &nbsp;UP FILE&nbsp;
@@ -605,12 +605,12 @@
                                 &nbsp;<span id="upload_file_name">No File Choosen</span>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <!-- <div class="row mb-4">
                             <div class="col-md-12">
                                 <label class="form-label">Please input your Man-Hour</label></label>
                                 <input type="number" class="form-control" name="upload_man_hour" id="upload_man_hour"/>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="upload_id_doc" />
