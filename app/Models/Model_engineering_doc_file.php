@@ -133,4 +133,17 @@ class Model_engineering_doc_file extends Model
         return $result;
     }
 
+    // insert with db transaction
+    public function insertWithReturnId($data) {
+        $this->db->transBegin();
+
+        $this->db->table('engineering_doc_file')->insert($data);
+
+        $transactionId = $this->db->insertID();
+
+        $this->db->transCommit();
+
+        return $transactionId;
+    }
+
 }

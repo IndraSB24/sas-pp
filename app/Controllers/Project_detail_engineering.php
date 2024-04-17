@@ -381,14 +381,15 @@ class Project_detail_engineering extends BaseController
                 'version' => '',
                 'created_by' => sess('active_user_id')
             ];
-            $save_file = $this->Model_engineering_doc_file->save($data);
+            $returned_id = $this->Model_engineering_doc_file->insertWithReturnId($data);
             
             // save file name to database
             $data = [
                 'id' => $id_doc,
                 'file' => $uploaded_file->getName(),
                 'internal_originator_status' => 'uploaded',
-                'internal_originator_date' => date('Y-m-d H:i:s')
+                'internal_originator_date' => date('Y-m-d H:i:s'),
+                'id_engineering_doc_file' => $returned_id
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -513,6 +514,7 @@ class Project_detail_engineering extends BaseController
             // save file name to database
             $data_add = [
                 'doc_id' => $this->request->getPost('id_doc'),
+                'id_engineering_doc_file' => $this->request->getPost('id_file'),
                 'comment_title' => $this->request->getPost('comment_title'),
                 'comment_file' => $uploaded_file->getName(),
                 'page_detail' => $this->request->getPost('page_detail'),
