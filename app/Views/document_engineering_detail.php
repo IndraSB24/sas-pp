@@ -250,15 +250,32 @@
                                                             ';
                                                         }
 
-                                                        $enginerPP = '
-                                                        no date yet
-                                                        <br>
-                                                            no file yet
-                                                        <br>
-                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                &nbsp;WAITING&nbsp;
-                                                            </a>
-                                                        ';
+                                                        if ($row->internal_engineering_status) {
+                                                            $enginerPP = tgl_indo($row->internal_engineering_status).'
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else {
+                                                            $enginerPP = '
+                                                            no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
                                                         $hoPP = '
                                                             no date yet
                                                         <br>
