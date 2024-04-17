@@ -929,7 +929,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  "<?= base_url('Project_detail_engineering/up_ifr') ?>",
+                    url:  "<?= base_url('Project_detail_engineering/up_originator') ?>",
                     method: 'POST',
                     data:formData,
                     contentType: false,
