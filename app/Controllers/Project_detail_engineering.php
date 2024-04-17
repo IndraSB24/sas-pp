@@ -470,6 +470,39 @@ class Project_detail_engineering extends BaseController
         }
     }
 
+    // upload IFR
+    public function update_ifr(){
+        $id_doc = $this->request->getPost('id_doc');
+        $version= $this->request->getPost('version');
+        $filename= $this->request->getPost('filename');
+            
+        if($version != "nothing"){
+            $version = autoVersioning($version, 'issued');
+        }else{
+            $version = "0A";
+        }
+            
+        // save file name to database
+        $data = [
+            'id' => $id_doc,
+            'actual_ifr' => date_now(),
+            'file_version' => $version
+        ];
+        $this->doc_engineering_model->save($data);
+            
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'engineering',
+            'time'                  => $data['actual_ifr'],
+            'timeline_title'        => 'IFR File Upload',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'late',
+            'new_file'              => $filename,
+            'file_status'           => $version
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+    }
+
     // add comment
     public function add_comment(){
         $uploaded_file = $this->request->getFile('image');
