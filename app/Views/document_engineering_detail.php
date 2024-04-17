@@ -215,6 +215,41 @@
                                                         
                                                         $linkFile = base_url('upload/engineering_doc/list/'.$row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
+                                                        // set actual JEDHI TEKNIKA status
+                                                        if($row->actual_ifr){
+                                                            $actual_JEDHI = tgl_indo($row->actual_ifr).
+                                                            '
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFR"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else{
+                                                            $actual_JEDHI = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-path = "Project_detail_engineering/update/up_originator"
+                                                                    data-step = "IFC"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;UP FILE&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+                                                        
                                                         // set actual IFR status
                                                         if($row->actual_ifr){
                                                             $actual_ifr = tgl_indo($row->actual_ifr).
@@ -234,22 +269,15 @@
                                                             ';
                                                         }else{
                                                             $actual_ifr = '
-                                                                no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-path = "Project_detail_engineering/update/upload_file"
-                                                                    data-step = "IFC"
-                                                                    data-version = "'.$file_version.'"
-                                                                >
-                                                                    &nbsp;UP FILE&nbsp;
-                                                                </a>
-                                                            ';
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                &nbsp;WAITING&nbsp;
+                                                            </a>
+                                                        ';
                                                         }
-                                                        
                                                         // set actual IFA status
                                                         if($row->actual_ifa){
                                                             $actual_ifa = tgl_indo($row->actual_ifa).
@@ -344,7 +372,7 @@
                                                         <td nowrap style="border-left-width: 4px;"><?= $row->level_code ?></td>
                                                         <td class="text-center" nowrap> - </td>
                                                         <td><?= $row->description ?></td>
-                                                        <td class="text-center" style="border-left-width: 4px;"></td>
+                                                        <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
                                                         <td class="text-center"></td>
                                                         <td class="text-center"></td>
                                                         <td class="text-center" style="border-right-width: 4px;"></td>
