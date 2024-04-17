@@ -388,14 +388,14 @@ class Project_detail_engineering extends BaseController
                 'id' => $id_doc,
                 'file' => $uploaded_file->getName(),
                 'internal_originator_status' => 'uploaded',
-                'internal_originator_date' => date_now()
+                'internal_originator_date' => date('Y-m-d H:i:s')
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
             $data_timeline = [
                 'doc_id'                => $id_doc,
                 'detail_type'           => 'internal_engineering',
-                'time'                  => date_now(),
+                'time'                  => date('Y-m-d H:i:s'),
                 'timeline_title'        => 'internal originator file upload',
                 'timeline_description'  => 'no desc',
                 'timeline_status'       => 'on time',
