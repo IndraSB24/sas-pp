@@ -57,9 +57,10 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table id="datatables" class="table table-striped table-bordered nowrap w-200">
+                                        <table id="datatable" class="table table-striped table-bordered nowrap w-200">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
+                                                    <th rowspan="4" style="border-left-width: 4px;">NO</th>
                                                     <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="4">DOCUMENT NUMBER</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
@@ -123,8 +124,9 @@
                                                     $WF_IFR = 0.5;
                                                     $WF_IFA = 0.4;
                                                     $WF_IFC = 0.1;
-                                                
+                                                    $no = 0;
                                                     foreach($list_doc_engineering as $row) :
+                                                        $no ++;
                                                         for ($i = 0; $i < count($weekDates); $i++) {
                                                             $date = world_date($row->plan_ifr);
                                                             $targetDate = world_date($weekDates[$i]);
@@ -450,6 +452,7 @@
                                                         }
                                                 ?>
                                                     <tr>
+                                                        <td nowrap ><?= $no ?></td>
                                                         <td nowrap style="border-left-width: 4px;"><?= $row->level_code ?></td>
                                                         <td class="text-center" nowrap> - </td>
                                                         <td><?= $row->description ?></td>
