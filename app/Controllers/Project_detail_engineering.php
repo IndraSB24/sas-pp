@@ -66,13 +66,14 @@ class Project_detail_engineering extends BaseController
 		return view('project-dashboard-overal-prog-month', $data);
 	}
 
-    public function show_pdf($doc_id) {
+    public function show_pdf($doc_id, $step) {
 		$data = [   
 			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
             'doc_id' => $doc_id,
             'file_name' => 'test.pdf',
-            'doc_data' => $this->doc_engineering_model->get_filename_by_doc_id($doc_id)
+            'doc_data' => $this->doc_engineering_model->get_filename_by_doc_id($doc_id),
+            'step' => $step,
 		];
         // print_r($data['doc_data']);die;
 		return view('test_view', $data);

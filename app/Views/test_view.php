@@ -416,7 +416,7 @@
                 });
 
                 $(document).on('click', '#approveButton', function() {
-                    const path = "Project_detail_engineering/update/approval";
+                    const path = "<?= base_url('Project_detail_engineering/approve_internal_engineering') ?>";
                     const fileDesc = $(this).data('step');
                     const version = $(this).data('version');
                     let id_doc, swalTitle;
@@ -430,7 +430,67 @@
                     //     formData.append('file_status', 'ifc_approved');
                     // }
                     // swalTitle = 'Approve ' + fileDesc + ' Version ' + version + ' ?';
+                    formData.append('id_doc', id_doc);
                     swalTitle = 'Approve Document?';
+
+                    Swal.fire({
+                        title: swalTitle,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                // url: path + '/' + id_doc,
+                                url: path,
+                                method: 'POST',
+                                data: formData,
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Approved!',
+                                        icon: 'success',
+                                        text: 'This Version is Approved.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        window.history.back();
+                                    })
+                                },
+                                error: function(xhr, status, error) {
+                                    // Aksi yang akan dilakukan jika terjadi kesalahan dalam permintaan
+                                    console.error('Terjadi kesalahan:', status, error);
+                                    // Tambahkan kode Anda di sini untuk menangani kesalahan
+                                }
+                            });
+
+                        }
+                    })
+                })
+
+                $(document).on('click', '#rejectButton', function() {
+                    const path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
+                    const fileDesc = '<?= $step ?>';
+                    // const version = $(this).data('version');
+                    const version = '';
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+
+                    id_doc = id_doc = <?= $doc_id ?>;
+                    // formData.append('version', version);
+                    // formData.append('file_status', 'ifa_rejected');
+                    formData.append('id_doc', id_doc);
+                    swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
 
                     Swal.fire({
                         title: swalTitle,
@@ -447,74 +507,29 @@
                                 contentType: false,
                                 cache: false,
                                 processData: false,
-                            });
-                            Swal.fire({
-                                title: 'Approved!',
-                                icon: 'success',
-                                text: 'This Version is Approved.',
-                                timer: 1000,
-                                confirmButtonColor: "#5664d2",
-                                onBeforeOpen: function() {
-                                    //Swal.showLoading()
-                                    timerInterval = setInterval(function() {
-                                        Swal.getContent().querySelector('strong')
-                                            .textContent = Swal.getTimerLeft()
-                                    }, 100)
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Rejected!',
+                                        icon: 'success',
+                                        text: 'This Version is Rejected.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        window.history.back();
+                                    })
                                 },
-                                onClose: function() {
-                                    location.reload()
+                                error: function(xhr, status, error) {
+                                    // Aksi yang akan dilakukan jika terjadi kesalahan dalam permintaan
+                                    console.error('Terjadi kesalahan:', status, error);
+                                    // Tambahkan kode Anda di sini untuk menangani kesalahan
                                 }
-                            })
-                        }
-                    })
-                })
-
-                $(document).on('click', '#rejectButton', function() {
-                    const path = "Project_detail_engineering/update/approval";
-                    const fileDesc = $(this).data('step');
-                    const version = $(this).data('version');
-                    let id_doc, swalTitle;
-                    var timerInterval;
-                    var formData = new FormData();
-
-                    id_doc = id_doc = <?= $doc_id ?>;
-                    formData.append('version', version);
-                    formData.append('file_status', 'ifa_rejected');
-                    swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
-
-                    Swal.fire({
-                        title: swalTitle,
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonText: 'Ya',
-                        cancelButtonText: 'Batal'
-                    }).then(function(result) {
-                        if (result.value) {
-                            $.ajax({
-                                url:  path+'/'+id_doc,
-                                method: 'POST',
-                                data:formData,
-                                contentType: false,
-                                cache: false,
-                                processData: false,
                             });
-                            Swal.fire({
-                                title: 'Approved!',
-                                icon: 'success',
-                                text: 'This Version is Approved.',
-                                timer: 1000,
-                                confirmButtonColor: "#5664d2",
-                                onBeforeOpen:function () {
-                                    //Swal.showLoading()
-                                    timerInterval = setInterval(function() {
-                                    Swal.getContent().querySelector('strong')
-                                        .textContent = Swal.getTimerLeft()
-                                    }, 100)
-                                },
-                                onClose: function () {
-                                    location.reload()
-                                }
-                            })
                         }
                     })
                 })

@@ -5,7 +5,12 @@
         <!-- <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" /> -->
         <?= $this->include('partials/head-css') ?>
     </head>
-    
+    <style>
+        .desc {
+            width: 0px !important;
+        }
+
+    </style>
     <?= $this->include('partials/body') ?>
 
         <!-- Begin page -->
@@ -52,17 +57,19 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table class="table table-striped table-bordered dt-responsive">
+                                        <table id="datatables" class="table table-striped table-bordered nowrap w-200">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th colspan="3" class="text-center" style="border-left-width: 4px;"></th>
+                                                    <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
+                                                    <th rowspan="4">DOCUMENT NUMBER</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
-                                                    <th colspan="11" class="text-center" style="border-left-width: 4px;border-right-width: 4px">EXTERNAL</th>
+                                                    <th colspan="9" class="text-center">EXTERNAL</th>
+                                                    <th rowspan="4" class="text-center">STATUS</th>
+                                                    <th rowspan="4" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
                                                 <tr>
-                                                    <th rowspan="3" style="border-left-width: 4px;">WBS CODE</th>
-                                                    <th rowspan="3">DOCUMENT NUMBER</th>
-                                                    <th rowspan="3">DESCRIPTION</th>
+                                                    
                                                     <th rowspan="3" style="border-left-width: 4px;">JEDHI TEKNIKA</th>
                                                     <th rowspan="3">ENGINER PP</th>
                                                     <th rowspan="3">HO PP</th>
@@ -70,8 +77,7 @@
                                                     <th rowspan="3">WEIGHT FACTOR</th>
                                                     <th colspan="4" class="text-center">PLAN</th>
                                                     <th colspan="4" class="text-center">ACTUAL</th>
-                                                    <th rowspan="3" class="text-center">STATUS</th>
-                                                    <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
+                                                    
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">IFR</th>
@@ -255,7 +261,7 @@
                                                             <br>
                                                                 Issued V '.$row->file_version.'
                                                             <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
