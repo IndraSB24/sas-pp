@@ -222,7 +222,7 @@
                                                         $linkFile = base_url('upload/engineering_doc/list/'.$row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
                                                         // set actual JEDHI TEKNIKA status
-                                                        if($row->internal_originator_status){
+                                                        if($row->internal_originator_status === 'uploaded'){
                                                             $actual_JEDHI = tgl_indo($row->actual_ifr).
                                                             '
                                                             <br>
@@ -256,7 +256,7 @@
                                                             ';
                                                         }
 
-                                                        if ($row->internal_engineering_status) {
+                                                        if ($row->internal_engineering_status === 'approve') {
                                                             $enginerPP = tgl_indo($row->internal_engineering_status).'
                                                             <br>
                                                                 Issued V '.$row->file_version.'
@@ -269,6 +269,21 @@
                                                                     data-version = "'.$file_version.'"
                                                                 >
                                                                     &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if($row->internal_engineering_status === 'reject') {
+                                                            $enginerPP = tgl_indo($row->internal_engineering_status).'
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;REJECTED&nbsp;
                                                                 </a>
                                                             ';
                                                         } else {

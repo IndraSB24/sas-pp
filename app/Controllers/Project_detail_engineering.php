@@ -37,6 +37,7 @@ class Project_detail_engineering extends BaseController
 			'page_title' => view('partials/page-title', ['title' => 'Engineering', 'pagetitle' => 'Document List']),
 			'list_doc_engineering' => $this->doc_engineering_model->findAll()
 		];
+        // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_engineering_detail', $data);
 		// return view('document_engineering_detail_external', $data);
 		// return view('document_engineering_detail_internal', $data);
