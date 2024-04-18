@@ -394,6 +394,11 @@ class Project_detail_engineering extends BaseController
                 'id_engineering_doc_file' => $returned_id,
                 'file_status' => 'originator_upload',
                 'internal_engineering_status' => 'progress',
+                'internal_engineering_date' => '',
+                'internal_ho_status' => '',
+                'internal_ho_date' => '',
+                'internal_pem_status' => '',
+                'internal_pem_date' => '',
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -689,6 +694,47 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
+    // reject internal ho
+    public function reject_internal_ho(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'reject',
+            'internal_originator_status' => 'progress',
+            'internal_ho_status' => 'reject',
+            'internal_ho_date' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'internal_ho',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'internal HO file reject',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'internal',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
     // approve internal pem with automation up IFR
     public function approve_internal_pem(){
         $id_doc = $this->request->getPost('id_doc');
@@ -739,6 +785,47 @@ class Project_detail_engineering extends BaseController
             $response = [
                 'success' => false,
                 'message' => 'Failed to approve File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // reject internal pem
+    public function reject_internal_pem(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'reject',
+            'internal_originator_status' => 'progress',
+            'internal_pem_status' => 'reject',
+            'internal_pem_date' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'internal_ho',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'internal PEM file reject',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'internal',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
             ];
         }
 
