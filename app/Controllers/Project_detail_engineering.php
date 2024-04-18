@@ -561,6 +561,46 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
+    // approve doc
+    public function approve_internal_engineering(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'internal_engineering_approve',
+            'internal_engineering_status' => 'approve',
+            'internal_engineering_date' => date('Y-m-d H:i:s'),
+            'internal_ho_status' => 'progress',
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'internal_engineering',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'internal engineering review file approve',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'internal'
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File approved successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to approve File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
     // add comment
     public function add_comment(){
         $uploaded_file = $this->request->getFile('image');
