@@ -6,9 +6,9 @@
         <?= $this->include('partials/head-css') ?>
     </head>
     <style>
-        .desc {
+        /* .desc {
             width: 0px !important;
-        }
+        } */
 
     </style>
     <?= $this->include('partials/body') ?>
@@ -57,7 +57,7 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table id="datatable" class="table table-striped table-bordered nowrap w-200">
+                                        <table id="datatable" class="table table-striped table-bordered nowrap ">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
                                                     <th rowspan="4" style="border-left-width: 4px;">NO</th>
@@ -492,7 +492,7 @@
                                                         }
                                                 ?>
                                                     <tr>
-                                                        <td nowrap ><?= $no ?></td>
+                                                        <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
                                                         <td nowrap style="border-left-width: 4px;"><?= $row->level_code ?></td>
                                                         <td class="text-center" nowrap> - </td>
                                                         <td><?= $row->description ?></td>
