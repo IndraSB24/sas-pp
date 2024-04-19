@@ -7,6 +7,8 @@ File: Datatables Js File
 
 $(document).ready(function() {
     $('#datatable').DataTable({
+        scrollX: true,
+        autoWidth: false,
         "lengthMenu": [ 5, 25, 50, 75, 100],
         "language": {
             "paginate": {

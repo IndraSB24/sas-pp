@@ -57,7 +57,7 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table id="main_table" class="table table-striped table-bordered nowrap w-200">
+                                        <table id="datatable" class="table table-striped table-bordered nowrap w-200">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
                                                     <th rowspan="4" style="border-left-width: 4px;">NO</th>
@@ -1237,27 +1237,6 @@
             confirmButtonColor: "#5664d2",
         })
     }
-
-    $('#main_table').DataTable({
-        scrollX: true,
-        autoWidth: false,
-        lengthMenu: [
-            [10, 25, 50, 100, -1],
-            [10, 25, 50, 100, 'All']
-        ],
-        columnDefs: [{
-            searchable: false,
-            orderable: false,
-            targets: 0,
-        }],
-        dom: 'lBfrtip', // Include 'C' for column visibility control
-        buttons: [
-            'colvis', // Column visibility control
-            'excel', // Excel button
-            'csv',   // CSV button
-            'pdf',   // PDF button
-        ],
-    });
 
 
     
