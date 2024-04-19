@@ -478,8 +478,13 @@
                 })
 
                 $(document).on('click', '#rejectButton', function() {
-                    const path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
                     const fileDesc = '<?= $step ?>';
+                    let path;
+                    if (fileDesc === 'internal') {
+                        path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
+                    } else if (fileDesc === 'internal_ho') {
+                        path = "<?= base_url('Project_detail_engineering/reject_internal_ho') ?>";
+                    }
                     // const version = $(this).data('version');
                     const version = '';
                     let id_doc, swalTitle;

@@ -225,10 +225,9 @@
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
                                                         // set actual JEDHI TEKNIKA status
                                                         if($row->internal_originator_status === 'uploaded'){
-                                                            $actual_JEDHI = tgl_indo($row->actual_ifr).
+                                                            $actual_JEDHI = tgl_indo($row->internal_originator_date).
                                                             '
                                                             <br>
-                                                                Issued V '.$row->file_version.'
                                                             <br>
                                                                 <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
                                                                     data-id="'.$row->id.'"
@@ -259,9 +258,8 @@
                                                         }
 
                                                         if ($row->internal_engineering_status === 'approve') {
-                                                            $enginerPP = tgl_indo($row->internal_engineering_status).'
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date).'
                                                             <br>
-                                                                Issued V '.$row->file_version.'
                                                             <br>
                                                                 <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
@@ -274,9 +272,8 @@
                                                                 </a>
                                                             ';
                                                         } else if($row->internal_engineering_status === 'reject') {
-                                                            $enginerPP = tgl_indo($row->internal_engineering_status).'
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date).'
                                                             <br>
-                                                                Issued V '.$row->file_version.'
                                                             <br>
                                                                 <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
@@ -289,9 +286,8 @@
                                                                 </a>
                                                             ';
                                                         } else if ($row->internal_engineering_status === 'progress') {
-                                                            $enginerPP = tgl_indo($row->internal_engineering_status).'
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date).'
                                                             <br>
-                                                                Issued V '.$row->file_version.'
                                                             <br>
                                                                 <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
@@ -314,15 +310,59 @@
                                                                 </a>
                                                             ';
                                                         }
-                                                        $hoPP = '
-                                                            no date yet
-                                                        <br>
-                                                            no file yet
-                                                        <br>
-                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                &nbsp;WAITING&nbsp;
-                                                            </a>
-                                                        ';
+                                                        if ($row->internal_ho_status === 'approve') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;SUCCESS&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if($row->internal_ho_status === 'reject') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;REJECTED&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if ($row->internal_ho_status === 'progress') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_ho'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else {
+                                                            $hoPP = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
                                                         $pemPP = '
                                                             no date yet
                                                         <br>
