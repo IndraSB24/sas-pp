@@ -416,9 +416,16 @@
                 });
 
                 $(document).on('click', '#approveButton', function() {
-                    const path = "<?= base_url('Project_detail_engineering/approve_internal_engineering') ?>";
-                    const fileDesc = $(this).data('step');
-                    const version = $(this).data('version');
+                    const fileDesc = '<?= $step ?>';
+                    let path;
+                    if (fileDesc === 'internal') {
+                        path = "<?= base_url('Project_detail_engineering/approve_internal_engineering') ?>";
+                    } else if (fileDesc === 'internal_ho') {
+                        path = "<?= base_url('Project_detail_engineering/approve_internal_ho') ?>";
+                    } else if (fileDesc === 'internal_pem') {
+                        path = "<?= base_url('Project_detail_engineering/approve_internal_pem') ?>";
+                    }
+                    // const version = $(this).data('version');
                     let id_doc, swalTitle;
                     var timerInterval;
                     var formData = new FormData();
@@ -484,6 +491,8 @@
                         path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
                     } else if (fileDesc === 'internal_ho') {
                         path = "<?= base_url('Project_detail_engineering/reject_internal_ho') ?>";
+                    } else if (fileDesc === 'internal_pem') {
+                        path = "<?= base_url('Project_detail_engineering/reject_internal_pem') ?>";
                     }
                     // const version = $(this).data('version');
                     const version = '';

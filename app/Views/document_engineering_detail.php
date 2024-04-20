@@ -55,7 +55,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style="overflow-x:auto;">
+                                        <div>
                                         <font size="2">
                                         <table id="datatable" class="table table-striped table-bordered nowrap ">
                                             <thead style="border-top-width: 4px">
@@ -221,9 +221,9 @@
                                                         }
                                                         
                                                         
+                                                        // internal section
                                                         $linkFile = base_url('upload/engineering_doc/list/'.$row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
-                                                        // set actual JEDHI TEKNIKA status
                                                         if($row->internal_originator_status === 'uploaded'){
                                                             $actual_JEDHI = tgl_indo($row->internal_originator_date).
                                                             '
@@ -256,7 +256,6 @@
                                                                 </a>
                                                             ';
                                                         }
-
                                                         if ($row->internal_engineering_status === 'approve') {
                                                             $enginerPP = tgl_indo($row->internal_engineering_date).'
                                                             <br>
@@ -314,7 +313,7 @@
                                                             $hoPP = tgl_indo($row->internal_ho_date).'
                                                             <br>
                                                             <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_ho'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -328,7 +327,7 @@
                                                             $hoPP = tgl_indo($row->internal_ho_date).'
                                                             <br>
                                                             <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_ho'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -363,15 +362,60 @@
                                                                 </a>
                                                             ';
                                                         }
-                                                        $pemPP = '
-                                                            no date yet
-                                                        <br>
-                                                            no file yet
-                                                        <br>
-                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                &nbsp;WAITING&nbsp;
-                                                            </a>
-                                                        ';
+                                                        if ($row->internal_pem_status === 'approve') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_pem'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;SUCCESS&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if ($row->internal_pem_status === 'reject') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_pem'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;REJECTED&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if ($row->internal_pem_status === 'progress') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/internal_pem'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else {
+                                                            $pemPP = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+                                                        // end internal section
                                                         
                                                         // set actual IFR status
                                                         if($row->actual_ifr){
