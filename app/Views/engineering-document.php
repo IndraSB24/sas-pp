@@ -1463,4 +1463,3 @@
     
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="assets/js/app.js"></script>

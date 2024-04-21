@@ -179,7 +179,6 @@
 <script src="assets/js/pages/dashboard.init.js"></script>
 
 <!-- App js -->
-<script src="assets/js/app.js"></script>
 
 </body>
 
