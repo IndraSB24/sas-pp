@@ -9,7 +9,10 @@ $(document).ready(function() {
     $('#datatable').DataTable({
         scrollX: true,
         autoWidth: false,
-        "lengthMenu": [ 5, 25, 50, 75, 100],
+        lengthMenu: [
+            [10, 25, 50, 100, -1],
+            ['10', '25', '50', '100', 'ALL']
+        ],
         "language": {
             "paginate": {
                 "previous": "<i class='mdi mdi-chevron-left'>",
