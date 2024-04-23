@@ -2,13 +2,20 @@
 
 namespace App\Controllers;
 use App\Models\Model_project;
+use App\Models\Model_doc_engineering;
+use App\Models\Model_engineering_doc_comment;
+use App\Models\Model_engineering_doc_file;
 
 class Project extends BaseController
 {
-    protected $main_model;
+    protected $main_model, $Model_doc_engineering, $Model_engineering_doc_comment, $Model_engineering_doc_file;
  
     function __construct(){
         $this->main_model = new Model_project();
+		$this->Model_doc_engineering = new Model_doc_engineering();
+		$this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
+		$this->Model_engineering_doc_file = new Model_engineering_doc_file();
+		helper(['session_helper', 'upload_path_helper']);
     }
     
 	public function index($project_detail=""){

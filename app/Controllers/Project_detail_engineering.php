@@ -773,6 +773,7 @@ class Project_detail_engineering extends BaseController
     public function approve_internal_pem(){
         $id_doc = $this->request->getPost('id_doc');
         $version= $this->request->getPost('version');
+        $plan_date = $this->request->getPost('plan_ifa');
 
         if($version != null || $version != ""){
             $version = autoVersioning($version, 'issued');
@@ -797,7 +798,7 @@ class Project_detail_engineering extends BaseController
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'internal PEM approve the document',
             'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'internal',
             'created_by'            => sess('active_user_id')
@@ -811,7 +812,7 @@ class Project_detail_engineering extends BaseController
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document issued for review (IFR)',
             'timeline_description'  => 'document version '.$version,
-            'timeline_status'       => 'on time',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifr',
             'created_by'            => sess('active_user_id')
@@ -877,6 +878,7 @@ class Project_detail_engineering extends BaseController
     // approve external ifa
     public function approve_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('plan_ifa');
         
         $data = [
             'id' => $id_doc,
@@ -892,7 +894,7 @@ class Project_detail_engineering extends BaseController
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document approved in IFA step',
             'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external',
             'created_by'            => sess('active_user_id')
@@ -917,6 +919,7 @@ class Project_detail_engineering extends BaseController
     // reject external ifa
     public function reject_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('plan_ifa');
         
         $data = [
             'id' => $id_doc,
@@ -933,7 +936,7 @@ class Project_detail_engineering extends BaseController
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document rejected in IFA step',
             'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifa_reject',
             'created_by'            => sess('active_user_id')
@@ -958,9 +961,11 @@ class Project_detail_engineering extends BaseController
     // approve external ifc
     public function approve_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('plan_ifc');
         
         $data = [
             'id' => $id_doc,
+            'file_version' => 1,
             'file_status' => 'ifc_approve',
             'actual_ifc' => date('Y-m-d H:i:s')
         ];
@@ -972,8 +977,8 @@ class Project_detail_engineering extends BaseController
             'detail_type'           => 'external',
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document approved in IFC step',
-            'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
+            'timeline_description'  => 'Document Version Become 1',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_approve',
             'created_by'            => sess('active_user_id')
@@ -998,6 +1003,7 @@ class Project_detail_engineering extends BaseController
     // reject external ifc
     public function reject_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('plan_ifc');
         
         $data = [
             'id' => $id_doc,
@@ -1014,7 +1020,7 @@ class Project_detail_engineering extends BaseController
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document rejected in IFC step',
             'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_reject',
             'created_by'            => sess('active_user_id')
@@ -1113,4 +1119,12 @@ class Project_detail_engineering extends BaseController
         }
     }
     
+    // time status checker
+    function timeStatusCheck($plan_date) {
+        $current_datetime = date('Y-m-d H:i:s');
+    
+        $status = $plan_ifa > $current_datetime ? "late" : "on time";
+    
+        return $status;
+    }
 }
