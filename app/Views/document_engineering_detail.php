@@ -742,7 +742,7 @@
                 <div class="modal-footer">
                     <input type="hidden" id="id_doc_edit" />
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_engineering/update/document_detail">Save</button>
+                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_engineering/edit_document">Save</button>
                 </div>
             </div>
             </form>
@@ -989,13 +989,21 @@
     
     $(document).on('click','#btn-simpan-edit-doc',function(){
         const   objek = $(this).data('object'),
-                id = document.getElementById("id_doc_edit").value,
+                link = `<?= base_url()?>/${objek}`
                 levelCodeEdit = document.getElementById("level_code_edit").value,
                 descriptionEdit = document.getElementById("description_edit").value,
                 weightFactorEdit = document.getElementById("weight_factor_edit").value,
                 planIfrEdit = document.getElementById("plan_ifr_edit").value;
                 planIfaEdit = document.getElementById("plan_ifa_edit").value;
                 planIfcEdit = document.getElementById("plan_ifc_edit").value;
+                id_edit = document.getElementById("id_doc_edit").value;
+                console.log(levelCodeEdit, 'fuadi levelCodeEdit');
+                console.log(descriptionEdit, 'fuadi descriptionEdit');
+                console.log(weightFactorEdit, 'fuadi weightFactorEdit');
+                console.log(planIfrEdit, 'fuadi planIfrEdit');
+                console.log(planIfaEdit, 'fuadi planIfaEdit');
+                console.log(planIfcEdit, 'fuadi planIfcEdit');
+                
         var timerInterval;
         Swal.fire({
             title: 'Edit Document?',
@@ -1007,35 +1015,41 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek+'/'+id,
+                    url: link,
                     method: 'POST',
                     dataType: "JSON",
                     data : {
-                        level_code_edit     : levelCodeEdit,
-                        description_edit    : descriptionEdit,
-                        weight_factor_edit  : weightFactorEdit,
-                        plan_ifr_edit       : planIfrEdit,
-                        plan_ifa_edit       : planIfaEdit,
-                        plan_ifc_edit       : planIfcEdit
+                        level_code     : levelCodeEdit,
+                        description    : descriptionEdit,
+                        weight_factor  : weightFactorEdit,
+                        plan_ifr       : planIfrEdit,
+                        plan_ifa       : planIfaEdit,
+                        plan_ifc       : planIfcEdit,
+                        id_edit       : id_edit,
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diedit!',
+                            icon: 'success',
+                            text: 'Document Berhasil Diedit.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen:function () {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                Swal.getContent().querySelector('strong')
+                                    .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function () {
+                                location.reload()
+                            }
+                        })
+                    },
+                    error: (err) => {
+                        console.log(err);
                     }
                 });
-                Swal.fire({
-                    title: 'Diedit!',
-                    icon: 'success',
-                    text: 'Document Berhasil Diedit.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen:function () {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function () {
-                        location.reload()
-                    }
-                })
             }
         })
     })
