@@ -424,7 +424,11 @@
                         path = "<?= base_url('Project_detail_engineering/approve_internal_ho') ?>";
                     } else if (fileDesc === 'internal_pem') {
                         path = "<?= base_url('Project_detail_engineering/approve_internal_pem') ?>";
-                    }
+                    } else if (fileDesc === 'external_ifa') {
+                        path = "<?= base_url('Project_detail_engineering/approve_external_ifa') ?>";
+                    } else if (fileDesc === 'external_ifc') {
+                        path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
+                    };
                     // const version = $(this).data('version');
                     let id_doc, swalTitle;
                     var timerInterval;
@@ -493,7 +497,11 @@
                         path = "<?= base_url('Project_detail_engineering/reject_internal_ho') ?>";
                     } else if (fileDesc === 'internal_pem') {
                         path = "<?= base_url('Project_detail_engineering/reject_internal_pem') ?>";
-                    }
+                    } else if (fileDesc === 'external_ifa') {
+                        path = "<?= base_url('Project_detail_engineering/reject_external_ifa') ?>";
+                    } else if (fileDesc === 'external_ifc') {
+                        path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
+                    };
                     // const version = $(this).data('version');
                     const version = '';
                     let id_doc, swalTitle;

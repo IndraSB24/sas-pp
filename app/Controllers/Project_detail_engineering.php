@@ -381,7 +381,7 @@ class Project_detail_engineering extends BaseController
 
         $plan_ifc = $this->request->getPost('plan_ifc');
         $data['plan_ifc'] = $plan_ifc ? date('Y-m-d H:i:s', strtotime($plan_ifc)) : null;
-
+        // echo '<pre>'; print_r( $data );die; echo '</pre>';
         $updateData = $this->doc_engineering_model->save($data);
         
         if ($updateData) {
