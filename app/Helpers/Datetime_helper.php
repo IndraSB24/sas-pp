@@ -69,8 +69,12 @@ function world_date($date)
 
 function tgl_indo($date)
 {
-	$tanggal = date('d-m-Y', strtotime($date));
-	return $tanggal;
+	if ($date === '' || $date === null || $date === '0000-00-00 00:00:00') {
+		return 'no date yet';
+	} else {
+		$tanggal = date('d-m-Y', strtotime($date));
+		return $tanggal;
+	}
 }
 
 function date_db_format($tgl)

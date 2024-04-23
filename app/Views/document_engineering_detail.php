@@ -468,7 +468,7 @@
                                                             <br>
                                                                 Issued V '.$row->file_version.'
                                                             <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifa'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -513,7 +513,7 @@
                                                             <br>
                                                                 Issued V '.$row->file_version.'
                                                             <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval"
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="'.$row->id.'"
                                                                     data-doc_desc="'.$row->description.'"
                                                                     data-link_file = "'.$linkFile.'"
@@ -564,9 +564,9 @@
                                                                 data-level_code="<?= $row->level_code ?>"
                                                                 data-description="<?= $row->description ?>"
                                                                 data-weight_factor="<?= $row->weight_factor ?>"
-                                                                data-plan_ifr="<?= tgl_indo($row->plan_ifr) ?>"
-                                                                data-plan_ifa="<?= tgl_indo($row->plan_ifa) ?>"
-                                                                data-plan_ifc="<?= tgl_indo($row->plan_ifc) ?>"
+                                                                data-plan_ifr="<?= $row->plan_ifr ?>"
+                                                                data-plan_ifa="<?= $row->plan_ifa ?>"
+                                                                data-plan_ifc="<?= $row->plan_ifc ?>"
                                                             >
                                                                 <i class="ri-pencil-fill text-info font-size-20"></i>
                                                             </a>
