@@ -372,7 +372,7 @@ class Project_detail_engineering extends BaseController
             ])
         );
         $data['id'] = $this->request->getPost('id_edit');
-        $data['created_by'] = sess_activeUserId();
+        $data['created_by'] = sess('active_user_id');
 
         $insertData = $this->doc_engineering_model->save($data);
         
@@ -815,6 +815,103 @@ class Project_detail_engineering extends BaseController
 
     // reject internal pem
     public function reject_internal_pem(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'reject',
+            'internal_originator_status' => 'progress',
+            'internal_pem_status' => 'reject',
+            'internal_pem_date' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'internal_ho',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'internal PEM file reject',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'internal',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // approve internal pem with automation up IFR
+    public function approve_external_ifa(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'internal_pem_approve',
+            'internal_pem_status' => 'approve',
+            'internal_pem_date' => date('Y-m-d H:i:s'),
+            'actual_ifr' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        // timeline for internal pem approve
+        $data_timeline_pem = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'internal_pem',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'internal PEM approve the document',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'internal',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline_pem);
+
+        // timeline for external IFR issued
+        $data_timeline_ifr = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'external_ifr',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'document issued for review (IFR)',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'external',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline_ifr);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File approved successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to approve File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // reject internal pem
+    public function reject_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         
         $data = [
