@@ -367,16 +367,24 @@ class Project_detail_engineering extends BaseController
         $data = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'level_code', 'description', 'weight_factor', 'plan_ifr',
-                'plan_ifa', 'plan_ifc'
+                'level_code', 'description', 'weight_factor'
             ])
         );
         $data['id'] = $this->request->getPost('id_edit');
         $data['created_by'] = sess('active_user_id');
 
-        $insertData = $this->doc_engineering_model->save($data);
+        $plan_ifr = $this->request->getPost('plan_ifr');
+        $data['plan_ifr'] = $plan_ifr ? date('Y-m-d H:i:s', strtotime($plan_ifr)) : null;
+
+        $plan_ifa = $this->request->getPost('plan_ifa');
+        $data['plan_ifa'] = $plan_ifa ? date('Y-m-d H:i:s', strtotime($plan_ifa)) : null;
+
+        $plan_ifc = $this->request->getPost('plan_ifc');
+        $data['plan_ifc'] = $plan_ifc ? date('Y-m-d H:i:s', strtotime($plan_ifc)) : null;
+
+        $updateData = $this->doc_engineering_model->save($data);
         
-        if ($insertData) {
+        if ($updateData) {
             $response = ['success' => true];
         } else {
             $response = ['success' => false];
@@ -860,10 +868,9 @@ class Project_detail_engineering extends BaseController
         
         $data = [
             'id' => $id_doc,
-            'file_status' => 'internal_pem_approve',
-            'internal_pem_status' => 'approve',
-            'internal_pem_date' => date('Y-m-d H:i:s'),
-            'actual_ifr' => date('Y-m-d H:i:s')
+            'file_status' => 'external_ifa_approve',
+            'actual_ifa' => date('Y-m-d H:i:s'),
+
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
