@@ -36,11 +36,12 @@ class Model_doc_engineering extends Model
     
     // select all
     public function get_by_id($id_doc){
-        $query = $this->db
-            ->where('id', $doc_id)
-            ->get($table);
+        $this->select('
+            *
+        ')
+        ->where('id', $id_doc);
         
-        return $query->result();
+        return $this->get()->getResult();
     }
 
     // get with comment

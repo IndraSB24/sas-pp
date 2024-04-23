@@ -73,8 +73,8 @@ class Project_detail_engineering extends BaseController
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
             'doc_id' => $doc_id,
             'file_name' => 'test.pdf',
-            'doc_data' => $this->doc_engineering_model->get_filename_by_doc_id($doc_id),
-            'step' => $step,
+            'doc_data' => $this->doc_engineering_model->get_by_id($doc_id),
+            'step' => $step
 		];
         // print_r($data['doc_data']);die;
 		return view('test_view', $data);
@@ -403,14 +403,15 @@ class Project_detail_engineering extends BaseController
                 
         // store the file
         if($uploaded_file){
-            $id_doc = $this->request->getPost('id_doc');
             $uploaded_file->move('upload/engineering_doc/list');
+            $id_doc = $this->request->getPost('id_doc');
+            $version= $this->request->getPost('version');
 
             // safe file to engineering doc file
             $data = [
                 'id_doc' => $id_doc,
                 'filename' => $uploaded_file->getName(),
-                'version' => '',
+                'version' => $version,
                 'created_by' => sess('active_user_id')
             ];
             $returned_id = $this->Model_engineering_doc_file->insertWithReturnId($data);
@@ -429,6 +430,9 @@ class Project_detail_engineering extends BaseController
                 'internal_ho_date' => '',
                 'internal_pem_status' => '',
                 'internal_pem_date' => '',
+                'actual_ifr' => null,
+                'actual_ifa' => null,
+                'actual_ifc' => null,
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -437,7 +441,7 @@ class Project_detail_engineering extends BaseController
                 'detail_type'           => 'internal_engineering',
                 'time'                  => date('Y-m-d H:i:s'),
                 'timeline_title'        => 'internal originator file upload',
-                'timeline_description'  => 'no desc',
+                'timeline_description'  => 'new file upload',
                 'timeline_status'       => 'on time',
                 'new_file'              => $data['file'],
                 'file_status'           => 'internal',
@@ -768,9 +772,17 @@ class Project_detail_engineering extends BaseController
     // approve internal pem with automation up IFR
     public function approve_internal_pem(){
         $id_doc = $this->request->getPost('id_doc');
+        $version= $this->request->getPost('version');
+
+        if($version != null || $version != ""){
+            $version = autoVersioning($version, 'issued');
+        }else{
+            $version = "0A";
+        }
         
         $data = [
             'id' => $id_doc,
+            'file_version' => $version,
             'file_status' => 'internal_pem_approve',
             'internal_pem_status' => 'approve',
             'internal_pem_date' => date('Y-m-d H:i:s'),
@@ -795,13 +807,13 @@ class Project_detail_engineering extends BaseController
         // timeline for external IFR issued
         $data_timeline_ifr = [
             'doc_id'                => $id_doc,
-            'detail_type'           => 'external_ifr',
+            'detail_type'           => 'external',
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document issued for review (IFR)',
-            'timeline_description'  => 'no desc',
+            'timeline_description'  => 'document version '.$version,
             'timeline_status'       => 'on time',
             'new_file'              => '',
-            'file_status'           => 'external',
+            'file_status'           => 'external_ifr',
             'created_by'            => sess('active_user_id')
         ];
         $this->timeline_doc_model->save($data_timeline_ifr);
@@ -862,45 +874,30 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // approve internal pem with automation up IFR
+    // approve external ifa
     public function approve_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'external_ifa_approve',
-            'actual_ifa' => date('Y-m-d H:i:s'),
-
+            'actual_ifa' => date('Y-m-d H:i:s')
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
         // timeline for internal pem approve
         $data_timeline_pem = [
             'doc_id'                => $id_doc,
-            'detail_type'           => 'internal_pem',
+            'detail_type'           => 'external_ifa',
             'time'                  => date('Y-m-d H:i:s'),
-            'timeline_title'        => 'internal PEM approve the document',
-            'timeline_description'  => 'no desc',
-            'timeline_status'       => 'on time',
-            'new_file'              => '',
-            'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
-        ];
-        $this->timeline_doc_model->save($data_timeline_pem);
-
-        // timeline for external IFR issued
-        $data_timeline_ifr = [
-            'doc_id'                => $id_doc,
-            'detail_type'           => 'external_ifr',
-            'time'                  => date('Y-m-d H:i:s'),
-            'timeline_title'        => 'document issued for review (IFR)',
+            'timeline_title'        => 'document approved in IFA step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'external',
             'created_by'            => sess('active_user_id')
         ];
-        $this->timeline_doc_model->save($data_timeline_ifr);
+        $this->timeline_doc_model->save($data_timeline_pem);
 
         if ($update_doc) {
             $response = [
@@ -917,28 +914,109 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // reject internal pem
+    // reject external ifa
     public function reject_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         
         $data = [
             'id' => $id_doc,
-            'file_status' => 'reject',
+            'file_status' => 'ifa_reject',
             'internal_originator_status' => 'progress',
-            'internal_pem_status' => 'reject',
-            'internal_pem_date' => date('Y-m-d H:i:s')
+            'actual_ifr' => null,
+            'actual_ifa' => date('Y-m-d H:i:s')
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
         $data_timeline = [
             'doc_id'                => $id_doc,
-            'detail_type'           => 'internal_ho',
+            'detail_type'           => 'external',
             'time'                  => date('Y-m-d H:i:s'),
-            'timeline_title'        => 'internal PEM file reject',
+            'timeline_title'        => 'document rejected in IFA step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
             'new_file'              => '',
-            'file_status'           => 'internal',
+            'file_status'           => 'external_ifa_reject',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // approve external ifc
+    public function approve_external_ifc(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'ifc_approve',
+            'actual_ifc' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        // timeline for internal pem approve
+        $data_timeline_pem = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'external',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'document approved in IFC step',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'external_ifc_approve',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline_pem);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File approved successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to approve File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // reject external ifc
+    public function reject_external_ifc(){
+        $id_doc = $this->request->getPost('id_doc');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'ifc_reject',
+            'internal_originator_status' => 'progress',
+            'actual_ifr' => null,
+            'actual_ifc' => date('Y-m-d H:i:s')
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'external',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'document rejected in IFC step',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => 'on time',
+            'new_file'              => '',
+            'file_status'           => 'external_ifc_reject',
             'created_by'            => sess('active_user_id')
         ];
         $this->timeline_doc_model->save($data_timeline);
