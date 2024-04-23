@@ -361,6 +361,28 @@ class Project_detail_engineering extends BaseController
             break;
         }
     }
+
+    // edit document =============================================================
+    public function edit_document(){
+        $data = array_intersect_key(
+            $this->request->getPost(),
+            array_flip([
+                'level_code', 'description', 'weight_factor', 'plan_ifr',
+                'plan_ifa', 'plan_ifc'
+            ])
+        );
+        $data['id'] = $this->request->getPost('id_edit');
+        $data['created_by'] = sess_activeUserId();
+
+        $insertData = $this->doc_engineering_model->save($data);
+        
+        if ($insertData) {
+            $response = ['success' => true];
+        } else {
+            $response = ['success' => false];
+        }
+        return $this->response->setJSON($response);
+    }
     
     public function pagination(){
         
