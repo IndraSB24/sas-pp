@@ -504,10 +504,10 @@
                         path = "<?= base_url('Project_detail_engineering/reject_internal_pem') ?>";
                     } else if (fileDesc === 'external_ifa') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifa') ?>";
-                        formData.append('plan_ifa', <?= $doc_data[0]->plan_ifa ?>);
+                        formData.append('plan_ifa', "<?= $doc_data[0]->plan_ifa ?>");
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
-                        formData.append('plan_ifc', <?= $doc_data[0]->plan_ifc ?>);
+                        formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
                     };
                     // const version = $(this).data('version');
                     
@@ -515,7 +515,7 @@
                     id_doc = id_doc = <?= $doc_id ?>;
                     // formData.append('version', version);
                     // formData.append('file_status', 'ifa_rejected');
-                    version = <?= $doc_data[0]->file_version ?>;
+                    version = "<?= $doc_data[0]->file_version ?>";
                     formData.append('id_doc', id_doc);
                     formData.append('version', version);
                     swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
