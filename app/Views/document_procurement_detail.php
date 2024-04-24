@@ -53,14 +53,12 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th rowspan="4" style="border-left-width: 4px;">NO</th>
-                                                    <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
-                                                    <th rowspan="4">DOCUMENT NUMBER</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
+                                                    <th rowspan="3" style="border-left-width: 4px;">NO</th>
+                                                    <th rowspan="3" style="border-left-width: 4px;">WBS CODE</th>
+                                                    <th rowspan="3">DOCUMENT NUMBER</th>
+                                                    <th class="desc" rowspan="3" style="width: 0px;">DESCRIPTION</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
-                                                    <th colspan="9" class="text-center">EXTERNAL</th>
-                                                    <th rowspan="4" class="text-center">STATUS</th>
-                                                    <th rowspan="4" class="text-center" style="border-right-width: 4px;">ACTION</th>
+                                                    <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
                                                 <tr>
                                                     
