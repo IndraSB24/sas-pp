@@ -57,15 +57,12 @@
                                                     <th rowspan="2" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="2">DOCUMENT NUMBER</th>
                                                     <th rowspan="2" style="width: 0px;">DESCRIPTION</th>
+                                                    <th colspan="3" class="text-center">PLAN</th>
+                                                    <th colspan="3" class="text-center">ACTUAL</th>
                                                     <th rowspan="2" class="text-center">STATUS</th>
                                                     <th rowspan="2" class="text-center" style="border-right-width: 4px;">
                                                         ACTION
                                                     </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="3" class="text-center">PLAN</th>
-                                                    <th colspan="3" class="text-center">ACTUAL</th>
-                                                    
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">IFR</th>
