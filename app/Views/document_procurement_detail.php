@@ -50,278 +50,53 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table class="table table-striped table-bordered dt-responsive">
-                                            <thead>
+                                        <table id="datatable" class="table table-striped table-bordered">
+                                            <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th rowspan="3">WBS CODE</th>
-                                                    <th rowspan="3">DOCUMENT NUMBER</th>
-                                                    <th rowspan="3">DESCRIPTION</th>
+                                                    <th rowspan="4" style="border-left-width: 4px;">NO</th>
+                                                    <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
+                                                    <th rowspan="4">DOCUMENT NUMBER</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
+                                                    <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
+                                                    <th colspan="9" class="text-center">EXTERNAL</th>
+                                                    <th rowspan="4" class="text-center">STATUS</th>
+                                                    <th rowspan="4" class="text-center" style="border-right-width: 4px;">ACTION</th>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <th rowspan="3" style="border-left-width: 4px;">JEDHI TEKNIKA</th>
+                                                    <th rowspan="3">ENGINER PP</th>
+                                                    <th rowspan="3">HO PP</th>
+                                                    <th rowspan="3" style="border-right-width: 4px;">PEM PP</th>
                                                     <th rowspan="3">WEIGHT FACTOR</th>
                                                     <th colspan="4" class="text-center">PLAN</th>
                                                     <th colspan="4" class="text-center">ACTUAL</th>
-                                                    <th rowspan="3" class="text-center">STATUS</th>
-                                                    <th rowspan="3" class="text-center">ACTION</th>
+                                                    
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">RFQ</th>
-                                                    <th class="text-center">TBE</th>
-                                                    <th class="text-center">PO</th>
+                                                    <th class="text-center">IFR</th>
+                                                    <th class="text-center">IFA</th>
+                                                    <th class="text-center">IFC</th>
                                                     <th class="text-center">CUMMULATIVE</th>
-                                                    <th class="text-center">RFQ</th>
-                                                    <th class="text-center">TBE</th>
-                                                    <th class="text-center">PO</th>
+                                                    <th class="text-center">IFR</th>
+                                                    <th class="text-center">IFA</th>
+                                                    <th class="text-center">IFC</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">60%</th>
-                                                    <th class="text-center">20%</th>
-                                                    <th class="text-center">20%</th>
+                                                    <th class="text-center">50%</th>
+                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">10%</th>
                                                     <th class="text-center">100%</th>
-                                                    <th class="text-center">60%</th>
-                                                    <th class="text-center">20%</th>
-                                                    <th class="text-center">20%</th>
+                                                    <th class="text-center">50%</th>
+                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">10%</th>
                                                     <th class="text-center">100%</th>
                                                 </tr>
                                             </thead>
         
                                             <tbody>
-                                                <?php
-                                                    $week = 0;
-                                                    $weekPlan = [ 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    $weekActual = [ 0, 0, 0, 0, 0, 0, 0, 0];
-                                                
-                                                    foreach($list_doc_procurement as $row) :
-                                                        // scurve data
-                                                        if(world_date($row->plan_ifr) <= world_date('8-5-2023')){
-                                                            $weekPlan[0] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('16-5-2023')){
-                                                            $weekPlan[1] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('24-5-2023')){
-                                                            $weekPlan[2] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('1-6-2023')){
-                                                            $weekPlan[3] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('9-6-2023')){
-                                                            $weekPlan[4] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('17-6-2023')){
-                                                            $weekPlan[5] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('25-6-2023')){
-                                                            $weekPlan[6] += 0.6*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifr) <= world_date('3-7-2023')){
-                                                            $weekPlan[7] += 0.6*$row->weight_factor;
-                                                        }
-                                                        
-                                                        if(world_date($row->plan_ifa) <= world_date('8-5-2023')){
-                                                            $weekPlan[0] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('16-5-2023')){
-                                                            $weekPlan[1] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('24-5-2023')){
-                                                            $weekPlan[2] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('1-6-2023')){
-                                                            $weekPlan[3] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('9-6-2023')){
-                                                            $weekPlan[4] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('17-6-2023')){
-                                                            $weekPlan[5] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('25-6-2023')){
-                                                            $weekPlan[6] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifa) <= world_date('3-7-2023')){
-                                                            $weekPlan[7] += 0.2*$row->weight_factor;
-                                                        }
-                                                        
-                                                        if(world_date($row->plan_ifc) <= world_date('8-5-2023')){
-                                                            $weekPlan[0] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('16-5-2023')){
-                                                            $weekPlan[1] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('24-5-2023')){
-                                                            $weekPlan[2] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('1-6-2023')){
-                                                            $weekPlan[3] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('9-6-2023')){
-                                                            $weekPlan[4] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('17-6-2023')){
-                                                            $weekPlan[5] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('25-6-2023')){
-                                                            $weekPlan[6] += 0.2*$row->weight_factor;
-                                                        }else if(world_date($row->plan_ifc) <= world_date('3-7-2023')){
-                                                            $weekPlan[7] += 0.2*$row->weight_factor;
-                                                        }
-                                                        
-                                                        // set plan cumulative
-                                                        $plan_cumulative = 0;
-                                                        if(world_date($row->plan_ifr) <= date_now()){
-                                                            $plan_cumulative += 0.6*$row->weight_factor;
-                                                        }
-                                                        if(world_date($row->plan_ifa) <= date_now()){
-                                                            $plan_cumulative += 0.2*$row->weight_factor;
-                                                        }
-                                                        if(world_date($row->plan_ifc) <= date_now()){
-                                                            $plan_cumulative += 0.2*$row->weight_factor;
-                                                        }
-                                                        
-                                                        // set actual cumulative
-                                                        $actual_cumulative = 0;
-                                                        if($row->actual_ifr){
-                                                            $actual_cumulative += 0.6*$row->weight_factor;
-                                                            if(world_date($row->actual_ifr) <= world_date('8-5-2023')){
-                                                                $weekActual[0] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('16-5-2023')){
-                                                                $weekActual[1] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('24-5-2023')){
-                                                                $weekActual[2] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('1-6-2023')){
-                                                                $weekActual[3] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('9-6-2023')){
-                                                                $weekActual[4] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('17-6-2023')){
-                                                                $weekActual[5] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('25-6-2023')){
-                                                                $weekActual[6] += 0.6*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifr) <= world_date('3-7-2023')){
-                                                                $weekActual[7] += 0.6*$row->weight_factor;
-                                                            }
-                                                        }
-                                                        if($row->actual_ifa){
-                                                            $actual_cumulative += 0.2*$row->weight_factor;
-                                                            if(world_date($row->actual_ifa) <= world_date('8-5-2023')){
-                                                                $weekActual[0] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('16-5-2023')){
-                                                                $weekActual[1] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('24-5-2023')){
-                                                                $weekActual[2] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('1-6-2023')){
-                                                                $weekActual[3] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('9-6-2023')){
-                                                                $weekActual[4] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('17-6-2023')){
-                                                                $weekActual[5] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('25-6-2023')){
-                                                                $weekActual[6] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifa) <= world_date('3-7-2023')){
-                                                                $weekActual[7] += 0.2*$row->weight_factor;
-                                                            }
-                                                        }
-                                                        if($row->actual_ifc){
-                                                            $actual_cumulative += 0.2*$row->weight_factor;
-                                                            if(world_date($row->actual_ifc) <= world_date('8-5-2023')){
-                                                                $weekActual[0] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('16-5-2023')){
-                                                                $weekActual[1] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('24-5-2023')){
-                                                                $weekActual[2] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('1-6-2023')){
-                                                                $weekActual[3] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('9-6-2023')){
-                                                                $weekActual[4] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('17-6-2023')){
-                                                                $weekActual[5] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('25-6-2023')){
-                                                                $weekActual[6] += 0.2*$row->weight_factor;
-                                                            }else if(world_date($row->actual_ifc) <= world_date('3-7-2023')){
-                                                                $weekActual[7] += 0.2*$row->weight_factor;
-                                                            }
-                                                        }
-                                                        
-                                                        // set variance status
-                                                        if($actual_cumulative == $plan_cumulative){
-                                                            $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
-                                                        }else if($actual_cumulative > $plan_cumulative){
-                                                            $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
-                                                        }else{
-                                                            $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
-                                                        }
-                                                        
-                                                        // set actual IFR status
-                                                        if($row->actual_ifr_file){
-                                                            $actual_ifr = tgl_indo($row->actual_ifr).
-                                                            '<br><a href="'.$row->actual_ifr_file.'" class="badge bg-success p-2">&nbsp;Cek File&nbsp;</a>';
-                                                        }else{
-                                                            $actual_ifr = '
-                                                                <a href="#" class="badge bg-warning p-2" id="btn-up-ifr-file" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                >
-                                                                    &nbsp;Add File&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-                                                        
-                                                        // set actual IFA status
-                                                        if($row->actual_ifa_file){
-                                                            $actual_ifa = tgl_indo($row->actual_ifa).
-                                                            '<br><a href="'.$row->actual_ifa_file.'" class="badge bg-success p-2">&nbsp;Cek File&nbsp;</a>';
-                                                        }else{
-                                                            $actual_ifa = '
-                                                                <a href="#" class="badge bg-warning p-2" id="btn-up-ifa-file" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                >
-                                                                    &nbsp;Add File&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-                                                        
-                                                        // set actual IFC status
-                                                        if($row->actual_ifc_file){
-                                                            $actual_ifc = tgl_indo($row->actual_ifc).
-                                                            '<br><a href="'.$row->actual_ifc_file.'" class="badge bg-success p-2">&nbsp;Cek File&nbsp;</a>';
-                                                        }else{
-                                                            $actual_ifc = '
-                                                                <a href="#" class="badge bg-warning p-2" id="btn-up-ifc-file" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                >
-                                                                    &nbsp;Add File&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-                                                ?>
-                                                    <tr>
-                                                        <td nowrap><?= $row->level_code ?></td>
-                                                        <td class="text-center" nowrap> - </td>
-                                                        <td><?= $row->description ?></td>
-                                                        <td class="text-center"><?= $row->weight_factor ?>%</td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
-                                                        <td class="text-center"><?= $plan_cumulative ?>%</td>
-                                                        <td class="text-center" nowrap><?= $actual_ifr ?></td>
-                                                        <td class="text-center" nowrap><?= $actual_ifa ?></td>
-                                                        <td class="text-center" nowrap><?= $actual_ifc ?></td>
-                                                        <td class="text-center"><?= $actual_cumulative ?>%</td>
-                                                        <td class="text-center"><?= $status ?></td>
-                                                        <td class="text-center" nowrap>
-                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit"
-                                                                data-id="<?= $row->id ?>"
-                                                                data-level_code="<?= $row->level_code ?>"
-                                                                data-description="<?= $row->description ?>"
-                                                                data-weight_factor="<?= $row->weight_factor ?>"
-                                                                data-plan_ifr="<?= tgl_indo($row->plan_ifr) ?>"
-                                                                data-plan_ifa="<?= tgl_indo($row->plan_ifa) ?>"
-                                                                data-plan_ifc="<?= tgl_indo($row->plan_ifc) ?>"
-                                                            >
-                                                                <i class="ri-pencil-fill text-info font-size-20"></i>
-                                                            </a>
-                                                            &nbsp;
-                                                            <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_procurement/delete">
-                                                                <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                                <?php
-                                                    for($i_cum_plan=1; $i_cum_plan<8; $i_cum_plan++){
-                                                        $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan-1];
-                                                    }
-                                                    for($i_cum_act=1; $i_cum_act<8; $i_cum_act++){
-                                                        $weekActual[$i_cum_act] += $weekActual[$i_cum_act-1];
-                                                    }
-                                                    for($week_counter=0; $week_counter<8; $week_counter++){
-                                                        echo '
-                                                            <input type="hidden" id="week_plan_'.$week_counter.'" value="'.$weekPlan[$week_counter].'" />
-                                                            <input type="hidden" id="week_actual_'.$week_counter.'" value="'.$weekActual[$week_counter].'" />
-                                                        ';
-                                                    }
-                                                ?>
+
                                             </tbody>
                                         </table>
                                         </font>
@@ -881,22 +656,3 @@
     })
     
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
