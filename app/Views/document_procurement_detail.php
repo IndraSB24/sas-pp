@@ -88,11 +88,27 @@
                                                         <td class="text-center"> <?= $index + 1 ?> </td>
                                                         <td class="text-center"> <?= $item->activity_code ?> </td>
                                                         <td class="text-center"> <?= $item->description ?> </td>
-                                                        <?php for($i=0; $i<7; $i++): ?>
-                                                            <th class="text-center">0</th>
-                                                            <th class="text-center">0</th>
-                                                            <th class="text-center">0</th>
-                                                        <?php endfor; ?>
+                                                        <th class="text-center"> <?= $item->mr_received_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->mr_received_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->mr_received_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->rfq_issued_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->rfq_issued_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->rfq_issued_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->quotation_received_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->quotation_received_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->quotation_received_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->technical_clarification_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->technical_clarification_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->technical_clarification_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->tbe_issued_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->tbe_issued_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->tbe_issued_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->cbe_issued_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->cbe_issued_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->cbe_issued_actual ?> </th>
+                                                        <th class="text-center"> <?= $item->contract_date_plan ?> </th>
+                                                        <th class="text-center"> <?= $item->contract_date_forecast ?> </th>
+                                                        <th class="text-center"> <?= $item->contract_date_actual ?> </th>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                     </tr>
                                                 <?php endforeach; ?>
