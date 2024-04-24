@@ -28,7 +28,7 @@
 	}
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // format pesan -----------------------------------------------------------------------------------------------------------------------------------------------------
+    // format pesan PP -----------------------------------------------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------		
 	function originatorToInternalEngineering($data=null){
 	    $dataWa['image']    = false;
@@ -48,6 +48,70 @@
         sendPersonalV2Kudus($dataWa);
 		return true;
 	}
+
+    function approveInternalEngineering($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*APPROVED BY INTERNAL ENGINEERING*'.
+            '<br>---------------------------------------'.
+            '<br>DOCUMENT NUMBER : '.$data['doc_code'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>APPROVED DATE : '.$data['tgl_upload'].
+            '<br>APPROVED BY : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    function rejectedInternalEngineering($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*REJECTED BY INTERNAL ENGINEERING*'.
+            '<br>---------------------------------------'.
+            '<br>DOCUMENT NUMBER : '.$data['doc_code'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>REJECTED DATE : '.$data['tgl_upload'].
+            '<br>REJECTED BY : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA DAN BERIKAN REVISI SESUAI KOMENTAR, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    function approveHO($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*APPROVED BY HO PP*'.
+            '<br>---------------------------------------'.
+            '<br>DOCUMENT NUMBER : '.$data['doc_code'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>REJECTED DATE : '.$data['tgl_upload'].
+            '<br>REJECTED BY : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA DAN BERIKAN REVISI SESUAI KOMENTAR, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // format pesan PP -----------------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     function waPermintaanMutasi($data=null){
 	    $dataWa['image']    = false;
