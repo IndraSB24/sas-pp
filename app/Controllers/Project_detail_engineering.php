@@ -791,7 +791,8 @@ class Project_detail_engineering extends BaseController
             'internal_pem_status' => 'approve',
             'internal_pem_date' => date('Y-m-d H:i:s'),
             'actual_ifr' => date('Y-m-d H:i:s'),
-            'actual_ifr_status' => 'uploaded'
+            'actual_ifr_status' => 'uploaded',
+            'actual_ifa_status' => 'progress'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -888,7 +889,8 @@ class Project_detail_engineering extends BaseController
             'id' => $id_doc,
             'file_status' => 'external_ifa_approve',
             'actual_ifa' => date('Y-m-d H:i:s'),
-            'actual_ifa_status' => 'approve'
+            'actual_ifa_status' => 'approve',
+            'actual_ifc_status' => 'progress'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
