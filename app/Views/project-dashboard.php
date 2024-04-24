@@ -3,6 +3,26 @@
 <head>
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
+    <style>
+        /* CSS untuk menentukan latar belakang div */
+        .background-div {
+            background-image: url('assets/images/93826.jpg');
+            background-size: cover;
+            background-position: center;
+            /* background-color: '#4aa3ff'; */
+            /* opacity: 0.8; */
+            /* z-index: -100 */
+        }
+        .background-div-b {
+            /* background-image: url('assets/images/93826.jpg'); */
+            background-image: url('assets/images/123.jpg');
+            background-size: cover;
+            background-position: center;
+            /* background-color: '#4aa3ff'; */
+            /* opacity: 0.8; */
+            /* z-index: -100 */
+        }
+    </style>
 </head>
 
 <?= $this->include('partials/body') ?>
@@ -35,7 +55,7 @@
                                 <!--        </div>-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                <div class="card" style="height: 80%; background: linear-gradient(to top, var(--bs-success) 0%, 
+                                <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-success) 0%, 
                                     var(--bs-success) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);"
                                 >
                                     <div class="card-body d-flex align-items-center">
@@ -57,7 +77,7 @@
                                 <!--        </div>-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                <div class="card" style="height: 80%; background: linear-gradient(to top, var(--bs-warning) 0%, 
+                                <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-warning) 0%, 
                                     var(--bs-warning) <?= $data_page->overal_actual ?>%, #ffffff 0%, #ffffff 100%);"
                                 >
                                     <div class="card-body d-flex align-items-center">
@@ -79,7 +99,7 @@
                                 <!--        </div>-->
                                 <!--    </div>-->
                                 <!--</div>-->
-                                <div class="card" style="height: 80%; background: linear-gradient(to top, var(--bs-danger) 0%, 
+                                <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-danger) 0%, 
                                     var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);"
                                 >
                                     <div class="card-body d-flex align-items-center">
@@ -91,21 +111,25 @@
                                 </div>
                             </div>
                             <div class="col-xl-6">
-                                <div class="card" style="height: 80%;">
+                                <div class="card" style="height: 90%;background-color:#17a2b8; overflow: hidden;">
                                     <div class="card-body">
-                                        <p class="text-truncate font-size-14 mb-2">Progress Tracking</p>
+                                        <p class="text-truncate font-size-14 mb-2" style="color: #ffffff;"><i class="fas fa-plane-departure"></i> <strong>Progress Tracking</strong></p>
                                         <div class="row">
-                                            <div class="col-sm-6 p-0 m-0 text-center">
-                                                <div id="radial_chart_1" class="apex-charts m-0 p-0"></div>
-                                                <a href="engineering-dashboard" class="btn btn-sm btn-info mb-3">
-                                                    Detail Engineering
-                                                </a>
+                                            <div class="col-sm-6 text-center" style="padding: 10px;">
+                                                <div style="border: 2px solid #ffffff; border-radius: 8px;">
+                                                    <div id="radial_chart_1" class="apex-charts m-0 p-0"></div>
+                                                    <a href="engineering-dashboard" class="btn btn-sm btn-warning mb-3">
+                                                        Detail Engineering
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6 p-0 m-0 text-center">
-                                                <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
-                                                <a href="procurement-dashboard" class="btn btn-sm btn-info mb-3">
-                                                    Detail Procurement
-                                                </a>
+                                            <div class="col-sm-6 text-center" style="padding: 10px">
+                                                <div style="border: 2px solid #ffffff; border-radius: 8px;">
+                                                    <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
+                                                    <a href="procurement-dashboard" class="btn btn-sm btn-warning mb-3">
+                                                        Detail Procurement
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +139,7 @@
                         <!-- end row -->
                         <div class="row" id="overal_progress_elem">
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card" style="background-color:antiquewhite">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -127,30 +151,30 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div id="mixed_chart_1" class="apex-charts" dir="ltr"></div>                              
+                                        <div id="mixed_chart_1" class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
                         </div>
                         <div class="row d-none" id="overal_progress_elem">
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card ">
                                     <div class="card-body">
                                         <h4 class="card-title mb-1">Overall Progress by Month</h4>
-                                            <a href="project-show-over-prog-month" class="btn btn-sm btn-info mb-3">
-                                                Show Detail
-                                            </a>
-                                        <div id="line_chart_datalabel" class="apex-charts" dir="ltr"></div>                              
+                                        <a href="project-show-over-prog-month" class="btn btn-sm btn-info mb-3">
+                                            Show Detail
+                                        </a>
+                                        <div id="line_chart_datalabel" class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card background-div">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Manpower By Month</h4>
-                                        <div id="chart_man_power" class="apex-charts" dir="ltr"></div>                                      
+                                        <div id="chart_man_power" class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
@@ -213,12 +237,12 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
-                                <h4 class="card-title mb-4">Productivity</h4>
+
+                                    <h4 class="card-title mb-4">Productivity</h4>
                                     <div class="table-responsive">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead class="table-light">
@@ -260,7 +284,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row d-none" id="progress_tracking_elem_old">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -272,61 +296,61 @@
                                         <a href="procurement-doc-list" class="btn btn-sm btn-info mb-3">
                                             Detail Procurement
                                         </a>
-                                        <div id="chart_progress_tracking" class="apex-charts"></div>                              
+                                        <div id="chart_progress_tracking" class="apex-charts"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row d-none">
                         <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                
-                            <h4 class="card-title mb-4">Productivity</h4>
-                                <div class="table-responsive">
-                                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Plan Quantity</th>
-                                                <th>Actual Quantity</th>
-                                                <th>Variance</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Cable Pulling</td>
-                                                <td>100</td>
-                                                <td>150</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pilling</td>
-                                                <td>75</td>
-                                                <td>70</td>
-                                                <td>5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Welding</td>
-                                                <td>20</td>
-                                                <td>21</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Barbender</td>
-                                                <td>12</td>
-                                                <td>21</td>
-                                                <td>9</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h4 class="card-title mb-4">Productivity</h4>
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Plan Quantity</th>
+                                                    <th>Actual Quantity</th>
+                                                    <th>Variance</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cable Pulling</td>
+                                                    <td>100</td>
+                                                    <td>150</td>
+                                                    <td>50</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pilling</td>
+                                                    <td>75</td>
+                                                    <td>70</td>
+                                                    <td>5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Welding</td>
+                                                    <td>20</td>
+                                                    <td>21</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Barbender</td>
+                                                    <td>12</td>
+                                                    <td>21</td>
+                                                    <td>9</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                    </div>    
+                    </div>
                 </div>
                 <!-- end row -->
             </div>
@@ -398,11 +422,11 @@
         },
         fill: {
             opacity: 1
-    
+
         },
         tooltip: {
             y: {
-                formatter: function (val) {
+                formatter: function(val) {
                     return val + "%"
                 }
             }
@@ -435,7 +459,7 @@
                     total: {
                         show: false,
                         label: 'Total',
-                        formatter: function (w) {
+                        formatter: function(w) {
                             return 249
                         }
                     },
@@ -449,7 +473,7 @@
         legend: {
             offsetY: 5
         }
-    
+
     }
     var chart = new ApexCharts(
         document.querySelector("#radial_chart_1"),
@@ -476,7 +500,7 @@
                     total: {
                         show: false,
                         label: 'Total',
-                        formatter: function (w) {
+                        formatter: function(w) {
                             return 249
                         }
                     },
@@ -490,14 +514,14 @@
         legend: {
             offsetY: 5
         }
-    
+
     }
     var chart_1 = new ApexCharts(
         document.querySelector("#radial_chart_2"),
         options_1
     );
     chart_1.render();
-    
+
     // Mixed chart
     var optionsMixed = {
         chart: {
@@ -519,25 +543,26 @@
         },
         colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
         series: [{
-            name: 'Plan',
-            type: 'column',
-            data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
-        },
-        {
-            name: 'Actual',
-            type: 'column',
-            data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
-        },
-        {
-            name: 'Cum Plan',
-            type: 'line',
-            data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
-        },
-        {
-            name: 'Cum Actual',
-            type: 'line',
-            data: [0, 10, 20, 30, 40, 43, 48, 65, 70, 75, 80]
-        }],
+                name: 'Plan',
+                type: 'column',
+                data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
+            },
+            {
+                name: 'Actual',
+                type: 'column',
+                data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
+            },
+            {
+                name: 'Cum Plan',
+                type: 'line',
+                data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
+            },
+            {
+                name: 'Cum Actual',
+                type: 'line',
+                data: [0, 10, 20, 30, 40, 43, 48, 65, 70, 75, 80]
+            }
+        ],
         fill: {
             opacity: [0.85, 0.85, 1, 1],
             gradient: {
@@ -565,12 +590,12 @@
             shared: true,
             intersect: false,
             y: {
-                formatter: function (y) {
+                formatter: function(y) {
                     if (typeof y !== "undefined") {
                         return y.toFixed(0) + " points";
                     }
                     return y;
-    
+
                 }
             }
         },
@@ -589,7 +614,7 @@
         optionsMixed
     );
     chartMixed.render();
-    
+
     // column chart
 
     var options_man_power = {
@@ -642,11 +667,11 @@
         },
         fill: {
             opacity: 1
-    
+
         },
         tooltip: {
             y: {
-                formatter: function (val) {
+                formatter: function(val) {
                     return val + " people"
                 }
             }
@@ -655,11 +680,10 @@
             offsetY: 7
         }
     }
-    
+
     var chart_man_power = new ApexCharts(
         document.querySelector("#chart_man_power"),
         options_man_power
     );
     chart_man_power.render();
-    
 </script>
