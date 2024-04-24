@@ -32,7 +32,7 @@
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------		
 	function waCoba($data=null){
 	    $dataWa['image']    = false;
-		$dataWa['phone']	= hostWa('1');
+		$dataWa['devId']	= hostWa('1');
 		$dataWa['penerima']	= '6285274897212';
 		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
                                 '<br><br>*BERHASIL NGK TU*';
