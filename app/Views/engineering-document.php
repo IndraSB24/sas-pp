@@ -483,10 +483,12 @@
 
 <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script> 
 <script src="assets/js/pages/jquery-knob.init.js"></script> 
+
 <script>
-    
 // chart
 // ==========================================================================================================================================================================    
+    let cum_percent_counter = 0;
+
     //  Scurve mdr
     let weekList=[],
         dataPlan=[],
@@ -592,42 +594,7 @@
     chart.render();
     
     
-    // Percent chart
-    var options_percent = {
-        chart: {
-            height: 200,
-            type: 'donut',
-        },
-        series: [44],
-        labels: ["Series 1"],
-        colors: ["#1cbb8c"],
-        legend: {
-            show: false,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            verticalAlign: 'middle',
-            floating: false,
-            fontSize: '14px',
-            offsetX: 0,
-            offsetY: 5
-        },
-        responsive: [{
-            breakpoint: 600,
-            options: {
-                chart: {
-                    height: 100
-                },
-                legend: {
-                    show: false
-                },
-            }
-        }]
-    }
-    var chart_percent = new ApexCharts(
-        document.querySelector("#percent_chart"),
-        options_percent
-    );
-    chart_percent.render();
+    
     
     // Document chart
     var options_document = {
@@ -806,7 +773,7 @@
     );
     chart_equipment.render();
     
-    // Mixed chart
+    // Mixed chart ========================================================================================================
     const startDate = new Date('2024-01-01');
     let endDate = new Date('2024-12-30');
     const labels_mixed_chart1 = [];
@@ -831,11 +798,7 @@
     actual_mixed_chart.forEach(function(value) {
         sum += parseInt(value);
         cum_actual_mixed_chart.push(sum);
-    });
-
-    console.log({
-        actual_mixed_chart,
-        cum_actual_mixed_chart
+        cum_percent_counter = sum;
     });
     
     var optionsMixed = {
@@ -933,6 +896,43 @@
         optionsMixed
     );
     chartMixed.render();
+
+    // Percent chart ================================================================================================
+    var options_percent = {
+        chart: {
+            height: 200,
+            type: 'donut',
+        },
+        series: [cum_percent_counter, 100 - cum_percent_counter],
+        labels: ["Series 1"],
+        colors: ["#1cbb8c", "#ffffff"],
+        legend: {
+            show: false,
+            position: 'bottom',
+            horizontalAlign: 'center',
+            verticalAlign: 'middle',
+            floating: false,
+            fontSize: '14px',
+            offsetX: 0,
+            offsetY: 5
+        },
+        responsive: [{
+            breakpoint: 600,
+            options: {
+                chart: {
+                    height: 100
+                },
+                legend: {
+                    show: false
+                },
+            }
+        }]
+    }
+    var chart_percent = new ApexCharts(
+        document.querySelector("#percent_chart"),
+        options_percent
+    );
+    chart_percent.render();
 
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
