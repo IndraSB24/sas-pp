@@ -586,7 +586,7 @@
         }]
     }
     var chart = new ApexCharts(
-        document.querySelector("#scurve_mdr"),
+        document.querySelector("#scurve_mdr_1"),
         options_scurve_mdr
     );
     chart.render();
@@ -806,5 +806,127 @@
     );
     chart_equipment.render();
     
+    // Mixed chart
+    const startDate = new Date('2024-01-01');
+    let endDate = new Date('2024-12-30');
+    const labels_mixed_chart1 = [];
+    
+    const input_counter = parseInt($('#input_counter').val());
+    
+    // Loop through each month and generate the label
+    for (let currentDate = new Date(startDate); currentDate <= endDate; currentDate.setMonth(currentDate.getMonth() + 1)) {
+        // Format the current date as desired (e.g., 'MMM YYYY' for abbreviated month name and year)
+        const label = `${currentDate.toLocaleString('default', { month: 'short' })} ${currentDate.getFullYear()}`;
+        labels_mixed_chart1.push(label);
+    }
+    
+    const actual_mixed_chart1 = [];
+    $data_weight_factor.forEach(function(list) {
+        actual_mixed_chart1.push(list.weight_factor);
+    });
+
+    const cum_actual_mixed_chart1 = [];
+    let sum = 0;
+    actual_mixed_chart1.forEach(function(value) {
+        sum += value;
+        cum_actual_mixed_chart1.push(sum);
+    });
+    
+    var optionsMixed = {
+        chart: {
+            height: 300,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [0, 0, 4, 4],
+            curve: 'straight'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        series: [{
+            name: 'Plan',
+            type: 'column',
+            data: []
+        },
+        {
+            name: 'Actual',
+            type: 'column',
+            data: actual_mixed_chart1
+        },
+        {
+            name: 'Cum Plan',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'Cum Actual',
+            type: 'line',
+            data: cum_actual_mixed_chart1
+        }],
+        fill: {
+            opacity: [0.85, 0.85, 1, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: labels_mixed_chart1,
+        markers: {
+            size: 4
+        },
+        xaxis: {
+            type: 'month'
+        },
+        yaxis: {
+            title: {
+                text: 'Percent (%)',
+            },
+            labels: {
+                formatter: function (value) {
+                    return Math.round(value); // Round the value to the nearest integer
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(2) + " %";
+                    }
+                    return y;
+    
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            padding: {
+                bottom: 10
+            }
+        },
+        legend: {
+            offsetY: 7
+        }
+    }
+    var chartMixed = new ApexCharts(
+        document.querySelector("#scurve_mdr"),
+        optionsMixed
+    );
+    chartMixed.render();
+
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
