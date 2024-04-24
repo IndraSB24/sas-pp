@@ -50,27 +50,39 @@
                                         </div>
                                         <div style="overflow-x:auto;">
                                         <font size="2">
-                                        <table id="datatable" class="table table-striped table-bordered nowrap">
+                                        <table id="datatable" class="table table-striped table-bordered">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
                                                     <th rowspan="2" style="border-left-width: 4px;">NO</th>
                                                     <th rowspan="2" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="2">DOCUMENT NUMBER</th>
-                                                    <th rowspan="2" style="width: 0px;">DESCRIPTION</th>
-                                                    <th colspan="3" class="text-center">PLAN</th>
-                                                    <th colspan="3" class="text-center">ACTUAL</th>
+                                                    <th rowspan="2" style="width: 0px;" class="desc">
+                                                        DESCRIPTION
+                                                    </th>
+                                                    <th colspan="8" class="text-center">PLAN</th>
+                                                    <th colspan="8" class="text-center">ACTUAL</th>
                                                     <th rowspan="2" class="text-center">STATUS</th>
                                                     <th rowspan="2" class="text-center" style="border-right-width: 4px;">
                                                         ACTION
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">IFR</th>
-                                                    <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC</th>
-                                                    <th class="text-center">IFR</th>
-                                                    <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC</th>
+                                                    <th class="text-center">MR</th>
+                                                    <th class="text-center">RFQ</th>
+                                                    <th class="text-center">TBE</th>
+                                                    <th class="text-center">CBE</th>
+                                                    <th class="text-center">PO</th>
+                                                    <th class="text-center">ENG</th>
+                                                    <th class="text-center">FAT</th>
+                                                    <th class="text-center">Delivery on Site</th>
+                                                    <th class="text-center">MR</th>
+                                                    <th class="text-center">RFQ</th>
+                                                    <th class="text-center">TBE</th>
+                                                    <th class="text-center">CBE</th>
+                                                    <th class="text-center">PO</th>
+                                                    <th class="text-center">ENG</th>
+                                                    <th class="text-center">FAT</th>
+                                                    <th class="text-center">Delivery on Site</th>
                                                 </tr>
                                             </thead>
         
