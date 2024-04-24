@@ -13,6 +13,7 @@
             /* opacity: 0.8; */
             /* z-index: -100 */
         }
+
         .background-div-b {
             /* background-image: url('assets/images/93826.jpg'); */
             background-image: url('assets/images/123.jpg');
@@ -56,8 +57,7 @@
                                 <!--    </div>-->
                                 <!--</div>-->
                                 <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-success) 0%, 
-                                    var(--bs-success) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);"
-                                >
+                                    var(--bs-success) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Plan</h5>
@@ -78,8 +78,7 @@
                                 <!--    </div>-->
                                 <!--</div>-->
                                 <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-warning) 0%, 
-                                    var(--bs-warning) <?= $data_page->overal_actual ?>%, #ffffff 0%, #ffffff 100%);"
-                                >
+                                    var(--bs-warning) <?= $data_page->overal_actual ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Actual</h5>
@@ -100,8 +99,7 @@
                                 <!--    </div>-->
                                 <!--</div>-->
                                 <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-danger) 0%, 
-                                    var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);"
-                                >
+                                    var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Varience</h5>
@@ -190,9 +188,10 @@
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Title</th>
-                                                <th>BLFinish</th>
-                                                <th>Finish</th>
-                                                <th>Status</th>
+                                                <th>Duration % Complete</th>
+                                                <th>Actual Duration</th>
+                                                <th>BL Project Start</th>
+                                                <th>BL Project Finish</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -242,15 +241,17 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title mb-4">Productivity</h4>
+                                    <h4 class="card-title mb-4">Procurment</h4>
                                     <div class="table-responsive">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead class="table-light">
                                                 <tr>
                                                     <th>Title</th>
-                                                    <th>Plan Quantity</th>
-                                                    <th>Actual Quantity</th>
-                                                    <th>Variance</th>
+                                                    <th>BL Project Duration</th>
+                                                    <th>Duration % Complete</th>
+                                                    <th>Actual Duration</th>
+                                                    <th>BL Project Start</th>
+                                                    <th>BL Project Finish</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -440,7 +441,7 @@
         options_prog_chart
     );
     prog_chart.render();
-    
+
     //  Radial chart 1
     var options = {
         chart: {
@@ -480,7 +481,7 @@
         options
     );
     chart.render();
-    
+
     //  Radial chart 2
     var options_1 = {
         chart: {
@@ -581,19 +582,11 @@
         xaxis: {
             type: 'month'
         },
-        yaxis: [
-            {
-                title: {
-                    text: 'Points Cumulative',
-                },
+        yaxis: {
+            title: {
+                text: 'Points',
             },
-            {
-                opposite: true,
-                title: {
-                    text: 'Points'
-                }
-            }
-        ],
+        },
         tooltip: {
             shared: true,
             intersect: false,
@@ -624,6 +617,7 @@
     chartMixed.render();
 
     // column chart
+
     var options_man_power = {
         chart: {
             height: 200,
@@ -687,6 +681,7 @@
             offsetY: 7
         }
     }
+
     var chart_man_power = new ApexCharts(
         document.querySelector("#chart_man_power"),
         options_man_power
