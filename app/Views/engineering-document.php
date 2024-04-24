@@ -488,6 +488,8 @@
 // chart
 // ==========================================================================================================================================================================    
     let cum_percent_counter = 0;
+    let total_done_doc_counter = 0;
+    let total_doc_counter = parseInt(<?= $total_doc ?>);
 
     //  Scurve mdr
     let weekList=[],
@@ -596,42 +598,7 @@
     
     
     
-    // Document chart
-    var options_document = {
-        chart: {
-            height: 200,
-            type: 'donut',
-        },
-        series: [44, 55],
-        labels: ["Series 1", "Series 2"],
-        colors: ["#1cbb8c", "#5664d2"],
-        legend: {
-            show: false,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            verticalAlign: 'middle',
-            floating: false,
-            fontSize: '14px',
-            offsetX: 0,
-            offsetY: 5
-        },
-        responsive: [{
-            breakpoint: 600,
-            options: {
-                chart: {
-                    height: 100
-                },
-                legend: {
-                    show: false
-                },
-            }
-        }]
-    }
-    var chart_document = new ApexCharts(
-        document.querySelector("#document_chart"),
-        options_document
-    );
-    chart_document.render();
+    
     
     // Structural chart
     var options_structural = {
@@ -791,6 +758,7 @@
     const actual_mixed_chart = [];
     data_weight_factor.forEach(function(list) {
         actual_mixed_chart.push(list.weight_factor);
+        total_done_doc_counter += 1;
     });
 
     const cum_actual_mixed_chart = [];
@@ -933,6 +901,43 @@
         options_percent
     );
     chart_percent.render();
+
+    // Document chart ==============================================================================================
+    var options_document = {
+        chart: {
+            height: 200,
+            type: 'donut',
+        },
+        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
+        labels: ["Series 1", "Series 2"],
+        colors: ["#1cbb8c", "#5664d2"],
+        legend: {
+            show: false,
+            position: 'bottom',
+            horizontalAlign: 'center',
+            verticalAlign: 'middle',
+            floating: false,
+            fontSize: '14px',
+            offsetX: 0,
+            offsetY: 5
+        },
+        responsive: [{
+            breakpoint: 600,
+            options: {
+                chart: {
+                    height: 100
+                },
+                legend: {
+                    show: false
+                },
+            }
+        }]
+    }
+    var chart_document = new ApexCharts(
+        document.querySelector("#document_chart"),
+        options_document
+    );
+    chart_document.render();
 
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>

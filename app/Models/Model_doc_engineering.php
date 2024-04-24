@@ -44,6 +44,19 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // count all doc
+    public function count_all_doc(){
+        $this->select('
+            *
+        ')
+        ->where('deleted_at', null);
+        
+        $result = $this->get()->getResult();
+        $count = count($result);
+        
+        return $count;
+    }
+
     // get sum actual weight factor
     public function get_weight_factor(){
         $this->select('
