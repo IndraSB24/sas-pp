@@ -5,11 +5,11 @@
     {
         switch ($status) {
             case 'approve':
-                return generateBadge('success', 'APPROVED', $date, $id, $description, $linkFile, $step, $file_version);
+                return generateBadge('success', 'APPROVED', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
             case 'reject':
-                return generateBadge('danger', 'REJECTED', $date, $id, $description, $linkFile, $step, $file_version);
+                return generateBadge('danger', 'REJECTED', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
             case 'progress':
-                return generateBadge('info', 'DETAIL', $date, $id, $description, $linkFile, $step, $file_version);
+                return generateBadge('info', 'DETAIL', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
             default:
                 return generateWaitingBadge();
         }
