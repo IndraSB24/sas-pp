@@ -490,7 +490,11 @@
 
                 $(document).on('click', '#rejectButton', function() {
                     const fileDesc = '<?= $step ?>';
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
                     let path;
+
                     if (fileDesc === 'internal') {
                         path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
                     } else if (fileDesc === 'internal_ho') {
@@ -499,19 +503,19 @@
                         path = "<?= base_url('Project_detail_engineering/reject_internal_pem') ?>";
                     } else if (fileDesc === 'external_ifa') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifa') ?>";
+                        formData.append('plan_ifa', $doc_data->plan_ifa);
                     } else if (fileDesc === 'external_ifc') {
+                        formData.append('plan_ifc', $doc_data->plan_ifc);
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
                     };
                     // const version = $(this).data('version');
-                    const version = '';
-                    let id_doc, swalTitle;
-                    var timerInterval;
-                    var formData = new FormData();
+                    
 
                     id_doc = id_doc = <?= $doc_id ?>;
                     // formData.append('version', version);
                     // formData.append('file_status', 'ifa_rejected');
                     formData.append('id_doc', id_doc);
+                    formData.append('version', <?= $doc_data->file_version ?>);
                     swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
 
                     Swal.fire({
