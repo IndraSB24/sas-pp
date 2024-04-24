@@ -65,7 +65,7 @@
                                                     <th colspan="3" class="text-center">TBE ISSUED DATE</th>
                                                     <th colspan="3" class="text-center">CBE ISSUED DATE</th>
                                                     <th colspan="3" class="text-center">CONTRACT DATE</th>
-                                                    <th cowspan="2" class="text-center">
+                                                    <th rowspan="2" class="text-center">
                                                         ACTION
                                                     </th>
                                                 </tr>
@@ -75,7 +75,6 @@
                                                         <th class="text-center">FORECAST</th>
                                                         <th class="text-center">ACTUAL</th>
                                                     <?php endfor; ?>
-                                                    
                                                 </tr>
                                             </thead>
         

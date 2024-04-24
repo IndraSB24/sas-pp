@@ -14,9 +14,7 @@ class Model_doc_procurement extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_project',
-        'level_code',
-        'description',
+        'id_project', 'activity_code', 'description',
         'unit',
         'weight_factor',
         'plan_ifr',
