@@ -57,7 +57,7 @@
                                                     <th rowspan="3" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="3">DOCUMENT NUMBER</th>
                                                     <th class="desc" rowspan="3" style="width: 0px;">DESCRIPTION</th>
-                                                    <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
+                                                    <th rowspan="3" class="text-center">STATUS</th>
                                                     <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
                                                 <tr>
