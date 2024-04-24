@@ -419,7 +419,7 @@
                     let id_doc, swalTitle;
                     var timerInterval;
                     var formData = new FormData();
-                    
+
                     const fileDesc = '<?= $step ?>';
                     let path;
                     if (fileDesc === 'internal') {
@@ -446,6 +446,8 @@
                     //     formData.append('file_status', 'ifc_approved');
                     // }
                     // swalTitle = 'Approve ' + fileDesc + ' Version ' + version + ' ?';
+
+                    formData.append('version', "<?= $doc_data[0]->file_version ?>");
                     formData.append('id_doc', id_doc);
                     swalTitle = 'Approve Document?';
 
