@@ -416,6 +416,10 @@
                 });
 
                 $(document).on('click', '#approveButton', function() {
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+                    
                     const fileDesc = '<?= $step ?>';
                     let path;
                     if (fileDesc === 'internal') {
@@ -424,15 +428,16 @@
                         path = "<?= base_url('Project_detail_engineering/approve_internal_ho') ?>";
                     } else if (fileDesc === 'internal_pem') {
                         path = "<?= base_url('Project_detail_engineering/approve_internal_pem') ?>";
+                        formData.append('plan_ifa', "<?= $doc_data[0]->plan_ifa ?>");
                     } else if (fileDesc === 'external_ifa') {
                         path = "<?= base_url('Project_detail_engineering/approve_external_ifa') ?>";
+                        formData.append('plan_ifa', "<?= $doc_data[0]->plan_ifa ?>");
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
+                        formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
                     };
                     // const version = $(this).data('version');
-                    let id_doc, swalTitle;
-                    var timerInterval;
-                    var formData = new FormData();
+                    
 
                     id_doc = <?= $doc_id ?>;
                     // if (fileDesc == "IFA") {
