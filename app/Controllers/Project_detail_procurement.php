@@ -7,7 +7,7 @@ use App\Models\Model_doc_engineering;
 
 class Project_detail_procurement extends BaseController
 {
-    protected $Model_doc_procurement, $Model_project. $Model_doc_engineering;
+    protected $Model_doc_procurement, $Model_project, $Model_doc_engineering;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
