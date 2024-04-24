@@ -28,7 +28,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_engineering->findAll()
+			'list_doc_procurement' => $this->Model_doc_procurement->findAll()
 		];
 		return view('document_procurement_detail', $data);
 	}
