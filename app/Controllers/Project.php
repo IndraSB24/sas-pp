@@ -28,7 +28,7 @@ class Project extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Project Dashboard']),
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail]),
-			'data_page' => $data_page
+			'data_page' => $data_page[0]
 		];
 		return view('project-dashboard', $data);
 	}
