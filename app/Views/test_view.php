@@ -489,7 +489,7 @@
                 })
 
                 $(document).on('click', '#rejectButton', function() {
-                    const version = '';
+                    let version = '';
                     let id_doc, swalTitle;
                     var timerInterval;
                     var formData = new FormData();
