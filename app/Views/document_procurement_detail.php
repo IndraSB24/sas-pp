@@ -54,35 +54,28 @@
                                             <thead style="border-top-width: 4px">
                                                 <tr>
                                                     <th rowspan="2">NO</th>
-                                                    <th rowspan="2">WBS CODE</th>
-                                                    <th rowspan="2">DOCUMENT NUMBER</th>
+                                                    <th rowspan="2">ACTIVITY CODE</th>
                                                     <th rowspan="2" style="width: 0px;" class="desc">
-                                                        DESCRIPTION
+                                                        DESCRIPTION OF WORK
                                                     </th>
-                                                    <th colspan="8" class="text-center">PLAN</th>
-                                                    <th colspan="8" class="text-center">ACTUAL</th>
-                                                    <th rowspan="2" class="text-center">STATUS</th>
+                                                    <th colspan="3" class="text-center">MR RECIEVED DATE</th>
+                                                    <th colspan="3" class="text-center">RFQ ISSUED DATE</th>
+                                                    <th rowspan="2" class="text-center">QUOTATION RECIEVED</th>
+                                                    <th colspan="3" class="text-center">TECHNICAL CLARIFICATION</th>
+                                                    <th colspan="3" class="text-center">TBE ISSUED DATE</th>
+                                                    <th rowspan="2" class="text-center">CBE ISSUED DATE</th>
+                                                    <th rowspan="2" class="text-center">CONTRACT DATE</th>
                                                     <th rowspan="2" class="text-center">
                                                         ACTION
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">MR</th>
-                                                    <th class="text-center">RFQ</th>
-                                                    <th class="text-center">TBE</th>
-                                                    <th class="text-center">CBE</th>
-                                                    <th class="text-center">PO</th>
-                                                    <th class="text-center">ENG</th>
-                                                    <th class="text-center">FAT</th>
-                                                    <th class="text-center">Delivery on Site</th>
-                                                    <th class="text-center">MR</th>
-                                                    <th class="text-center">RFQ</th>
-                                                    <th class="text-center">TBE</th>
-                                                    <th class="text-center">CBE</th>
-                                                    <th class="text-center">PO</th>
-                                                    <th class="text-center">ENG</th>
-                                                    <th class="text-center">FAT</th>
-                                                    <th class="text-center">Delivery on Site</th>
+                                                    <?php for($i=0; $i<7; $i++): ?>
+                                                        <th class="text-center">PLAN</th>
+                                                        <th class="text-center">FORECAST</th>
+                                                        <th class="text-center">ACTUAL</th>
+                                                    <?php endfor; ?>
+                                                    
                                                 </tr>
                                             </thead>
         

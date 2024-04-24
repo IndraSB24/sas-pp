@@ -506,6 +506,8 @@
         }
     }
 
+    let data_doc = <?= json_encode($list_doc_engineering) ?>
+
     var options_scurve_mdr = {
         chart: {
             height: 380,
