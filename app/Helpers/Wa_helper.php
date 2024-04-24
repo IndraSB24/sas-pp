@@ -33,9 +33,18 @@
 	function waCoba($data=null){
 	    $dataWa['image']    = false;
 		$dataWa['devId']	= hostWa('1');
-		$dataWa['penerima']	= '6285274897212';
+		$dataWa['penerima']	= $data['penerima'];
 		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
-                                '<br><br>*BERHASIL NGK TU*';
+            '<br><br>*ORIGINATOR FILE UPLOAD*'.
+            '<br>---------------------------------------'.
+            '<br>DOCUMENT CODE : '.$data['doc_code'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>TANGGAL UPLOAD : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI PIHAK BERWENANG*'.
+            '<br>*TERIMAKASIH*'
+        ;
         sendPersonalV2Kudus($dataWa);
 		return true;
 	}

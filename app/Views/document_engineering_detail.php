@@ -315,6 +315,8 @@
                                                                     data-path = "Project_detail_engineering/update/up_originator"
                                                                     data-step = ""
                                                                     data-version = "'.$file_version.'"
+                                                                    data-doc_code = "'.$row->level_code.'"
+                                                                    data-doc_name = "'.$row->description.'"
                                                                 >
                                                                     &nbsp;UP FILE&nbsp;
                                                                 </a>
@@ -773,9 +775,7 @@
                     <div class="modal-footer">
                         <input type="hidden" id="upload_id_doc" />
                         <button type="button" class="btn btn-success" id="upload_btn_up"
-                            data-path="#"
-                            data-step="#"
-                            data-version="#"
+                            data-path="#" data-step="#" data-version="#" data-doc_name="#" data-doc_code="#"
                         >
                             Upload
                         </button>
@@ -1056,6 +1056,8 @@
         $("#upload_btn_up").data("path", $(this).data('path'));
         $("#upload_btn_up").data("step", $(this).data('step'));
         $("#upload_btn_up").data("version", $(this).data('version'));
+        $("#upload_btn_up").data("doc_name", $(this).data('doc_name'));
+        $("#upload_btn_up").data("doc_code", $(this).data('doc_code'));
         $('#upload_file_name').text("No File Choosen");
 
         // Call Modal Approval
@@ -1090,6 +1092,9 @@
         formData.append('file', file);
         formData.append('version', version);
         formData.append('id_doc', id_doc);
+        formData.append('doc_name', $(this).data('doc_name'));
+        formData.append('doc_code', $(this).data('doc_code'));
+
         swalTitle = 'Upload File '+fileDesc;
         
         Swal.fire({

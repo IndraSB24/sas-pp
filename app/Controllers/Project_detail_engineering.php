@@ -406,6 +406,8 @@ class Project_detail_engineering extends BaseController
             $uploaded_file->move('upload/engineering_doc/list');
             $id_doc = $this->request->getPost('id_doc');
             $version= $this->request->getPost('version');
+            $doc_name= $this->request->getPost('doc_name');
+            $doc_code= $this->request->getPost('doc_code');
 
             // safe file to engineering doc file
             $data = [
@@ -453,7 +455,14 @@ class Project_detail_engineering extends BaseController
             $this->timeline_doc_model->save($data_timeline);
 
             if ($update_doc) {
+                $data_wa = [
+                    'penerima' => '6285274897212',
+                    'doc_name' => $doc_name,
+                    'doc_code' => $doc_code,
+                    'tgl_upload' => date('Y-m-d H:i:s')
+                ];
                 waCoba();
+
                 $response = [
                     'success' => true,
                     'message' => 'File Uploaded successfully.'
