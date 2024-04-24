@@ -303,6 +303,7 @@
                                                                 </a>
                                                             ';
                                                         }
+
                                                         if ($row->internal_engineering_status === 'approve') {
                                                             $enginerPP = tgl_indo($row->internal_engineering_date).'
                                                             <br>
@@ -495,7 +496,7 @@
 
                                                         // set actual IFA status
                                                         $actual_ifa = generateStatusBadge(
-                                                            $row->actual_ifc_status, $row->actual_ifc, $row->id,
+                                                            $row->actual_ifa_status, $row->actual_ifa, $row->id,
                                                             $row->description, $linkFile, 'IFA', $file_version,
                                                             'external_ifa'
                                                         );
