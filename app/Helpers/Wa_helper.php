@@ -30,19 +30,19 @@
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // format pesan -----------------------------------------------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------		
-	function waCoba($data=null){
+	function originatorToInternalEngineering($data=null){
 	    $dataWa['image']    = false;
 		$dataWa['devId']	= hostWa('1');
 		$dataWa['penerima']	= $data['penerima'];
 		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
             '<br><br>*ORIGINATOR FILE UPLOAD*'.
             '<br>---------------------------------------'.
-            '<br>DOCUMENT CODE : '.$data['doc_code'].
+            '<br>DOCUMENT NUMBER : '.$data['doc_code'].
             '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
             '<br>TANGGAL UPLOAD : '.$data['tgl_upload'].
             '<br>---------------------------------------'.
             '<br>'.
-            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI PIHAK BERWENANG*'.
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
             '<br>*TERIMAKASIH*'
         ;
         sendPersonalV2Kudus($dataWa);
