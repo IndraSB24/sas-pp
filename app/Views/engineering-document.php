@@ -55,7 +55,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row d-none">
                                             <!--structural chart-->
                                             <div class="col-md-3 m-0 p-0 text-center">
                                                 <div id="structural_chart" class="apex-charts" ></div>
