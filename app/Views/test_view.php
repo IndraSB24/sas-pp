@@ -270,6 +270,8 @@
 
     <script src="assets/js/app.js"></script>
     <script>
+        console.log(<?= $doc_data ?>)
+
         document.addEventListener('DOMContentLoaded', function() {})
         var app = new Vue({
             el: '#app',
