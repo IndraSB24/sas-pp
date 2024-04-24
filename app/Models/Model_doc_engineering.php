@@ -20,7 +20,7 @@ class Model_doc_engineering extends Model
         'file', 'file_version', 'file_status', 'file_comment',
         'internal_engineering_status', 'internal_ho_status', 'internal_pem_status', 'internal_originator_status',
         'internal_engineering_date', 'internal_ho_date', 'internal_pem_date', 'internal_originator_date', 
-        'id_engineering_doc_file', 'wbs_code'
+        'id_engineering_doc_file', 'wbs_code', 'actual_ifr_status', 'actual_ifa_status', 'actual_ifc_status',
     ];
 
     protected $useTimestamps = true;
