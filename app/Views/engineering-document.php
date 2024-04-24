@@ -829,7 +829,7 @@
     const cum_actual_mixed_chart = [];
     let sum = 0;
     actual_mixed_chart.forEach(function(value) {
-        sum += value;
+        sum += parseInt(value);
         cum_actual_mixed_chart.push(sum);
     });
 
