@@ -48,7 +48,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style="overflow-x:auto;">
+                                        <!-- <div style="overflow-x:auto;"> -->
                                         <font size="2">
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead style="border-top-width: 4px">
@@ -91,7 +91,7 @@
                                             </tbody>
                                         </table>
                                         </font>
-                                        </div>
+                                        <!-- </div> -->
                                     </div>
                                     
                                 </div>
