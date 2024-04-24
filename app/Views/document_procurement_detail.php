@@ -60,11 +60,11 @@
                                                     </th>
                                                     <th colspan="3" class="text-center">MR RECIEVED DATE</th>
                                                     <th colspan="3" class="text-center">RFQ ISSUED DATE</th>
-                                                    <th cowspan="3" class="text-center">QUOTATION RECIEVED</th>
+                                                    <th colspan="3" class="text-center">QUOTATION RECIEVED</th>
                                                     <th colspan="3" class="text-center">TECHNICAL CLARIFICATION</th>
                                                     <th colspan="3" class="text-center">TBE ISSUED DATE</th>
-                                                    <th cowspan="3" class="text-center">CBE ISSUED DATE</th>
-                                                    <th cowspan="3" class="text-center">CONTRACT DATE</th>
+                                                    <th colspan="3" class="text-center">CBE ISSUED DATE</th>
+                                                    <th colspan="3" class="text-center">CONTRACT DATE</th>
                                                     <th cowspan="2" class="text-center">
                                                         ACTION
                                                     </th>
