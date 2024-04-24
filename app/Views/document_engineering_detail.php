@@ -1117,7 +1117,7 @@
                     title: 'Diupload!',
                     icon: 'success',
                     text: 'File Berhasil Diupload.',
-                    // timer: 1000,
+                    timer: 500,
                     confirmButtonColor: "#5664d2",
                     onBeforeOpen:function () {
                         //Swal.showLoading()
