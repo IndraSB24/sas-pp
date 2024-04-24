@@ -904,7 +904,7 @@
             type: 'donut',
         },
         series: [cum_percent_counter, 100 - cum_percent_counter],
-        labels: ["Series 1"],
+        labels: ["Achieve", "Progress"],
         colors: ["#1cbb8c", "#cafdee"],
         legend: {
             show: false,
