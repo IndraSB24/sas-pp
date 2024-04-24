@@ -1,3 +1,50 @@
+<!-- php function for this page -->
+<?php
+    // Function to generate status badge HTML
+    function generateStatusBadge($status, $date, $id, $description, $linkFile, $step, $file_version)
+    {
+        switch ($status) {
+            case 'approve':
+                return generateBadge('success', 'APPROVED', $date, $id, $description, $linkFile, $step, $file_version);
+            case 'reject':
+                return generateBadge('danger', 'REJECTED', $date, $id, $description, $linkFile, $step, $file_version);
+            case 'progress':
+                return generateBadge('info', 'DETAIL', $date, $id, $description, $linkFile, $step, $file_version);
+            default:
+                return generateWaitingBadge();
+        }
+    }
+
+    // Function to generate badge HTML
+    function generateBadge($color, $text, $date, $id, $description, $linkFile, $step, $file_version)
+    {
+        $html = tgl_indo($date) . '<br><br>';
+        $html .= '<a href="' . base_url('commentPdf/') . '/' . $id . '/external_ifc" class="badge bg-' . $color . ' mt-1 p-2 w-xs" id="btn-approval" 
+                    data-id="' . $id . '"
+                    data-doc_desc="' . $description . '"
+                    data-link_file="' . $linkFile . '"
+                    data-step="' . $step . '"
+                    data-version="' . $file_version . '"
+                >' . $text . '</a>';
+        return $html;
+    }
+
+    // Function to generate waiting badge HTML
+    function generateWaitingBadge()
+    {
+        $html = '
+            no date yet
+            <br>
+            no file yet
+            <br>
+            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                &nbsp;WAITING&nbsp;
+            </a>';
+        return $html;
+    }
+
+?>
+
 <?= $this->include('partials/main') ?>
 
     <head>
@@ -492,103 +539,11 @@
                                                         }
                                                         
                                                         // set actual IFC status
-                                                        if($row->actual_ifc_file){
-                                                            $actual_ifc = tgl_indo($row->actual_ifc).
-                                                            '
-                                                            <br>
-                                                                Appproved V '.$row->file_version.'
-                                                            <br>
-                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approval" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-link_file = "'.$linkFile.'"
-                                                                    data-step = "IFC"
-                                                                    data-version = "'.$row->file_version.'"
-                                                                >
-                                                                    &nbsp;DETAIL&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }else if($row->actual_ifa){
-                                                            $actual_ifc = tgl_indo($row->actual_ifa).
-                                                            '
-                                                            <br>
-                                                                Issued V '.$row->file_version.'
-                                                            <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-link_file = "'.$linkFile.'"
-                                                                    data-step = "IFC"
-                                                                    data-version = "'.$file_version.'"
-                                                                >
-                                                                    &nbsp;DETAIL&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }else{
-                                                            $actual_ifc = '
-                                                                no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                    &nbsp;WAITING&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-
-                                                        if ($row->actual_ifc_status === 'approve') {
-                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
-                                                            <br>
-                                                            <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-link_file = "'.$linkFile.'"
-                                                                    data-step = "IFA"
-                                                                    data-version = "'.$file_version.'"
-                                                                >
-                                                                    &nbsp;APPROVED&nbsp;
-                                                                </a>
-                                                            ';
-                                                        } else if ($row->actual_ifc_status === 'reject') {
-                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
-                                                            <br>
-                                                            <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-link_file = "'.$linkFile.'"
-                                                                    data-step = "IFA"
-                                                                    data-version = "'.$file_version.'"
-                                                                >
-                                                                    &nbsp;REJECTED&nbsp;
-                                                                </a>
-                                                            ';
-                                                        } else if ($row->actual_ifc_status === 'progress') {
-                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
-                                                            <br>
-                                                            <br>
-                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
-                                                                    data-id="'.$row->id.'"
-                                                                    data-doc_desc="'.$row->description.'"
-                                                                    data-link_file = "'.$linkFile.'"
-                                                                    data-step = "IFA"
-                                                                    data-version = "'.$file_version.'"
-                                                                >
-                                                                    &nbsp;DETAIL&nbsp;
-                                                                </a>
-                                                            ';
-                                                        } else {
-                                                            $actual_ifc = '
-                                                                no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                    &nbsp;WAITING&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
+                                                        
+                                                        $actual_ifc = generateStatusBadge(
+                                                            $row->actual_ifc_status, $row->actual_ifc, $row->id,
+                                                            $row->description, $linkFile, 'IFC', $file_version
+                                                        )
                                                 ?>
                                                     <tr>
                                                         <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
