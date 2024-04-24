@@ -1133,7 +1133,7 @@ class Project_detail_engineering extends BaseController
     function timeStatusCheck($plan_date) {
         $current_datetime = date('Y-m-d H:i:s');
     
-        $status = $plan_ifa > $current_datetime ? "late" : "on time";
+        $status = $plan_date > $current_datetime ? "late" : "on time";
     
         return $status;
     }
