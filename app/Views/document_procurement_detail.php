@@ -53,8 +53,8 @@
                                         <table id="datatable" class="table table-striped table-bordered nowrap">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th rowspan="2" style="border-left-width: 4px;">NO</th>
-                                                    <th rowspan="2" style="border-left-width: 4px;">WBS CODE</th>
+                                                    <th rowspan="2">NO</th>
+                                                    <th rowspan="2">WBS CODE</th>
                                                     <th rowspan="2">DOCUMENT NUMBER</th>
                                                     <th rowspan="2" style="width: 0px;" class="desc">
                                                         DESCRIPTION
@@ -62,7 +62,7 @@
                                                     <th colspan="8" class="text-center">PLAN</th>
                                                     <th colspan="8" class="text-center">ACTUAL</th>
                                                     <th rowspan="2" class="text-center">STATUS</th>
-                                                    <th rowspan="2" class="text-center" style="border-right-width: 4px;">
+                                                    <th rowspan="2" class="text-center">
                                                         ACTION
                                                     </th>
                                                 </tr>
