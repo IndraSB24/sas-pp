@@ -53,38 +53,27 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
-                                                    <th rowspan="3" style="border-left-width: 4px;">NO</th>
-                                                    <th rowspan="3" style="border-left-width: 4px;">WBS CODE</th>
-                                                    <th rowspan="3">DOCUMENT NUMBER</th>
-                                                    <th class="desc" rowspan="3" style="width: 0px;">DESCRIPTION</th>
-                                                    <th rowspan="3" class="text-center">STATUS</th>
-                                                    <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
+                                                    <th rowspan="2" style="border-left-width: 4px;">NO</th>
+                                                    <th rowspan="2" style="border-left-width: 4px;">WBS CODE</th>
+                                                    <th rowspan="2">DOCUMENT NUMBER</th>
+                                                    <th class="desc" rowspan="2" style="width: 0px;">DESCRIPTION</th>
+                                                    <th rowspan="2" class="text-center">STATUS</th>
+                                                    <th rowspan="2" class="text-center" style="border-right-width: 4px;">
+                                                        ACTION
+                                                    </th>
                                                 </tr>
                                                 <tr>
-                                                    <th rowspan="3">WEIGHT FACTOR</th>
-                                                    <th colspan="4" class="text-center">PLAN</th>
-                                                    <th colspan="4" class="text-center">ACTUAL</th>
+                                                    <th colspan="3" class="text-center">PLAN</th>
+                                                    <th colspan="3" class="text-center">ACTUAL</th>
                                                     
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
-                                                    <th class="text-center">CUMMULATIVE</th>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
-                                                    <th class="text-center">CUMMULATIVE</th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center">50%</th>
-                                                    <th class="text-center">40%</th>
-                                                    <th class="text-center">10%</th>
-                                                    <th class="text-center">100%</th>
-                                                    <th class="text-center">50%</th>
-                                                    <th class="text-center">40%</th>
-                                                    <th class="text-center">10%</th>
-                                                    <th class="text-center">100%</th>
                                                 </tr>
                                             </thead>
         
