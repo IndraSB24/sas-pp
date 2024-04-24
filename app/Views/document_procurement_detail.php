@@ -50,7 +50,7 @@
                                         </div>
                                         <!-- <div style="overflow-x:auto;"> -->
                                         <font size="2">
-                                        <table id="datatable" class="table table-striped table-bordered">
+                                        <table id="datatable" class="table table-striped table-bordered nowrap">
                                             <thead style="border-top-width: 4px">
                                                 <tr>
                                                     <th rowspan="2" style="border-left-width: 4px;">NO</th>
