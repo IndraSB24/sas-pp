@@ -905,7 +905,7 @@
         },
         series: [cum_percent_counter, 100 - cum_percent_counter],
         labels: ["Series 1"],
-        colors: ["#1cbb8c", "#ffffff"],
+        colors: ["#1cbb8c", "#cafdee"],
         legend: {
             show: false,
             position: 'bottom',
