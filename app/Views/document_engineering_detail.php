@@ -92,8 +92,8 @@
                                 <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document">
                                     Add Document
                                 </button>
-                                <a href="<?= base_url('project_detail_engineering/testWa') ?>" class="btn btn-info waves-effect waves-light" >
-                                    Send WA
+                                <a href="<?= base_url('engineering-dashboard') ?>" class="btn btn-warning waves-effect waves-light" >
+                                    Engineering Dashboard
                                 </a>
                             </div>
                         </div>

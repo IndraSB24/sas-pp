@@ -82,7 +82,7 @@
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Actual</h5>
-                                            <h2 class="mb-0 text-dark text-center"><?= $data_page->overal_plan ?>%</h2>
+                                            <h2 class="mb-0 text-dark text-center"><?= $data_page->overal_actual ?>%</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
                                             <h5 class="card-title text-truncate font-size-14 mb-2">Varience</h5>
-                                            <h2 class="mb-0 text-dark text-center"><?= $data_page->overal_plan ?>%</h2>
+                                            <h2 class="mb-0 text-dark text-center"><?= $data_page->overal_variance ?>%</h2>
                                         </div>
                                     </div>
                                 </div>
