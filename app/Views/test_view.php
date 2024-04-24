@@ -515,7 +515,7 @@
                     id_doc = id_doc = <?= $doc_id ?>;
                     // formData.append('version', version);
                     // formData.append('file_status', 'ifa_rejected');
-                    version = <?= $doc_data[0]->file_version ?>
+                    version = <?= $doc_data[0]->file_version ?>;
                     formData.append('id_doc', id_doc);
                     formData.append('version', version);
                     swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
