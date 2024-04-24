@@ -42,6 +42,7 @@
             '<br>TANGGAL UPLOAD : '.$data['tgl_upload'].
             '<br>---------------------------------------'.
             '<br>'.
+            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
             '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
             '<br>*TERIMAKASIH*'
         ;
