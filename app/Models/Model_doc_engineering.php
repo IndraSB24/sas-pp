@@ -41,7 +41,7 @@ class Model_doc_engineering extends Model
         ')
         ->where('id', $id_doc);
         
-        return $this->get()->getResult();
+        return $this->get()->getRow();
     }
 
     // get with comment
