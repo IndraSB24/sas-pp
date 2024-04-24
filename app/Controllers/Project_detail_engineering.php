@@ -456,10 +456,11 @@ class Project_detail_engineering extends BaseController
 
             if ($update_doc) {
                 $data_wa = [
-                    'penerima' => '6285286778989',
+                    'penerima' => '6285274897212',
                     'doc_name' => $doc_name,
                     'doc_code' => $doc_code,
-                    'tgl_upload' => date('Y-m-d H:i:s')
+                    'tgl_upload' => date('Y-m-d H:i:s'),
+                    'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/internal"
                 ];
                 originatorToInternalEngineering($data_wa);
 
