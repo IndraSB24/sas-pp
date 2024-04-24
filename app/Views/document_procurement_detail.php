@@ -79,7 +79,23 @@
                                             </thead>
         
                                             <tbody>
+                                                <?php 
+                                                    $action = 'no action yet';
 
+                                                    foreach($list_doc_procurement as $index => $item): 
+                                                ?>
+                                                    <tr>
+                                                        <td class="text-center"> <?= $index + 1 ?> </td>
+                                                        <td class="text-center"> <?= $item->activity_code ?> </td>
+                                                        <td class="text-center"> <?= $item->description ?> </td>
+                                                        <?php for($i=0; $i<7; $i++): ?>
+                                                            <th class="text-center">0</th>
+                                                            <th class="text-center">0</th>
+                                                            <th class="text-center">0</th>
+                                                        <?php endfor; ?>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                         </font>
