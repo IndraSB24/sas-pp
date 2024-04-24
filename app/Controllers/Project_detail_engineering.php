@@ -456,7 +456,7 @@ class Project_detail_engineering extends BaseController
 
             if ($update_doc) {
                 $data_wa = [
-                    'penerima' => '6285274897212',
+                    'penerima' => '6285286778989',
                     'doc_name' => $doc_name,
                     'doc_code' => $doc_code,
                     'tgl_upload' => date('Y-m-d H:i:s')
