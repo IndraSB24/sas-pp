@@ -582,11 +582,19 @@
         xaxis: {
             type: 'month'
         },
-        yaxis: {
+        yaxis: [
+            {
             title: {
-                text: 'Points',
+                text: "Percents"
             },
-        },
+            },
+            {
+            opposite: true,
+            title: {
+                text: "Points"
+            }
+            }
+        ],
         tooltip: {
             shared: true,
             intersect: false,
