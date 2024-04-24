@@ -100,7 +100,7 @@
                                 <!--    </div>-->
                                 <!--</div>-->
                                 <div class="card" style="height: 90%; background: linear-gradient(to top, var(--bs-danger) 0%, 
-                                    var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);"
+                                    var(--bs-danger) <?= $data_page->overal_varience ?>%, #ffffff 0%, #ffffff 100%);"
                                 >
                                     <div class="card-body d-flex align-items-center">
                                         <div class="flex-1 overflow-hidden">
