@@ -461,7 +461,7 @@ class Project_detail_engineering extends BaseController
                     'doc_code' => $doc_code,
                     'tgl_upload' => date('Y-m-d H:i:s')
                 ];
-                waCoba();
+                waCoba($data_wa);
 
                 $response = [
                     'success' => true,
