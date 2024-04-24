@@ -437,14 +437,15 @@
                                                         }else{
                                                             $actual_ifr = '
                                                             no date yet
-                                                        <br>
-                                                            no file yet
-                                                        <br>
-                                                            <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                &nbsp;WAITING&nbsp;
-                                                            </a>
-                                                        ';
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
                                                         }
+
                                                         // set actual IFA status
                                                         if($row->actual_ifa){
                                                             $actual_ifa = tgl_indo($row->actual_ifa).
@@ -524,6 +525,60 @@
                                                                 </a>
                                                             ';
                                                         }else{
+                                                            $actual_ifc = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+
+                                                        if ($row->actual_ifc_status === 'approve') {
+                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;APPROVED&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if ($row->actual_ifc_status === 'reject') {
+                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;REJECTED&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else if ($row->actual_ifc_status === 'progress') {
+                                                            $actual_ifc = tgl_indo($row->actual_ifc).'
+                                                            <br>
+                                                            <br>
+                                                                <a href='.base_url('commentPdf/').'/'.$row->id.'/external_ifc'.' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else {
                                                             $actual_ifc = '
                                                                 no date yet
                                                             <br>
