@@ -494,7 +494,7 @@
                                                         }
 
                                                         // set actual IFA status
-                                                        $actual_ifc = generateStatusBadge(
+                                                        $actual_ifa = generateStatusBadge(
                                                             $row->actual_ifc_status, $row->actual_ifc, $row->id,
                                                             $row->description, $linkFile, 'IFA', $file_version,
                                                             'external_ifa'
