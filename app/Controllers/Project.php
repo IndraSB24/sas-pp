@@ -23,6 +23,8 @@ class Project extends BaseController
 			'overal_plan' => 0,
 			'overal_actual' => 0,
 			'overal_variance' => 0,
+			'chart_pt_engineering_plan' => 50,
+			'chart_pt_engineering_actual' => 30,
 		];
 
 		$data = [

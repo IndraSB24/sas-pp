@@ -417,7 +417,7 @@
     );
     prog_chart.render();
     
-    //  Radial chart
+    //  Radial chart 1
     var options = {
         chart: {
             height: 150,
@@ -443,7 +443,7 @@
                 }
             }
         },
-        series: [44, 55],
+        series: [<?= $data_page->chart_pt_engineering_actual ?>, <?= $data_page->chart_pt_engineering_plan ?>],
         labels: ['Actual', 'Plan'],
         colors: ['#5664d2', '#fcb92c'],
         legend: {
@@ -457,7 +457,7 @@
     );
     chart.render();
     
-    //  Radial chart 1
+    //  Radial chart 2
     var options_1 = {
         chart: {
             height: 150,
