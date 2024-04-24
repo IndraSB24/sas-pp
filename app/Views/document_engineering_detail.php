@@ -1,24 +1,38 @@
 <!-- php function for this page -->
 <?php
     // Function to generate status badge HTML
-    function generateStatusBadge($status, $date, $id, $description, $linkFile, $step, $file_version, $step_code)
+    function generateStatusBadge(
+        $status, $date, $id, $description, $linkFile, $step, $file_version, $step_code, $status_desc
+    )
     {
         switch ($status) {
             case 'approve':
-                return generateBadge('success', 'APPROVED', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
+                return generateBadge(
+                    'success', 'APPROVED', $date, $id, $description, $linkFile, $step, $file_version, $step_code, $status_desc
+                );
             case 'reject':
-                return generateBadge('danger', 'REJECTED', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
+                return generateBadge(
+                    'danger', 'REJECTED', $date, $id, $description, $linkFile, $step, $file_version, $step_code, $status_desc
+                );
             case 'progress':
-                return generateBadge('info', 'DETAIL', $date, $id, $description, $linkFile, $step, $file_version, $step_code);
+                return generateBadge(
+                    'info', 'DETAIL', $date, $id, $description, $linkFile, $step, $file_version, $step_code, $status_desc
+                );
             default:
                 return generateWaitingBadge();
         }
     }
 
     // Function to generate badge HTML
-    function generateBadge($color, $text, $date, $id, $description, $linkFile, $step, $file_version, $step_code)
+    function generateBadge(
+        $color, $text, $date, $id, $description, $linkFile, $step, $file_version, $step_code, $status_desc
+    )
     {
-        $html = tgl_indo($date) . '<br><br>';
+        $html = tgl_indo($date) . 
+            '<br>' .
+            $status_desc .
+            '<br>'
+        ;
         $html .= '<a href="' . base_url('commentPdf/') . '/' . $id . '/'. $step_code .'" class="badge bg-' . $color . ' mt-1 p-2 w-xs" id="btn-approval" 
                     data-id="' . $id . '"
                     data-doc_desc="' . $description . '"
@@ -498,14 +512,14 @@
                                                         $actual_ifa = generateStatusBadge(
                                                             $row->actual_ifa_status, $row->actual_ifa, $row->id,
                                                             $row->description, $linkFile, 'IFA', $file_version,
-                                                            'external_ifa'
+                                                            'external_ifa', 'version '.$file_version
                                                         );
                                                         
                                                         // set actual IFC status                                                       
                                                         $actual_ifc = generateStatusBadge(
                                                             $row->actual_ifc_status, $row->actual_ifc, $row->id,
                                                             $row->description, $linkFile, 'IFC', $file_version,
-                                                            'external_ifc'
+                                                            'external_ifc', 'version '.$file_version
                                                         );
                                                 ?>
                                                     <tr>
