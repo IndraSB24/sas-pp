@@ -1140,4 +1140,8 @@ class Project_detail_engineering extends BaseController
     
         return $status;
     }
+
+    public function testWa(){
+        waCoba();
+    }
 }
