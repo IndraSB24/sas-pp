@@ -120,7 +120,342 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div style="overflow-x:auto;">
+                                        <font size="2">
+                                        <table class="table table-striped table-bordered dt-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="3">WBS CODE</th>
+                                                    <th rowspan="3">DOCUMENT NUMBER</th>
+                                                    <th rowspan="3">DESCRIPTION</th>
+                                                    <th rowspan="3">WEIGHT FACTOR</th>
+                                                    <th colspan="4" class="text-center">PLAN</th>
+                                                    <th colspan="4" class="text-center">ACTUAL</th>
+                                                    <th rowspan="3" class="text-center">STATUS</th>
+                                                    <th rowspan="3" class="text-center">ACTION</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center">IFR</th>
+                                                    <th class="text-center">IFA</th>
+                                                    <th class="text-center">IFC</th>
+                                                    <th class="text-center">CUMMULATIVE</th>
+                                                    <th class="text-center">IFR</th>
+                                                    <th class="text-center">IFA</th>
+                                                    <th class="text-center">IFC</th>
+                                                    <th class="text-center">CUMMULATIVE</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center">50%</th>
+                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">10%</th>
+                                                    <th class="text-center">100%</th>
+                                                    <th class="text-center">50%</th>
+                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">10%</th>
+                                                    <th class="text-center">100%</th>
+                                                </tr>
+                                            </thead>
+        
+                                            <tbody>
+                                                <?php
+                                                    $week = 0;
+                                                    $weekPlan = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekActual = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekDates = [
+                                                        '15-6-2023',
+                                                        '22-6-2023',
+                                                        '29-6-2023',
+                                                        '6-7-2023',
+                                                        '13-7-2023',
+                                                        '20-7-2023',
+                                                        '27-7-2023',
+                                                        '3-8-2023',
+                                                        '10-8-2023',
+                                                        '17-8-2023',
+                                                        '24-8-2023',
+                                                        '31-9-2023'
+                                                    ];
+                                                    $WF_IFR = 0.5;
+                                                    $WF_IFA = 0.4;
+                                                    $WF_IFC = 0.1;
+                                                
+                                                    foreach($list_doc_engineering as $row) :
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifr);
+                                                            $targetDate = world_date($weekDates[$i]);
+                                                            
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFR * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+                                                        
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifa);
+                                                            $targetDate = world_date($weekDates[$i]);
+                                                            
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFA * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+                                                        
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifc);
+                                                            $targetDate = world_date($weekDates[$i]);
+                                                            
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFC * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+                                                        
+                                                        // set plan cumulative
+                                                        $plan_cumulative = 0;
+                                                        if(world_date($row->plan_ifr) <= date_now()){
+                                                            $plan_cumulative += $WF_IFR*$row->weight_factor;
+                                                        }
+                                                        if(world_date($row->plan_ifa) <= date_now()){
+                                                            $plan_cumulative += $WF_IFA*$row->weight_factor;
+                                                        }
+                                                        if(world_date($row->plan_ifc) <= date_now()){
+                                                            $plan_cumulative += $WF_IFC*$row->weight_factor;
+                                                        }
+                                                        
+                                                        // set actual cumulative
+                                                        $actual_cumulative = 0;
+                                                        if ($row->actual_ifr) {
+                                                            $actual_cumulative += $WF_IFR * $row->weight_factor;
+                                                        
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifr);
+                                                                $targetDate = world_date($weekDates[$i]);
+                                                        
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFR * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifa) {
+                                                            $actual_cumulative += $WF_IFA * $row->weight_factor;
+                                                        
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifa);
+                                                                $targetDate = world_date($weekDates[$i]);
+                                                        
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFA * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifc) {
+                                                            $actual_cumulative += $WF_IFC * $row->weight_factor;
+                                                        
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifc);
+                                                                $targetDate = world_date($weekDates[$i]);
+                                                        
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                    break; // Exit the loop
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                        // set variance status
+                                                        if($actual_cumulative == $plan_cumulative){
+                                                            $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
+                                                        }else if($actual_cumulative > $plan_cumulative){
+                                                            $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
+                                                        }else{
+                                                            $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
+                                                        }
+                                                        
+                                                        
+                                                        $linkFile = base_url('upload/doc_engineering/'.$row->file);
+                                                        $file_version = $row->file_version ? $row->file_version : 'nothing';
+                                                        // set actual IFR status
+                                                        if($row->actual_ifr){
+                                                            $actual_ifr = tgl_indo($row->actual_ifr).
+                                                            '
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFR"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else{
+                                                            $actual_ifr = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-path = "Project_detail_engineering/update/upload_file"
+                                                                    data-step = "IFC"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;UP FILE&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+                                                        
+                                                        // set actual IFA status
+                                                        if($row->actual_ifa){
+                                                            $actual_ifa = tgl_indo($row->actual_ifa).
+                                                            '
+                                                            <br>
+                                                                Approved V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$row->file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else if($row->actual_ifr){
+                                                            $actual_ifa = tgl_indo($row->actual_ifr).
+                                                            '
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFA"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else{
+                                                            $actual_ifa = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+                                                        
+                                                        // set actual IFC status
+                                                        if($row->actual_ifc_file){
+                                                            $actual_ifc = tgl_indo($row->actual_ifc).
+                                                            '
+                                                            <br>
+                                                                Appproved V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFC"
+                                                                    data-version = "'.$row->file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else if($row->actual_ifa){
+                                                            $actual_ifc = tgl_indo($row->actual_ifa).
+                                                            '
+                                                            <br>
+                                                                Issued V '.$row->file_version.'
+                                                            <br>
+                                                                <a href="#" class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    data-id="'.$row->id.'"
+                                                                    data-doc_desc="'.$row->description.'"
+                                                                    data-link_file = "'.$linkFile.'"
+                                                                    data-step = "IFC"
+                                                                    data-version = "'.$file_version.'"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }else{
+                                                            $actual_ifc = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+                                                ?>
+                                                    <tr>
+                                                        <td nowrap><?= $row->level_code ?></td>
+                                                        <td class="text-center" nowrap> - </td>
+                                                        <td><?= $row->description ?></td>
+                                                        <td class="text-center"><?= $row->weight_factor ?>%</td>
+                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
+                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                        <td class="text-center"><?= $plan_cumulative ?>%</td>
+                                                        <td class="text-center" nowrap><?= $actual_ifr ?></td>
+                                                        <td class="text-center" nowrap><?= $actual_ifa ?></td>
+                                                        <td class="text-center" nowrap><?= $actual_ifc ?></td>
+                                                        <td class="text-center"><?= $actual_cumulative ?>%</td>
+                                                        <td class="text-center">
+                                                            <a href="document-timeline/<?= $row->id ?>" >
+                                                                <?= $status ?>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center" nowrap>
+                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit"
+                                                                data-id="<?= $row->id ?>"
+                                                                data-level_code="<?= $row->level_code ?>"
+                                                                data-description="<?= $row->description ?>"
+                                                                data-weight_factor="<?= $row->weight_factor ?>"
+                                                                data-plan_ifr="<?= tgl_indo($row->plan_ifr) ?>"
+                                                                data-plan_ifa="<?= tgl_indo($row->plan_ifa) ?>"
+                                                                data-plan_ifc="<?= tgl_indo($row->plan_ifc) ?>"
+                                                            >
+                                                                <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                            </a>
+                                                            &nbsp;
+                                                            <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_engineering/delete">
+                                                                <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <?php
+                                                    for($i_cum_plan=1; $i_cum_plan<count($weekPlan); $i_cum_plan++){
+                                                        $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan-1];
+                                                    }
+                                                    for($i_cum_act=1; $i_cum_act<count($weekActual); $i_cum_act++){
+                                                        $weekActual[$i_cum_act] += $weekActual[$i_cum_act-1];
+                                                    }
+                                                    for($week_counter=0; $week_counter<count($weekPlan); $week_counter++){
+                                                        echo '
+                                                            <input type="hidden" id="week_plan_'.$week_counter.'" value="'.$weekPlan[$week_counter].'" />
+                                                            <input type="hidden" id="week_actual_'.$week_counter.'" value="'.$weekActual[$week_counter].'" />
+                                                        ';
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                        </font>
+                                        </div>
                                     </div>
                                     
                                 </div>
@@ -144,251 +479,6 @@
         <!-- JAVASCRIPT -->
         <?= $this->include('partials/vendor-scripts') ?>
     </body>
-    
-    <!--Modal Add Document-->
-    <div class="modal fade" id="modal-add-document" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Engineering Document</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 1 Code</label>
-                            <input type="text" class="form-control" name="level_code" id="level_code" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description" id="description" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Weight Factor</label>
-                            <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="form-label">Plan</label>
-                        <div class="col-md-4">
-                            <label class="form-label">IFR</label>
-                            <div class="input-group" id="ifr_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">IFA</label>
-                            <div class="input-group" id="ifa_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifa_date" data-provide="datepicker" name="plan_ifa" id="plan_ifa"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">IFC</label>
-                            <div class="input-group" id="ifc_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifc_date" data-provide="datepicker" name="plan_ifc" id="plan_ifc"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data" data-object="Project_detail_engineering/add/doc_engineering">Add</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-    
-    <!--Modal Edit Document-->
-    <div class="modal fade" id="modal-edit-document" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Engineering Document</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 1 Code</label>
-                            <input type="text" class="form-control" name="level_code_edit" id="level_code_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description_edit" id="description_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Weight Factor</label>
-                            <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="form-label">Plan</label>
-                        <div class="col-md-4">
-                            <label class="form-label">IFR</label>
-                            <div class="input-group" id="ifr_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="plan_ifr_edit"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">IFA</label>
-                            <div class="input-group" id="ifa_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifa_date_edit" data-provide="datepicker" name="plan_ifa_edit" id="plan_ifa_edit"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">IFC</label>
-                            <div class="input-group" id="ifc_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
-                                    data-date-container="#ifc_date_edit" data-provide="datepicker" name="plan_ifc_edit" id="plan_ifc_edit"/>
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" id="id_doc_edit" />
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_engineering/update/document_detail">Save</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-    
-    <!--Modal Upload All File-->
-    <div class="modal fade" id="modal-upload-file" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST" id="form-modal-upload-file" enctype="multipart/form-data">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Upload <span class="upload_step"></span> File</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label class="form-label">Document Description</label>
-                                <input type="text" class="form-control" name="upload_doc_desc" id="upload_doc_desc" readonly />
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="form-label">Choose <span class="upload_step"></span> File</label>
-                            <div>
-                                <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
-                                <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
-                                &nbsp;<span id="upload_file_name">No File Choosen</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" id="upload_id_doc" />
-                        <button type="button" class="btn btn-success" id="upload_btn_up"
-                            data-path="#"
-                            data-step="#"
-                            data-version="#"
-                        >
-                            Upload
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <!--Modal Approval Document-->
-    <div class="modal fade" id="modal-approval" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <form action="#" method="POST" id="form-modal-approval" enctype="multipart/form-data">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="myLargeModalLabel">
-                            Document Approval for <span id="approval_step_version"></span>
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label class="form-label">Document Description</label>
-                                <input type="text" class="form-control" name="approval_doc_desc" id="approval_doc_desc" readonly />
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label">Submitted By</label>
-                                <input type="text" class="form-control" name="approval_submitted_by" id="approval_submitted_by" value="John Submit" readonly />
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Submitted At</label>
-                                <input type="text" class="form-control" name="approval_submitted_at" id="approval_submitted_at" value="20-07-2023" readonly />
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Submitted File</label>
-                                <div>
-                                    <a href="#" target="blank" id="approval_link_file" class="btn btn-info" style="width: 100%">
-                                        &nbsp;Check File&nbsp;
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label class="form-label">Comment</label>
-                                <textarea id="approval_comment_text" name="approval_comment_text" class="form-control" maxlength="1000" rows="3" placeholder="type your comment"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="form-label">Upload Commented File (Optional)</label>
-                            <div>
-                                <label for="approval_comment_file" id="approval_btn_comment_file" class="btn btn-info">Choose File</label>
-                                <input name="approval_comment_file" id="approval_comment_file" type="file" multiple="multiple" style="display: none;" />
-                                &nbsp;<span id="approval_file_name">No File Choosen</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" id="approval_id_doc" />
-                        <button type="button" class="btn btn-danger waves-effect" id="btn-approval-reject"
-                            data-step="#"
-                            data-version="#"
-                        > 
-                            Reject with Comment 
-                        </button>
-                        &nbsp;or&nbsp;
-                        <button type="button" class="btn btn-success" id="btn-approval-approve"
-                            data-path="#"
-                            data-step="#"
-                            data-version="#"
-                        >
-                            Approve
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
 </html>
 
 <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script> 
