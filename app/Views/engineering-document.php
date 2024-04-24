@@ -818,9 +818,9 @@
         // Format the current date as desired (e.g., 'MMM YYYY' for abbreviated month name and year)
         const label = `${currentDate.toLocaleString('default', { month: 'short' })} ${currentDate.getFullYear()}`;
         labels_mixed_chart1.push(label);
-    }
+    };
     
-    const data_weight_factor = <?= json_encode($data_weight_factor) ?>
+    const data_weight_factor = <?= json_encode($data_weight_factor) ?>;
     const actual_mixed_chart1 = [];
     data_weight_factor.forEach(function(list) {
         actual_mixed_chart1.push(list.weight_factor);
