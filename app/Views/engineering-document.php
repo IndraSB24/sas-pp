@@ -820,8 +820,9 @@
         labels_mixed_chart1.push(label);
     }
     
+    const data_weight_factor = <?= json_encode($data_weight_factor) ?>
     const actual_mixed_chart1 = [];
-    $data_weight_factor.forEach(function(list) {
+    data_weight_factor.forEach(function(list) {
         actual_mixed_chart1.push(list.weight_factor);
     });
 
