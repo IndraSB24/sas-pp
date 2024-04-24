@@ -498,14 +498,14 @@
                                                             $row->actual_ifc_status, $row->actual_ifc, $row->id,
                                                             $row->description, $linkFile, 'IFA', $file_version,
                                                             'external_ifa'
-                                                        )
+                                                        );
                                                         
                                                         // set actual IFC status                                                       
                                                         $actual_ifc = generateStatusBadge(
                                                             $row->actual_ifc_status, $row->actual_ifc, $row->id,
                                                             $row->description, $linkFile, 'IFC', $file_version,
                                                             'external_ifc'
-                                                        )
+                                                        );
                                                 ?>
                                                     <tr>
                                                         <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
