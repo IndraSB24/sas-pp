@@ -270,11 +270,6 @@
 
     <script src="assets/js/app.js"></script>
     <script>
-        console.log({
-            "indra test",
-            <?= json_encode($doc_data) ?>
-        })
-
         document.addEventListener('DOMContentLoaded', function() {})
         var app = new Vue({
             el: '#app',
@@ -508,9 +503,9 @@
                         path = "<?= base_url('Project_detail_engineering/reject_internal_pem') ?>";
                     } else if (fileDesc === 'external_ifa') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifa') ?>";
-                        formData.append('plan_ifa', $doc_data->plan_ifa);
+                        formData.append('plan_ifa', $doc_data[0]->plan_ifa);
                     } else if (fileDesc === 'external_ifc') {
-                        formData.append('plan_ifc', $doc_data->plan_ifc);
+                        formData.append('plan_ifc', $doc_data[0]->plan_ifc);
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
                     };
                     // const version = $(this).data('version');
@@ -520,7 +515,7 @@
                     // formData.append('version', version);
                     // formData.append('file_status', 'ifa_rejected');
                     formData.append('id_doc', id_doc);
-                    formData.append('version', <?= $doc_data->file_version ?>);
+                    formData.append('version', <?= $doc_data[0]->file_version ?>);
                     swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
 
                     Swal.fire({
