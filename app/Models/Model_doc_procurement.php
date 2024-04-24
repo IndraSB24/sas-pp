@@ -15,17 +15,13 @@ class Model_doc_procurement extends Model
 
     protected $allowedFields = [
         'id_project', 'activity_code', 'description',
-        'unit',
-        'weight_factor',
-        'plan_ifr',
-        'plan_ifa',
-        'plan_ifc',
-        'actual_ifr',
-        'actual_ifr_file',
-        'actual_ifa',
-        'actual_ifa_file',
-        'actual_ifc',
-        'actual_ifc_file',
+        'activity_code', 'description_of_work', 'mr_received_plan', 'mr_received_forecast', 
+        'mr_received_actual', 'rfq_issued_plan', 'rfq_issued_forecast', 'rfq_issued_actual', 
+        'quotation_received_plan', 'quotation_received_forecast', 'quotation_received_actual', 
+        'technical_clarification_plan', 'technical_clarification_forecast', 'technical_clarification_actual', 
+        'tbe_issued_plan', 'tbe_issued_forecast', 'tbe_issued_actual', 'cbe_issued_plan', 'cbe_issued_forecast', 
+        'cbe_issued_actual', 'contract_date_plan', 'contract_date_forecast', 'contract_date_actual'
+        
     ];
 
     protected $useTimestamps = true;
