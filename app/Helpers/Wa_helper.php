@@ -4,7 +4,7 @@
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	function hostWa($param){
 	    if($param == '1'){
-	        $devId = 'qgyzytOgRq1q9p3HHLbhunrSGk0ITehZRJ89XYhtxhP8nz1HkovlVLZ60GBYDxd4'; //device ID Admin Storypie
+	        $devId = '9x34Jp6G3SNSP9qkc6WB3LfWKjfMJYGJxSqchiToyo9jMsRVSasJNWKyEJklbdlR'; //device ID Admin
 	    }else if($param == '2'){
 	        $devId = '';
 	    }
@@ -30,10 +30,20 @@
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // format pesan -----------------------------------------------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------		
-	function waPermintaanMutasi($data=null){
+	function waCoba($data=null){
 	    $dataWa['image']    = false;
-		$dataWa['devId']	= hostWa('1');
-		$dataWa['groupId']	= groupId('h1allOutlet');
+		$dataWa['phone']	= hostWa('1');
+		$dataWa['penerima']	= '085274897212';
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+                                '<br><br>*BERHASIL NGK TU*';
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+    
+    function waPermintaanMutasi($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['phone']	= hostWa('1');
+		$dataWa['nope']	    = '085274897212';
 		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
                                 '<br><br>*PERMINTAAN MUTASI BARANG*'.
                                 '<br>---------------------------------------'.
@@ -263,7 +273,7 @@
         print_r($result);
 	}
 	
-	function sendPersonalV2Eu($dataSend){
+	function sendPersonalV2Kudus($dataSend){
 	    $curl = curl_init();
         $token = $dataSend['devId'];
         $random = true;
@@ -299,9 +309,9 @@
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload) );
         if($dataSend['image']){
-            curl_setopt($curl, CURLOPT_URL,  "https://eu.wablas.com/api/v2/send-image");
+            curl_setopt($curl, CURLOPT_URL,  "https://kudus.wablas.com/api/v2/send-image");
         }else{
-            curl_setopt($curl, CURLOPT_URL,  "https://eu.wablas.com/api/v2/send-message");    
+            curl_setopt($curl, CURLOPT_URL,  "https://kudus.wablas.com/api/v2/send-message");    
         }
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -314,9 +324,9 @@
 	
 	function sendWa($dataSend){
 	    $token = $dataSend['devId'];
-	    $phone = $dataSend['groupId'];
+	    $phone = $dataSend['nope'];
 	    $message = $dataSend['pesan'];
-		$result = file_get_contents("https://jogja.wablas.com/api/send-message?phone=$phone&message=$message&token=$token&isGroup='true'");
+		$result = file_get_contents("https://kudus.wablas.com/api/send-message?phone=$phone&message=$message&token=$token&isGroup='true'");
 
 		return true;
 	}
