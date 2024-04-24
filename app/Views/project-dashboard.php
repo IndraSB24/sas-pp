@@ -581,11 +581,19 @@
         xaxis: {
             type: 'month'
         },
-        yaxis: {
-            title: {
-                text: 'Points',
+        yaxis: [
+            {
+                title: {
+                    text: 'Points Cumulative',
+                },
             },
-        },
+            {
+                opposite: true,
+                title: {
+                    text: 'Points'
+                }
+            }
+        ],
         tooltip: {
             shared: true,
             intersect: false,
@@ -616,7 +624,6 @@
     chartMixed.render();
 
     // column chart
-
     var options_man_power = {
         chart: {
             height: 200,
@@ -680,7 +687,6 @@
             offsetY: 7
         }
     }
-
     var chart_man_power = new ApexCharts(
         document.querySelector("#chart_man_power"),
         options_man_power
