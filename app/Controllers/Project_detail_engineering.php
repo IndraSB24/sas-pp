@@ -787,7 +787,8 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'internal_pem_approve',
             'internal_pem_status' => 'approve',
             'internal_pem_date' => date('Y-m-d H:i:s'),
-            'actual_ifr' => date('Y-m-d H:i:s')
+            'actual_ifr' => date('Y-m-d H:i:s'),
+            'actual_ifr_status' => 'uploaded'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -883,7 +884,8 @@ class Project_detail_engineering extends BaseController
         $data = [
             'id' => $id_doc,
             'file_status' => 'external_ifa_approve',
-            'actual_ifa' => date('Y-m-d H:i:s')
+            'actual_ifa' => date('Y-m-d H:i:s'),
+            'actual_ifa_status' => 'approve'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -926,7 +928,9 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'ifa_reject',
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
-            'actual_ifa' => date('Y-m-d H:i:s')
+            'actual_ifr_status' => 'progress'
+            'actual_ifa' => date('Y-m-d H:i:s'),
+            'actual_ifa_status' => 'reject'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -967,7 +971,8 @@ class Project_detail_engineering extends BaseController
             'id' => $id_doc,
             'file_version' => 1,
             'file_status' => 'ifc_approve',
-            'actual_ifc' => date('Y-m-d H:i:s')
+            'actual_ifc' => date('Y-m-d H:i:s'),
+            'actual_ifc_status' => 'approve'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -1010,7 +1015,9 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'ifc_reject',
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
-            'actual_ifc' => date('Y-m-d H:i:s')
+            'actual_ifr_status' => 'progress'
+            'actual_ifc' => date('Y-m-d H:i:s'),
+            'actual_ifc_status' => 'reject'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 

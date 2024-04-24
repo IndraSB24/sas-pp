@@ -45,12 +45,15 @@ class Auth extends BaseController
         if($data){
             $pass = $data->password;
             $verify_pass = password_verify($password, $pass);
+
+            $user_data = $this->main_model->get_by_id($data->id)
+
             if($pass == $password){
                 $ses_data = [
-                    'activeId'  => $data->id,
-                    'username'  => $data->username,
-                    'nama'      => $data->nama,
-                    'role'      => $data->id_role,
+                    'activeId'  => $user_data->id,
+                    'username'  => $user_data->username,
+                    'nama'      => $user_data->nama,
+                    'role'      => $user_data->role_name,
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);

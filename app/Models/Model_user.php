@@ -46,4 +46,16 @@ class Model_user extends Model
     public function getAll(){
         //return $this->db->findAll();
     }
+
+    // get by id
+    public function get_by_id($id_user){
+        $this->select('
+            user.*,
+            r.name as role_name
+        ')
+        ->join('role r', 'r.id=user.id_role', 'LEFT')
+        ->where('id', $id_user);
+        
+        return $this->get()->getResult();
+    }
 }
