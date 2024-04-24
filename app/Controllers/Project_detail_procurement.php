@@ -3,21 +3,23 @@
 namespace App\Controllers;
 use App\Models\Model_project;
 use App\Models\Model_doc_procurement;
+use App\Models\Model_doc_engineering;
 
 class Project_detail_procurement extends BaseController
 {
-    protected $Model_doc_procurement, $Model_project;
+    protected $Model_doc_procurement, $Model_project. $Model_doc_engineering;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
         $this->Model_project = new Model_project();
+		$this->Model_doc_engineering = new Model_doc_engineering();
     }
     
 	public function index($project_id=null){
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Procurement']),
-			'list_doc_procurement' => $this->Model_doc_procurement->findAll()
+			'list_doc_procurement' => $this->Model_doc_engineering->findAll()
 		];
 		return view('procurement-document', $data);
 	}
@@ -26,7 +28,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_procurement->findAll()
+			'list_doc_procurement' => $this->Model_doc_engineering->findAll()
 		];
 		return view('document_procurement_detail', $data);
 	}
