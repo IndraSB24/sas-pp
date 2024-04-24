@@ -61,11 +61,6 @@
                                                     <th rowspan="3" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
                                                 <tr>
-                                                    
-                                                    <th rowspan="3" style="border-left-width: 4px;">JEDHI TEKNIKA</th>
-                                                    <th rowspan="3">ENGINER PP</th>
-                                                    <th rowspan="3">HO PP</th>
-                                                    <th rowspan="3" style="border-right-width: 4px;">PEM PP</th>
                                                     <th rowspan="3">WEIGHT FACTOR</th>
                                                     <th colspan="4" class="text-center">PLAN</th>
                                                     <th colspan="4" class="text-center">ACTUAL</th>
