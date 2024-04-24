@@ -543,20 +543,21 @@
             }
         },
         colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
-        series: [{
+        series: [
+            {
                 name: 'Plan',
                 type: 'column',
                 data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
             },
             {
-                name: 'Actual',
-                type: 'column',
-                data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
-            },
-            {
                 name: 'Cum Plan',
                 type: 'line',
                 data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
+            },
+            {
+                name: 'Actual',
+                type: 'column',
+                data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
             },
             {
                 name: 'Cum Actual',
@@ -591,7 +592,7 @@
             {
             opposite: true,
             title: {
-                text: "Point"
+                text: "Percent"
             }
             }
         ],
