@@ -821,16 +821,21 @@
     };
     
     const data_weight_factor = <?= json_encode($data_weight_factor) ?>;
-    const actual_mixed_chart1 = [];
+    const actual_mixed_chart = [];
     data_weight_factor.forEach(function(list) {
-        actual_mixed_chart1.push(list.weight_factor);
+        actual_mixed_chart.push(list.weight_factor);
     });
 
     const cum_actual_mixed_chart1 = [];
     let sum = 0;
-    actual_mixed_chart1.forEach(function(value) {
+    actual_mixed_chart.forEach(function(value) {
         sum += value;
-        cum_actual_mixed_chart1.push(sum);
+        cum_actual_mixed_chart.push(sum);
+    });
+
+    console.log({
+        actual_mixed_chart,
+        cum_actual_mixed_chart
     });
     
     var optionsMixed = {
@@ -860,7 +865,7 @@
         {
             name: 'Actual',
             type: 'column',
-            data: actual_mixed_chart1
+            data: actual_mixed_chart
         },
         {
             name: 'Cum Plan',
@@ -870,7 +875,7 @@
         {
             name: 'Cum Actual',
             type: 'line',
-            data: cum_actual_mixed_chart1
+            data: cum_actual_mixed_chart
         }],
         fill: {
             opacity: [0.85, 0.85, 1, 1],
