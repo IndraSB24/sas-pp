@@ -19,7 +19,7 @@ class Project_detail_engineering extends BaseController
         $this->timeline_doc_model = new Model_timeline_doc();
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
         $this->Model_engineering_doc_file = new Model_engineering_doc_file();
-        helper(['session_helper', 'upload_path_helper']);
+        helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
 	public function index($project_id=null){

@@ -29,7 +29,7 @@ class BaseController extends Controller
 	 */
 	protected $helpers = [
 		'Session_helper', 'Mandatory_helper', 'Datetime_helper', 'NumberFormat_helper', 'Versioning_helper',
-		'Upload_path_helper'
+		'Upload_path_helper', 'Wa_helper'
 	];
 
 	/**
