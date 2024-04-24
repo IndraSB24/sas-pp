@@ -1015,7 +1015,7 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'ifc_reject',
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
-            'actual_ifr_status' => 'progress'
+            'actual_ifr_status' => 'progress',
             'actual_ifc' => date('Y-m-d H:i:s'),
             'actual_ifc_status' => 'reject'
         ];
