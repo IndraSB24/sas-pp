@@ -31,8 +31,6 @@ class Project_detail_engineering extends BaseController
             'total_doc' => $this->doc_engineering_model->count_all_doc()
 		];
 
-
-
 		return view('engineering-document', $data);
 	}
 	
@@ -990,7 +988,7 @@ class Project_detail_engineering extends BaseController
         
         $data = [
             'id' => $id_doc,
-            'file_version' => 1,
+            'file_version' => 0,
             'file_status' => 'ifc_approve',
             'actual_ifc' => date('Y-m-d H:i:s'),
             'actual_ifc_status' => 'approve'
