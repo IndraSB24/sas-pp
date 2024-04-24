@@ -34,7 +34,8 @@ class Project extends BaseController
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail]),
 			'data_page' => $data_page
 		];
-		return view('project-dashboard', $data);
+		// return view('project-dashboard', $data);
+		return view('project-dashboard-v2', $data);
 	}
 	
 	public function show_project_list(){
