@@ -872,8 +872,8 @@
             type: 'donut',
         },
         series: [cum_percent_counter, 100 - cum_percent_counter],
-        labels: ["Achieve", "Progress"],
-        colors: ["#1cbb8c", "#cafdee"],
+        labels: ["Complete", "Waiting"],
+        colors: ["#1cbb8c", "#fcb92c"],
         legend: {
             show: false,
             position: 'bottom',
@@ -909,8 +909,8 @@
             type: 'donut',
         },
         series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
-        labels: ["Complete Document", "Progress Document"],
-        colors: ["#1cbb8c", "#cafdee"],
+        labels: ["Complete Document", "Waiting Document"],
+        colors: ["#1cbb8c", "#fcb92c"],
         legend: {
             show: false,
             position: 'bottom',
