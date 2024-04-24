@@ -484,7 +484,7 @@
                 }
             }
         },
-        series: [44, 55],
+        series: [<?= $data_page->chart_pt_procurement_actual ?>, <?= $data_page->chart_pt_procurement_plan ?>],
         labels: ['Actual', 'Plan'],
         colors: ['#5664d2', '#fcb92c'],
         legend: {
