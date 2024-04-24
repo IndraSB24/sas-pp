@@ -909,7 +909,7 @@
             type: 'donut',
         },
         series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
-        labels: ["Series 1", "Series 2"],
+        labels: ["Complete Document", "Progress Document"],
         colors: ["#1cbb8c", "#5664d2"],
         legend: {
             show: false,
