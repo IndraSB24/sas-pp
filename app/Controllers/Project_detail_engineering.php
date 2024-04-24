@@ -427,12 +427,15 @@ class Project_detail_engineering extends BaseController
                 'internal_engineering_status' => 'progress',
                 'internal_engineering_date' => '',
                 'internal_ho_status' => '',
-                'internal_ho_date' => '',
+                'internal_ho_date' => null,
                 'internal_pem_status' => '',
-                'internal_pem_date' => '',
+                'internal_pem_date' => null,
                 'actual_ifr' => null,
+                'actual_ifr_status' => '',
                 'actual_ifa' => null,
+                'actual_ifa_status' => '',
                 'actual_ifc' => null,
+                'actual_ifc_status' => ''
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -605,16 +608,16 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // reject internal engineerin
-    public function reject_internal_engineering(){
+    // approve internal engineerin
+    public function approve_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
         
         $data = [
             'id' => $id_doc,
-            'file_status' => 'reject',
-            'internal_originator_status' => 'progress',
-            'internal_engineering_status' => 'reject',
-            'internal_engineering_date' => date('Y-m-d H:i:s')
+            'file_status' => 'internal_engineering_approve',
+            'internal_engineering_status' => 'approve',
+            'internal_engineering_date' => date('Y-m-d H:i:s'),
+            'internal_ho_status' => 'progress',
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -622,7 +625,7 @@ class Project_detail_engineering extends BaseController
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
             'time'                  => date('Y-m-d H:i:s'),
-            'timeline_title'        => 'internal review file reject',
+            'timeline_title'        => 'internal engineering review file approve',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
             'new_file'              => '',
@@ -646,16 +649,16 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // approve internal engineerin
-    public function approve_internal_engineering(){
+    // reject internal engineerin
+    public function reject_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
         
         $data = [
             'id' => $id_doc,
-            'file_status' => 'internal_engineering_approve',
-            'internal_engineering_status' => 'approve',
-            'internal_engineering_date' => date('Y-m-d H:i:s'),
-            'internal_ho_status' => 'progress',
+            'file_status' => 'reject',
+            'internal_originator_status' => 'progress',
+            'internal_engineering_status' => 'reject',
+            'internal_engineering_date' => date('Y-m-d H:i:s')
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
@@ -663,7 +666,7 @@ class Project_detail_engineering extends BaseController
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
             'time'                  => date('Y-m-d H:i:s'),
-            'timeline_title'        => 'internal engineering review file approve',
+            'timeline_title'        => 'internal review file reject',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
             'new_file'              => '',
