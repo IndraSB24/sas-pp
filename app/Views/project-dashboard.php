@@ -585,13 +585,13 @@
         yaxis: [
             {
             title: {
-                text: "Percents"
+                text: "Percent"
             },
             },
             {
             opposite: true,
             title: {
-                text: "Points"
+                text: "Point"
             }
             }
         ],
@@ -601,7 +601,7 @@
             y: {
                 formatter: function(y) {
                     if (typeof y !== "undefined") {
-                        return y.toFixed(0) + " points";
+                        return y.toFixed(0) + " percent";
                     }
                     return y;
 
