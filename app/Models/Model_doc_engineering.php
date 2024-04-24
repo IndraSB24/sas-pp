@@ -44,6 +44,16 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get sum actual weight factor
+    public function get_weight_factor(){
+        $this->select('
+            weight_factor
+        ')
+        ->where('file_status', 'ifc_approve');
+        
+        return $this->get()->getResult();
+    }
+
     // get with comment
     public function get_with_comment($id){
         $this->select('
