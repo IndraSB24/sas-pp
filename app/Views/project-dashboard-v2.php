@@ -662,11 +662,24 @@
         xaxis: {
             type: 'month'
         },
-        yaxis: {
-            title: {
-                text: 'Points',
+        // yaxis: {
+        //     title: {
+        //         text: 'Points',
+        //     },
+        // },
+        yaxis: [
+            {
+                title: {
+                    text: "SCurve Prcent"
+                },
             },
-        },
+            {
+                opposite: true,
+                title: {
+                    text: "Bar Percent"
+                }
+            }
+        ],
         tooltip: {
             shared: true,
             intersect: false,
