@@ -103,7 +103,7 @@
                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
                                     var(--bs-danger) <?= $data_page->overal_variance ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center"><?= $data_page->overal_variance ?>%</h3>
+                                        <h3 class="mb-0 text-center">-<?= $data_page->overal_variance ?>%</h3>
                                         <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Variance</h5>
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <i class="far fa-chart-bar" style="font-size: 3rem;"></i>
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="galon" style="padding: 15px;padding-top: 10px;">
+                                <div class="galon" style="padding: 15px;padding-top: 10px">
                                     <div class="text-center">
                                         <span> Progress Tracking</span>
                                     </div>
