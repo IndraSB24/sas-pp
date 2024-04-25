@@ -25,9 +25,10 @@
                             <div class="col-lg-6 pb-0">
                                 <div class="card" style="height:100%;">
                                     <div class="card-body">
-                                        <h4 class="card-title mb-1">Engineering S Curve</h4>
+                                        <h4 class="card-title">Engineering S Curve</h4>
                                         <!--chart-->
-                                        <div id="scurve_mdr" class="apex-charts" ></div>
+                                        <!-- <div id="scurve_mdr" class="apex-charts" ></div> -->
+                                        <div id="mixed_chart_1" class="apex-charts mt-5" dir="ltr"></div>
                                     </div>
                                 </div>
                             </div>
@@ -596,7 +597,111 @@
     chart.render();
     
     
-    
+    // Mixed chart
+    var optionsMixed = {
+        chart: {
+            height: 200,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [0, 0, 4, 4],
+            curve: 'straight'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        series: [{
+                name: 'Plan',
+                type: 'column',
+                data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
+            },
+            {
+                name: 'Actual',
+                type: 'column',
+                data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
+            },
+            {
+                name: 'Cum Plan',
+                type: 'line',
+                data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
+            },
+            {
+                name: 'Cum Actual',
+                type: 'line',
+                data: [0, 10, 20, 30, 40, 43, 48, 65, 70, 75, 80]
+            }
+        ],
+        fill: {
+            opacity: [0.85, 0.85, 1, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        markers: {
+            size: 4
+        },
+        xaxis: {
+            type: 'month'
+        },
+        // yaxis: {
+        //     title: {
+        //         text: 'Points',
+        //     },
+        // },
+        yaxis: [
+            {
+                title: {
+                    text: "SCurve Prcent"
+                },
+            },
+            {
+                opposite: true,
+                title: {
+                    text: "Bar Percent"
+                }
+            }
+        ],
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function(y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
+
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            padding: {
+                bottom: 10
+            }
+        },
+        legend: {
+            offsetY: 7
+        }
+    }
+    var chartMixed = new ApexCharts(
+        document.querySelector("#mixed_chart_1"),
+        optionsMixed
+    );
+    chartMixed.render();
     
     
     
