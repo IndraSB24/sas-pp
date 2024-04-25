@@ -77,7 +77,7 @@
                         <div class="row mb-3">
                             <div class="col-md-2">
                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-success) 0%, 
-                                        var(--bs-success) 100%, #ffffff 0%, #ffffff 100%);">
+                                        var(--bs-success) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
                                         <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
                                         <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Plan</h5>
