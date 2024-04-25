@@ -56,6 +56,6 @@ class Model_user extends Model
         ->join('role r', 'r.id=user.id_role', 'LEFT')
         ->where('user.id', $id_user);
         
-        return $this->get()->getResult();
+        return $this->get()->getRow();
     }
 }
