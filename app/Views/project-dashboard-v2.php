@@ -104,7 +104,7 @@
                                     var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
                                         <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
-                                        <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Varience</h5>
+                                        <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Variance</h5>
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <i class="far fa-chart-bar" style="font-size: 3rem;"></i>
                                         </div>
@@ -221,12 +221,12 @@
                                 </div><!--end card-->
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
                                 <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px">
                                     <div class="text-center mb-4">
                                         <div class="text-center mt-2" style="background-color: antiquewhite; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:3rem">
-                                        <i class="fas fa-funnel-dollar"></i>
+                                            <i class="fas fa-funnel-dollar"></i>
                                             <h4 class="card-title mb-0">Earned Value Management</h4>
                                         </div>
                                     </div>
@@ -236,19 +236,113 @@
                                                 <h6 class="mt-2 card-title" style="font-weight:5000">CPI</h6>
                                                 <span style="font-size: 3rem;">1</span>
                                             </div>
-                                    </div>
+                                        </div>
                                         <div style="padding: 5px;padding-top:0%" class="col-md-6">
                                             <div class=" text-center" style="background-color:rgba(255, 255, 240, 0.9);border: 1px solid #E0E0E0; border-radius: 20px;line-height:55px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
                                                 <h6 class="mt-2 card-title" style="font-weight:5000">SPI</h6>
                                                 <span style="font-size: 3rem;">-1</span>
                                             </div>
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px">
-                                fuadi
+                            <div class="col-md-6">
+                                <div class="galon row" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 240, 0.9)">
+                                    <div class="col-md-6" style="padding: 10px">
+                                        <div style="display: flex;align-items: center">
+                                            <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
+                                            <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
+                                                <strong>HSE</strong>
+                                                <strong>Peformance</strong>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-2" style="background-color: rgba(255, 255, 224, 0.9); display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px;border: 1px solid #E0E0E0; border-radius: 20px;font-size:4rem">
+                                            <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4> -->
+                                            <strong style="font-size: 2rem;color:#fcb92c">4.022.020</strong>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 1.5rem;line-height:normal">Cumulative Safe Manhours</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" style="display: flex;flex-direction:column;border-right:#2c3e50 solid"><span>Man Hours This Month</span><strong>40.460</strong></div>
+                                            <div class="col-md-6" style="display: flex;flex-direction:column"><span>UAUC Ratio</span><strong>40.460</strong></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-responsives">
+                                            <table id="datatable" class="table nowrap table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">FAR</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">MTC</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">MC</td>
+                                                        <td>2</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">FAC</td>
+                                                        <td>5</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">PD</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">Major LOPC</td>
+                                                        <td>5</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color: antiquewhite">Near Miss</td>
+                                                        <td>10</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-4">fuadi</div> -->
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="margin-left: 16px">
+                                <div class="galon row" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 224, 0.9);">
+                                    <div class="mb-2" style="display: flex;align-items: center">
+                                        <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
+                                        <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
+                                            <strong>Risk</strong>
+                                            <strong>Peformance</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="table-responsives">
+                                                <table id="datatable" class="table nowrap table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">Total Risk</td>
+                                                            <td>31</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">Closed</td>
+                                                            <td>23</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">Open</td>
+                                                            <td>8</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                        <strong style="font-size: 2rem;color:#fcb92c">0</strong><br>
+                                            <strong>Overdue Action Item</strong>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-4">fuadi</div> -->
                                 </div>
                             </div>
                         </div>
@@ -257,7 +351,7 @@
                     <div class="col-xl-4">
                         <div class="cards mb-4">
                             <div class="card-bodys text-center" style="background-color: rgba(255, 255, 224, 0.9); padding: 10px;border-radius: 15px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
-                                <div class="text-center" style="background-color: antiquewhite; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                <div class="text-center mb-2" style="background-color: antiquewhite; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <i class="fas fa-hard-hat"></i>
                                     <h4 class="card-title mb-0">Project Milestone</h4>
                                 </div>
