@@ -91,7 +91,7 @@
                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-warning) 0%, 
                                     var(--bs-warning) <?= $data_page->overal_actual ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
+                                        <h3 class="mb-0 text-center"><?= $data_page->overal_actual ?>%</h3>
                                         <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Actual</h5>
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <i class="fas fa-glasses" style="font-size: 3rem;"></i>
@@ -101,9 +101,9 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
-                                    var(--bs-danger) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
+                                    var(--bs-danger) <?= $data_page->overal_variance ?>%, #ffffff 0%, #ffffff 100%);">
                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
+                                        <h3 class="mb-0 text-center"><?= $data_page->overal_variance ?>%</h3>
                                         <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Variance</h5>
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <i class="far fa-chart-bar" style="font-size: 3rem;"></i>
@@ -126,11 +126,12 @@
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
-                                                            <small><strong>Plan 30%</strong></small>
+                                                            <small><strong>Plan <?= $data_page->chart_pt_engineering_plan ?>%</strong></small>
+
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
-                                                            <small><strong>Actual 50%</strong></small>
+                                                            <small><strong>Actual <?= $data_page->chart_pt_engineering_actual ?>%</strong></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,11 +149,11 @@
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
-                                                            <small><strong>Plan 15%</strong></small>
+                                                            <small><strong>Plan <?= $data_page->chart_pt_procurement_plan ?>%</strong></small>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
-                                                            <small><strong>Actual 70%</strong></small>
+                                                            <small><strong>Actual <?= $data_page->chart_pt_procurement_actual ?>%</strong></small>
                                                         </div>
                                                     </div>
                                                 </div>
