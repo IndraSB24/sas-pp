@@ -46,7 +46,7 @@ class Auth extends BaseController
             $pass = $data->password;
             $verify_pass = password_verify($password, $pass);
 
-            $user_data = $this->main_model->get_by_id($data->id)
+            $user_data = $this->main_model->get_by_id($data->id);
 
             if($pass == $password){
                 $ses_data = [
