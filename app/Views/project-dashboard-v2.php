@@ -260,8 +260,8 @@
                                             <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4> -->
                                             <strong style="font-size: 2rem;color:#fcb92c">4.022.020</strong>
                                         </div>
-                                        <div>
-                                            <p style="font-size: 1.5rem;line-height:normal">Cumulative Safe Manhours</p>
+                                        <div class="mt-2">
+                                            <strong style="font-size: 1rem;line-height:normal">Cumulative Safe Manhours</strong>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6" style="display: flex;flex-direction:column;border-right:#2c3e50 solid"><span>Man Hours This Month</span><strong>40.460</strong></div>
@@ -360,6 +360,7 @@
                                         <thead style="background-color: antiquewhite">
                                             <tr>
                                                 <th>Title</th>
+                                                <th>BL Project Duration</th>
                                                 <th>Duration % Complete</th>
                                                 <th>Actual Duration</th>
                                                 <th>BL Project Start</th>
@@ -368,40 +369,43 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>IA</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
+                                                <td>Contract Effective Date</td>
+                                                <td>0d</td>
+                                                <td>100%</td>
+                                                <td>0d</td>
+                                                <td>28 Dec 23</td>
+                                                <td></td>
                                             </tr>
                                             <tr>
-                                                <td>LLI</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
+                                                <td>Kick Off Meeting</td>
+                                                <td>0d</td>
+                                                <td>100%</td>
+                                                <td>0d</td>
+                                                <td>18 Jan 24</td>
                                             </tr>
                                             <tr>
-                                                <td>MC</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
+                                                <td>Mechanical Completion</td>
+                                                <td>0d</td>
+                                                <td>0%</td>
+                                                <td>0d</td>
+                                                <td></td>
+                                                <td>9 Jun 25</td>
                                             </tr>
                                             <tr>
-                                                <td>RFSU</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
+                                                <td>Commisioning</td>
+                                                <td>0d</td>
+                                                <td>0%</td>
+                                                <td>0d</td>
+                                                <td></td>
+                                                <td>27 Jun 25</td>
                                             </tr>
                                             <tr>
-                                                <td>CSI BOG</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
-                                            </tr>
-                                            <tr>
-                                                <td>CSI Ethelyne</td>
-                                                <td>10/03/2023</td>
-                                                <td>10/03/2023</td>
-                                                <td>On Time</td>
+                                                <td>Operation Acceptance</td>
+                                                <td>0d</td>
+                                                <td>0%</td>
+                                                <td>0d</td>
+                                                <td></td>
+                                                <td>27 Jun 25</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -431,27 +435,43 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Cable Pulling</td>
-                                                    <td>100</td>
-                                                    <td>150</td>
-                                                    <td>50</td>
+                                                    <td>0d</td>
+                                                    <td>100%</td>
+                                                    <td>0d</td>
+                                                    <td></td>
+                                                    <td>15 Mar 24</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Pilling</td>
-                                                    <td>75</td>
-                                                    <td>70</td>
-                                                    <td>5</td>
+                                                    <td>0d</td>
+                                                    <td>0%</td>
+                                                    <td>0d</td>
+                                                    <td></td>
+                                                    <td>05 Feb 24</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Welding</td>
-                                                    <td>20</td>
-                                                    <td>21</td>
-                                                    <td>1</td>
+                                                    <td>0d</td>
+                                                    <td>0%</td>
+                                                    <td>0d</td>
+                                                    <td></td>
+                                                    <td>22 Feb 24</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Barbender</td>
-                                                    <td>12</td>
-                                                    <td>21</td>
-                                                    <td>9</td>
+                                                    <td>0d</td>
+                                                    <td>0%</td>
+                                                    <td>0d</td>
+                                                    <td></td>
+                                                    <td>25 Mar 24</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Barbender</td>
+                                                    <td>0d</td>
+                                                    <td>0%</td>
+                                                    <td>0d</td>
+                                                    <td></td>
+                                                    <td>04 Apr 24</td>
                                                 </tr>
                                             </tbody>
                                         </table>
