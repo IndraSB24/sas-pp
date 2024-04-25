@@ -54,7 +54,7 @@ class Model_user extends Model
             r.name as role_name
         ')
         ->join('role r', 'r.id=user.id_role', 'LEFT')
-        ->where('id', $id_user);
+        ->where('user.id', $id_user);
         
         return $this->get()->getResult();
     }
