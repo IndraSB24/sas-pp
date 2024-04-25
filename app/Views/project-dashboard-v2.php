@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="galon" style="padding: 15px;padding-top: 10px">
+                                <div class="galon" style="padding: 15px;padding-top: 10px;">
                                     <div class="text-center">
                                         <span> Progress Tracking</span>
                                     </div>
@@ -645,6 +645,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '20%',
+                },
                 dataLabels: {
                     name: {
                         fontSize: '10px',
@@ -659,7 +662,7 @@
                             return 249
                         }
                     },
-                    margin: 15
+                    margin: 15,
                 }
             }
         },
@@ -686,6 +689,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '20%',
+                },
                 dataLabels: {
                     name: {
                         fontSize: '10px',
