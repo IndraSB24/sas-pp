@@ -460,18 +460,17 @@ class Project_detail_engineering extends BaseController
 
             $nope_sandhi = "6287888276877";
             $nope_indra = "6285274897212";
+            $data_wa = [
+                'penerima' => $nope_indra,
+                'doc_name' => $doc_name,
+                'doc_code' => $doc_code,
+                'tgl_upload' => date('Y-m-d H:i:s'),
+                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/internal"
+            ];
+            originatorToInternalEngineering($data_wa);
 
             // return and notif wa
-            if ($store_file && $returned_id && $update_doc && $data_timeline){
-                $data_wa = [
-                    'penerima' => $nope_indra,
-                    'doc_name' => $doc_name,
-                    'doc_code' => $doc_code,
-                    'tgl_upload' => date('Y-m-d H:i:s'),
-                    'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/internal"
-                ];
-                originatorToInternalEngineering($data_wa);
-
+            if ($store_file && $returned_id && $update_doc){
                 $response = [
                     'success' => true,
                     'message' => 'File Uploaded successfully.'
