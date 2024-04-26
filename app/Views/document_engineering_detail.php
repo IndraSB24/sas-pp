@@ -636,8 +636,8 @@
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
                         </div>
                         <div class="col-md-6">
-                            <label for="manpower" class="form-label">Plan Manpower</label>
-                            <input type="number" class="form-control" name="manpower" id="manpower" />
+                            <label for="plan_manpower" class="form-label">Plan Manpower</label>
+                            <input type="number" class="form-control" name="plan_manpower" id="plan_manpower" />
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -759,6 +759,12 @@
                             <div class="col-md-12">
                                 <label class="form-label">Document Description</label>
                                 <input type="text" class="form-control" name="upload_doc_desc" id="upload_doc_desc" readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="actual_manpower" class="form-label">Actual Manpower</label>
+                                <input type="number" class="form-control" name="actual_manpower" id="actual_manpower" />
                             </div>
                         </div>
                         <div class="row mb-4">
