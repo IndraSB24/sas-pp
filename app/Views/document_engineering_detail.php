@@ -811,14 +811,6 @@ function generateWaitingBadge()
                                 <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
                             </div>
                         </div>
-                        <div class="row mb-4">
-                            <label class="form-label">Choose <span class="upload_step"></span> File</label>
-                            <div>
-                                <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
-                                <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
-                                &nbsp;<span id="upload_file_name">No File Choosen</span>
-                            </div>
-                        </div>
                         <!-- <div class="row mb-4">
                             <div class="col-md-12">
                                 <label class="form-label">Please input your Man-Hour</label></label>
