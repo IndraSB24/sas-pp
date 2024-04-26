@@ -1116,33 +1116,28 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url: "<?= base_url('Project_detail_engineering/up_originator') ?>",
+                    url:  "<?= base_url('Project_detail_engineering/up_originator') ?>",
                     method: 'POST',
-                    data: formData,
+                    data:formData,
                     contentType: false,
                     cache: false,
                     processData: false,
-                    function(response) {
-                        // SweetAlert to display success message
-                        Swal.fire({
-                            title: 'Diupload!',
-                            icon: 'success',
-                            text: 'File Berhasil Diupload.',
-                            timer: 2000,
-                            confirmButtonColor: "#5664d2",
-                            onBeforeOpen: function() {
-                                timerInterval = setInterval(function() {
-                                    Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();
-                                }, 100);
-                            },
-                            onClose: function() {
-                                location.reload(); // Reload the page after SweetAlert closes
-                            }
-                        });
+                });
+                Swal.fire({
+                    title: 'Diupload!',
+                    icon: 'success',
+                    text: 'File Berhasil Diupload.',
+                    timer: 2000,
+                    confirmButtonColor: "#5664d2",
+                    onBeforeOpen:function () {
+                        //Swal.showLoading()
+                        timerInterval = setInterval(function() {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                        }, 100)
                     },
-                    error: function(xhr, status, error) {
-                        // Handle error if needed
-                        console.error(xhr.responseText);
+                    onClose: function () {
+                        location.reload()
                     }
                 })
             }
