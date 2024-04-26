@@ -631,9 +631,13 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="manpower" class="form-label">Plan Manpower</label>
+                            <input type="number" class="form-control" name="manpower" id="manpower" />
                         </div>
                     </div>
                     <div class="row mb-4">
