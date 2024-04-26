@@ -187,11 +187,11 @@
                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>Title</th>
-                                                <th>Duration % Complete</th>
-                                                <th>Actual Duration</th>
-                                                <th>BL Project Start</th>
-                                                <th>BL Project Finish</th>
+                                                <th>Material/Equipment</th>
+                                                <th>ETA</th>
+                                                <th>ROS</th>
+                                                <th>Current Status</th>
+                                                <th>-</th>
                                             </tr>
                                         </thead>
                                         <tbody>
