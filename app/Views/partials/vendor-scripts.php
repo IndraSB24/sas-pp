@@ -138,11 +138,14 @@
                                     .textContent = Swal.getTimerLeft();
                             }, 100);
                         }
-                    }).then((result) => {
-                        if(modalToHide!==""){
-                            $('#'+modalToHide).modal('hide');   
+                    }).then((response) => {
+                        if(response.success === true){
+                            if(modalToHide!==""){
+                                $('#'+modalToHide).modal('hide');   
+                            }
+                            mainDatatable();
                         }
-                        mainDatatable();
+                        
                     });
                 }, 'json');
             }
