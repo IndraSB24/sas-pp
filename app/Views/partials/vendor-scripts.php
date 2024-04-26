@@ -130,7 +130,7 @@
                         title: title2,
                         icon: 'success',
                         text: text2,
-                        // timer: 1000,
+                        timer: 100000,
                         confirmButtonColor: "#5664d2",
                         onBeforeOpen: function () {
                             timerInterval = setInterval(function () {
