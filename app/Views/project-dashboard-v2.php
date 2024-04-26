@@ -360,11 +360,12 @@
                                     <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead style="background-color: antiquewhite">
                                             <tr>
-                                                <th>Material/Equipment</th>
-                                                <th>ETA</th>
-                                                <th>ROS</th>
-                                                <th>Current Status</th>
-                                                <th>-</th>
+                                                <th>Title</th>
+                                                <th>BL Project Duration</th>
+                                                <th>Duration % Complete</th>
+                                                <th>Actual Duration</th>
+                                                <th>BL Project Start</th>
+                                                <th>BL Project Finish</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -424,12 +425,11 @@
                                         <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead style="background-color: antiquewhite">
                                                 <tr>
-                                                    <th>Title</th>
-                                                    <th>BL Project Duration</th>
-                                                    <th>Duration % Complete</th>
-                                                    <th>Actual Duration</th>
-                                                    <th>BL Project Start</th>
-                                                    <th>BL Project Finish</th>
+                                                    <th>Material/Equipment</th>
+                                                    <th>ETA</th>
+                                                    <th>ROS</th>
+                                                    <th>Current Status</th>
+                                                    <th>-</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
