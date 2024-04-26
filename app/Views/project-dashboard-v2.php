@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
@@ -221,14 +221,24 @@
                                     </div>
                                 </div><!--end card-->
                             </div>
+                            <div class="col-lg-6">
+                                <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));">
+                                    <div class="card-body">
+                                        <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff">Manhour By Month</h4>
+                                        </div>
+                                        <div id="chart_man_power" class="apex-charts" dir="ltr"></div>
+                                    </div>
+                                </div><!--end card-->
+                            </div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-lg-2">
                                 <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px">
-                                    <div class="text-center mb-4">
-                                        <div class="text-center mt-2" style="background-color: antiquewhite; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:3rem">
-                                            <i class="fas fa-funnel-dollar"></i>
-                                            <h4 class="card-title mb-0">Earned Value Management</h4>
+                                    <div class="text-center mb-2">
+                                        <div class="text-center mt-2" style="background-color: antiquewhite; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;">
+                                            <i class="fas fa-funnel-dollar" style="font-size:3rem"></i>
+                                            <strong class="mb-0" style="font-weight: 5000;">EVM</strong>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -247,8 +257,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="galon row" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 240, 0.9)">
+                            <div class="col-lg-6">
+                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 240, 0.9)">
+                                <div class="row">
                                     <div class="col-md-6" style="padding: 10px">
                                         <div style="display: flex;align-items: center">
                                             <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
@@ -307,11 +318,12 @@
                                     </div>
                                     <!-- <div class="col-md-4">fuadi</div> -->
                                 </div>
+                                </div>
                             </div>
-                            <div class="col-md-3" style="margin-left: 16px">
-                                <div class="galon row" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 224, 0.9);">
-                                    <div class="mb-2" style="display: flex;align-items: center">
-                                        <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
+                            <div class="col-lg-3">
+                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 224, 0.9);">
+                                    <div class="mb-4" style="display: flex;align-items: center">
+                                        <i class="mdi mdi-traffic-cone" style="font-size: 3rem;"></i>
                                         <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
                                             <strong>Risk</strong>
                                             <strong>Peformance</strong>
@@ -342,8 +354,8 @@
                                         <strong style="font-size: 2rem;color:#fcb92c">0</strong><br>
                                             <strong>Overdue Action Item</strong>
                                         </div>
+                                        <!-- <div class="col-md-4">fuadi</div> -->
                                     </div>
-                                    <!-- <div class="col-md-4">fuadi</div> -->
                                 </div>
                             </div>
                         </div>
@@ -368,40 +380,25 @@
                                         <tbody>
                                             <tr>
                                                 <td>Contract Effective Date</td>
-                                                <td>0d</td>
-                                                <td>100%</td>
-                                                <td>0d</td>
                                                 <td>28 Dec 23</td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Kick Off Meeting</td>
-                                                <td>0d</td>
-                                                <td>100%</td>
-                                                <td>0d</td>
                                                 <td>18 Jan 24</td>
                                             </tr>
                                             <tr>
                                                 <td>Mechanical Completion</td>
-                                                <td>0d</td>
-                                                <td>0%</td>
-                                                <td>0d</td>
                                                 <td></td>
                                                 <td>9 Jun 25</td>
                                             </tr>
                                             <tr>
                                                 <td>Commisioning</td>
-                                                <td>0d</td>
-                                                <td>0%</td>
-                                                <td>0d</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
                                             </tr>
                                             <tr>
                                                 <td>Operation Acceptance</td>
-                                                <td>0d</td>
-                                                <td>0%</td>
-                                                <td>0d</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
                                             </tr>

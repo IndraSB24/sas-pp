@@ -489,7 +489,7 @@ class Project_detail_engineering extends BaseController
             ];
         }
 
-        return $this->response->setJSON($response);
+        return json_encode($response);
     }
 
     // upload IFR
