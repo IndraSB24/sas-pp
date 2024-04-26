@@ -409,7 +409,6 @@ class Project_detail_engineering extends BaseController
             $store_file = $uploaded_file->move('upload/engineering_doc/list');
             if($store_file){
 
-            
             $id_doc = $this->request->getPost('id_doc');
             $version= $this->request->getPost('version');
             $doc_name= $this->request->getPost('doc_name');
