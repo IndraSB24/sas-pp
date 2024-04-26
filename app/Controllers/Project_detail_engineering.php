@@ -407,8 +407,7 @@ class Project_detail_engineering extends BaseController
         // store the file
         if($uploaded_file){
             $store_file = $uploaded_file->move('upload/engineering_doc/list');
-            if($store_file){
-
+            
             $id_doc = $this->request->getPost('id_doc');
             $version= $this->request->getPost('version');
             $doc_name= $this->request->getPost('doc_name');
@@ -461,10 +460,9 @@ class Project_detail_engineering extends BaseController
 
             $nope_sandhi = "6287888276877";
             $nope_indra = "6285274897212";
-            }
 
             // return and notif wa
-            if ($update_doc) {
+            if ($store_file && $returned_id && $update_doc && $data_timeline)
                 $data_wa = [
                     'penerima' => $nope_indra,
                     'doc_name' => $doc_name,
@@ -484,9 +482,7 @@ class Project_detail_engineering extends BaseController
                     'message' => 'Failed to Upload File.'
                 ];
             }
-
-
-            
+   
         }else {
             $response = [
                 'success' => false,
