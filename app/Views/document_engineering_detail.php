@@ -636,8 +636,8 @@
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
                         </div>
                         <div class="col-md-6">
-                            <label for="plan_manpower" class="form-label">Plan Manpower</label>
-                            <input type="number" class="form-control" name="plan_manpower" id="plan_manpower" />
+                            <label for="plan_man_hour" class="form-label">Plan Man Hour</label>
+                            <input type="number" class="form-control" name="plan_man_hour" id="plan_man_hour" />
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -763,8 +763,8 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-12">
-                                <label for="actual_manpower" class="form-label">Actual Manpower</label>
-                                <input type="number" class="form-control" name="actual_manpower" id="actual_manpower" />
+                                <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
+                                <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
                             </div>
                         </div>
                         <div class="row mb-4">
