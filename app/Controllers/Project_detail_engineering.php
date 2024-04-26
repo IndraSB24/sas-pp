@@ -457,9 +457,11 @@ class Project_detail_engineering extends BaseController
             ];
             $this->timeline_doc_model->save($data_timeline);
 
+            $nope_sandhi = "6287888276877";
+            $nope_indra = "6285274897212";
             if ($update_doc) {
                 $data_wa = [
-                    'penerima' => '6287888276877',
+                    'penerima' => $nope_indra,
                     'doc_name' => $doc_name,
                     'doc_code' => $doc_code,
                     'tgl_upload' => date('Y-m-d H:i:s'),
