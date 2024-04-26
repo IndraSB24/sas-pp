@@ -429,50 +429,16 @@
                                                     <th>ETA</th>
                                                     <th>ROS</th>
                                                     <th>Current Status</th>
-                                                    <th>-</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Cable Pulling</td>
-                                                    <td>0d</td>
-                                                    <td>100%</td>
-                                                    <td>0d</td>
-                                                    <td></td>
-                                                    <td>15 Mar 24</td>
+                                                    <td><?= date() ?></td>
+                                                    <td><?= date() ?></td>
+                                                    <td>Waiting</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Pilling</td>
-                                                    <td>0d</td>
-                                                    <td>0%</td>
-                                                    <td>0d</td>
-                                                    <td></td>
-                                                    <td>05 Feb 24</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Welding</td>
-                                                    <td>0d</td>
-                                                    <td>0%</td>
-                                                    <td>0d</td>
-                                                    <td></td>
-                                                    <td>22 Feb 24</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Barbender</td>
-                                                    <td>0d</td>
-                                                    <td>0%</td>
-                                                    <td>0d</td>
-                                                    <td></td>
-                                                    <td>25 Mar 24</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Barbender</td>
-                                                    <td>0d</td>
-                                                    <td>0%</td>
-                                                    <td>0d</td>
-                                                    <td></td>
-                                                    <td>04 Apr 24</td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
