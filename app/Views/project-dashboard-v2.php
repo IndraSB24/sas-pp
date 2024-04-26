@@ -434,8 +434,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Cable Pulling</td>
-                                                    <td><?= date() ?></td>
-                                                    <td><?= date() ?></td>
+                                                    <td>20-04-2024</td>
+                                                    <td>20-04-2024</td>
                                                     <td>Waiting</td>
                                                 </tr>
                                                 
