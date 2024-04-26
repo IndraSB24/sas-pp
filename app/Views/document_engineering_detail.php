@@ -1088,88 +1088,32 @@
     });
     
     // save file
-    // $(document).on('click','#upload_btn_up',function(){
-    //     const   path    = $(this).data('path');
-    //     const   fileDesc= $(this).data('step');
-    //     const   version = $(this).data('version');
-    //     let id_doc, swalTitle;
-    //     var timerInterval, i, file;
-    //     var formData = new FormData();
-        
-    //     id_doc = document.getElementById("upload_id_doc").value;
-    //     i       = $('#upload_uploaded_file'),
-    //     file    = i[0].files[0];
-    //     formData.append('file', file);
-    //     formData.append('version', version);
-    //     formData.append('id_doc', id_doc);
-    //     formData.append('doc_name', $(this).data('doc_name'));
-    //     formData.append('doc_code', $(this).data('doc_code'));
-
-    //     swalTitle = 'Upload File '+fileDesc;
-        
-    //     Swal.fire({
-    //         title: swalTitle,
-    //         icon: 'info',
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Ya',
-    //         cancelButtonText: 'Batal'
-    //     }).then(function(result) {
-    //         if (result.value) {
-    //             $.ajax({
-    //                 url:  "<?= base_url('Project_detail_engineering/up_originator') ?>",
-    //                 method: 'POST',
-    //                 data:formData,
-    //                 contentType: false,
-    //                 cache: false,
-    //                 processData: false,
-    //             });
-    //             Swal.fire({
-    //                 title: 'Diupload!',
-    //                 icon: 'success',
-    //                 text: 'File Berhasil Diupload.',
-    //                 timer: 2000,
-    //                 confirmButtonColor: "#5664d2",
-    //                 onBeforeOpen:function () {
-    //                     //Swal.showLoading()
-    //                     timerInterval = setInterval(function() {
-    //                     Swal.getContent().querySelector('strong')
-    //                         .textContent = Swal.getTimerLeft()
-    //                     }, 100)
-    //                 },
-    //                 onClose: function () {
-    //                     location.reload()
-    //                 }
-    //             })
-    //         }
-    //     })
-    // })
-
-    $(document).on('click', '#upload_btn_up', function () {
-        const path = $(this).data('path');
-        const fileDesc = $(this).data('step');
-        const version = $(this).data('version');
+    $(document).on('click','#upload_btn_up',function(){
+        const   path    = $(this).data('path');
+        const   fileDesc= $(this).data('step');
+        const   version = $(this).data('version');
         let id_doc, swalTitle;
         var timerInterval, i, file;
         var formData = new FormData();
-
+        
         id_doc = document.getElementById("upload_id_doc").value;
-        i = $('#upload_uploaded_file'),
-            file = i[0].files[0];
+        i       = $('#upload_uploaded_file'),
+        file    = i[0].files[0];
         formData.append('file', file);
         formData.append('version', version);
         formData.append('id_doc', id_doc);
         formData.append('doc_name', $(this).data('doc_name'));
         formData.append('doc_code', $(this).data('doc_code'));
 
-        swalTitle = 'Upload File ' + fileDesc;
-
+        swalTitle = 'Upload File '+fileDesc;
+        
         Swal.fire({
             title: swalTitle,
             icon: 'info',
             showCancelButton: true,
             confirmButtonText: 'Ya',
             cancelButtonText: 'Batal'
-        }).then(function (result) {
+        }).then(function(result) {
             if (result.value) {
                 $.ajax({
                     url: "<?= base_url('Project_detail_engineering/up_originator') ?>",
@@ -1178,45 +1122,106 @@
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success: function (response) {
-                        if (response.success) {
-                            Swal.fire({
-                                title: 'Diupload!',
-                                icon: 'success',
-                                text: 'File Berhasil Diupload.',
-                                timer: 2000,
-                                confirmButtonColor: "#5664d2",
-                                onBeforeOpen: function () {
-                                    timerInterval = setInterval(function () {
-                                        Swal.getContent().querySelector('strong')
-                                            .textContent = Swal.getTimerLeft()
-                                    }, 100)
-                                },
-                                onClose: function () {
-                                    location.reload()
-                                }
-                            })
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                icon: 'error',
-                                text: 'Gagal mengupload file.',
-                                confirmButtonColor: "#5664d2",
-                            })
-                        }
-                    },
-                    error: function () {
+                    success: function(response) {
+                        // SweetAlert to display success message
                         Swal.fire({
-                            title: 'Error!',
-                            icon: 'error',
-                            text: 'Gagal mengupload file.',
+                            title: 'Diupload!',
+                            icon: 'success',
+                            text: 'File Berhasil Diupload.',
+                            timer: 2000,
                             confirmButtonColor: "#5664d2",
-                        })
+                            onBeforeOpen: function() {
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();
+                                }, 100);
+                            },
+                            onClose: function() {
+                                location.reload(); // Reload the page after SweetAlert closes
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error if needed
+                        console.error(xhr.responseText);
                     }
-                });
+                })
             }
         })
-    });
+    })
+
+    // $(document).on('click', '#upload_btn_up', function () {
+    //     const path = $(this).data('path');
+    //     const fileDesc = $(this).data('step');
+    //     const version = $(this).data('version');
+    //     let id_doc, swalTitle;
+    //     var timerInterval, i, file;
+    //     var formData = new FormData();
+
+    //     id_doc = document.getElementById("upload_id_doc").value;
+    //     i = $('#upload_uploaded_file'),
+    //         file = i[0].files[0];
+    //     formData.append('file', file);
+    //     formData.append('version', version);
+    //     formData.append('id_doc', id_doc);
+    //     formData.append('doc_name', $(this).data('doc_name'));
+    //     formData.append('doc_code', $(this).data('doc_code'));
+
+    //     swalTitle = 'Upload File ' + fileDesc;
+
+    //     Swal.fire({
+    //         title: swalTitle,
+    //         icon: 'info',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Ya',
+    //         cancelButtonText: 'Batal'
+    //     }).then(function (result) {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 url: "<?= base_url('Project_detail_engineering/up_originator') ?>",
+    //                 method: 'POST',
+    //                 data: formData,
+    //                 contentType: false,
+    //                 cache: false,
+    //                 processData: false,
+    //                 success: function (response) {
+    //                     if (response.success) {
+    //                         Swal.fire({
+    //                             title: 'Diupload!',
+    //                             icon: 'success',
+    //                             text: 'File Berhasil Diupload.',
+    //                             timer: 2000,
+    //                             confirmButtonColor: "#5664d2",
+    //                             onBeforeOpen: function () {
+    //                                 timerInterval = setInterval(function () {
+    //                                     Swal.getContent().querySelector('strong')
+    //                                         .textContent = Swal.getTimerLeft()
+    //                                 }, 100)
+    //                             },
+    //                             onClose: function () {
+    //                                 location.reload()
+    //                             }
+    //                         })
+    //                     } else {
+    //                         Swal.fire({
+    //                             title: 'Error!',
+    //                             icon: 'error',
+    //                             text: 'Gagal mengupload file.',
+    //                             confirmButtonColor: "#5664d2",
+    //                         })
+    //                     }
+    //                 },
+    //                 error: function () {
+    //                     Swal.fire({
+    //                         title: 'Error!',
+    //                         icon: 'error',
+    //                         text: 'Gagal mengupload file.',
+    //                         confirmButtonColor: "#5664d2",
+    //                     })
+    //                 }
+    //             });
+    //         }
+    //     })
+    // });
 
     
     
