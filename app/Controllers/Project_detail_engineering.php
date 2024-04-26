@@ -462,7 +462,7 @@ class Project_detail_engineering extends BaseController
             $nope_indra = "6285274897212";
 
             // return and notif wa
-            if ($store_file && $returned_id && $update_doc && $data_timeline)
+            if ($store_file && $returned_id && $update_doc && $data_timeline){
                 $data_wa = [
                     'penerima' => $nope_indra,
                     'doc_name' => $doc_name,
@@ -481,7 +481,7 @@ class Project_detail_engineering extends BaseController
                     'success' => false,
                     'message' => 'Failed to Upload File.'
                 ];
-            };
+            }
    
         }else {
             $response = [
