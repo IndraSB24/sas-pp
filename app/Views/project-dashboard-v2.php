@@ -177,7 +177,7 @@
                         <!-- end row -->
                         <div class="row" id="overal_progress_elem">
                             <div class="col-lg-12">
-                                <div class="card" style="background-color:#B0E0E6; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));">
+                                <div class="card" style="background-color:#B0E0E6; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 35px">
                                     <div class="card-body" style="color:#ffffff">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -211,8 +211,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));">
+                            <div class="col-lg-6" style="padding-right: 4px;">
+                                <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 35px 0 0 35px">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                             <h4 class="card-title mb-0" style="color:#ffffff">Manpower By Month</h4>
@@ -221,8 +221,8 @@
                                     </div>
                                 </div><!--end card-->
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));">
+                            <div class="col-lg-6" style="padding-left: 4px;">
+                                <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 0 35px 35px 0;">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                             <h4 class="card-title mb-0" style="color:#ffffff">Manhour By Month</h4>
@@ -233,8 +233,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2">
-                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px">
+                            <div class="col-lg-3" style="padding-right: 5px;">
+                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 35px 0 0 35px">
                                     <div class="text-center mb-2">
                                         <div class="text-center mt-2" style="background-color: antiquewhite; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;">
                                             <i class="fas fa-funnel-dollar" style="font-size:3rem"></i>
@@ -257,7 +257,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" style="padding-right: 5px;padding-left: 5px">
                                 <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 240, 0.9)">
                                 <div class="row">
                                     <div class="col-md-6" style="padding: 10px">
@@ -320,8 +320,8 @@
                                 </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 224, 0.9);">
+                            <div class="col-lg-3" style="padding-left: 5px;">
+                                <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 0 35px 35px 0;background-color: rgba(255, 255, 224, 0.9);">
                                     <div class="mb-4" style="display: flex;align-items: center">
                                         <i class="mdi mdi-traffic-cone" style="font-size: 3rem;"></i>
                                         <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
@@ -363,7 +363,7 @@
 
                     <div class="col-xl-4">
                         <div class="cards mb-4">
-                            <div class="card-bodys text-center" style="background-color: rgba(255, 255, 224, 0.9); padding: 10px;border-radius: 15px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
+                            <div class="card-bodys text-center" style="background-color: rgba(255, 255, 224, 0.9); padding: 10px;border-radius: 35px 35px 0 0;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
                                 <div class="text-center mb-2" style="background-color: antiquewhite; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <i class="fas fa-hard-hat"></i>
                                     <h4 class="card-title mb-0">Project Milestone</h4>
@@ -410,7 +410,7 @@
 
                         <div class="col-lg-12">
                             <div class="cards">
-                                <div class="card-bodys text-center" style="background-color: rgba(255, 255, 240, 0.9); padding: 10px;border-radius: 15px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
+                                <div class="card-bodys text-center" style="background-color: rgba(255, 255, 240, 0.9); padding: 10px;border-radius: 35px 35px 0 0;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
                                     <div class="text-center mb-2" style="background-color: antiquewhite; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                         <i class="fas fa-building"></i>
                                         <h4 class="card-title mb-0">Procurment</h4>
