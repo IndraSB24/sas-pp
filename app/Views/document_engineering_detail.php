@@ -1122,7 +1122,7 @@
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success: function(response) {
+                    function(response) {
                         // SweetAlert to display success message
                         Swal.fire({
                             title: 'Diupload!',
