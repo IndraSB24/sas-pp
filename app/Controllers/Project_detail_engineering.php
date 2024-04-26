@@ -481,7 +481,7 @@ class Project_detail_engineering extends BaseController
                     'success' => false,
                     'message' => 'Failed to Upload File.'
                 ];
-            }
+            };
    
         }else {
             $response = [
