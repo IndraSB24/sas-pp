@@ -130,7 +130,7 @@
                         title: title2,
                         icon: 'success',
                         text: text2,
-                        timer: 100000,
+                        timer: 1000,
                         confirmButtonColor: "#5664d2",
                         onBeforeOpen: function () {
                             timerInterval = setInterval(function () {
@@ -138,14 +138,11 @@
                                     .textContent = Swal.getTimerLeft();
                             }, 100);
                         }
-                    }).then((response) => {
-                        if(response.success === true){
-                            if(modalToHide!==""){
-                                $('#'+modalToHide).modal('hide');   
-                            }
-                            mainDatatable();
+                    }).then((result) => {
+                        if(modalToHide!==""){
+                            $('#'+modalToHide).modal('hide');   
                         }
-                        
+                        mainDatatable();
                     });
                 }, 'json');
             }
