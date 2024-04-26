@@ -139,9 +139,11 @@ class Project_detail_engineering extends BaseController
             		'level_code'    => $this->request->getPost('level_code'), 
             		'description'   => $this->request->getPost('description'),
             		'weight_factor' => $this->request->getPost('weight_factor'),
-            		'plan_ifr'      => date_db_format($this->request->getPost('plan_ifr')),
             		'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
-            		'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc'))
+            		'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
+            		'external_asbuild_plan'      => date_db_format($this->request->getPost('external_asbuild_plan')),
+                    'man_hour_plan' => $this->request->getPost('man_hour_plan'),
+                    'id_doc_dicipline' => $this->request->getPost('id_doc_dicipline'),
             	];
             	$this->doc_engineering_model->reset_increment();
             	$this->doc_engineering_model->save($data);
@@ -150,219 +152,7 @@ class Project_detail_engineering extends BaseController
     }
     
     public function delete($id_project){
-        $this->doc_engineering_model->delete($id_project);
-        
-    }
-    
-    public function update($kode=null, $id_update=null){
-        switch($kode){
-            
-            case 'document_detail':
-                $data = [
-                    'level_code'    => $this->request->getPost('level_code_edit'),
-                    'description'   => $this->request->getPost('description_edit'),
-                    'weight_factor' => $this->request->getPost('weight_factor_edit'),
-                    'plan_ifr'      => date_db_format($this->request->getPost('plan_ifr_edit')),
-                    'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa_edit')),
-                    'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc_edit'))
-                ];
-                $this->doc_engineering_model->update($id_update, $data);
-            break;
-            
-            case 'upload_file':
-                // read the file
-                $uploaded_file = $this->request->getFile('file');
-                
-                // store the file
-                if($uploaded_file){
-                    $file   = $this->request->getFile('file');
-                    $version= $this->request->getPost('version');
-                    $comment= $this->request->getPost('comment') ? $this->request->getPost('comment') : "No Comment";
-                    
-                    $file->move('upload/doc_engineering');
-                    
-                    if($version != "nothing"){
-                        $version = autoVersioning($version, 'issued');
-                    }else{
-                        $version = "0A";
-                    }
-                    
-                    // save file name to database
-                    $data = [
-                        'file'          => $file->getName(),
-                        'actual_ifr'    => date_now(),
-                        'file_version'  => $version,
-                        'file_status'   => 'ifr_upload',
-                        'file_comment'  => $comment
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data);
-                    
-                    $data_timeline = [
-                        'doc_id'                => $id_update,
-                        'detail_type'           => 'engineering',
-                        'time'                  => $data['actual_ifr'],
-                        'timeline_title'        => 'IFR File Upload',
-                        'timeline_description'  => 'no desc',
-                        'file'                  => $data['file'],
-                        'file_comment'          => $data['file_comment'],
-                        'timeline_status'       => $data['file_status'],
-                        'file_status'           => $data['file_version']
-                    ];
-                    $this->timeline_doc_model->reset_increment();
-                    $this->timeline_doc_model->save($data_timeline);
-                }
-                else {
-                    die("No file specified!");
-                }
-            break;
-            
-            case 'approval':
-                // read input
-                $uploaded_file  = $this->request->getFile('file') ? $this->request->getFile('file') : "nothing";
-                $file_status    = $this->request->getPost('file_status');
-                $version        = $this->request->getPost('version');
-                $comment        = $this->request->getPost('approval_comment_text') ? $this->request->getPost('approval_comment_text') : "No Comment";
-                
-                if($file_status == 'ifa_approved'){
-                    $data = [
-                        'actual_ifa'    => date_now(),
-                        'file_status'   => $file_status,
-                        'file_comment'  => $comment
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data);
-                    $timeline_title = "IFA Approved";
-                    
-                }else if($file_status == 'ifa_rejected'){
-                    $data = [
-                        'file_status'   => $file_status,
-                        'file_comment'  => $comment
-                    ];
-                    if($uploaded_file){
-                        $uploaded_file->move('upload/doc_engineering');
-                        $data ['file'] = $uploaded_file->getName();
-                    }
-                    $this->doc_engineering_model->update($id_update, $data);
-                    $timeline_title = "IFA Rejected with Comment";
-                    
-                }else if($file_status == 'ifc_approved'){
-                    $data = [
-                        'actual_ifc'    => date_now(),
-                        'file_status'   => $file_status,
-                        'file_comment'  => $comment
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data);
-                    $timeline_title = "IFC Approved";
-                    
-                }else if($file_status == 'ifc_rejected'){
-                    $data = [
-                        'file_status'   => $file_status,
-                        'file_comment'  => $comment
-                    ];
-                    if($uploaded_file){
-                        $uploaded_file->move('upload/doc_engineering');
-                        $data ['file'] = $uploaded_file->getName();
-                    }
-                    $this->doc_engineering_model->update($id_update, $data);
-                    $timeline_title = "IFC Rejected with Comment";
-                }
-                
-                $data_timeline = [
-                    'doc_id'                => $id_update,
-                    'detail_type'           => 'engineering',
-                    'time'                  => $data['actual_ifr'],
-                    'timeline_title'        => $timeline_title,
-                    'timeline_description'  => 'no desc',
-                    'file'                  => $data['file'],
-                    'file_comment'          => $data['file_comment'],
-                    'timeline_status'       => $data['file_status'],
-                    'file_status'           => $data['file_version']
-                ];
-                $this->timeline_doc_model->reset_increment();
-                $this->timeline_doc_model->save($data_timeline);
-            break;
-            
-            case 'actual_ifr_file':
-                // read the file
-                $uploaded_file = $this->request->getFile('file');
-                
-                // store the file
-                if($uploaded_file){
-                    $file   = $this->request->getFile('file');
-                    $version= $this->request->getPost('version');
-                    $file->move('upload/doc_engineering');
-                    
-                    if($version != "nothing"){
-                        $version = autoVersioning($version, 'issued');
-                    }else{
-                        $version = "0A";
-                    }
-                    
-                    // save file name to database
-                    $data = [
-                        'actual_ifr_file'   => $file->getName(),
-                        'actual_ifr'        => date_now(),
-                        'actual_ifr_version'=> $version
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data);
-                    
-                    $data_timeline = [
-                        'doc_id'                => $id_update,
-                        'detail_type'           => 'engineering',
-                        'time'                  => $data['actual_ifr'],
-                        'timeline_title'        => 'IFR File Upload',
-                        'timeline_description'  => 'no desc',
-                        'timeline_status'       => 'late',
-                        'new_file'              => $data['actual_ifr_file'],
-                        'file_status'           => $data['actual_ifr_version']
-                    ];
-                    $this->timeline_doc_model->reset_increment();
-                    $this->timeline_doc_model->save($data_timeline);
-                }
-                else {
-                    die("No file specified!");
-                }
-            break;
-            case 'actual_ifa_file':
-                // read the file
-                $uploaded_file = $this->request->getFile('file');
-                
-                // store the file
-                if($uploaded_file){
-                    $file = $this->request->getFile('file');
-                    $file->move('upload/doc_engineering');
-                    
-                    // save file name to database
-                    $data = [
-                        'actual_ifa_file'   => $file->getName(),
-                        'actual_ifa'        => date_now(),
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data); 
-                }
-                else {
-                    die("No file specified!");
-                }
-            break;
-            case 'actual_ifc_file':
-                // read the file
-                $uploaded_file = $this->request->getFile('file');
-                
-                // store the file
-                if($uploaded_file){
-                    $file = $this->request->getFile('file');
-                    $file->move('upload/engineering_doc/list');
-                    
-                    // save file name to database
-                    $data = [
-                        'actual_ifc_file'   => $file->getName(),
-                        'actual_ifc'        => date_now(),
-                    ];
-                    $this->doc_engineering_model->update($id_update, $data); 
-                }
-                else {
-                    die("No file specified!");
-                }
-            break;
-        }
+        $this->doc_engineering_model->delete($id_project); 
     }
 
     // edit document =============================================================
@@ -370,20 +160,20 @@ class Project_detail_engineering extends BaseController
         $data = array_intersect_key(
             $this->request->getPost(),
             array_flip([
-                'level_code', 'description', 'weight_factor'
+                'level_code', 'description', 'weight_factor', 'man_hour_plan', 'id_doc_dicipline'
             ])
         );
         $data['id'] = $this->request->getPost('id_edit');
         $data['created_by'] = sess('active_user_id');
-
-        $plan_ifr = $this->request->getPost('plan_ifr');
-        $data['plan_ifr'] = $plan_ifr ? date('Y-m-d H:i:s', strtotime($plan_ifr)) : null;
 
         $plan_ifa = $this->request->getPost('plan_ifa');
         $data['plan_ifa'] = $plan_ifa ? date('Y-m-d H:i:s', strtotime($plan_ifa)) : null;
 
         $plan_ifc = $this->request->getPost('plan_ifc');
         $data['plan_ifc'] = $plan_ifc ? date('Y-m-d H:i:s', strtotime($plan_ifc)) : null;
+
+        $plan_asbuild = $this->request->getPost('external_asbuild_plan');
+        $data['external_asbuild_plan'] = $plan_asbuild ? date('Y-m-d H:i:s', strtotime($plan_asbuild)) : null;
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
         $updateData = $this->doc_engineering_model->save($data);
         
@@ -393,10 +183,6 @@ class Project_detail_engineering extends BaseController
             $response = ['success' => false];
         }
         return $this->response->setJSON($response);
-    }
-    
-    public function pagination(){
-        
     }
 
     // upload originator
@@ -490,140 +276,6 @@ class Project_detail_engineering extends BaseController
         }
 
         return json_encode($response);
-    }
-
-    // upload IFR
-    public function up_ifr(){
-        // read the file
-        $uploaded_file = $this->request->getFile('file');
-                
-        // store the file
-        if($uploaded_file){
-            $id_doc = $this->request->getPost('id_doc');
-            $version= $this->request->getPost('version');
-            $uploaded_file->move('upload/engineering_doc/list');
-            
-            if($version != "nothing"){
-                $version = autoVersioning($version, 'issued');
-            }else{
-                $version = "0A";
-            }
-            
-            // save file name to database
-            $data = [
-                'id' => $id_doc,
-                'actual_ifr' => date_now(),
-                'file' => $uploaded_file->getName(),
-                'file_version' => $version
-            ];
-            $this->doc_engineering_model->save($data);
-            
-            $data_timeline = [
-                'doc_id'                => $id_doc,
-                'detail_type'           => 'engineering',
-                'time'                  => $data['actual_ifr'],
-                'timeline_title'        => 'IFR File Upload',
-                'timeline_description'  => 'no desc',
-                'timeline_status'       => 'late',
-                'new_file'              => $data['file'],
-                'file_status'           => $data['file_version']
-            ];
-            $this->timeline_doc_model->save($data_timeline);
-
-            // return $this->response->setJSON($data);
-        }else {
-            die("No file specified!");
-        }
-    }
-
-    // upload IFR
-    public function update_ifr(){
-        $id_doc = $this->request->getPost('id_doc');
-        $version= $this->request->getPost('version');
-        $filename= $this->request->getPost('filename');
-            
-        if($version != "nothing"){
-            $version = autoVersioning($version, 'issued');
-        }else{
-            $version = "0A";
-        }
-            
-        // save file name to database
-        $data = [
-            'id' => $id_doc,
-            'actual_ifr' => date_now(),
-            'file_version' => $version
-        ];
-        $this->doc_engineering_model->save($data);
-            
-        $data_timeline = [
-            'doc_id'                => $id_doc,
-            'detail_type'           => 'engineering',
-            'time'                  => $data['actual_ifr'],
-            'timeline_title'        => 'IFR File Upload',
-            'timeline_description'  => 'no desc',
-            'timeline_status'       => 'late',
-            'new_file'              => $filename,
-            'file_status'           => $version
-        ];
-        $this->timeline_doc_model->save($data_timeline);
-    }
-
-    // reject doc
-    public function reject(){
-        $step = $this->request->getPost('step');
-        $id_doc = $this->request->getPost('id_doc');
-
-        if($step == 'internal'){
-            $data = [
-                'id' => $id_doc,
-                'file_status' => 'reject',
-                'internal_originator_status' => 'progress',
-                'internal_engineering_status' => 'reject',
-                'internal_engineering_date' => date('Y-m-d H:i:s')
-            ];
-            $update_doc = $this->doc_engineering_model->save($data);
-
-            $data_timeline = [
-                'doc_id'                => $id_doc,
-                'detail_type'           => 'internal_engineering',
-                'time'                  => date('Y-m-d H:i:s'),
-                'timeline_title'        => 'internal review file reject',
-                'timeline_description'  => 'no desc',
-                'timeline_status'       => 'on time',
-                'new_file'              => '',
-                'file_status'           => 'internal',
-                'created_by'            => sess('active_user_id')
-            ];
-        }else if($step == 'external'){
-            $data_timeline = [
-                'doc_id'                => $id_doc,
-                'detail_type'           => 'external_engineering',
-                'time'                  => date('Y-m-d H:i:s'),
-                'timeline_title'        => 'External IFA file reject',
-                'timeline_description'  => 'no desc',
-                'timeline_status'       => 'on time',
-                'new_file'              => '',
-                'file_status'           => 'external',
-                'created_by'            => sess('active_user_id')
-            ];
-        }
-        
-        $this->timeline_doc_model->save($data_timeline);
-
-        if ($update_doc) {
-            $response = [
-                'success' => true,
-                'message' => 'File rejected successfully.'
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Failed to reject File.'
-            ];
-        }
-
-        return $this->response->setJSON($response);
     }
 
     // approve internal engineerin
@@ -951,7 +603,7 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'ifa_reject',
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
-            'actual_ifr_status' => 'progress',
+            'actual_ifr_status' => null,
             'actual_ifa' => date('Y-m-d H:i:s'),
             'actual_ifa_status' => 'reject'
         ];
@@ -992,7 +644,6 @@ class Project_detail_engineering extends BaseController
         
         $data = [
             'id' => $id_doc,
-            'file_version' => 0,
             'file_status' => 'ifc_approve',
             'actual_ifc' => date('Y-m-d H:i:s'),
             'actual_ifc_status' => 'approve'
@@ -1005,7 +656,7 @@ class Project_detail_engineering extends BaseController
             'detail_type'           => 'external',
             'time'                  => date('Y-m-d H:i:s'),
             'timeline_title'        => 'document approved in IFC step',
-            'timeline_description'  => 'Document Version Become 1',
+            'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_approve',
@@ -1038,7 +689,7 @@ class Project_detail_engineering extends BaseController
             'file_status' => 'ifc_reject',
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
-            'actual_ifr_status' => 'progress',
+            'actual_ifr_status' => null,
             'actual_ifc' => date('Y-m-d H:i:s'),
             'actual_ifc_status' => 'reject'
         ];
@@ -1053,6 +704,93 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_reject',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File rejected successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to reject File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // approve external asbuild
+    public function approve_external_asbuild(){
+        $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('external_asbuild_plan');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_version' => 0,
+            'file_status' => 'asbuild_approve',
+            'external_asbuild_actual' => date('Y-m-d H:i:s'),
+            'external_asbuild_status' => 'approve'
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        // timeline for internal pem approve
+        $data_timeline_pem = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'external',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'document approved in Asbuild step',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
+            'new_file'              => '',
+            'file_status'           => 'external_asbuild_approve',
+            'created_by'            => sess('active_user_id')
+        ];
+        $this->timeline_doc_model->save($data_timeline_pem);
+
+        if ($update_doc) {
+            $response = [
+                'success' => true,
+                'message' => 'File approved successfully.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to approve File.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    // reject external asbuild
+    public function reject_external_asbuild(){
+        $id_doc = $this->request->getPost('id_doc');
+        $plan_date = $this->request->getPost('external_asbuild_plan');
+        
+        $data = [
+            'id' => $id_doc,
+            'file_status' => 'external_asbuild_reject',
+            'internal_originator_status' => 'progress',
+            'actual_ifr' => null,
+            'actual_ifr_status' => null,
+            'external_asbuild_actual' => date('Y-m-d H:i:s'),
+            'external_asbuild_status' => 'reject'
+        ];
+        $update_doc = $this->doc_engineering_model->save($data);
+
+        $data_timeline = [
+            'doc_id'                => $id_doc,
+            'detail_type'           => 'external',
+            'time'                  => date('Y-m-d H:i:s'),
+            'timeline_title'        => 'document rejected in Asbuild step',
+            'timeline_description'  => 'no desc',
+            'timeline_status'       => $this->timeStatusCheck($plan_date),
+            'new_file'              => '',
+            'file_status'           => 'external_asbuild_reject',
             'created_by'            => sess('active_user_id')
         ];
         $this->timeline_doc_model->save($data_timeline);
@@ -1158,7 +896,4 @@ class Project_detail_engineering extends BaseController
         return $status;
     }
 
-    public function testWa(){
-        waCoba();
-    }
 }
