@@ -361,11 +361,8 @@
                                         <thead style="background-color: antiquewhite">
                                             <tr>
                                                 <th>Title</th>
-                                                <th>BL Project Duration</th>
-                                                <th>Duration % Complete</th>
-                                                <th>Actual Duration</th>
-                                                <th>BL Project Start</th>
-                                                <th>BL Project Finish</th>
+                                                <th>BL Date</th>
+                                                <th>Actual/Forecast Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
