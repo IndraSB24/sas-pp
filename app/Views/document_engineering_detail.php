@@ -1160,7 +1160,8 @@ function generateWaitingBadge()
                             icon: "info",
                             buttons: false,
                             closeOnClickOutside: false,
-                            closeOnEsc: false
+                            closeOnEsc: false,
+                            showConfirmButton: false
                         });
                     },
                     success: () => {

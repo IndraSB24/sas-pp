@@ -6,17 +6,7 @@
     <style>
         /* CSS untuk menentukan latar belakang div */
         .background-div {
-            background-image: url('assets/images/93826.jpg');
-            background-size: cover;
-            background-position: center;
-            /* background-color: '#4aa3ff'; */
-            /* opacity: 0.8; */
-            /* z-index: -100 */
-        }
-
-        .background-div-b {
-            /* background-image: url('assets/images/93826.jpg'); */
-            background-image: url('assets/images/123.jpg');
+            background-image: url('assets/images/helm.jpg');
             background-size: cover;
             background-position: center;
             /* background-color: '#4aa3ff'; */
@@ -72,7 +62,7 @@
                 <!-- start page title -->
                 <?= $page_title ?>
                 <!-- end page title -->
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-xl-8">
                         <div class="row mb-3">
                             <div class="col-md-2">
@@ -217,7 +207,7 @@
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                             <h4 class="card-title mb-0" style="color:#ffffff">Manpower By Month</h4>
                                         </div>
-                                        <div id="chart_man_power" class="apex-charts" dir="ltr"></div>
+                                        <div id="chart_man_power_stacked" class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
@@ -259,65 +249,65 @@
                             </div>
                             <div class="col-lg-6" style="padding-right: 5px;padding-left: 5px">
                                 <div class="galon" style="padding: 15px;padding-top: 10px;height: 100%;border-radius: 5px;background-color: rgba(255, 255, 240, 0.9)">
-                                <div class="row">
-                                    <div class="col-md-6" style="padding: 10px">
-                                        <div style="display: flex;align-items: center">
-                                            <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
-                                            <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
-                                                <strong>HSE</strong>
-                                                <strong>Peformance</strong>
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding: 10px">
+                                            <div style="display: flex;align-items: center">
+                                                <i class="fas fa-briefcase-medical" style="font-size: 3rem;"></i>
+                                                <div style="margin-left: 5px;display: flex; flex-direction:column;justify-content:bottom; font-size: 1.5rem;line-height:1">
+                                                    <strong>HSE</strong>
+                                                    <strong>Peformance</strong>
+                                                </div>
+                                            </div>
+                                            <div class="text-center mt-2" style="background-color: rgba(255, 255, 224, 0.9); display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px;border: 1px solid #E0E0E0; border-radius: 20px;font-size:4rem">
+                                                <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4> -->
+                                                <strong style="font-size: 2rem;color:#fcb92c">4.022.020</strong>
+                                            </div>
+                                            <div class="mt-2">
+                                                <strong style="font-size: 1rem;line-height:normal">Cumulative Safe Manhours</strong>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6" style="display: flex;flex-direction:column;border-right:#2c3e50 solid"><span>Man Hours This Month</span><strong>40.460</strong></div>
+                                                <div class="col-md-6" style="display: flex;flex-direction:column"><span>UAUC Ratio</span><strong>40.460</strong></div>
                                             </div>
                                         </div>
-                                        <div class="text-center mt-2" style="background-color: rgba(255, 255, 224, 0.9); display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px;border: 1px solid #E0E0E0; border-radius: 20px;font-size:4rem">
-                                            <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4> -->
-                                            <strong style="font-size: 2rem;color:#fcb92c">4.022.020</strong>
+                                        <div class="col-md-6">
+                                            <div class="table-responsives">
+                                                <table id="datatable" class="table nowrap table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">FAR</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">MTC</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">MC</td>
+                                                            <td>2</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">FAC</td>
+                                                            <td>5</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">PD</td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">Major LOPC</td>
+                                                            <td>5</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: antiquewhite">Near Miss</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div class="mt-2">
-                                            <strong style="font-size: 1rem;line-height:normal">Cumulative Safe Manhours</strong>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6" style="display: flex;flex-direction:column;border-right:#2c3e50 solid"><span>Man Hours This Month</span><strong>40.460</strong></div>
-                                            <div class="col-md-6" style="display: flex;flex-direction:column"><span>UAUC Ratio</span><strong>40.460</strong></div>
-                                        </div>
+                                        <!-- <div class="col-md-4">fuadi</div> -->
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="table-responsives">
-                                            <table id="datatable" class="table nowrap table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">FAR</td>
-                                                        <td>1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">MTC</td>
-                                                        <td>1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">MC</td>
-                                                        <td>2</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">FAC</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">PD</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">Major LOPC</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="background-color: antiquewhite">Near Miss</td>
-                                                        <td>10</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-md-4">fuadi</div> -->
-                                </div>
                                 </div>
                             </div>
                             <div class="col-lg-3" style="padding-left: 5px;">
@@ -351,7 +341,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 text-center">
-                                        <strong style="font-size: 2rem;color:#fcb92c">0</strong><br>
+                                            <strong style="font-size: 2rem;color:#fcb92c">0</strong><br>
                                             <strong>Overdue Action Item</strong>
                                         </div>
                                         <!-- <div class="col-md-4">fuadi</div> -->
@@ -432,7 +422,7 @@
                                                     <td>20-04-2024</td>
                                                     <td>Waiting</td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -747,8 +737,7 @@
         //         text: 'Points',
         //     },
         // },
-        yaxis: [
-            {
+        yaxis: [{
                 title: {
                     text: "SCurve Prcent"
                 },
@@ -860,6 +849,73 @@
         options_man_power
     );
     chart_man_power.render();
+
+    var options = {
+        series: [{
+            name: 'Plan',
+            data: [46, 57, 59, 54, 62, 58, 64, 60, 66, 100, 60, 70]
+        }, {
+            name: 'Actual',
+            data: [74, 83, 102, 97, 86, 106, 93, 114, 94, 80, 40, 20]
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+        },
+        
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        offsetX: 0,
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900,
+                        }
+                    }
+                }
+            },
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: {
+                formatter: function(val) {
+                    return val
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                text: undefined
+            },
+        },
+        tooltip: {
+            y: {
+                formatter: function(val) {
+                    return val + "People"
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'left',
+            offsetX: 40
+        },
+        
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart_man_power_stacked"), options);
+    chart.render();
 
     $(document).ready(function() {
         $("#Detail-Engineering").click(function() {
