@@ -730,7 +730,7 @@ class Project_detail_engineering extends BaseController
         
         $data = [
             'id' => $id_doc,
-            'file_version' => 0,
+            'file_version' => autoVersioning($version, 'approve');,
             'file_status' => 'asbuild_approve',
             'external_asbuild_actual' => date('Y-m-d H:i:s'),
             'external_asbuild_status' => 'approve'
