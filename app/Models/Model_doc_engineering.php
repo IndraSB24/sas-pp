@@ -99,4 +99,16 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get all
+    public function get_all(){
+        $this->select('
+            project_detail_engineering.*,
+            dh.name as doc_dicipline
+        ')
+        ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline', 'LEFT')
+        ->where('project_detail_engineering.deleted_at', NULL);
+        
+        return $this->get()->getResult();
+    }
+
 }
