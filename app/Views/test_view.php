@@ -435,6 +435,9 @@
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
                         formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
+                    } else if (fileDesc === 'external_as_build') {
+                        path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
+                        formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };
                     // const version = $(this).data('version');
                     
@@ -515,7 +518,10 @@
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
                         formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
-                    };
+                    } else if (fileDesc === 'external_as_build') {
+                        path = "<?= base_url('Project_detail_engineering/reject_external_asbuild') ?>";
+                        formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
+                    };;
                     // const version = $(this).data('version');
                     
 
