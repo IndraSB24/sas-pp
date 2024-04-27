@@ -596,7 +596,7 @@ function generateWaitingBadge()
                                                     <tr>
                                                         <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
                                                         <td nowrap style="border-left-width: 4px;"><?= $row->wbs_code ?></td>
-                                                        <td class="text-center" nowrap> <?= $row->doc_dicipline ?> </td>
+                                                        <td class="text-center" nowrap> <?= $row->level_code ?> </td>
                                                         <td><?= $row->description ?></td>
                                                         <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
                                                         <td class="text-center"><?= $enginerPP ?></td>
