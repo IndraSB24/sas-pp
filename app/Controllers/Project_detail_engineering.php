@@ -26,7 +26,7 @@ class Project_detail_engineering extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR']),
-			'list_doc_engineering' => $this->doc_engineering_model->findAll(),
+			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
             'data_weight_factor' => $this->doc_engineering_model->get_weight_factor(),
             'total_doc' => $this->doc_engineering_model->count_all_doc()
 		];
