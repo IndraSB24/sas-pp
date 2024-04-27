@@ -728,6 +728,7 @@ class Project_detail_engineering extends BaseController
     public function approve_external_asbuild(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('external_asbuild_plan');
+        $version = $this->request->getPost('version');
         
         $data = [
             'id' => $id_doc,
