@@ -168,7 +168,7 @@ function generateWaitingBadge()
                                                     <th rowspan="4">DOCUMENT NUMBER</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
-                                                    <th colspan="9" class="text-center">EXTERNAL</th>
+                                                    <th colspan="11" class="text-center">EXTERNAL</th>
                                                     <th rowspan="4" class="text-center">STATUS</th>
                                                     <th rowspan="4" class="text-center" style="border-right-width: 4px;">ACTION</th>
                                                 </tr>
@@ -179,28 +179,32 @@ function generateWaitingBadge()
                                                     <th rowspan="3">HO PP</th>
                                                     <th rowspan="3" style="border-right-width: 4px;">PEM PP</th>
                                                     <th rowspan="3">WEIGHT FACTOR</th>
-                                                    <th colspan="4" class="text-center">PLAN</th>
-                                                    <th colspan="4" class="text-center">ACTUAL</th>
+                                                    <th colspan="5" class="text-center">PLAN</th>
+                                                    <th colspan="5" class="text-center">ACTUAL</th>
 
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
+                                                    <th class="text-center">As Build</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
+                                                    <th class="text-center">As Build</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">50%</th>
                                                     <th class="text-center">40%</th>
                                                     <th class="text-center">10%</th>
+                                                    <th class="text-center">fuadi</th>
                                                     <th class="text-center">100%</th>
                                                     <th class="text-center">50%</th>
                                                     <th class="text-center">40%</th>
                                                     <th class="text-center">10%</th>
+                                                    <th class="text-center">fuadi</th>
                                                     <th class="text-center">100%</th>
                                                 </tr>
                                             </thead>
@@ -564,6 +568,17 @@ function generateWaitingBadge()
                                                         'external_ifa',
                                                         'version ' . $file_version
                                                     );
+                                                    $actual_AsBuild = generateStatusBadge(
+                                                        $row->external_asbuild_status,
+                                                        $row->external_asbuild_actual,
+                                                        $row->id,
+                                                        $row->description,
+                                                        $linkFile,
+                                                        'AsBuild',
+                                                        $file_version,
+                                                        'external_as_build',
+                                                        'version ' . $file_version
+                                                    );
 
                                                     // set actual IFC status                                                       
                                                     $actual_ifc = generateStatusBadge(
@@ -591,10 +606,12 @@ function generateWaitingBadge()
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
                                                         <td class="text-center" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                        <td class="text-center" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
                                                         <td class="text-center"><?= $plan_cumulative ?>%</td>
                                                         <td class="text-center" nowrap><?= $actual_ifr ?></td>
                                                         <td class="text-center" nowrap><?= $actual_ifa ?></td>
                                                         <td class="text-center" nowrap><?= $actual_ifc ?></td>
+                                                        <td class="text-center" nowrap><?= $actual_AsBuild ?></td>
                                                         <td class="text-center"><?= $actual_cumulative ?>%</td>
                                                         <td class="text-center">
                                                             <a href="<?= base_url('document-timeline/' . $row->id) ?>">
@@ -686,13 +703,6 @@ function generateWaitingBadge()
                     <div class="row mb-4">
                         <label class="form-label">Plan</label>
                         <div class="col-md-4">
-                            <label class="form-label">IFR</label>
-                            <div class="input-group" id="ifr_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
                             <label class="form-label">IFA</label>
                             <div class="input-group" id="ifa_date">
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date" data-provide="datepicker" name="plan_ifa" id="plan_ifa" />
@@ -700,9 +710,16 @@ function generateWaitingBadge()
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">IFC</label>
+                            <label class="form-label">IFC /IFP</label>
                             <div class="input-group" id="ifc_date">
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifc_date" data-provide="datepicker" name="plan_ifc" id="plan_ifc" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">As Build</label>
+                            <div class="input-group" id="ifr_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -750,13 +767,6 @@ function generateWaitingBadge()
                     <div class="row mb-4">
                         <label class="form-label">Plan</label>
                         <div class="col-md-4">
-                            <label class="form-label">IFR</label>
-                            <div class="input-group" id="ifr_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="plan_ifr_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
                             <label class="form-label">IFA</label>
                             <div class="input-group" id="ifa_date_edit">
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date_edit" data-provide="datepicker" name="plan_ifa_edit" id="plan_ifa_edit" />
@@ -764,9 +774,16 @@ function generateWaitingBadge()
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">IFC</label>
+                            <label class="form-label">IFC/ IFP</label>
                             <div class="input-group" id="ifc_date_edit">
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifc_date_edit" data-provide="datepicker" name="plan_ifc_edit" id="plan_ifc_edit" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">IFR</label>
+                            <div class="input-group" id="ifr_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="plan_ifr_edit" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -800,16 +817,16 @@ function generateWaitingBadge()
                     </div>
                     <div class="row mb-4">
                         <label class="form-label">Choose <span class="upload_step"></span> File</label>
-                        <div>
-                            <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
-                            <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
-                            &nbsp;<span id="upload_file_name">No File Choosen</span>
-                        </div>
                         <div class="row mb-4">
                             <div class="col-md-12">
                                 <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
                                 <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
                             </div>
+                        </div>
+                        <div>
+                            <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
+                            <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
+                            &nbsp;<span id="upload_file_name">No File Choosen</span>
                         </div>
                         <!-- <div class="row mb-4">
                             <div class="col-md-12">
@@ -1028,12 +1045,6 @@ function generateWaitingBadge()
         planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
         id_edit = document.getElementById("id_doc_edit").value;
-        console.log(levelCodeEdit, 'fuadi levelCodeEdit');
-        console.log(descriptionEdit, 'fuadi descriptionEdit');
-        console.log(weightFactorEdit, 'fuadi weightFactorEdit');
-        console.log(planIfrEdit, 'fuadi planIfrEdit');
-        console.log(planIfaEdit, 'fuadi planIfaEdit');
-        console.log(planIfcEdit, 'fuadi planIfcEdit');
 
         var timerInterval;
         Swal.fire({
