@@ -21,7 +21,8 @@ class Model_doc_engineering extends Model
         'internal_engineering_status', 'internal_ho_status', 'internal_pem_status', 'internal_originator_status',
         'internal_engineering_date', 'internal_ho_date', 'internal_pem_date', 'internal_originator_date', 
         'id_engineering_doc_file', 'wbs_code', 'actual_ifr_status', 'actual_ifa_status', 'actual_ifc_status',
-        'external_asbuild_plan', 'external_asbuild_actual', 'external_asbuild_status'
+        'external_asbuild_plan', 'external_asbuild_actual', 'external_asbuild_status', 'id_doc_dicipline', 
+        'man_hour_plan', 'man_hour_actual'
     ];
 
     protected $useTimestamps = true;
