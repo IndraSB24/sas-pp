@@ -646,7 +646,8 @@ class Project_detail_engineering extends BaseController
             'id' => $id_doc,
             'file_status' => 'ifc_approve',
             'actual_ifc' => date('Y-m-d H:i:s'),
-            'actual_ifc_status' => 'approve'
+            'actual_ifc_status' => 'approve',
+            'external_asbuild_status' => 'progress'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
