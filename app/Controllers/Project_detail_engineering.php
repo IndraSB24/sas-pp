@@ -147,6 +147,12 @@ class Project_detail_engineering extends BaseController
             	];
             	$this->doc_engineering_model->reset_increment();
             	$this->doc_engineering_model->save($data);
+                $response = [
+                    'success' => false,
+                    'message' => 'No file specified.'
+                ];
+    
+            return json_encode($response);
 	        break;
 	    }
     }
@@ -182,7 +188,7 @@ class Project_detail_engineering extends BaseController
         } else {
             $response = ['success' => false];
         }
-        return $this->response->setJSON($response);
+        return json_encode($response);
     }
 
     // upload originator

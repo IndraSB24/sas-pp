@@ -436,7 +436,7 @@
                         path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
                         formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
                     } else if (fileDesc === 'external_as_build') {
-                        path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
+                        path = "<?= base_url('Project_detail_engineering/approve_external_asbuild') ?>";
                         formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };
                     // const version = $(this).data('version');
@@ -531,7 +531,7 @@
                     version = "<?= $doc_data[0]->file_version ?>";
                     formData.append('id_doc', id_doc);
                     formData.append('version', version);
-                    swalTitle = 'Reject ' + fileDesc + ' Version ' + version + ' ?';
+                    swalTitle = 'Reject document ?';
 
                     Swal.fire({
                         title: swalTitle,

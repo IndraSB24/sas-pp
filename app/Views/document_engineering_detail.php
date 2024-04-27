@@ -166,6 +166,7 @@ function generateWaitingBadge()
                                                     <th rowspan="4" style="border-left-width: 4px;">NO</th>
                                                     <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
                                                     <th rowspan="4">DOCUMENT NUMBER</th>
+                                                    <th rowspan="4">DOCUMENT DICIPLINE</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
                                                     <th colspan="11" class="text-center">EXTERNAL</th>
@@ -187,24 +188,24 @@ function generateWaitingBadge()
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
-                                                    <th class="text-center">As Build</th>
+                                                    <th class="text-center">ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC</th>
-                                                    <th class="text-center">As Build</th>
+                                                    <th class="text-center">ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">50%</th>
-                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">0%</th>
+                                                    <th class="text-center">25%</th>
+                                                    <th class="text-center">65%</th>
                                                     <th class="text-center">10%</th>
-                                                    <th class="text-center">fuadi</th>
                                                     <th class="text-center">100%</th>
-                                                    <th class="text-center">50%</th>
-                                                    <th class="text-center">40%</th>
+                                                    <th class="text-center">0%</th>
+                                                    <th class="text-center">25%</th>
+                                                    <th class="text-center">65%</th>
                                                     <th class="text-center">10%</th>
-                                                    <th class="text-center">fuadi</th>
                                                     <th class="text-center">100%</th>
                                                 </tr>
                                             </thead>
@@ -597,6 +598,7 @@ function generateWaitingBadge()
                                                         <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
                                                         <td nowrap style="border-left-width: 4px;"><?= $row->wbs_code ?></td>
                                                         <td class="text-center" nowrap> <?= $row->level_code ?> </td>
+                                                        <td class="text-center" nowrap> <?= $row->doc_dicipline ?> </td>
                                                         <td><?= $row->description ?></td>
                                                         <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
                                                         <td class="text-center"><?= $enginerPP ?></td>
@@ -619,7 +621,7 @@ function generateWaitingBadge()
                                                             </a>
                                                         </td>
                                                         <td class="text-center" nowrap style="border-right-width: 4px;">
-                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
+                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
                                                                 <i class="ri-pencil-fill text-info font-size-20"></i>
                                                             </a>
                                                             &nbsp;
@@ -717,9 +719,9 @@ function generateWaitingBadge()
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">As Build</label>
-                            <div class="input-group" id="ifr_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
+                            <label class="form-label">ASBUILD</label>
+                            <div class="input-group" id="asbuild_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#asbuild_date" data-provide="datepicker" name="plan_ifr" id="external_asbuild_plan" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -781,9 +783,9 @@ function generateWaitingBadge()
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">IFR</label>
+                            <label class="form-label">ASBUILD</label>
                             <div class="input-group" id="ifr_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="plan_ifr_edit" />
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="external_asbuild_plan_edit" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -919,7 +921,7 @@ function generateWaitingBadge()
         const level_code = document.getElementById("level_code").value;
         const description = document.getElementById("description").value;
         const weight_factor = document.getElementById("weight_factor").value;
-        const plan_ifr = document.getElementById("plan_ifr").value;
+        const external_asbuild_plan = document.getElementById("external_asbuild_plan").value;
         const plan_ifa = document.getElementById("plan_ifa").value;
         const plan_ifc = document.getElementById("plan_ifc").value;
         var timerInterval;
@@ -939,28 +941,31 @@ function generateWaitingBadge()
                         level_code: level_code,
                         description: description,
                         weight_factor: weight_factor,
-                        plan_ifr: plan_ifr,
+                        external_asbuild_plan: external_asbuild_plan,
                         plan_ifa: plan_ifa,
                         plan_ifc: plan_ifc
-                    }
-                });
-                Swal.fire({
-                    title: 'Disimpan!',
-                    icon: 'success',
-                    text: 'Data berhasil disimpan.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen: function() {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                            Swal.getContent().querySelector('strong')
-                                .textContent = Swal.getTimerLeft()
-                        }, 100)
                     },
-                    onClose: function() {
-                        location.reload()
-                    }
-                })
+                    success: () => {
+                        Swal.fire({
+                            title: 'Disimpan!',
+                            icon: 'success',
+                            text: 'Data berhasil disimpan.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    },
+                    error: err => console.log(err),
+                });
             }
         })
     })
@@ -1018,7 +1023,7 @@ function generateWaitingBadge()
             levelCode = $(this).data('level_code'),
             description = $(this).data('description'),
             weightFactor = $(this).data('weight_factor'),
-            planIfr = $(this).data('plan_ifr'),
+            external_asbuild_plan = $(this).data('external_asbuild_plan'),
             planIfa = $(this).data('plan_ifa'),
             planIfc = $(this).data('plan_ifc');
 
@@ -1027,7 +1032,7 @@ function generateWaitingBadge()
         $('#level_code_edit').val(levelCode);
         $('#description_edit').val(description);
         $('#weight_factor_edit').val(weightFactor);
-        $('#plan_ifr_edit').val(planIfr);
+        $('#external_asbuild_plan_edit').val(external_asbuild_plan);
         $('#plan_ifa_edit').val(planIfa);
         $('#plan_ifc_edit').val(planIfc);
 
@@ -1041,7 +1046,7 @@ function generateWaitingBadge()
         levelCodeEdit = document.getElementById("level_code_edit").value,
             descriptionEdit = document.getElementById("description_edit").value,
             weightFactorEdit = document.getElementById("weight_factor_edit").value,
-            planIfrEdit = document.getElementById("plan_ifr_edit").value;
+            external_asbuild_plan_edit = document.getElementById("external_asbuild_plan_edit").value;
         planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
         id_edit = document.getElementById("id_doc_edit").value;
@@ -1064,7 +1069,7 @@ function generateWaitingBadge()
                         level_code: levelCodeEdit,
                         description: descriptionEdit,
                         weight_factor: weightFactorEdit,
-                        plan_ifr: planIfrEdit,
+                        external_asbuild_plan: external_asbuild_plan_edit,
                         plan_ifa: planIfaEdit,
                         plan_ifc: planIfcEdit,
                         id_edit: id_edit,

@@ -217,7 +217,7 @@
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                             <h4 class="card-title mb-0" style="color:#ffffff">Manhour By Month</h4>
                                         </div>
-                                        <div id="chart_man_power" class="apex-charts" dir="ltr"></div>
+                                        <div id="chart_man_hour" class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!--end card-->
                             </div>
@@ -781,28 +781,6 @@
     // column chart
 
     var options_man_power = {
-        chart: {
-            height: 200,
-            type: 'bar',
-            toolbar: {
-                show: false,
-            }
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '60%',
-                endingShape: 'rounded'
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-        },
         series: [{
             name: 'Plan',
             data: [46, 57, 59, 54, 62, 58, 64, 60, 66, 100, 60, 70]
@@ -810,45 +788,68 @@
             name: 'Actual',
             data: [74, 83, 102, 97, 86, 106, 93, 114, 94, 80, 40, 20]
         }],
-        colors: ['#5664d2', '#1cbb8c', '#fcb92c'],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+        },
+        // colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        colors: ['#FFFF66', '#FFA500'],
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        offsetX: 0,
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900,
+                        }
+                    }
+                },
+            },
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
         xaxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            title: {
-                text: 'Month'
+            labels: {
+                formatter: function(val) {
+                    return val
+                }
             }
         },
         yaxis: {
             title: {
-                text: 'Manpower (people)'
-            }
-        },
-        grid: {
-            borderColor: '#f1f1f1',
-            padding: {
-                bottom: 10
-            }
-        },
-        fill: {
-            opacity: 1
-
+                text: undefined
+            },
         },
         tooltip: {
             y: {
                 formatter: function(val) {
-                    return val + " people"
+                    return val + "People"
                 }
             }
         },
+        fill: {
+            opacity: 1
+        },
         legend: {
-            offsetY: 7
-        }
+            position: 'top',
+            horizontalAlign: 'left',
+            offsetX: 40
+        },
+        
     }
 
-    var chart_man_power = new ApexCharts(
-        document.querySelector("#chart_man_power"),
+    var chart_man_hour = new ApexCharts(
+        document.querySelector("#chart_man_hour"),
         options_man_power
     );
-    chart_man_power.render();
+    chart_man_hour.render();
 
     var options = {
         series: [{
@@ -876,7 +877,7 @@
                             fontWeight: 900,
                         }
                     }
-                }
+                },
             },
         },
         stroke: {
