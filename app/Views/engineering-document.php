@@ -781,6 +781,7 @@
     });
 
     console.log({
+        data_weight_factor_plan,
         actual_mixed_chart,
         cum_actual_mixed_chart,
         plan_mixed_chart,
