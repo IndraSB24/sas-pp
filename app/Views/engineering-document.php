@@ -745,7 +745,7 @@
     let endDate = new Date('<?= json_encode($data_date_range[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
     console.log({
-        'indra_console',
+        status: 'indra_console',
         startDate,
         endDate
     })
