@@ -69,10 +69,26 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get sum plan weight factor
+    public function get_plan_weight_factor(){
+        $result = $this->select('
+            YEAR(external_asbuild_plan) as year,
+            MONTH(external_asbuild_plan) as month,
+            SUM(weight_factor) as weight_factor_sum
+        ')
+        ->where('deleted_at', null)
+        ->groupBy('YEAR(external_asbuild_plan), MONTH(external_asbuild_plan)')
+        ->get()
+        ->getResult();
+    
+        return $result;
+    }
+    
+
     // get plan range
     public function get_plan_range(){
         $result = $this->select('
-            min(plan_ifa) as min_date_range,
+            min(external_asbuild_plan) as min_date_range,
             max(external_asbuild_plan) as max_date_range
         ')
         ->where('deleted_at', null)

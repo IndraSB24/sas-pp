@@ -767,10 +767,18 @@
         cum_percent_counter = sum;
     });
 
-    console.log({
-        actual_mixed_chart,
-        cum_actual_mixed_chart
-    })
+    const data_weight_factor_plan = <?= json_encode($data_weight_factor_plan) ?>;
+    const plan_mixed_chart = [];
+    data_weight_factor_plan.forEach(function(list) {
+        plan_mixed_chart.push(list.weight_factor_sum);
+    });
+
+    const cum_plan_mixed_chart = [];
+    let sum = 0;
+    plan_mixed_chart.forEach(function(value) {
+        sum += parseFloat(value);
+        cum_plan_mixed_chart.push(sum);
+    });
     
     var optionsMixed = {
         chart: {
@@ -794,7 +802,7 @@
         series: [{
             name: 'Plan',
             type: 'column',
-            data: []
+            data: plan_mixed_chart
         },
         {
             name: 'Actual',
@@ -804,7 +812,7 @@
         {
             name: 'Cum Plan',
             type: 'line',
-            data: []
+            data: cum_plan_mixed_chart
         },
         {
             name: 'Cum Actual',
