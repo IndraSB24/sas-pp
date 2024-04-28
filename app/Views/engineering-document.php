@@ -744,6 +744,11 @@
     const startDate = new Date('<?= json_encode($data_date_range[0]->min_date_range) ?>');
     let endDate = new Date('<?= json_encode($data_date_range[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
+    console.log({
+        'indra_console',
+        startDate,
+        endDate
+    })
     
     const input_counter = parseInt($('#input_counter').val());
     
