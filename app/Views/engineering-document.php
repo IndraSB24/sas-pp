@@ -779,6 +779,13 @@
         sum_plan += parseFloat(value);
         cum_plan_mixed_chart.push(sum_plan);
     });
+
+    console.log({
+        actual_mixed_chart,
+        cum_actual_mixed_chart,
+        plan_mixed_chart,
+        cum_plan_mixed_chart
+    })
     
     var optionsMixed = {
         chart: {
