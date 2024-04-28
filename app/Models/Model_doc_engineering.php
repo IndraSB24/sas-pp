@@ -69,6 +69,17 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get plan range
+    public function get_plan_range(){
+        $this->select('
+            min(plan_ifa) as min_date_range,
+            max(external_asbuild_plan) as max_date_range
+        ')
+        ->where('deleted_at', null);
+        
+        return $this->get()->getResult();
+    }
+
     // get with comment
     public function get_with_comment($id){
         $this->select('
