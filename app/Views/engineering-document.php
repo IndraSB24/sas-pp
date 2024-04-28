@@ -762,7 +762,7 @@
     const cum_actual_mixed_chart = [];
     let sum = 0;
     actual_mixed_chart.forEach(function(value) {
-        sum += parseInt(value);
+        sum += parseFloat(value);
         cum_actual_mixed_chart.push(sum);
         cum_percent_counter = sum;
     });
