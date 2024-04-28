@@ -744,6 +744,7 @@
     const startDate = new Date('<?= json_encode($data_date_range[0]->min_date_range) ?>');
     let endDate = new Date('<?= json_encode($data_date_range[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
+    const data_weight_factor_plan = <?= json_encode($data_weight_factor_plan) ?>;
     
     data_weight_factor_plan.forEach(function(list) {
         // Construct label in the desired format (e.g., 'MMM YYYY' for abbreviated month name and year)
@@ -772,7 +773,6 @@
         cum_percent_counter = sum;
     });
 
-    const data_weight_factor_plan = <?= json_encode($data_weight_factor_plan) ?>;
     const plan_mixed_chart = [];
     data_weight_factor_plan.forEach(function(list) {
         plan_mixed_chart.push(list.weight_factor_sum);
