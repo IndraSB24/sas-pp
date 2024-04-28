@@ -774,10 +774,10 @@
     });
 
     const cum_plan_mixed_chart = [];
-    let sum = 0;
+    let sum_plan = 0;
     plan_mixed_chart.forEach(function(value) {
-        sum += parseFloat(value);
-        cum_plan_mixed_chart.push(sum);
+        sum_plan += parseFloat(value);
+        cum_plan_mixed_chart.push(sum_plan);
     });
     
     var optionsMixed = {
