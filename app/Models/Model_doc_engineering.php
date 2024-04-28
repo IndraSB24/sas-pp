@@ -71,14 +71,24 @@ class Model_doc_engineering extends Model
 
     // get plan range
     public function get_plan_range(){
-        $this->select('
+        $result = $this->select('
             min(plan_ifa) as min_date_range,
             max(external_asbuild_plan) as max_date_range
         ')
-        ->where('deleted_at', null);
-        
-        return $this->get()->getResult();
+        ->where('deleted_at', null)
+        ->get()
+        ->getResult();
+    
+        // Format dates as ISO 8601 (YYYY-MM-DD)
+        $formattedResult = array_map(function($item) {
+            $item->min_date_range = date('Y-m-d', strtotime($item->min_date_range));
+            $item->max_date_range = date('Y-m-d', strtotime($item->max_date_range));
+            return $item;
+        }, $result);
+    
+        return $formattedResult;
     }
+    
 
     // get with comment
     public function get_with_comment($id){
