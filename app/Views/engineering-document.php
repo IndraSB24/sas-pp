@@ -741,8 +741,8 @@
     chart_equipment.render();
     
     // Mixed chart ========================================================================================================
-    const startDate = new Date('<?= json_encode($data_weight_factor->min_date_range) ?>');
-    let endDate = new Date('<?= json_encode($data_weight_factor->max_date_range) ?>');
+    const startDate = new Date('<?= json_encode($data_weight_factor[0]->min_date_range) ?>');
+    let endDate = new Date('<?= json_encode($data_weight_factor[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
     
     const input_counter = parseInt($('#input_counter').val());
