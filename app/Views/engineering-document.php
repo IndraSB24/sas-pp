@@ -748,7 +748,7 @@
     
     data_weight_factor_plan.forEach(function(list) {
         // Construct label in the desired format (e.g., 'MMM YYYY' for abbreviated month name and year)
-        const label = '${list.month} ${list.year}';
+        const label = list.month +' '+ list.year;
         labels_mixed_chart1.push(label);
     });
     // Loop through each month and generate the label
