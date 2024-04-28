@@ -744,13 +744,6 @@
     const startDate = new Date('<?= json_encode($data_date_range[0]->min_date_range) ?>');
     let endDate = new Date('<?= json_encode($data_date_range[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
-    console.log({
-        status: 'indra_console',
-        startDate,
-        endDate
-    })
-    
-    const input_counter = parseInt($('#input_counter').val());
     
     // Loop through each month and generate the label
     for (let currentDate = new Date(startDate); currentDate <= endDate; currentDate.setMonth(currentDate.getMonth() + 1)) {
@@ -773,6 +766,11 @@
         cum_actual_mixed_chart.push(sum);
         cum_percent_counter = sum;
     });
+
+    console.log({
+        actual_mixed_chart,
+        cum_actual_mixed_chart
+    })
     
     var optionsMixed = {
         chart: {
