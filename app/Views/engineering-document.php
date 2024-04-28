@@ -747,8 +747,11 @@
     const data_weight_factor_plan = <?= json_encode($data_weight_factor_plan) ?>;
     
     data_weight_factor_plan.forEach(function(list) {
+        // Get the month name in short format (e.g., 'Jan', 'Feb', etc.)
+        const monthName = new Date(Date.parse(`${list.month} 1, ${list.year}`)).toLocaleString('default', { month: 'short' });
+        
         // Construct label in the desired format (e.g., 'MMM YYYY' for abbreviated month name and year)
-        const label = `${list.month : 'short'} ${list.year}`;
+        const label = `${monthName} ${list.year}`;
         labels_mixed_chart1.push(label);
     });
     // Loop through each month and generate the label
