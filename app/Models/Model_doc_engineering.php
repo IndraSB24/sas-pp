@@ -64,7 +64,7 @@ class Model_doc_engineering extends Model
         $this->select('
             weight_factor
         ')
-        ->where('file_status', 'ifc_approve');
+        ->where('file_status', 'asbuild_approve');
         
         return $this->get()->getResult();
     }
