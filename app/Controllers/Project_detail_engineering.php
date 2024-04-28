@@ -77,7 +77,8 @@ class Project_detail_engineering extends BaseController
             'doc_id' => $doc_id,
             'file_name' => 'test.pdf',
             'doc_data' => $this->doc_engineering_model->get_by_id($doc_id),
-            'step' => $step
+            'step' => $step,
+            'is_preview' => $step === 'preview',
 		];
         // print_r($data['doc_data']);die;
 		return view('test_view', $data);

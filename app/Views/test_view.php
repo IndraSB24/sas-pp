@@ -75,6 +75,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                    <?php if (!$is_preview) { ?>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card" style="border: 1px solid #eff2f7;border-radius: 10px;padding: 10px; margin: 0">
@@ -141,6 +142,7 @@
                                 </div>
                             </div>
                         </div>
+                    <?php } ?>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">

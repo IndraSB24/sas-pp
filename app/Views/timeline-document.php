@@ -76,11 +76,15 @@
                                                                 </p>
                                                             </div>
                                                             <div class="timeline-album">
-                                                                <a  href="<?=
+                                                            <!-- base_url('commentPdf/') . '/' . $row->id . '/internal -->
+                                                                <!-- <a  href="<?=
                                                                         $timeline_data[$i]->new_file ?
                                                                         base_url($timeline_data[$i]->new_file) :
                                                                         'javascript:noFileFoundError();'
                                                                     ?>" 
+                                                                    class="me-1"
+                                                                > -->
+                                                                <a  href="<?= base_url('commentPdf').'/'.$timeline_data[$i]->doc_id.'/preview'?>" 
                                                                     class="me-1"
                                                                 >
                                                                     <span>Cek Dokumen</span>
