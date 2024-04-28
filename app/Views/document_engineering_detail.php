@@ -187,12 +187,12 @@ function generateWaitingBadge()
                                                 <tr>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC</th>
+                                                    <th class="text-center">IFC /IFP</th>
                                                     <th class="text-center">ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC</th>
+                                                    <th class="text-center">IFC /IFP</th>
                                                     <th class="text-center">ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                 </tr>
