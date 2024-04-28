@@ -745,12 +745,17 @@
     let endDate = new Date('<?= json_encode($data_date_range[0]->max_date_range) ?>');
     const labels_mixed_chart1 = [];
     
-    // Loop through each month and generate the label
-    for (let currentDate = new Date(startDate); currentDate <= endDate; currentDate.setMonth(currentDate.getMonth() + 1)) {
-        // Format the current date as desired (e.g., 'MMM YYYY' for abbreviated month name and year)
-        const label = `${currentDate.toLocaleString('default', { month: 'short' })} ${currentDate.getFullYear()}`;
+    data_weight_factor_plan.forEach(function(list) {
+        // Construct label in the desired format (e.g., 'MMM YYYY' for abbreviated month name and year)
+        const label = '${list.month} ${list.year}';
         labels_mixed_chart1.push(label);
-    };
+    });
+    // Loop through each month and generate the label
+    // for (let currentDate = new Date(startDate); currentDate <= endDate; currentDate.setMonth(currentDate.getMonth() + 1)) {
+    //     // Format the current date as desired (e.g., 'MMM YYYY' for abbreviated month name and year)
+    //     const label = `${currentDate.toLocaleString('default', { month: 'short' })} ${currentDate.getFullYear()}`;
+    //     labels_mixed_chart1.push(label);
+    // };
     
     const data_weight_factor = <?= json_encode($data_weight_factor) ?>;
     const actual_mixed_chart = [];
