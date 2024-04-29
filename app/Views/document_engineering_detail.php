@@ -168,6 +168,7 @@ function generateWaitingBadge()
                                                     <th rowspan="4">DOCUMENT NUMBER</th>
                                                     <th rowspan="4">DOCUMENT DICIPLINE</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;">MANHOUR PLAN</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
                                                     <th colspan="11" class="text-center">EXTERNAL</th>
                                                     <th rowspan="4" class="text-center">STATUS</th>
@@ -188,12 +189,12 @@ function generateWaitingBadge()
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC /IFP</th>
-                                                    <th class="text-center">ASBUILD</th>
+                                                    <th class="text-center">FINAL RESULT/ ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                     <th class="text-center">IFR</th>
                                                     <th class="text-center">IFA</th>
                                                     <th class="text-center">IFC /IFP</th>
-                                                    <th class="text-center">ASBUILD</th>
+                                                    <th class="text-center">FINAL RESULT/ ASBUILD</th>
                                                     <th class="text-center">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
@@ -600,6 +601,7 @@ function generateWaitingBadge()
                                                         <td class="text-center" nowrap> <?= $row->level_code ?> </td>
                                                         <td class="text-center" nowrap> <?= $row->doc_dicipline ?> </td>
                                                         <td><?= $row->description ?></td>
+                                                        <td class="text-center"><?= $row->man_hour_plan ?></td>
                                                         <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
                                                         <td class="text-center"><?= $enginerPP ?></td>
                                                         <td class="text-center"><?= $hoPP  ?></td>
@@ -621,7 +623,7 @@ function generateWaitingBadge()
                                                             </a>
                                                         </td>
                                                         <td class="text-center" nowrap style="border-right-width: 4px;">
-                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
+                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
                                                                 <i class="ri-pencil-fill text-info font-size-20"></i>
                                                             </a>
                                                             &nbsp;
@@ -761,9 +763,13 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="plan_man_hour" class="form-label">Plan Man Hour</label>
+                            <input type="number" class="form-control" name="plan_man_hour_edit" id="plan_man_hour_edit" />
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -924,6 +930,7 @@ function generateWaitingBadge()
         const external_asbuild_plan = document.getElementById("external_asbuild_plan").value;
         const plan_ifa = document.getElementById("plan_ifa").value;
         const plan_ifc = document.getElementById("plan_ifc").value;
+        const man_hour_plan = document.getElementById("plan_man_hour").value;
         var timerInterval;
         Swal.fire({
             title: 'Tambah Dokumen?',
@@ -943,7 +950,9 @@ function generateWaitingBadge()
                         weight_factor: weight_factor,
                         external_asbuild_plan: external_asbuild_plan,
                         plan_ifa: plan_ifa,
-                        plan_ifc: plan_ifc
+                        plan_ifc: plan_ifc,
+                        man_hour_plan: man_hour_plan,
+
                     },
                     success: () => {
                         Swal.fire({
@@ -1025,6 +1034,7 @@ function generateWaitingBadge()
             weightFactor = $(this).data('weight_factor'),
             external_asbuild_plan = $(this).data('external_asbuild_plan'),
             planIfa = $(this).data('plan_ifa'),
+            plan_man_hour = $(this).data('plan_man_hour'), 
             planIfc = $(this).data('plan_ifc');
 
         // Set data to Form Edit
@@ -1035,6 +1045,7 @@ function generateWaitingBadge()
         $('#external_asbuild_plan_edit').val(external_asbuild_plan);
         $('#plan_ifa_edit').val(planIfa);
         $('#plan_ifc_edit').val(planIfc);
+        $('#plan_man_hour_edit').val(plan_man_hour);
 
         // Call Modal Edit
         $('#modal-edit-document').modal('show');
@@ -1050,6 +1061,7 @@ function generateWaitingBadge()
         planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
         id_edit = document.getElementById("id_doc_edit").value;
+        manHourPlanEdit = document.getElementById("plan_man_hour_edit").value;
 
         var timerInterval;
         Swal.fire({
@@ -1073,6 +1085,7 @@ function generateWaitingBadge()
                         plan_ifa: planIfaEdit,
                         plan_ifc: planIfcEdit,
                         id_edit: id_edit,
+                        man_hour_plan: manHourPlanEdit,
                     },
                     success: () => {
                         Swal.fire({
