@@ -1184,8 +1184,8 @@ function generateWaitingBadge()
         formData.append('id_doc', id_doc);
         formData.append('doc_name', $(this).data('doc_name'));
         formData.append('doc_code', $(this).data('doc_code'));
-        formData.append('actual_man_hour', $(this).data('actual_man_hour'));
-
+        formData.append('man_hour_actual', $('#actual_man_hour').val());
+        
         swalTitle = 'Upload File ' + fileDesc;
 
         Swal.fire({

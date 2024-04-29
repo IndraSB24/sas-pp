@@ -401,17 +401,17 @@
                                 contentType: false,
                                 cache: false,
                                 processData: false,
-                                // beforeSend: () => {
-                                //     Swal.fire({
-                                //         title: "Loading",
-                                //         text: "Please wait...",
-                                //         icon: "info",
-                                //         buttons: false,
-                                //         closeOnClickOutside: false,
-                                //         closeOnEsc: false,
-                                //         showConfirmButton: false
-                                //     });
-                                // },
+                                beforeSend: () => {
+                                    Swal.fire({
+                                        title: "Loading",
+                                        text: "Please wait...",
+                                        icon: "info",
+                                        buttons: false,
+                                        closeOnClickOutside: false,
+                                        closeOnEsc: false,
+                                        showConfirmButton: false
+                                    });
+                                },
                                 success: () => {
                                     Swal.fire({
                                         title: 'Diupload!',
