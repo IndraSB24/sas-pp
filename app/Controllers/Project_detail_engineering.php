@@ -207,6 +207,7 @@ class Project_detail_engineering extends BaseController
             $version= $this->request->getPost('version');
             $doc_name= $this->request->getPost('doc_name');
             $doc_code= $this->request->getPost('doc_code');
+            $man_hour_actual= $this->request->getPost('man_hour_actual');
 
             // safe file to engineering doc file
             $data = [
@@ -236,7 +237,8 @@ class Project_detail_engineering extends BaseController
                 'actual_ifa' => null,
                 'actual_ifa_status' => '',
                 'actual_ifc' => null,
-                'actual_ifc_status' => ''
+                'actual_ifc_status' => '',
+                'man_hour_actual' => $man_hour_actual
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
@@ -835,7 +837,8 @@ class Project_detail_engineering extends BaseController
                 'comment_title' => $this->request->getPost('comment_title'),
                 'comment_file' => $uploaded_file->getName(),
                 'page_detail' => $this->request->getPost('page_detail'),
-                'created_by' => sess('active_user_id')
+                'created_by' => sess('active_user_id'),
+                'doc_step' => $this->request->getPost('doc_step')
             ];
             $save_file = $this->Model_engineering_doc_comment->save($data_add);
             
