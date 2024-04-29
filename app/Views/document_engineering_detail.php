@@ -1125,6 +1125,7 @@ function generateWaitingBadge()
         $('#upload_id_doc').val($(this).data('id'));
         $("#upload_btn_up").data("path", $(this).data('path'));
         $("#upload_btn_up").data("step", $(this).data('step'));
+        $("#upload_btn_up").data("actual_man_hour", $(this).data('actual_man_hour'));
         $("#upload_btn_up").data("version", $(this).data('version'));
         $("#upload_btn_up").data("doc_name", $(this).data('doc_name'));
         $("#upload_btn_up").data("doc_code", $(this).data('doc_code'));
@@ -1164,6 +1165,7 @@ function generateWaitingBadge()
         formData.append('id_doc', id_doc);
         formData.append('doc_name', $(this).data('doc_name'));
         formData.append('doc_code', $(this).data('doc_code'));
+        formData.append('actual_man_hour', $(this).data('actual_man_hour'));
 
         swalTitle = 'Upload File ' + fileDesc;
 
