@@ -424,7 +424,7 @@
 
                     const fileDesc = '<?= $step ?>';
                     let path;
-                    if (fileDesc === 'internal') {
+                    if (fileDesc === 'internal_engineering') {
                         path = "<?= base_url('Project_detail_engineering/approve_internal_engineering') ?>";
                     } else if (fileDesc === 'internal_ho') {
                         path = "<?= base_url('Project_detail_engineering/approve_internal_ho') ?>";
@@ -437,7 +437,7 @@
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/approve_external_ifc') ?>";
                         formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
-                    } else if (fileDesc === 'external_as_build') {
+                    } else if (fileDesc === 'external_asbuild') {
                         path = "<?= base_url('Project_detail_engineering/approve_external_asbuild') ?>";
                         formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };
@@ -454,6 +454,7 @@
 
                     formData.append('version', "<?= $doc_data[0]->file_version ?>");
                     formData.append('id_doc', id_doc);
+                    formData.append('doc_step', '<?= $step ?>');
                     swalTitle = 'Approve Document?';
 
                     Swal.fire({
@@ -508,7 +509,7 @@
 
                     const fileDesc = '<?= $step ?>';
                     let path;
-                    if (fileDesc === 'internal') {
+                    if (fileDesc === 'internal_engineering') {
                         path = "<?= base_url('Project_detail_engineering/reject_internal_engineering') ?>";
                     } else if (fileDesc === 'internal_ho') {
                         path = "<?= base_url('Project_detail_engineering/reject_internal_ho') ?>";
@@ -520,7 +521,7 @@
                     } else if (fileDesc === 'external_ifc') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_ifc') ?>";
                         formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
-                    } else if (fileDesc === 'external_as_build') {
+                    } else if (fileDesc === 'external_asbuild') {
                         path = "<?= base_url('Project_detail_engineering/reject_external_asbuild') ?>";
                         formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };;
@@ -531,6 +532,7 @@
                     // formData.append('version', version);
                     // formData.append('file_status', 'ifa_rejected');
                     version = "<?= $doc_data[0]->file_version ?>";
+                    formData.append('doc_step', '<?= $step ?>');
                     formData.append('id_doc', id_doc);
                     formData.append('version', version);
                     swalTitle = 'Reject document ?';

@@ -169,6 +169,7 @@ function generateWaitingBadge()
                                                     <th rowspan="4">DOCUMENT DICIPLINE</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;">MANHOUR PLAN</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;">MANHOUR ACTUAL</th>
                                                     <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
                                                     <th colspan="11" class="text-center">EXTERNAL</th>
                                                     <th rowspan="4" class="text-center">STATUS</th>
@@ -372,21 +373,21 @@ function generateWaitingBadge()
                                                         $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
                                                                     data-step = "IFA"
                                                                     data-version = "' . $file_version . '"
                                                                 >
-                                                                    &nbsp;SUCCESS&nbsp;
+                                                                    &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
                                                     } else if ($row->internal_engineering_status === 'reject') {
                                                         $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -400,7 +401,7 @@ function generateWaitingBadge()
                                                         $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -432,7 +433,7 @@ function generateWaitingBadge()
                                                                     data-step = "IFA"
                                                                     data-version = "' . $file_version . '"
                                                                 >
-                                                                    &nbsp;SUCCESS&nbsp;
+                                                                    &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
                                                     } else if ($row->internal_ho_status === 'reject') {
@@ -485,7 +486,7 @@ function generateWaitingBadge()
                                                                     data-step = "IFA"
                                                                     data-version = "' . $file_version . '"
                                                                 >
-                                                                    &nbsp;SUCCESS&nbsp;
+                                                                    &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
                                                     } else if ($row->internal_pem_status === 'reject') {
@@ -578,7 +579,7 @@ function generateWaitingBadge()
                                                         $linkFile,
                                                         'AsBuild',
                                                         $file_version,
-                                                        'external_as_build',
+                                                        'external_asbuild',
                                                         'version ' . $file_version
                                                     );
 
@@ -602,6 +603,7 @@ function generateWaitingBadge()
                                                         <td class="text-center" nowrap> <?= $row->doc_dicipline ?> </td>
                                                         <td><?= $row->description ?></td>
                                                         <td class="text-center"><?= $row->man_hour_plan ?></td>
+                                                        <td class="text-center"><?= $row->man_hour_actual ?></td>
                                                         <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
                                                         <td class="text-center"><?= $enginerPP ?></td>
                                                         <td class="text-center"><?= $hoPP  ?></td>
