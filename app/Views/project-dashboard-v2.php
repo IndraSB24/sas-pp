@@ -797,7 +797,7 @@
         colors: ['#FFFF66', '#FFA500'],
         plotOptions: {
             bar: {
-                horizontal: true,
+                horizontal: false,
                 dataLabels: {
                     total: {
                         enabled: true,
@@ -867,7 +867,7 @@
         
         plotOptions: {
             bar: {
-                horizontal: true,
+                horizontal: false,
                 dataLabels: {
                     total: {
                         enabled: true,
