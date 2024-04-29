@@ -85,6 +85,18 @@ class Project_detail_engineering extends BaseController
         // print_r($data['doc_data']);die;
 		return view('test_view', $data);
     }
+
+    public function show_pdf_reupload($doc_id) {
+		$data = [   
+			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
+			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
+            'doc_id' => $doc_id,
+            'file_name' => 'test.pdf',
+            'doc_data' => $this->doc_engineering_model->get_by_id($doc_id),
+		];
+        // echo '<pre>'; print_r( $data );die; echo '</pre>';
+		return view('reupload_doc_view', $data);
+    }
 	
 	public function show_doc_timeline($doc_id){
 	    $all_timeline_data = $this->timeline_doc_model

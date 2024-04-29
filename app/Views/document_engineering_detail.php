@@ -349,6 +349,24 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
+                                                    } else if ($row->internal_originator_status === 'progress') {
+                                                        $actual_JEDHI = '
+                                                                no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                            <a href=' . base_url('reupload/') . '/' . $row->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                    data-id="' . $row->id . '"
+                                                                    data-doc_desc="' . $row->description . '"
+                                                                    data-path = "Project_detail_engineering/update/up_originator"
+                                                                    data-step = ""
+                                                                    data-version = "' . $file_version . '"
+                                                                    data-doc_code = "' . $row->level_code . '"
+                                                                    data-doc_name = "' . $row->description . '"
+                                                                >
+                                                                    &nbsp;REUPLOAD&nbsp;
+                                                                </a>
+                                                            ';
                                                     } else {
                                                         $actual_JEDHI = '
                                                                 no date yet
@@ -826,7 +844,6 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <label class="form-label">Choose <span class="upload_step"></span> File</label>
                         <div class="row mb-4">
                             <div class="col-md-12">
                                 <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
