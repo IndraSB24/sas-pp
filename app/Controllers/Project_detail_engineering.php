@@ -72,7 +72,7 @@ class Project_detail_engineering extends BaseController
 		return view('project-dashboard-overal-prog-month', $data);
 	}
 
-    public function show_pdf($doc_id, $step) {
+    public function show_pdf($doc_id, $step, $isPreviw=false) {
 		$data = [   
 			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
@@ -80,7 +80,7 @@ class Project_detail_engineering extends BaseController
             'file_name' => 'test.pdf',
             'doc_data' => $this->doc_engineering_model->get_by_id($doc_id),
             'step' => $step,
-            'is_preview' => $step === 'preview',
+            'is_preview' => $isPreviw,
 		];
         // print_r($data['doc_data']);die;
 		return view('test_view', $data);

@@ -339,7 +339,7 @@ function generateWaitingBadge()
                                                             '
                                                             <br>
                                                             <br>
-                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"

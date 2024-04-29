@@ -355,7 +355,9 @@
                     delay: 250,
                 }).done((resp) => {
                     const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                    const tmp = resp.map(d => ({
+                    const step = '<?= $step ?>'
+                    const isPreview = '<?= $is_preview ?>'
+                    const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
                         ...d,
                         link: baseUrl + d.comment_file
                     }))
@@ -879,6 +881,7 @@
                     formData.append('id_doc', <?= $doc_id ?>);
                     formData.append('page_detail', this.currentPage);
                     formData.append('comment_title', $('#comment_title').val());
+                    formData.append('doc_step', '<?= $step ?>');
                     console.log(blob);
 
                     $.ajax({
@@ -906,7 +909,9 @@
                                     }).done((resp) => {
                                         console.log(this.listComment, 'fff')
                                         const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                                        const tmp = resp.map(d => ({
+                                        const step = '<?= $step ?>'
+                                        const isPreview = '<?= $is_preview ?>'
+                                        const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
                                             ...d,
                                             link: baseUrl + d.comment_file
                                         }))
