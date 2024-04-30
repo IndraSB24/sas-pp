@@ -221,6 +221,8 @@ class Project_detail_engineering extends BaseController
             $doc_code= $this->request->getPost('doc_code');
             $man_hour_actual= $this->request->getPost('man_hour_actual');
 
+            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
             // safe file to engineering doc file
             $data = [
                 'id_doc' => $id_doc,
@@ -235,7 +237,7 @@ class Project_detail_engineering extends BaseController
                 'id' => $id_doc,
                 'file' => $uploaded_file->getName(),
                 'internal_originator_status' => 'uploaded',
-                'internal_originator_date' => date('Y-m-d H:i:s'),
+                'internal_originator_date' => $input_date,
                 'id_engineering_doc_file' => $returned_id,
                 'file_status' => 'originator_upload',
                 'internal_engineering_status' => 'progress',
@@ -257,7 +259,7 @@ class Project_detail_engineering extends BaseController
             $data_timeline = [
                 'doc_id'                => $id_doc,
                 'detail_type'           => 'internal_engineering',
-                'time'                  => date('Y-m-d H:i:s'),
+                'time'                  => $input_date,
                 'timeline_title'        => 'internal originator file upload',
                 'timeline_description'  => 'new file upload',
                 'timeline_status'       => 'on time',
@@ -273,7 +275,7 @@ class Project_detail_engineering extends BaseController
                 'penerima' => $nope_indra,
                 'doc_name' => $doc_name,
                 'doc_code' => $doc_code,
-                'tgl_upload' => date('Y-m-d H:i:s'),
+                'tgl_upload' => $input_date,
                 'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/internal"
             ];
             originatorToInternalEngineering($data_wa);
@@ -304,12 +306,13 @@ class Project_detail_engineering extends BaseController
     // approve internal engineerin
     public function approve_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'internal_engineering_approve',
             'internal_engineering_status' => 'approve',
-            'internal_engineering_date' => date('Y-m-d H:i:s'),
+            'internal_engineering_date' => $input_date,
             'internal_ho_status' => 'progress',
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -317,7 +320,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal engineering review file approve',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
@@ -345,20 +348,21 @@ class Project_detail_engineering extends BaseController
     // reject internal engineerin
     public function reject_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
             'internal_originator_status' => 'progress',
             'internal_engineering_status' => 'reject',
-            'internal_engineering_date' => date('Y-m-d H:i:s')
+            'internal_engineering_date' => $input_date
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal review file reject',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
@@ -386,12 +390,13 @@ class Project_detail_engineering extends BaseController
     // approve internal ho
     public function approve_internal_ho(){
         $id_doc = $this->request->getPost('id_doc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'internal_ho_approve',
             'internal_ho_status' => 'approve',
-            'internal_ho_date' => date('Y-m-d H:i:s'),
+            'internal_ho_date' => $input_date,
             'internal_pem_status' => 'progress',
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -399,7 +404,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal HO endorse the document',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
@@ -427,20 +432,21 @@ class Project_detail_engineering extends BaseController
     // reject internal ho
     public function reject_internal_ho(){
         $id_doc = $this->request->getPost('id_doc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
             'internal_originator_status' => 'progress',
             'internal_ho_status' => 'reject',
-            'internal_ho_date' => date('Y-m-d H:i:s')
+            'internal_ho_date' => $input_date
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal HO file reject',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
@@ -470,6 +476,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $version= $this->request->getPost('version');
         $plan_date = $this->request->getPost('plan_ifa');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
 
         if($version != null || $version != ""){
             $version = autoVersioning($version, 'issued');
@@ -482,8 +489,8 @@ class Project_detail_engineering extends BaseController
             'file_version' => $version,
             'file_status' => 'internal_pem_approve',
             'internal_pem_status' => 'approve',
-            'internal_pem_date' => date('Y-m-d H:i:s'),
-            'actual_ifr' => date('Y-m-d H:i:s'),
+            'internal_pem_date' => $input_date,
+            'actual_ifr' => $input_date,
             'actual_ifr_status' => 'uploaded',
             'actual_ifa_status' => 'progress'
         ];
@@ -493,7 +500,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline_pem = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_pem',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal PEM approve the document',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -507,7 +514,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline_ifr = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document issued for review (IFR)',
             'timeline_description'  => 'document version '.$version,
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -535,20 +542,21 @@ class Project_detail_engineering extends BaseController
     // reject internal pem
     public function reject_internal_pem(){
         $id_doc = $this->request->getPost('id_doc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
             'internal_originator_status' => 'progress',
             'internal_pem_status' => 'reject',
-            'internal_pem_date' => date('Y-m-d H:i:s')
+            'internal_pem_date' => $input_date
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'internal PEM file reject',
             'timeline_description'  => 'no desc',
             'timeline_status'       => 'on time',
@@ -577,11 +585,12 @@ class Project_detail_engineering extends BaseController
     public function approve_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifa');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'external_ifa_approve',
-            'actual_ifa' => date('Y-m-d H:i:s'),
+            'actual_ifa' => $input_date,
             'actual_ifa_status' => 'approve',
             'actual_ifc_status' => 'progress'
         ];
@@ -591,7 +600,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline_pem = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external_ifa',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document approved in IFA step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -620,6 +629,7 @@ class Project_detail_engineering extends BaseController
     public function reject_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifa');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
@@ -627,7 +637,7 @@ class Project_detail_engineering extends BaseController
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
             'actual_ifr_status' => null,
-            'actual_ifa' => date('Y-m-d H:i:s'),
+            'actual_ifa' => $input_date,
             'actual_ifa_status' => 'reject'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -635,7 +645,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document rejected in IFA step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -664,11 +674,12 @@ class Project_detail_engineering extends BaseController
     public function approve_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_status' => 'ifc_approve',
-            'actual_ifc' => date('Y-m-d H:i:s'),
+            'actual_ifc' => $input_date,
             'actual_ifc_status' => 'approve',
             'external_asbuild_status' => 'progress'
         ];
@@ -678,7 +689,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline_pem = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document approved in IFC step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -707,6 +718,7 @@ class Project_detail_engineering extends BaseController
     public function reject_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifc');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
@@ -714,7 +726,7 @@ class Project_detail_engineering extends BaseController
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
             'actual_ifr_status' => null,
-            'actual_ifc' => date('Y-m-d H:i:s'),
+            'actual_ifc' => $input_date,
             'actual_ifc_status' => 'reject'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -722,7 +734,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document rejected in IFC step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -752,12 +764,13 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('external_asbuild_plan');
         $version = $this->request->getPost('version');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
             'file_version' => autoVersioning($version, 'approve'),
             'file_status' => 'asbuild_approve',
-            'external_asbuild_actual' => date('Y-m-d H:i:s'),
+            'external_asbuild_actual' => $input_date,
             'external_asbuild_status' => 'approve'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -766,7 +779,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline_pem = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document approved in Asbuild step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
@@ -795,6 +808,7 @@ class Project_detail_engineering extends BaseController
     public function reject_external_asbuild(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('external_asbuild_plan');
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
         $data = [
             'id' => $id_doc,
@@ -802,7 +816,7 @@ class Project_detail_engineering extends BaseController
             'internal_originator_status' => 'progress',
             'actual_ifr' => null,
             'actual_ifr_status' => null,
-            'external_asbuild_actual' => date('Y-m-d H:i:s'),
+            'external_asbuild_actual' => $input_date,
             'external_asbuild_status' => 'reject'
         ];
         $update_doc = $this->doc_engineering_model->save($data);
@@ -810,7 +824,7 @@ class Project_detail_engineering extends BaseController
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
-            'time'                  => date('Y-m-d H:i:s'),
+            'time'                  => $input_date,
             'timeline_title'        => 'document rejected in Asbuild step',
             'timeline_description'  => 'no desc',
             'timeline_status'       => $this->timeStatusCheck($plan_date),
