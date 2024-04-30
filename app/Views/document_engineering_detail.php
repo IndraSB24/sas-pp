@@ -391,7 +391,7 @@ function generateWaitingBadge()
                                                         $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -405,7 +405,7 @@ function generateWaitingBadge()
                                                         $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -444,7 +444,7 @@ function generateWaitingBadge()
                                                         $hoPP = tgl_indo($row->internal_ho_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -497,7 +497,7 @@ function generateWaitingBadge()
                                                         $pemPP = tgl_indo($row->internal_pem_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -511,7 +511,7 @@ function generateWaitingBadge()
                                                         $pemPP = tgl_indo($row->internal_pem_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
