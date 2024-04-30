@@ -14,7 +14,7 @@ class Model_engineering_doc_comment extends Model
 
     protected $allowedFields = [
         'id_engineering_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by',
-        'comment_title'
+        'comment_title', 'doc_step'
     ];
 
     protected $useTimestamps = true;
