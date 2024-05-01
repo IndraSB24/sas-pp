@@ -160,55 +160,55 @@ function generateWaitingBadge()
                                 </div>
                                 <div>
                                     <font size="2">
-                                        <table id="datatable" class="table table-striped table-bordered nowrap ">
-                                            <thead style="border-top-width: 4px">
+                                        <table id="datatable" class="table table-bordered nowrap" style="border: 0px;">
+                                            <thead>
                                                 <tr>
-                                                    <th rowspan="4" style="border-left-width: 4px;">NO</th>
-                                                    <th rowspan="4" style="border-left-width: 4px;">WBS CODE</th>
-                                                    <th rowspan="4">DOCUMENT NUMBER</th>
-                                                    <th rowspan="4">DOCUMENT DICIPLINE</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;">DESCRIPTION</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;">MANHOUR PLAN</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;">MANHOUR ACTUAL</th>
-                                                    <th colspan="4" class="text-center" style="border-right-width: 4px; border-left-width: 4px;">INTERNAL</th>
-                                                    <th colspan="11" class="text-center">EXTERNAL</th>
-                                                    <th rowspan="4" class="text-center">STATUS</th>
-                                                    <th rowspan="4" class="text-center" style="border-right-width: 4px;">ACTION</th>
+                                                    <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
+                                                    <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
+                                                    <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
+                                                    <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">DESCRIPTION</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
+                                                    <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
+                                                    <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                    <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
+                                                    <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                 </tr>
                                                 <tr>
 
-                                                    <th rowspan="3" style="border-left-width: 4px;">JEDHI TEKNIKA</th>
-                                                    <th rowspan="3">ENGINER PP</th>
-                                                    <th rowspan="3">HO PP</th>
-                                                    <th rowspan="3" style="border-right-width: 4px;">PEM PP</th>
-                                                    <th rowspan="3">WEIGHT FACTOR</th>
-                                                    <th colspan="5" class="text-center">PLAN</th>
-                                                    <th colspan="5" class="text-center">ACTUAL</th>
+                                                    <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
+                                                    <th rowspan="3" style="background-color:blanchedalmond">ENGINER PP</th>
+                                                    <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
+                                                    <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th>
+                                                    <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
+                                                    <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                    <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
 
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">IFR</th>
-                                                    <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC /IFP</th>
-                                                    <th class="text-center">FINAL RESULT/ ASBUILD</th>
-                                                    <th class="text-center">CUMMULATIVE</th>
-                                                    <th class="text-center">IFR</th>
-                                                    <th class="text-center">IFA</th>
-                                                    <th class="text-center">IFC /IFP</th>
-                                                    <th class="text-center">FINAL RESULT/ ASBUILD</th>
-                                                    <th class="text-center">CUMMULATIVE</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">IFA</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">IFA</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center">0%</th>
-                                                    <th class="text-center">25%</th>
-                                                    <th class="text-center">65%</th>
-                                                    <th class="text-center">10%</th>
-                                                    <th class="text-center">100%</th>
-                                                    <th class="text-center">0%</th>
-                                                    <th class="text-center">25%</th>
-                                                    <th class="text-center">65%</th>
-                                                    <th class="text-center">10%</th>
-                                                    <th class="text-center">100%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">0%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">25%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">65%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">10%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2">100%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">0%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">25%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">65%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">10%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9">100%</th>
                                                 </tr>
                                             </thead>
 
@@ -615,34 +615,34 @@ function generateWaitingBadge()
                                                     );
                                                 ?>
                                                     <tr>
-                                                        <td nowrap style="border-left-width: 4px;"><?= $no ?></td>
-                                                        <td nowrap style="border-left-width: 4px;"><?= $row->wbs_code ?></td>
-                                                        <td class="text-center" nowrap> <?= $row->level_code ?> </td>
-                                                        <td class="text-center" nowrap> <?= $row->doc_dicipline ?> </td>
-                                                        <td><?= $row->description ?></td>
-                                                        <td class="text-center"><?= $row->man_hour_plan ?></td>
-                                                        <td class="text-center"><?= $row->man_hour_actual ?></td>
-                                                        <td class="text-center" style="border-left-width: 4px;"><?= $actual_JEDHI ?></td>
-                                                        <td class="text-center"><?= $enginerPP ?></td>
-                                                        <td class="text-center"><?= $hoPP  ?></td>
-                                                        <td class="text-center" style="border-right-width: 4px;"><?= $pemPP   ?></td>
-                                                        <td class="text-center"><?= $row->weight_factor ?>%</td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
-                                                        <td class="text-center" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
-                                                        <td class="text-center"><?= $plan_cumulative ?>%</td>
-                                                        <td class="text-center" nowrap><?= $actual_ifr ?></td>
-                                                        <td class="text-center" nowrap><?= $actual_ifa ?></td>
-                                                        <td class="text-center" nowrap><?= $actual_ifc ?></td>
-                                                        <td class="text-center" nowrap><?= $actual_AsBuild ?></td>
-                                                        <td class="text-center"><?= $actual_cumulative ?>%</td>
-                                                        <td class="text-center">
+                                                        <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
+                                                        <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
+                                                        <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
+                                                        <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
+                                                        <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
+                                                        <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
+                                                        <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
+                                                        <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
+                                                        <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
+                                                        <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
+                                                        <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td>
+                                                        <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
+                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
+                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
+                                                        <td class="text-center"style="background-color: #e5f2e5;" ><?= $plan_cumulative ?>%</td>
+                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
+                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
+                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
+                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
+                                                        <td class="text-center"style="background-color: #daf7e8;" ><?= $actual_cumulative ?>%</td>
+                                                        <td class="text-center" style="background-color: #d2e5f7;">
                                                             <a href="<?= base_url('document-timeline/' . $row->id) ?>">
                                                                 <?= $status ?>
                                                             </a>
                                                         </td>
-                                                        <td class="text-center" nowrap style="border-right-width: 4px;">
+                                                        <td class="text-center" nowrap style="background-color: #d2e5f7">
                                                             <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
                                                                 <i class="ri-pencil-fill text-info font-size-20"></i>
                                                             </a>
