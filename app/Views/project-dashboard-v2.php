@@ -131,7 +131,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="selectable" id="Detail-Procurment" style="border: 1px solid #E0E0E0; border-radius: 8px;">
+                                            <div class="selectable" id="Detail-Procurement" style="border: 1px solid #E0E0E0; border-radius: 8px;">
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
@@ -148,7 +148,7 @@
                                                     </div>
                                                 </div>
                                                 <div style="background-color:antiquewhite" class="text-center">
-                                                    <strong><small style="padding-left: 5px;">Detail Procurment</small></strong>
+                                                    <strong><small style="padding-left: 5px;">Detail Procurement</small></strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -403,7 +403,7 @@
                                 <div class="card-bodys text-center" style="background-color: rgba(255, 255, 240, 0.9); padding: 10px;border-radius: 35px 35px 0 0;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);">
                                     <div class="text-center mb-2" style="background-color: antiquewhite; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                         <i class="fas fa-building"></i>
-                                        <h4 class="card-title mb-0">Procurment</h4>
+                                        <h4 class="card-title mb-0">Procurement</h4>
                                     </div>
                                     <div class="table-responsive">
                                         <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -922,7 +922,7 @@
         $("#Detail-Engineering").click(function() {
             window.location.href = "engineering-dashboard"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });
-        $("#Detail-Procurment").click(function() {
+        $("#Detail-Procurement").click(function() {
             window.location.href = "procurement-dashboard"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });
     });

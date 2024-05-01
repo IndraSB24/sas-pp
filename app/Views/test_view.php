@@ -75,74 +75,81 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <?php if (!$is_preview) { ?>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card" style="border: 1px solid #eff2f7;border-radius: 10px;padding: 10px; margin: 0">
-                                    <div class="container">
-                                        <div class="col-sm">
-                                            <div class="mb-3">
+                        <?php if (!$is_preview) { ?>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card" style="border: 1px solid #eff2f7;border-radius: 10px;padding: 10px; margin: 0">
+                                        <div class="container">
+                                            <div class="col-sm">
+                                                <div class="mb-3">
+                                                    <div style="text-align: left">
+                                                        <small for="event-category">Select Mode</small>
+                                                    </div>
+                                                    <select class="form-select form-control-sm" name="mode" id="mode">
+                                                        <option value="off" selected> Off </option>
+                                                        <option value="text">Text</option>
+                                                        <!-- <option value="line">Line</option> -->
+                                                        <option value="square">Square</option>
+                                                        <option value="circle">Circle</option>
+                                                        <option value="freeDraw">Free Draw</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm row">
+                                                <div class="d-flex flex-column flex-sm-row">
+                                                    <div class='col-sm mb-2' v-show="typeAction !== 'off'">
+                                                        <div style="text-align: left">
+                                                            <small for="event-category">Color</small>
+                                                        </div>
+                                                        <input type="color" class="form-control form-control-color mw-100" v-model="fontColor" @input="colorChanged" id="colorInput" value="#5664d2" title="Choose your color">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-column flex-sm-row">
+                                                    <div v-show="typeAction === 'freeDraw'" class='col-sm mb-2'>
+                                                        <div style="text-align: left">
+                                                            <small for="event-category">Weight Brush {{weightBrush}}px</small>
+                                                        </div>
+                                                        <input type="range" class="form-range" id="customRange1" v-model="weightBrush">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-column flex-sm-row">
+                                                    <div v-show="typeAction === 'text'" class='col-sm mb-2'>
+                                                        <div style="text-align: left">
+                                                            <small for="event-category">Font Size (px)</small>
+                                                        </div>
+                                                        <input type="number" class="form-control" name="level_code" id="level_code" v-model="fontSize" @change="changeFontSize" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm mb-2">
                                                 <div style="text-align: left">
-                                                    <small for="event-category">Select Mode</small>
+                                                    <small for="event-category">Backdate</small>
                                                 </div>
-                                                <select class="form-select form-control-sm" name="mode" id="mode">
-                                                    <option value="off" selected> Off </option>
-                                                    <option value="text">Text</option>
-                                                    <!-- <option value="line">Line</option> -->
-                                                    <option value="square">Square</option>
-                                                    <option value="circle">Circle</option>
-                                                    <option value="freeDraw">Free Draw</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm row">
-                                            <div class="d-flex flex-column flex-sm-row">
-                                                <div class='col-sm mb-2' v-show="typeAction !== 'off'">
-                                                    <div style="text-align: left">
-                                                        <small for="event-category">Color</small>
-                                                    </div>
-                                                    <input type="color" class="form-control form-control-color mw-100" v-model="fontColor" @input="colorChanged" id="colorInput" value="#5664d2" title="Choose your color">
+                                                <div class="input-group" id="backdate1">
+                                                    <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#backdate1" data-provide="datepicker" name="backdate" id="backdate" />
+                                                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                                 </div>
-                                            </div>
-                                            <div class="d-flex flex-column flex-sm-row">
-                                                <div v-show="typeAction === 'freeDraw'" class='col-sm mb-2'>
-                                                    <div style="text-align: left">
-                                                        <small for="event-category">Weight Brush {{weightBrush}}px</small>
-                                                    </div>
-                                                    <input type="range" class="form-range" id="customRange1" v-model="weightBrush">
+                                                <div style="text-align: left">
+                                                    <small for="event-category">Action</small>
                                                 </div>
-                                            </div>
-                                            <div class="d-flex flex-column flex-sm-row">
-                                                <div v-show="typeAction === 'text'" class='col-sm mb-2'>
-                                                    <div style="text-align: left">
-                                                        <small for="event-category">Font Size (px)</small>
-                                                    </div>
-                                                    <input type="number" class="form-control" name="level_code" id="level_code" v-model="fontSize" @change="changeFontSize" />
+                                                <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
+                                                    <button class="btn btn-sm btn-warning waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
+                                                    <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> </button>
+                                                    <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit Comment</button>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm mb-2">
-                                            <div style="text-align: left">
-                                                <small for="event-category">Action</small>
-                                            </div>
-                                            <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
-                                                <button class="btn btn-sm btn-warning waves-effect waves-light" id="deleteButton"><i class="fas fa-trash-alt"></i> </button>
-                                                <button class="btn btn-sm btn-secondary waves-effect waves-light" id="downloadBtn"><i class="fas fa-download"></i> </button>
-                                                <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit Comment</button>
-                                            </div>
-                                            <div style="text-align: left" class="mt-2">
-                                                <small for="event-category">Document Approval</small>
-                                            </div>
-                                            <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
-                                                <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
-                                                <button class="btn btn-sm btn-success waves-effect waves-light" id="approveButton"><i class="fas fa-check"></i> Approve</button>
+                                                <div style="text-align: left" class="mt-2">
+                                                    <small for="event-category">Document Approval</small>
+                                                </div>
+                                                <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
+                                                    <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
+                                                    <button class="btn btn-sm btn-success waves-effect waves-light" id="approveButton"><i class="fas fa-check"></i> Approve</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -444,7 +451,7 @@
                         formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };
                     // const version = $(this).data('version');
-                    
+
 
                     id_doc = <?= $doc_id ?>;
                     // if (fileDesc == "IFA") {
@@ -457,6 +464,9 @@
                     formData.append('version', "<?= $doc_data[0]->file_version ?>");
                     formData.append('id_doc', id_doc);
                     formData.append('doc_step', '<?= $step ?>');
+                    if ($('#backdate').val()) {
+                        formData.append('backdate', $('#backdate').val());
+                    }
                     swalTitle = 'Approve Document?';
 
                     Swal.fire({
@@ -528,7 +538,7 @@
                         formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
                     };;
                     // const version = $(this).data('version');
-                    
+
 
                     id_doc = id_doc = <?= $doc_id ?>;
                     // formData.append('version', version);
@@ -882,6 +892,10 @@
                     formData.append('page_detail', this.currentPage);
                     formData.append('comment_title', $('#comment_title').val());
                     formData.append('doc_step', '<?= $step ?>');
+                    if ($('#backdate').val()) {
+                        formData.append('backdate', $('#backdate').val());
+                        console.log('ada');
+                    }
                     console.log(blob);
 
                     $.ajax({

@@ -444,7 +444,7 @@ function generateWaitingBadge()
                                                         $hoPP = tgl_indo($row->internal_ho_date) . '
                                                             <br>
                                                             <br>
-                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-link_file = "' . $linkFile . '"
@@ -855,20 +855,27 @@ function generateWaitingBadge()
                             <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
                             &nbsp;<span id="upload_file_name">No File Choosen</span>
                         </div>
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Backdate</label>
+                            <div class="input-group" id="backdate1">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#backdate1" data-provide="datepicker" name="backdate" id="backdate" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
                         <!-- <div class="row mb-4">
                             <div class="col-md-12">
                                 <label class="form-label">Please input your Man-Hour</label></label>
                                 <input type="number" class="form-control" name="upload_man_hour" id="upload_man_hour"/>
                             </div>
                         </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="upload_id_doc" />
+                        <button type="button" class="btn btn-success" id="upload_btn_up" data-path="#" data-step="#" data-version="#" data-doc_name="#" data-doc_code="#">
+                            Upload
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <input type="hidden" id="upload_id_doc" />
-                    <button type="button" class="btn btn-success" id="upload_btn_up" data-path="#" data-step="#" data-version="#" data-doc_name="#" data-doc_code="#">
-                        Upload
-                    </button>
-                </div>
-            </div>
         </form>
     </div>
 </div>
@@ -1053,7 +1060,7 @@ function generateWaitingBadge()
             weightFactor = $(this).data('weight_factor'),
             external_asbuild_plan = $(this).data('external_asbuild_plan'),
             planIfa = $(this).data('plan_ifa'),
-            plan_man_hour = $(this).data('plan_man_hour'), 
+            plan_man_hour = $(this).data('plan_man_hour'),
             planIfc = $(this).data('plan_ifc');
 
         // Set data to Form Edit
@@ -1182,12 +1189,13 @@ function generateWaitingBadge()
         formData.append('file', file);
         formData.append('version', version);
         formData.append('id_doc', id_doc);
+        formData.append('backdate', $('#backdate').val());
         formData.append('doc_name', $(this).data('doc_name'));
         formData.append('doc_code', $(this).data('doc_code'));
         formData.append('man_hour_actual', $('#actual_man_hour').val());
-        
-        swalTitle = 'Upload File ' + fileDesc;
 
+        swalTitle = 'Upload File ' + fileDesc;
+        
         Swal.fire({
             title: swalTitle,
             icon: 'info',
@@ -1214,27 +1222,27 @@ function generateWaitingBadge()
                             showConfirmButton: false
                         });
                     },
-                    success: () => {
-                        Swal.fire({
-                            title: 'Diupload!',
-                            icon: 'success',
-                            text: 'File Berhasil Diupload.',
-                            buttons: false,
-                            timer: 1000,
-                            confirmButtonColor: "#5664d2",
-                            onBeforeOpen: function() {
-                                //Swal.showLoading()
-                                timerInterval = setInterval(function() {
-                                    Swal.getContent().querySelector('strong')
-                                        .textContent = Swal.getTimerLeft()
-                                }, 100)
-                            },
-                            onClose: function() {
-                                location.reload()
-                            }
-                        })
-                    },
-                    error: err => console.log(err),
+                    // success: () => {
+                    //     Swal.fire({
+                    //         title: 'Diupload!',
+                    //         icon: 'success',
+                    //         text: 'File Berhasil Diupload.',
+                    //         buttons: false,
+                    //         timer: 1000,
+                    //         confirmButtonColor: "#5664d2",
+                    //         onBeforeOpen: function() {
+                    //             //Swal.showLoading()
+                    //             timerInterval = setInterval(function() {
+                    //                 Swal.getContent().querySelector('strong')
+                    //                     .textContent = Swal.getTimerLeft()
+                    //             }, 100)
+                    //         },
+                    //         onClose: function() {
+                    //             location.reload()
+                    //         }
+                    //     })
+                    // },
+                    // error: err => console.log(err),
                 });
             }
         })
@@ -1314,11 +1322,11 @@ function generateWaitingBadge()
     //     })
     // });
 
-    
-    
-    
-// approval
-// ==========================================================================================================================================================================
+
+
+
+    // approval
+    // ==========================================================================================================================================================================
     // $(document).on('click', '#btn-approval', function(){
     //     // Set data from button to Form Approval
     //     $('#approval_doc_desc').val( $(this).data('doc_desc') );
