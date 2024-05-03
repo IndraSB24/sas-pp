@@ -111,6 +111,15 @@ function generateWaitingBadge()
     /* .desc {
             width: 0px !important;
         } */
+    th:nth-child(5),
+    td:nth-child(5) {
+        position: sticky;
+        left: 0;
+        background-color: #f2f2f2;
+        /* Optional: set background color */
+        z-index: 1;
+        /* Optional: set z-index to ensure it's above other elements */
+    }
 </style>
 <?= $this->include('partials/body') ?>
 
@@ -158,16 +167,17 @@ function generateWaitingBadge()
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="table-rep-plugin">
+                                    <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                     <font size="2">
-                                        <table id="datatable" class="table table-bordered nowrap" style="border: 0px;">
+                                        <table id="scroll-vertical-datatable" class="table table-bordered nowrap" style="border: 0px;">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">DESCRIPTION</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DESCRIPTION</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                     <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
@@ -631,12 +641,12 @@ function generateWaitingBadge()
                                                         <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
                                                         <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
                                                         <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
-                                                        <td class="text-center"style="background-color: #e5f2e5;" ><?= $plan_cumulative ?>%</td>
+                                                        <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
                                                         <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
                                                         <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
                                                         <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
                                                         <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
-                                                        <td class="text-center"style="background-color: #daf7e8;" ><?= $actual_cumulative ?>%</td>
+                                                        <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
                                                         <td class="text-center" style="background-color: #d2e5f7;">
                                                             <a href="<?= base_url('document-timeline/' . $row->id) ?>">
                                                                 <?= $status ?>

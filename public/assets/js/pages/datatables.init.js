@@ -8,6 +8,8 @@ File: Datatables Js File
 $(document).ready(function() {
     $('#datatable').DataTable({
         scrollX: true,
+        // scrollY: true,
+        // fixedHeader: true,
         autoWidth: false,
         lengthMenu: [
             [10, 25, 50, 100, -1],
@@ -94,9 +96,10 @@ $(document).ready(function() {
 
     // Scroll Vertical Datatable
     $('#scroll-vertical-datatable').DataTable({
-        "scrollY":        "350px",
-        "scrollCollapse": true,
-        "paging":         false,
+        "scrollY":        "50vh",
+        // "scrollCollapse": true,
+        "scrollX": true,
+        // "paging": false,
         "language": {
             "paginate": {
                 "previous": "<i class='mdi mdi-chevron-left'>",
