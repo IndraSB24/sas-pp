@@ -312,6 +312,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'internal_engineering_approve',
@@ -321,6 +322,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
@@ -330,7 +332,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -354,6 +357,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
@@ -363,6 +367,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_engineering',
@@ -372,7 +377,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -396,6 +402,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'internal_ho_approve',
@@ -405,6 +412,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
@@ -414,7 +422,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -438,6 +447,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // udpate status
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
@@ -447,6 +457,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
@@ -456,7 +467,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -488,6 +500,7 @@ class Project_detail_engineering extends BaseController
             $version = "0A";
         }
         
+        // udpate status
         $data = [
             'id' => $id_doc,
             'file_version' => $version,
@@ -510,7 +523,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline_pem);
 
@@ -524,7 +538,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifr',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline_ifr);
 
@@ -548,6 +563,7 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'reject',
@@ -557,6 +573,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'internal_ho',
@@ -566,7 +583,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => 'on time',
             'new_file'              => '',
             'file_status'           => 'internal',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -591,6 +609,7 @@ class Project_detail_engineering extends BaseController
         $plan_date = $this->request->getPost('plan_ifa');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'external_ifa_approve',
@@ -610,7 +629,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline_pem);
 
@@ -635,6 +655,7 @@ class Project_detail_engineering extends BaseController
         $plan_date = $this->request->getPost('plan_ifa');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'ifa_reject',
@@ -646,6 +667,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
@@ -655,7 +677,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifa_reject',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -680,6 +703,7 @@ class Project_detail_engineering extends BaseController
         $plan_date = $this->request->getPost('plan_ifc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'ifc_approve',
@@ -699,7 +723,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_approve',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline_pem);
 
@@ -724,6 +749,7 @@ class Project_detail_engineering extends BaseController
         $plan_date = $this->request->getPost('plan_ifc');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'ifc_reject',
@@ -735,6 +761,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
@@ -744,7 +771,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_ifc_reject',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline);
 
@@ -770,6 +798,7 @@ class Project_detail_engineering extends BaseController
         $version = $this->request->getPost('version');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // udpate status
         $data = [
             'id' => $id_doc,
             'file_version' => autoVersioning($version, 'approve'),
@@ -789,7 +818,8 @@ class Project_detail_engineering extends BaseController
             'timeline_status'       => $this->timeStatusCheck($plan_date),
             'new_file'              => '',
             'file_status'           => 'external_asbuild_approve',
-            'created_by'            => sess('active_user_id')
+            'created_by'            => sess('active_user_id'),
+            'id_file'               => $this->request->getPost('id_file')
         ];
         $this->timeline_doc_model->save($data_timeline_pem);
 
@@ -814,6 +844,7 @@ class Project_detail_engineering extends BaseController
         $plan_date = $this->request->getPost('external_asbuild_plan');
         $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
         
+        // update status
         $data = [
             'id' => $id_doc,
             'file_status' => 'external_asbuild_reject',
@@ -825,6 +856,7 @@ class Project_detail_engineering extends BaseController
         ];
         $update_doc = $this->doc_engineering_model->save($data);
 
+        // add timeline
         $data_timeline = [
             'doc_id'                => $id_doc,
             'detail_type'           => 'external',
