@@ -7,11 +7,12 @@ use App\Models\Model_doc_engineering;
 use App\Models\Model_timeline_doc;
 use App\Models\Model_engineering_doc_comment;
 use App\Models\Model_engineering_doc_file;
+use App\Models\Model_data_helper;
 
 class Project_detail_engineering extends BaseController
 {
     protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment,
-        $Model_engineering_doc_file;
+        $Model_engineering_doc_file, $Model_data_helper;
  
     function __construct(){
         $this->doc_engineering_model = new Model_doc_engineering();
@@ -19,6 +20,7 @@ class Project_detail_engineering extends BaseController
         $this->timeline_doc_model = new Model_timeline_doc();
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
         $this->Model_engineering_doc_file = new Model_engineering_doc_file();
+        $this->Model_data_helper = new Model_data_helper();
         helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -40,7 +42,8 @@ class Project_detail_engineering extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Engineering', 'pagetitle' => 'Document List']),
-			'list_doc_engineering' => $this->doc_engineering_model->get_all()
+			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
+            'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight')
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_engineering_detail', $data);
