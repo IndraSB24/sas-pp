@@ -268,7 +268,8 @@ class Project_detail_engineering extends BaseController
                 'timeline_status'       => 'on time',
                 'new_file'              => $data['file'],
                 'file_status'           => 'internal',
-                'created_by'            => sess('active_user_id')
+                'created_by'            => sess('active_user_id'),
+                'id_file'               => $returned_id
             ];
             $this->timeline_doc_model->save($data_timeline);
 
@@ -870,19 +871,6 @@ class Project_detail_engineering extends BaseController
                 'doc_step' => $this->request->getPost('doc_step')
             ];
             $save_file = $this->Model_engineering_doc_comment->save($data_add);
-            
-            $data_timeline = [
-                'doc_id'                => $data_add['doc_id'],
-                'detail_type'           => 'engineering',
-                'time'                  => date_now(),
-                'timeline_title'        => 'Engineering Comment',
-                'timeline_description'  => 'no desc',
-                'timeline_status'       => 'late',
-                'new_file'              => path_engineering_doc_comment($uploaded_file->getName()),
-                'file_status'           => '',
-                'created_by'            => sess('active_user_id')
-            ];
-            $this->timeline_doc_model->save($data_timeline);
 
             if ($save_file) {
                 $response = [
@@ -903,7 +891,7 @@ class Project_detail_engineering extends BaseController
             ];
         }
 
-        return $this->response->setJSON($response);
+        return json_encode($response);
     }
 
     // delete comment
