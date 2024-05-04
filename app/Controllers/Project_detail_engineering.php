@@ -903,6 +903,25 @@ class Project_detail_engineering extends BaseController
         return $this->response->setJSON($response);
     }
 
+    // delete comment
+    public function delete_comment(){  
+        $id_comment = $this->request->getPost('id_comment');
+
+        $deleteResult = $this->Model_engineering_doc_comment->delete($id_comment);
+
+        // Check the result of the delete operation
+        $response = [
+            'success' => $deleteResult, // Indicates whether the deletion was successful or not
+            'message' => $deleteResult ? 'Record deleted successfully.' : 'Failed to delete record.'
+        ];
+        
+        // Set the appropriate content type header
+        header('Content-Type: application/json');
+        
+        // Return JSON response
+        return json_encode($response);
+    }
+
     // list comment
     public function ajax_get_comment($id_doc, $id_approver=null){
         // $id_doc = $this->request->getPost('id_doc');
