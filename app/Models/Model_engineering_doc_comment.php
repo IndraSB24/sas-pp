@@ -62,6 +62,7 @@ class Model_engineering_doc_comment extends Model
         $this->select('
             *
         ')
+        ->where('deleted_at', NULL)
         ->where('doc_id', $payload['id_doc']);
     
         if (isset($payload['id_approver']) && $payload['id_approver'] !== null) {
