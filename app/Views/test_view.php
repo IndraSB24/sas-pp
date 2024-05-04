@@ -36,6 +36,10 @@
             overflow: auto;
             /* Adjust the height as needed */
         }
+
+        .delete_comment:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -160,6 +164,7 @@
                                                 <th>page</th>
                                                 <th>Comment by</th>
                                                 <th>Date</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -168,6 +173,7 @@
                                                 <td><span class="fw-bold" v-bind:data-page="item.page_data"> {{ item.page_detail }} </span> </td>
                                                 <td><span class="fw-bold">{{ item.created_by }}</span></td>
                                                 <td><span class="fw-bold">{{ item.created_at }}</span></td>
+                                                <td class="text-center"><span class="fw-bold"><i @click.prevent="deleteComment(item)" class="delete_comment fas fa-trash-alt text-danger"></i></span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -314,6 +320,71 @@
                     this.selectedFile = item;
                     this.show = true;
                     $('#modal-add-document').modal('show');
+                },
+                deleteComment(item) {
+                    console.log(item);
+                    const path = '<?= base_url('Project_detail_engineering/delete_comment')?>'
+                    var formData = new FormData();
+                    formData.append('id_comment', item.id);
+                    Swal.fire({
+                        title: 'Hapus Comment?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url: path,
+                                method: 'POST',
+                                contentType: false,
+                                data: formData,
+                                cache: false,
+                                processData: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Deleted!',
+                                        icon: 'success',
+                                        text: 'This Comment is Deleted.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        $.ajax({
+                                        method: 'GET',
+                                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                                        dataType: "json",
+                                        contentType: 'application/json; charset=utf-8',
+                                        delay: 250,
+                                    }).done((resp) => {
+                                        console.log(this.listComment, 'fff')
+                                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                                        const step = '<?= $step ?>'
+                                        const isPreview = '<?= $is_preview ?>'
+                                        const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
+                                            ...d,
+                                            link: baseUrl + d.comment_file
+                                        }))
+                                        this.listComment = tmp
+                                        $('#comment_title').val(null)
+                                        $('#title_comment_modal').modal('hide');
+                                        console.log(resp);
+                                    }).fail((err) => {
+                                        console.log(err);
+                                    })
+                                    })
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Terjadi kesalahan:', status, error);
+                                }
+                            });
+                        }
+                    })
                 },
                 closeModal() {
                     this.show = false;

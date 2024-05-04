@@ -96,7 +96,7 @@ $(document).ready(function() {
 
     // Scroll Vertical Datatable
     $('#scroll-vertical-datatable').DataTable({
-        "scrollY":        "50vh",
+        "scrollY":"70vh",
         // "scrollCollapse": true,
         "scrollX": true,
         // "paging": false,
