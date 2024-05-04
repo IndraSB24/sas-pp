@@ -323,7 +323,7 @@
                 },
                 deleteComment(item) {
                     console.log(item);
-                    const path = '<?= base_url('Project_detail_engineering/delete_comment')?>'
+                    const path = '<?= base_url('Project_detail_engineering/delete_comment') ?>'
                     var formData = new FormData();
                     formData.append('id_comment', item.id);
                     Swal.fire({
@@ -348,35 +348,34 @@
                                         text: 'This Comment is Deleted.',
                                         timer: 1000,
                                         confirmButtonColor: "#5664d2",
-                                        // onBeforeOpen: function() {
-                                        //     window.history.back();
-                                        // },
+                                        onBeforeOpen: () => {
+                                            location.reload()
+                                            // $.ajax({
+                                            //     method: 'GET',
+                                            //     url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                                            //     dataType: "json",
+                                            //     contentType: 'application/json; charset=utf-8',
+                                            //     delay: 250,
+                                            // }).done((resp) => {
+                                            //     console.log(this.listComment, 'fff')
+                                            //     const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                                            //     const step = '<?= $step ?>'
+                                            //     const isPreview = '<?= $is_preview ?>'
+                                            //     const tmp = resp.length > 0 && resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
+                                            //         ...d,
+                                            //         link: baseUrl + d.comment_file
+                                            //     }))
+                                            //     this.listComment = tmp
+                                            //     $('#comment_title').val(null)
+                                            //     $('#title_comment_modal').modal('hide');
+                                            //     console.log(resp);
+                                            // }).fail((err) => {
+                                            //     console.log(err);
+                                            // })
+                                        },
                                         // onClose: function() {
                                         //     location.reload()
                                         // }
-                                    }).then(() => {
-                                        $.ajax({
-                                        method: 'GET',
-                                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
-                                        dataType: "json",
-                                        contentType: 'application/json; charset=utf-8',
-                                        delay: 250,
-                                    }).done((resp) => {
-                                        console.log(this.listComment, 'fff')
-                                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                                        const step = '<?= $step ?>'
-                                        const isPreview = '<?= $is_preview ?>'
-                                        const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
-                                            ...d,
-                                            link: baseUrl + d.comment_file
-                                        }))
-                                        this.listComment = tmp
-                                        $('#comment_title').val(null)
-                                        $('#title_comment_modal').modal('hide');
-                                        console.log(resp);
-                                    }).fail((err) => {
-                                        console.log(err);
-                                    })
                                     })
                                 },
                                 error: function(xhr, status, error) {
