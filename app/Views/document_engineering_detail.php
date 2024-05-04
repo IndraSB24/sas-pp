@@ -209,15 +209,15 @@ function generateWaitingBadge()
                                                     <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-center" style="background-color:#d2fad2">0%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">25%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">65%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">10%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
                                                     <th class="text-center" style="background-color:#d2fad2">100%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">0%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">25%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">65%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">10%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
+                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
                                                     <th class="text-center" style="background-color:#c1f5d9">100%</th>
                                                 </tr>
                                             </thead>
