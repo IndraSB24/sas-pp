@@ -4,15 +4,18 @@ namespace App\Controllers;
 use App\Models\Model_project;
 use App\Models\Model_doc_procurement;
 use App\Models\Model_doc_engineering;
+use App\Models\Model_data_helper;
 
 class Project_detail_procurement extends BaseController
 {
-    protected $Model_doc_procurement, $Model_project, $Model_doc_engineering;
+    protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
         $this->Model_project = new Model_project();
 		$this->Model_doc_engineering = new Model_doc_engineering();
+		$this->Model_data_helper = new Model_data_helper();
+		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
 	public function index($project_id=null){
@@ -28,7 +31,8 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_procurement->findAll()
+			'list_doc_procurement' => $this->Model_doc_procurement->findAll(),
+			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
 		return view('document_procurement_detail', $data);
 	}
