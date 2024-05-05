@@ -304,6 +304,30 @@
                 currentIndex: 0,
             },
             methods: {
+                fetchComment: function() {
+                    $.ajax({
+                        method: 'GET',
+                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        delay: 250,
+                    }).done((resp) => {
+                        console.log(resp, 'fuadi resp');
+                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                        const step = '<?= $step ?>'
+                        const isPreview = '<?= $is_preview ?>'
+                        const tmp = resp.length > 0 ? resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
+                            ...d,
+                            link: baseUrl + d.comment_file
+                        })) : [];
+                        this.listComment = tmp
+                        $('#comment_title').val(null)
+                        $('#title_comment_modal').modal('hide');
+                        console.log(resp);
+                    }).fail((err) => {
+                        console.log(err);
+                    })
+                },
                 toggleDrawingMode: function() {
                     console.log('masuk sini');
                     this.isDraw = !this.isDraw;
@@ -332,7 +356,7 @@
                         showCancelButton: true,
                         confirmButtonText: 'Ya',
                         cancelButtonText: 'Batal'
-                    }).then(function(result) {
+                    }).then((result) => {
                         if (result.value) {
                             $.ajax({
                                 url: path,
@@ -341,7 +365,7 @@
                                 data: formData,
                                 cache: false,
                                 processData: false,
-                                success: function(response) {
+                                success: (response) => {
                                     Swal.fire({
                                         title: 'Deleted!',
                                         icon: 'success',
@@ -349,29 +373,7 @@
                                         timer: 1000,
                                         confirmButtonColor: "#5664d2",
                                         onBeforeOpen: () => {
-                                            location.reload()
-                                            // $.ajax({
-                                            //     method: 'GET',
-                                            //     url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
-                                            //     dataType: "json",
-                                            //     contentType: 'application/json; charset=utf-8',
-                                            //     delay: 250,
-                                            // }).done((resp) => {
-                                            //     console.log(this.listComment, 'fff')
-                                            //     const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                                            //     const step = '<?= $step ?>'
-                                            //     const isPreview = '<?= $is_preview ?>'
-                                            //     const tmp = resp.length > 0 && resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
-                                            //         ...d,
-                                            //         link: baseUrl + d.comment_file
-                                            //     }))
-                                            //     this.listComment = tmp
-                                            //     $('#comment_title').val(null)
-                                            //     $('#title_comment_modal').modal('hide');
-                                            //     console.log(resp);
-                                            // }).fail((err) => {
-                                            //     console.log(err);
-                                            // })
+                                            this.fetchComment()
                                         },
                                         // onClose: function() {
                                         //     location.reload()
@@ -424,26 +426,8 @@
                     grid: 10,
                 });
 
-                $.ajax({
-                    method: 'GET',
-                    url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
-                    dataType: "json",
-                    contentType: 'application/json; charset=utf-8',
-                    delay: 250,
-                }).done((resp) => {
-                    const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                    const step = '<?= $step ?>'
-                    const isPreview = '<?= $is_preview ?>'
-                    const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
-                        ...d,
-                        link: baseUrl + d.comment_file
-                    }))
-                    this.listComment = tmp
-                    console.log(resp);
-                }).fail((err) => {
-                    console.log(err);
-                })
-
+                this.fetchComment();
+                
                 function convertDataURIToBlob(dataURI) {
                     var byteString;
                     if (dataURI.split(',')[0].indexOf('base64') >= 0)
@@ -984,28 +968,7 @@
                                 timer: 1000,
                                 confirmButtonColor: "#5664d2",
                                 onBeforeOpen: () => {
-                                    $.ajax({
-                                        method: 'GET',
-                                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
-                                        dataType: "json",
-                                        contentType: 'application/json; charset=utf-8',
-                                        delay: 250,
-                                    }).done((resp) => {
-                                        console.log(this.listComment, 'fff')
-                                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
-                                        const step = '<?= $step ?>'
-                                        const isPreview = '<?= $is_preview ?>'
-                                        const tmp = resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
-                                            ...d,
-                                            link: baseUrl + d.comment_file
-                                        }))
-                                        this.listComment = tmp
-                                        $('#comment_title').val(null)
-                                        $('#title_comment_modal').modal('hide');
-                                        console.log(resp);
-                                    }).fail((err) => {
-                                        console.log(err);
-                                    })
+                                    this.fetchComment()
                                 },
                             })
                         },
