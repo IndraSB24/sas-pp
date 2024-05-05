@@ -64,8 +64,6 @@
                                                 <th rowspan="4">TOTAL AMOUNT</th>
                                                 <th rowspan="4">WF</th>
                                                 <th rowspan="1" colspan="12" class="text-center">PROC</th>
-                                                <th rowspan="1" colspan="6" class="text-center">PLAN</th>
-                                                <th rowspan="1" colspan="6" class="text-center">ACTUAL</th>
                                                 <!-- <th colspan="3" class="text-center">MR RECIEVED DATE</th>
                                                 <th colspan="3" class="text-center">RFQ ISSUED DATE</th>
                                                 <th colspan="3" class="text-center">QUOTATION RECIEVED</th>
@@ -93,18 +91,6 @@
                                                 <th colspan="2" class="text-center">ONSITE</th>
                                                 <th colspan="2" class="text-center">INSTALL</th>
                                                 <th colspan="2" class="text-center">COMM</th>
-                                                <th class="text-center">PO</th>
-                                                <th class="text-center">FAT</th>
-                                                <th class="text-center">RFS</th>
-                                                <th class="text-center">ONSITE</th>
-                                                <th class="text-center">INSTALL</th>
-                                                <th class="text-center">COMM</th>
-                                                <th class="text-center">PO</th>
-                                                <th class="text-center">FAT</th>
-                                                <th class="text-center">RFS</th>
-                                                <th class="text-center">ONSITE</th>
-                                                <th class="text-center">INSTALL</th>
-                                                <th class="text-center">COMM</th>
                                                 <!-- <?php for ($i = 0; $i < 7; $i++) : ?>
                                                     <th class="text-center">PLAN</th>
                                                     <th class="text-center">FORECAST</th>
@@ -118,18 +104,6 @@
                                                 <th colspan="2" class="text-center">35%</th>
                                                 <th colspan="2" class="text-center">20%</th>
                                                 <th colspan="2" class="text-center">5%</th>
-                                                <th rowspan="2" class="text-center">10%</th>
-                                                <th rowspan="2" class="text-center">10%</th>
-                                                <th rowspan="2" class="text-center">20%</th>
-                                                <th rowspan="2" class="text-center">35%</th>
-                                                <th rowspan="2" class="text-center">20%</th>
-                                                <th rowspan="2" class="text-center">5%</th>
-                                                <th rowspan="2" class="text-center">10%</th>
-                                                <th rowspan="2" class="text-center">10%</th>
-                                                <th rowspan="2" class="text-center">20%</th>
-                                                <th rowspan="2" class="text-center">35%</th>
-                                                <th rowspan="2" class="text-center">20%</th>
-                                                <th rowspan="2" class="text-center">5%</th>
                                             </tr>
                                             <tr>
                                                 <th>PLAN</th>
