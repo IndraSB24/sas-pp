@@ -59,9 +59,9 @@
                         </div>
                     </div>
                     <div class="col-lg-6 pb-0">
-                        <div class="galon" style="padding: 15px;padding-top: 10px;height:100%;border: 1px solid #F28482;">
+                        <div class="galon" style="padding: 15px;padding-top: 10px;height:100%;border: 1px solid #B5838D;">
                             <div class="text-center">
-                                <div class="text-center mb-3" style="background-color: #F28482; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                <div class="text-center mb-3" style="background-color: #B5838D; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="far fa-eye"></i> Status Progress</h4>
                                 </div>
                             </div>
