@@ -111,10 +111,17 @@ function generateWaitingBadge()
     /* .desc {
             width: 0px !important;
         } */
-    th:nth-child(5),
-    td:nth-child(5) {
+    td:nth-child(3) {
         position: sticky;
         left: 0;
+        background-color: #f2f2f2;
+        /* Optional: set background color */
+        z-index: 1;
+        /* Optional: set z-index to ensure it's above other elements */
+    }
+    td:nth-child(5) {
+        position: sticky;
+        left: 13em;
         background-color: #f2f2f2;
         /* Optional: set background color */
         z-index: 1;
@@ -175,9 +182,9 @@ function generateWaitingBadge()
                                                 <tr>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
-                                                    <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
+                                                    <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
                                                     <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DESCRIPTION</th>
+                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                     <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                     <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>

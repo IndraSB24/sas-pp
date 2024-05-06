@@ -48,7 +48,7 @@
                 <?= $page_title ?>
                 <div class="row">
                     <div class="col-lg-6 pb-0">
-                        <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 35px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                        <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
                             <div class="card-body">
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Engineering S Curve</h4>

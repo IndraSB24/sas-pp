@@ -362,33 +362,33 @@
                                     <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead style="background-color: antiquewhite">
                                             <tr>
-                                                <th>Title</th>
+                                                <th style="text-align: left;">Title</th>
                                                 <th>BL Date</th>
                                                 <th>Actual/Forecast Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Contract Effective Date</td>
+                                                <td style="text-align: left;">Contract Effective Date</td>
                                                 <td>28 Dec 23</td>
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td>Kick Off Meeting</td>
+                                                <td style="text-align: left;">Kick Off Meeting</td>
                                                 <td>18 Jan 24</td>
                                             </tr>
                                             <tr>
-                                                <td>Mechanical Completion</td>
+                                                <td style="text-align: left;">Mechanical Completion</td>
                                                 <td></td>
                                                 <td>9 Jun 25</td>
                                             </tr>
                                             <tr>
-                                                <td>Commisioning</td>
+                                                <td style="text-align: left;">Commisioning</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
                                             </tr>
                                             <tr>
-                                                <td>Operation Acceptance</td>
+                                                <td style="text-align: left;">Operation Acceptance</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
                                             </tr>
@@ -409,7 +409,7 @@
                                         <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead style="background-color: antiquewhite">
                                                 <tr>
-                                                    <th>Material/Equipment</th>
+                                                    <th style="text-align: left;">Material/Equipment</th>
                                                     <th>ETA</th>
                                                     <th>ROS</th>
                                                     <th>Current Status</th>
@@ -417,7 +417,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Cable Pulling</td>
+                                                    <td style="text-align: left;">Cable Pulling</td>
                                                     <td>20-04-2024</td>
                                                     <td>20-04-2024</td>
                                                     <td>Waiting</td>
