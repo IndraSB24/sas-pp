@@ -31,9 +31,9 @@ class Project_detail_engineering extends BaseController
 
         // construct structure
         foreach ($get_man_hour as $row) {
-            $yearMonth = $row['asbuild_plan_year'] . '-' . $row['asbuild_plan_month'];
-            $discipline = $row['dicipline_name'];
-            
+            $yearMonth = $row->asbuild_plan_year . '-' . $row->asbuild_plan_month; // Use object notation -> instead of []
+            $discipline = $row->dicipline_name; // Use object notation -> instead of []
+        
             // Initialize the structure if it doesn't exist for the current year-month combination
             if (!isset($data_man_hour['year_month'][$yearMonth])) {
                 $data_man_hour['year_month'][$yearMonth] = [
@@ -49,13 +49,13 @@ class Project_detail_engineering extends BaseController
             }
         
             // Update the total man hour plan and actual for all disciplines
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row['man_hour_plan'];
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row['man_hour_actual'];
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row->man_hour_plan; // Use object notation -> instead of []
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row->man_hour_actual; // Use object notation -> instead of []
         
             // Update the man hour plan and actual per discipline
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = $row['man_hour_plan'];
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = $row['man_hour_actual'];
-        }
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = $row->man_hour_plan; // Use object notation -> instead of []
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = $row->man_hour_actual; // Use object notation -> instead of []
+        }        
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
