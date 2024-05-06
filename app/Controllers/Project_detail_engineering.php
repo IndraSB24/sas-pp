@@ -58,7 +58,7 @@ class Project_detail_engineering extends BaseController
         }    
         unset($data_man_hour['year_month']['-']); 
         
-        var_dump($data_man_hour);
+        echo '<pre>'; print_r( $data_man_hour );die; echo '</pre>';
         die;
 
         $data = [
