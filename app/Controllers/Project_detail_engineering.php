@@ -35,7 +35,7 @@ class Project_detail_engineering extends BaseController
 
         // Loop through the data to collect all unique disciplines
         foreach ($get_man_hour as $row) {
-            $discipline = $row['dicipline_name'];
+            $discipline = $row->dicipline_name; // Access object property
             if (!in_array($discipline, $all_disciplines)) {
                 $all_disciplines[] = $discipline;
             }
@@ -43,8 +43,8 @@ class Project_detail_engineering extends BaseController
 
         // Construct structure
         foreach ($get_man_hour as $row) {
-            $yearMonth = $row['asbuild_plan_year'] . '-' . $row['asbuild_plan_month'];
-            $discipline = $row['dicipline_name'];
+            $yearMonth = $row->asbuild_plan_year . '-' . $row->asbuild_plan_month; // Access object properties
+            $discipline = $row->dicipline_name; // Access object property
 
             // Initialize the structure if it doesn't exist for the current year-month combination
             if (!isset($data_man_hour['year_month'][$yearMonth])) {
@@ -67,13 +67,14 @@ class Project_detail_engineering extends BaseController
             }
 
             // Update the total man hour plan and actual for all disciplines
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row['man_hour_plan'];
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row['man_hour_actual'];
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row->man_hour_plan; // Access object property
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row->man_hour_actual; // Access object property
 
             // Update the man hour plan and actual for the specific discipline
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] += $row['man_hour_plan'];
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] += $row['man_hour_actual'];
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] += $row->man_hour_plan; // Access object property
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] += $row->man_hour_actual; // Access object property
         }
+
 
         unset($data_man_hour['year_month']['-']); 
         
