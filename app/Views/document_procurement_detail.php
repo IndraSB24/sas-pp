@@ -64,13 +64,6 @@
                                                 <th rowspan="4">TOTAL AMOUNT</th>
                                                 <th rowspan="4">WF</th>
                                                 <th rowspan="1" colspan="12" class="text-center">PROC</th>
-                                                <!-- <th colspan="3" class="text-center">MR RECIEVED DATE</th>
-                                                <th colspan="3" class="text-center">RFQ ISSUED DATE</th>
-                                                <th colspan="3" class="text-center">QUOTATION RECIEVED</th>
-                                                <th colspan="3" class="text-center">TECHNICAL CLARIFICATION</th>
-                                                <th colspan="3" class="text-center">TBE ISSUED DATE</th>
-                                                <th colspan="3" class="text-center">CBE ISSUED DATE</th>
-                                                <th colspan="3" class="text-center">CONTRACT DATE</th> -->
                                                 <th rowspan="4" class="text-center">
                                                     ACTION
                                                 </th>
@@ -91,11 +84,6 @@
                                                 <th colspan="2" class="text-center">ONSITE</th>
                                                 <th colspan="2" class="text-center">INSTALL</th>
                                                 <th colspan="2" class="text-center">COMM</th>
-                                                <!-- <?php for ($i = 0; $i < 7; $i++) : ?>
-                                                    <th class="text-center">PLAN</th>
-                                                    <th class="text-center">FORECAST</th>
-                                                    <th class="text-center">ACTUAL</th>
-                                                <?php endfor; ?> -->
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="text-center">10%</th>
@@ -122,7 +110,7 @@
                                         </thead>
 
                                         <tbody>
-                                            <!-- <?php
+                                            <?php
                                                     $action = 'no action yet';
 
                                                     foreach ($list_doc_procurement as $index => $item) :
@@ -130,35 +118,24 @@
                                                     <tr>
                                                         <td class="text-center"> <?= $index + 1 ?> </td>
                                                         <td class="text-center"> <?= $item->activity_code ?> </td>
-                                                        <td></td>
-                                                        <td> <?= $item->description ?> </td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <th class="text-center"> <?= $item->mr_received_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->mr_received_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->mr_received_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->rfq_issued_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->rfq_issued_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->rfq_issued_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->quotation_received_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->quotation_received_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->quotation_received_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->technical_clarification_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->technical_clarification_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->technical_clarification_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->tbe_issued_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->tbe_issued_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->tbe_issued_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->cbe_issued_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->cbe_issued_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->cbe_issued_actual ?> </th>
-                                                        <th class="text-center"> <?= $item->contract_date_plan ?> </th>
-                                                        <th class="text-center"> <?= $item->contract_date_forecast ?> </th>
-                                                        <th class="text-center"> <?= $item->contract_date_actual ?> </th>
+
+                                                        <td class="text-center"> <?= $item->group_name ?> </td>
+                                                        <td> <?= $item->activity_name_lvl_1 ?> </td>
+                                                        <td> <?= $item->activity_name_lvl_2 ?> </td>
+                                                        <td> <?= $item->activity_name_lvl_3 ?> </td>
+                                                        <td> <?= $item->activity_name_lvl_4 ?> </td>
+
+                                                        <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
+                                                        <th class="text-center"> <?= $item->quantity ?> </th>
+                                                        <th class="text-center"> <?= $item->unit ?> </th>
+
+                                                        <th class="text-center"> <?= $item->harga_satuan_material ?> </th>
+                                                        <th class="text-center"> <?= $item->harga_satuan_jasa ?> </th>
+
+                                                        
                                                         <td class="text-center"> <?= $action ?> </td>
                                                     </tr>
-                                                <?php endforeach; ?> -->
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </font>

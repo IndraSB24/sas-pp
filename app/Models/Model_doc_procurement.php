@@ -59,9 +59,17 @@ class Model_doc_procurement extends Model
         $sql = "ALTER TABLE project_detail_procurement AUTO_INCREMENT=1";
         $this->db->query($sql);
     }
-    
-    // select all
+
+    // get all man hour by dicipline per month
     public function getAll(){
-        //return $this->db->findAll();
+        $this->select('
+            project_detail_procurement.*,
+            dh.name as group_name
+        ')
+        ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group')
+        ->where('project_detail_procurement.deleted_at', NULL);
+
+        
+        return $this->get()->getResult();
     }
 }
