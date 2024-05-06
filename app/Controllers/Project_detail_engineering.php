@@ -55,7 +55,8 @@ class Project_detail_engineering extends BaseController
             // Update the man hour plan and actual per discipline
             $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = $row->man_hour_plan; // Use object notation -> instead of []
             $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = $row->man_hour_actual; // Use object notation -> instead of []
-        }     
+        }    
+        unset($data_man_hour['year_month']['-']); 
         
         var_dump($data_man_hour);
         die;
