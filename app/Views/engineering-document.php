@@ -576,8 +576,6 @@
     let total_done_doc_counter = 0;
     let total_doc_counter = parseInt(<?= $total_doc ?>);
 
-    console.log(<?= json_encode($data_chart_man_hour) ?>);
-
     //  Scurve mdr
     let weekList = [],
         dataPlan = [],
@@ -1045,13 +1043,29 @@
     );
     chart_document.render();
 
+    const data_chart_man_hour = <?= json_encode($data_chart_man_hour) ?>
+
+    let dicipline_name = []
+    let man_hour_actual = []
+    let man_hour_plan = []
+    data_chart_man_hour.map((dt) => {
+        dicipline_name.push(dt.dicipline_name);
+        man_hour_actual.push(dt.man_hour_actual);
+        man_hour_plan.push(dt.man_hour_plan);
+    })
+    console.log({
+        dicipline_name,
+        man_hour_actual,
+        man_hour_plan,
+    });
+
     var options_man_power = {
         series: [{
             name: 'Plan',
-            data: [46, 57, 59, 54, 62, 58, 64, 60, 66, 100, 60, 70]
+            data: man_hour_plan
         }, {
             name: 'Actual',
-            data: [74, 83, 102, 97, 86, 106, 93, 114, 94, 80, 40, 20]
+            data: man_hour_actual
         }],
         chart: {
             type: 'bar',
@@ -1080,7 +1094,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            categories: dicipline_name,
             labels: {
                 formatter: function(val) {
                     return val
@@ -1107,7 +1121,7 @@
             horizontalAlign: 'left',
             offsetX: 40
         },
-        
+
     }
 
     var chart_man_hour = new ApexCharts(
