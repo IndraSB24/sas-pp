@@ -30,10 +30,8 @@ class Project_detail_engineering extends BaseController
         $data_man_hour = [];
 
         // construct structure
-        // Initialize an empty array to store disciplines
         $all_disciplines = [];
 
-        // Loop through the data to collect all unique disciplines
         foreach ($get_man_hour as $row) {
             $discipline = $row->dicipline_name; // Access object property
             if (!in_array($discipline, $all_disciplines)) {
@@ -41,7 +39,6 @@ class Project_detail_engineering extends BaseController
             }
         }
 
-        // Construct structure
         foreach ($get_man_hour as $row) {
             $yearMonth = $row->asbuild_plan_year . '-' . $row->asbuild_plan_month; // Access object properties
             $discipline = $row->dicipline_name; // Access object property
@@ -75,10 +72,9 @@ class Project_detail_engineering extends BaseController
             $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] += $row->man_hour_actual; // Access object property
         }
 
-
         unset($data_man_hour['year_month']['-']); 
         
-        echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
+        // echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
@@ -88,7 +84,6 @@ class Project_detail_engineering extends BaseController
             'data_weight_factor_plan' => $this->doc_engineering_model->get_plan_weight_factor(),
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
-            // 'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
             'data_chart_man_hour' => $data_man_hour
         ];
 
