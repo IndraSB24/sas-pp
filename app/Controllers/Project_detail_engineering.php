@@ -25,7 +25,39 @@ class Project_detail_engineering extends BaseController
     }
     
 	public function index($project_id=null){
-		$data = [
+        // man hour chart data
+        $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
+        $data_man_hour = [];
+
+        // construct structure
+        foreach ($get_man_hour as $row) {
+            $yearMonth = $row['asbuild_plan_year'] . '-' . $row['asbuild_plan_month'];
+            $discipline = $row['dicipline_name'];
+            
+            // Initialize the structure if it doesn't exist for the current year-month combination
+            if (!isset($data_man_hour['year_month'][$yearMonth])) {
+                $data_man_hour['year_month'][$yearMonth] = [
+                    'plan' => [
+                        'man_hour_plan' => 0,
+                        'man_hour_per_discipline' => []
+                    ],
+                    'actual' => [
+                        'man_hour_actual' => 0,
+                        'man_hour_per_discipline' => []
+                    ]
+                ];
+            }
+        
+            // Update the total man hour plan and actual for all disciplines
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row['man_hour_plan'];
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row['man_hour_actual'];
+        
+            // Update the man hour plan and actual per discipline
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = $row['man_hour_plan'];
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = $row['man_hour_actual'];
+        }
+
+        $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR']),
 			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
@@ -33,11 +65,9 @@ class Project_detail_engineering extends BaseController
             'data_weight_factor_plan' => $this->doc_engineering_model->get_plan_weight_factor(),
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
-            'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
+            // 'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
+            'data_chart_man_hour' => $data_man_hour
         ];
-
-        // man hour chart data
-
 
 		return view('engineering-document', $data);
 	}

@@ -163,4 +163,21 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get all man hour by dicipline per month
+    public function getManHourByDiciplinePerMonth(){
+        $this->select('
+            YEAR(project_detail_engineering.external_asbuild_plan) as asbuild_plan_year,
+            MONTH(project_detail_engineering.external_asbuild_plan) as asbuild_plan_month,
+            dh.name as dicipline_name,
+            SUM(project_detail_engineering.man_hour_plan) AS man_hour_plan,
+            SUM(project_detail_engineering.man_hour_actual) AS man_hour_actual
+        ')
+        ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline')
+        ->where('project_detail_engineering.deleted_at', NULL)
+        ->groupBy('asbuild_plan_year, asbuild_plan_month, dicipline_name');
+
+        
+        return $this->get()->getResult();
+    }
+
 }
