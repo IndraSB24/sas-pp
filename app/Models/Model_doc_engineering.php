@@ -175,8 +175,7 @@ class Model_doc_engineering extends Model
         ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline')
         ->where('project_detail_engineering.deleted_at', NULL)
         ->groupBy('asbuild_plan_year, asbuild_plan_month, dicipline_name');
-
-        
+ 
         return $this->get()->getResult();
     }
 
