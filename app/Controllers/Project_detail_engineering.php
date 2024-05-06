@@ -30,10 +30,22 @@ class Project_detail_engineering extends BaseController
         $data_man_hour = [];
 
         // construct structure
+        // Initialize an empty array to store disciplines
+        $all_disciplines = [];
+
+        // Loop through the data to collect all unique disciplines
         foreach ($get_man_hour as $row) {
-            $yearMonth = $row->asbuild_plan_year . '-' . $row->asbuild_plan_month; // Use object notation -> instead of []
-            $discipline = $row->dicipline_name; // Use object notation -> instead of []
-        
+            $discipline = $row['dicipline_name'];
+            if (!in_array($discipline, $all_disciplines)) {
+                $all_disciplines[] = $discipline;
+            }
+        }
+
+        // Construct structure
+        foreach ($get_man_hour as $row) {
+            $yearMonth = $row['asbuild_plan_year'] . '-' . $row['asbuild_plan_month'];
+            $discipline = $row['dicipline_name'];
+
             // Initialize the structure if it doesn't exist for the current year-month combination
             if (!isset($data_man_hour['year_month'][$yearMonth])) {
                 $data_man_hour['year_month'][$yearMonth] = [
@@ -46,20 +58,26 @@ class Project_detail_engineering extends BaseController
                         'man_hour_per_discipline' => []
                     ]
                 ];
+                
+                // Set zero value for all disciplines
+                foreach ($all_disciplines as $discipline) {
+                    $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = 0;
+                    $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = 0;
+                }
             }
-        
+
             // Update the total man hour plan and actual for all disciplines
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row->man_hour_plan; // Use object notation -> instead of []
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row->man_hour_actual; // Use object notation -> instead of []
-        
-            // Update the man hour plan and actual per discipline
-            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] = $row->man_hour_plan; // Use object notation -> instead of []
-            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] = $row->man_hour_actual; // Use object notation -> instead of []
-        }    
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_plan'] += $row['man_hour_plan'];
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_actual'] += $row['man_hour_actual'];
+
+            // Update the man hour plan and actual for the specific discipline
+            $data_man_hour['year_month'][$yearMonth]['plan']['man_hour_per_discipline'][$discipline] += $row['man_hour_plan'];
+            $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] += $row['man_hour_actual'];
+        }
+
         unset($data_man_hour['year_month']['-']); 
         
-        echo '<pre>'; print_r( $data_man_hour );die; echo '</pre>';
-        die;
+        echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
