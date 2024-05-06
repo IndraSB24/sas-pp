@@ -36,6 +36,9 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
 		];
 
+        var_dump($data['data_chart_man_hour']);
+        die;
+
         // man hour chart data
 
 
