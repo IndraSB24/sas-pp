@@ -34,6 +34,7 @@ class Project_detail_procurement extends BaseController
 			'list_doc_procurement' => $this->Model_doc_procurement->getAll(),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
+		// echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_procurement_detail', $data);
 	}
 	

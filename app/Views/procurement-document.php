@@ -17,6 +17,11 @@
             /* height: 200px; */
             background-color: #ffffff;
         }
+        .selectable:hover {
+            background-color: #7390A4 !important;
+            color: #fff !important;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -37,7 +42,7 @@
                 <?= $page_title ?>
                 <div class="row mb-0">
                     <div class="col-lg-6 pb-0">
-                        <div class="card" style="background-color:#D0F4DE;border-radius: 35px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                        <div class="card" style="background-color:#D0F4DE;border-radius: 35px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;height:100%">
                             <div class="card-body">
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
@@ -48,37 +53,60 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mb-0">
-                        <div class="card" style="height:90%;">
+                        <div class="galon" style="padding: 15px; padding-top: 10px; height: 100%; border: 1px solid #B5838D; height: 40vh; overflow: hidden; position: relative;">
                             <div class="card-body">
-                                <h4 class="card-title mb-1">Status</h4>
-                                <div class="row" style="height:55%;">
-                                    <div class="col-sm-12 text-center">
-                                        <div id="gauge_chart" class="m-0 p-0" style="height:70%;"></div>
-                                        <a href="procurement-doc-list/1" class="btn btn-sm btn-info">
+                                <div class="row" style="height: 55%;">
+                                    <div class="col-sm-12 text-center" style="height: 48vh; position: relative;">
+                                        <div class="text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem; position: absolute; top: 0; left: 0;z-index: 100">
+                                            <i class="ri-building-4-fill"></i>
+                                            <h4 class="card-title mb-0" style="color:#ffffff;">Procurement Progress</h4>
+                                        </div>
+                                        <div id="gauge_chart" class="m-0 p-0" style="height: 70%;"></div>
+                                        <!-- <a href="procurement-doc-list/1" class="btn btn-sm btn-info">
                                             Show Detail
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
-                                <div class="row mb-0">
-                                    <!--structural chart-->
-                                    <div class="col-md-3 m-0 p-0 text-center">
-                                        <div id="structural_chart" class="apex-charts"></div>
-                                        Structural
+                            </div>
+                        </div>
+                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;">
+                            <div class="row">
+                                <div class="col-8"></div>
+                                <div class="col-4">
+                                    <!-- Div Induk -->
+                                    <div class="text-center selectable" style="border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color:#EDE580; padding: 7px;" onclick="window.location.href = 'procurement-doc-list/1';">
+                                        <!-- Div Anak -->
+                                        <strong><span style="padding-right: 5px;"><i class="fas fa-info-circle"></i> Click for Detail</span></strong>
                                     </div>
-                                    <!--piping chart-->
-                                    <div class="col-md-3 m-0 p-0 text-center">
-                                        <div id="piping_chart" class="apex-charts"></div>
-                                        Piping
+                                </div>
+                            </div>
+                            <div class="row" style="top:-70px">
+                                <div class="col-md-3 m-0 p-0 text-center">
+                                    <div id="structural_chart" class="apex-charts"></div>
+
+                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-shapes"></i> Structural</h4>
                                     </div>
-                                    <!--electrical chart-->
-                                    <div class="col-md-3 m-0 p-0 text-center">
-                                        <div id="electrical_chart" class="apex-charts"></div>
-                                        Electrical & Ins
+                                </div>
+                                <div class="col-md-3 m-0 p-0 text-center">
+                                    <div id="piping_chart" class="apex-charts"></div>
+
+                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="mdi mdi-pipe"></i> Piping</h4>
                                     </div>
-                                    <!--mechanical chart-->
-                                    <div class="col-md-3 m-0 p-0 text-center">
-                                        <div id="mechanical_chart" class="apex-charts"></div>
-                                        Mechanical
+                                </div>
+                                <div class="col-md-3 m-0 p-0 text-center">
+                                    <div id="electrical_chart" class="apex-charts"></div>
+
+                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-bolt"></i> Electrical & Ins</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 m-0 p-0 text-center">
+                                    <div id="mechanical_chart" class="apex-charts"></div>
+
+                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-wrench"></i> Mechanical</h4>
                                     </div>
                                 </div>
                             </div>
@@ -1105,7 +1133,7 @@
         },
         series: [44],
         labels: ['Done'],
-        colors: ['#5664d2'],
+        colors: ['#BC4749'],
     };
     var chart_structural = new ApexCharts(
         document.querySelector("#structural_chart"),
@@ -1140,7 +1168,7 @@
         },
         series: [44],
         labels: ['Done'],
-        colors: ['#5664d2'],
+        colors: ['#BC4749'],
     };
     var chart_piping = new ApexCharts(
         document.querySelector("#piping_chart"),
@@ -1175,7 +1203,7 @@
         },
         series: [44],
         labels: ['Done'],
-        colors: ['#5664d2'],
+        colors: ['#BC4749'],
     };
     var chart_electrical = new ApexCharts(
         document.querySelector("#electrical_chart"),
@@ -1210,7 +1238,7 @@
         },
         series: [44],
         labels: ['Done'],
-        colors: ['#5664d2'],
+        colors: ['#BC4749'],
     };
     var chart_mechanical = new ApexCharts(
         document.querySelector("#mechanical_chart"),
@@ -1231,7 +1259,7 @@
             marginBottom: 0
         },
         title: {
-            text: 'Procurement Progress',
+            text: '',
         },
         pane: {
             startAngle: -90,
@@ -1248,7 +1276,7 @@
         // the value axis
         yAxis: {
             min: 0,
-            max: 200,
+            max: 100,
             tickPixelInterval: 72,
             tickPosition: 'inside',
             tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
@@ -1264,29 +1292,29 @@
             lineWidth: 0,
             plotBands: [{
                 from: 0,
-                to: 120,
+                to: 50,
                 color: '#55BF3B', // green
                 thickness: 20
             }, {
-                from: 120,
-                to: 160,
+                from: 50,
+                to: 75,
                 color: '#DDDF0D', // yellow
                 thickness: 20
             }, {
-                from: 160,
-                to: 200,
+                from: 75,
+                to: 100,
                 color: '#DF5353', // red
                 thickness: 20
             }]
         },
         series: [{
-            name: 'Speed',
+            name: 'Percentage',
             data: [80],
             tooltip: {
-                valueSuffix: ' km/h'
+                valueSuffix: '%'
             },
             dataLabels: {
-                format: '{y} km/h',
+                format: '{y}%',
                 borderWidth: 0,
                 color: (
                     Highcharts.defaultOptions.title &&

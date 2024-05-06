@@ -159,7 +159,7 @@
                         </div>
                     </div> -->
                     <div class="col-lg-6 pb-0 mt-4">
-                        <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                        <div class="card" style="height:100%;background-color:#FFFFFC;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
                             <div class="card-body">
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Manhour By Month</h4>
@@ -872,7 +872,7 @@
         cum_actual_mixed_chart,
         plan_mixed_chart,
         cum_plan_mixed_chart
-    })
+    }, 'fuadi data  ')
 
     var optionsMixed = {
         chart: {
@@ -1050,87 +1050,144 @@
     let dicipline_name = []
     let man_hour_actual = []
     let man_hour_plan = []
-    data_chart_man_hour.map((dt) => {
-        dicipline_name.push(dt.dicipline_name);
-        man_hour_actual.push(dt.man_hour_actual);
-        man_hour_plan.push(dt.man_hour_plan);
-    })
-    console.log({
-        dicipline_name,
-        man_hour_actual,
-        man_hour_plan,
-    });
+    // data_chart_man_hour.map((dt) => {
+    //     dicipline_name.push(dt.dicipline_name);
+    //     man_hour_actual.push(dt.man_hour_actual);
+    //     man_hour_plan.push(dt.man_hour_plan);
+    // })
 
-    var options_man_power = {
+    // var options_man_power = {
+    //     series: [{
+    //         name: 'Plan',
+    //         data: man_hour_plan
+    //     }, {
+    //         name: 'Actual',
+    //         data: man_hour_actual
+    //     }],
+    //     chart: {
+    //         type: 'bar',
+    //         height: 350,
+    //         stacked: true,
+    //     },
+    //     colors: ['#CAFFBF', "#9BF6FF"],
+    //     // colors: ['#FFFF66', '#FFA500'],
+    //     plotOptions: {
+    //         bar: {
+    //             horizontal: false,
+    //             dataLabels: {
+    //                 total: {
+    //                     enabled: true,
+    //                     offsetX: 0,
+    //                     style: {
+    //                         fontSize: '13px',
+    //                         fontWeight: 900,
+    //                     }
+    //                 }
+    //             },
+    //         },
+    //     },
+    //     stroke: {
+    //         width: 1,
+    //         colors: ['#fff']
+    //     },
+    //     xaxis: {
+    //         categories: dicipline_name,
+    //         labels: {
+    //             formatter: function(val) {
+    //                 return val
+    //             }
+    //         }
+    //     },
+    //     yaxis: {
+    //         title: {
+    //             text: undefined
+    //         },
+    //     },
+    //     tooltip: {
+    //         y: {
+    //             formatter: function(val) {
+    //                 return val + "People"
+    //             }
+    //         }
+    //     },
+    //     fill: {
+    //         opacity: 1
+    //     },
+    //     legend: {
+    //         position: 'top',
+    //         horizontalAlign: 'left',
+    //         offsetX: 40
+    //     },
+
+    // }
+    var options = {
         series: [{
-            name: 'Plan',
-            data: man_hour_plan
-        }, {
-            name: 'Actual',
-            data: man_hour_actual
-        }],
+                name: 'Q1 Budget',
+                group: 'budget',
+                data: [44000, 55000, 41000, 67000, 22000]
+            },
+            {
+                name: 'Q1 Actual',
+                group: 'actual',
+                data: [48000, 50000, 40000, 65000, 25000]
+            },
+            {
+                name: 'Q2 Budget',
+                group: 'budget',
+                data: [13000, 36000, 20000, 8000, 13000]
+            },
+            {
+                name: 'Q2 Actual',
+                group: 'actual',
+                data: [20000, 40000, 25000, 10000, 12000]
+            }
+        ],
         chart: {
             type: 'bar',
             height: 350,
             stacked: true,
         },
-        // colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
-        colors: ['#FFFF66', '#FFA500'],
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                dataLabels: {
-                    total: {
-                        enabled: true,
-                        offsetX: 0,
-                        style: {
-                            fontSize: '13px',
-                            fontWeight: 900,
-                        }
-                    }
-                },
-            },
-        },
         stroke: {
             width: 1,
             colors: ['#fff']
         },
-        xaxis: {
-            categories: dicipline_name,
-            labels: {
-                formatter: function(val) {
-                    return val
-                }
+        dataLabels: {
+            formatter: (val) => {
+                return val / 1000 + 'K'
             }
         },
-        yaxis: {
-            title: {
-                text: undefined
-            },
+        plotOptions: {
+            bar: {
+                horizontal: true
+            }
         },
-        tooltip: {
-            y: {
-                formatter: function(val) {
-                    return val + "People"
+        xaxis: {
+            categories: [
+                'Online advertising',
+                'Sales Training',
+                'Print advertising',
+                'Catalogs',
+                'Meetings'
+            ],
+            labels: {
+                formatter: (val) => {
+                    return val / 1000 + 'K'
                 }
             }
         },
         fill: {
-            opacity: 1
+            opacity: 1,
         },
+        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
         legend: {
             position: 'top',
-            horizontalAlign: 'left',
-            offsetX: 40
-        },
+            horizontalAlign: 'left'
+        }
+    };
 
-    }
 
-    var chart_man_hour = new ApexCharts(
-        document.querySelector("#chart_man_hour"),
-        options_man_power
-    );
-    chart_man_hour.render();
+    var chart = new ApexCharts(document.querySelector("#chart_man_hour"), options);
+    chart.render();
 
     $(document).ready(function() {
         // cum_percent_counter, 100 - cum_percent_counter

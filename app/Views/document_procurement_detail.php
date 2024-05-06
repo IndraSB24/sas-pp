@@ -59,8 +59,7 @@
                                                 <th rowspan="4" style="width: 0px;">QUANTITY</th>
                                                 <th rowspan="4" style="width: 0px;">UNIT</th>
                                                 <th rowspan="1" colspan="2" style="width: 0px;" class="desc text-center">HARGA SATUAN</th>
-                                                <th colspan="1" style="width: 0px;" class="desc text-center"></th>
-                                                <th class="desc text-center">TOTAL HARGA</th>
+                                                <th colspan="2" class="desc text-center">TOTAL HARGA</th>
                                                 <th rowspan="4">TOTAL AMOUNT</th>
                                                 <th rowspan="4">WF</th>
                                                 <th rowspan="1" colspan="12" class="text-center">PROC</th>
@@ -131,8 +130,22 @@
 
                                                         <th class="text-center"> <?= $item->harga_satuan_material ?> </th>
                                                         <th class="text-center"> <?= $item->harga_satuan_jasa ?> </th>
-
-                                                        
+                                                        <th class="text-center"> <?= $item->total_harga_material ?> </th>
+                                                        <th class="text-center"> <?= $item->total_harga_jasa ?> </th>
+                                                        <th class="text-center"> <?= $item->total_amount ?> </th>
+                                                        <th class="text-center"> <?= $item->wf ?> </th>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= $action ?></td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                     </tr>
                                             <?php endforeach; ?>
