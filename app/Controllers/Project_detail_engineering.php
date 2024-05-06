@@ -34,10 +34,7 @@ class Project_detail_engineering extends BaseController
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
             'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
-		];
-
-        var_dump($data['data_chart_man_hour']);
-        die;
+        ];
 
         // man hour chart data
 
