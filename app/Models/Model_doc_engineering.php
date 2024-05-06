@@ -152,7 +152,7 @@ class Model_doc_engineering extends Model
     // get all man hour by dicipline
     public function getManHourPerDicipline(){
         $this->select('
-            IFNULL(project_detail_engineering.man_hour_man, 0) AS man_hour_man,
+            IFNULL(project_detail_engineering.man_hour_plan, 0) AS man_hour_plan,
             IFNULL(project_detail_engineering.man_hour_actual, 0) AS man_hour_actual,
             dh.name as dicipline_name
         ')
