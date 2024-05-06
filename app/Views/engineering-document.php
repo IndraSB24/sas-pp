@@ -576,6 +576,8 @@
     let total_done_doc_counter = 0;
     let total_doc_counter = parseInt(<?= $total_doc ?>);
 
+    console.log(<?= json_encode($data_chart_man_hour) ?>);
+
     //  Scurve mdr
     let weekList = [],
         dataPlan = [],
