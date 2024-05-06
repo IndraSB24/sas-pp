@@ -22,7 +22,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Procurement']),
-			'list_doc_procurement' => $this->Model_doc_engineering->getAll()
+			'list_doc_procurement' => $this->Model_doc_engineering->findAll()
 		];
 		return view('procurement-document', $data);
 	}
@@ -31,7 +31,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_procurement->findAll(),
+			'list_doc_procurement' => $this->Model_doc_procurement->getAll(),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
 		return view('document_procurement_detail', $data);
