@@ -779,7 +779,6 @@
     chartMixed.render();
 
     // column chart
-
     var options_man_power = {
         series: [{
             name: 'Plan',
@@ -844,7 +843,6 @@
         },
         
     }
-
     var chart_man_hour = new ApexCharts(
         document.querySelector("#chart_man_hour"),
         options_man_power

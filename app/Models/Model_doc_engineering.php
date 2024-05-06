@@ -64,6 +64,7 @@ class Model_doc_engineering extends Model
         $this->select('
             weight_factor
         ')
+        ->where('deleted_at', NULL)
         ->where('file_status', 'asbuild_approve');
         
         return $this->get()->getResult();
@@ -144,6 +145,20 @@ class Model_doc_engineering extends Model
         ')
         ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline', 'LEFT')
         ->where('project_detail_engineering.deleted_at', NULL);
+        
+        return $this->get()->getResult();
+    }
+
+    // get all man hour by dicipline
+    public function getManHourPerDicipline(){
+        $this->select('
+            project_detail_engineering.man_hour_plan AS man_hour_plan,
+            project_detail_engineering.man_hour_actual AS man_hour_actual,
+            dh.name as dicipline_name
+        ')
+        ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline')
+        ->where('project_detail_engineering.deleted_at', NULL)
+        ->groupBy('dh.id');
         
         return $this->get()->getResult();
     }

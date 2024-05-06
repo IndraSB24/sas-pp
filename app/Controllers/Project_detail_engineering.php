@@ -32,8 +32,12 @@ class Project_detail_engineering extends BaseController
             'data_weight_factor' => $this->doc_engineering_model->get_weight_factor(),
             'data_weight_factor_plan' => $this->doc_engineering_model->get_plan_weight_factor(),
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
-            'total_doc' => $this->doc_engineering_model->count_all_doc()
+            'total_doc' => $this->doc_engineering_model->count_all_doc(),
+            'data_chart_man_hour' => $this->doc_engineering_model->getManHourPerDicipline()
 		];
+
+        // man hour chart data
+
 
 		return view('engineering-document', $data);
 	}
