@@ -148,6 +148,26 @@
                             </div>
                         </div>
                     </div> -->
+                    <!-- <div class="col-lg-12" style="padding-left: 4px;">
+                        <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 0 35px 35px 0;">
+                            <div class="card-body">
+                                <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                    <h4 class="card-title mb-0" style="color:#ffffff">Manhour By Month</h4>
+                                </div>
+                                <div id="chart_man_hour" class="apex-charts" dir="ltr"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-6 pb-0 mt-4">
+                        <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                            <div class="card-body">
+                                <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                    <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Manhour By Month</h4>
+                                </div>
+                                <div id="chart_man_hour" class="apex-charts" dir="ltr"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 mt-4 pt-0">
                         <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                             <div class="row" style="padding: 20px;padding-bottom:0">
@@ -1027,6 +1047,77 @@
         options_document
     );
     chart_document.render();
+
+    var options_man_power = {
+        series: [{
+            name: 'Plan',
+            data: [46, 57, 59, 54, 62, 58, 64, 60, 66, 100, 60, 70]
+        }, {
+            name: 'Actual',
+            data: [74, 83, 102, 97, 86, 106, 93, 114, 94, 80, 40, 20]
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+        },
+        // colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        colors: ['#FFFF66', '#FFA500'],
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        offsetX: 0,
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900,
+                        }
+                    }
+                },
+            },
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: {
+                formatter: function(val) {
+                    return val
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                text: undefined
+            },
+        },
+        tooltip: {
+            y: {
+                formatter: function(val) {
+                    return val + "People"
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'left',
+            offsetX: 40
+        },
+        
+    }
+
+    var chart_man_hour = new ApexCharts(
+        document.querySelector("#chart_man_hour"),
+        options_man_power
+    );
+    chart_man_hour.render();
 
     $(document).ready(function() {
         // cum_percent_counter, 100 - cum_percent_counter
