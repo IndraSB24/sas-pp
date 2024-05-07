@@ -80,12 +80,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mb-0">
-                        <div class="galon" style="padding: 15px; padding-top: 10px; height: 100%; border: 1px solid #B5838D; height: 40vh; overflow: hidden; position: relative;">
+                        <div class="galon" style="padding: 15px; padding-top: 10px; height:50vh; border: 1px solid #B5838D; overflow: hidden; position: relative;">
                             <div class="card-body">
                                 <div class="row" style="height: 55%;">
                                     <div class="col-sm-12 text-center" style="height: 48vh; position: relative;">
                                         <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
-                                            <i class="ri-building-4-fill"></i>
+                                            <!-- <i class="ri-building-4-fill"></i> -->
                                             <h4 class="card-title mb-0" style="color:#ffffff;">Procurement Progress</h4>
                                         </div>
                                         <div id="gauge_chart" class="m-0 p-0" style="height: 70%;"></div>
@@ -1302,7 +1302,7 @@
             plotBackgroundImage: null,
             plotBorderWidth: 0,
             plotShadow: false,
-            height: '300vh',
+            height: '400px',
             // marginTop: 0,
             marginBottom: 0
         },
