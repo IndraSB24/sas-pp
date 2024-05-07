@@ -145,9 +145,7 @@
                                                         <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?></td>
+                                                        
                                                         <td class="text-center"> <?= $action ?> </td>
                                                     </tr>
                                             <?php endforeach; ?>
