@@ -17,10 +17,37 @@
             /* height: 200px; */
             background-color: #ffffff;
         }
+
         .selectable:hover {
             background-color: #7390A4 !important;
             color: #fff !important;
             cursor: pointer;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            /* Make it round */
+            display: inline-block;
+            margin: 5px;
+            /* Adjust spacing */
+        }
+
+        @media screen and (max-width: 767px) {
+            .label_procurement_progress {
+                position: absolute;
+                /* Mengubah posisi menjadi absolute */
+                bottom: 0;
+                /* Mengatur agar berada di bagian bawah */
+                left: 50%;
+                /* Mengatur agar berada di tengah horizontal */
+                transform: translateX(-50%);
+                /* Menggeser elemen ke kiri sejauh setengah lebar elemen itu sendiri */
+                margin: 0;
+                /* Menghapus margin */
+            }
         }
     </style>
 </head>
@@ -57,7 +84,7 @@
                             <div class="card-body">
                                 <div class="row" style="height: 55%;">
                                     <div class="col-sm-12 text-center" style="height: 48vh; position: relative;">
-                                        <div class="text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem; position: absolute; top: 0; left: 0;z-index: 100">
+                                        <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
                                             <i class="ri-building-4-fill"></i>
                                             <h4 class="card-title mb-0" style="color:#ffffff;">Procurement Progress</h4>
                                         </div>
@@ -71,7 +98,16 @@
                         </div>
                         <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;">
                             <div class="row">
-                                <div class="col-8"></div>
+                                <div class="col-8">
+                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                        <div class="dot" style="background-color:lightgrey"></div>
+                                        <span><strong id="complete">Remaining</strong></span>
+                                    </div>
+                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                        <div class="dot" style="background-color: #BC4749"></div>
+                                        <span><strong id="complete">Progress</strong></span>
+                                    </div>
+                                </div>
                                 <div class="col-4">
                                     <!-- Div Induk -->
                                     <div class="text-center selectable" style="border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color:#EDE580; padding: 7px;" onclick="window.location.href = 'procurement-doc-list/1';">
@@ -1114,6 +1150,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '30%',
+                },
                 dataLabels: {
                     name: {
                         show: false,
@@ -1128,7 +1167,7 @@
                     },
                     margin: 15,
                     color: "#5664d2"
-                }
+                },
             }
         },
         series: [44],
@@ -1149,6 +1188,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '30%',
+                },
                 dataLabels: {
                     name: {
                         show: false,
@@ -1184,6 +1226,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '30%',
+                },
                 dataLabels: {
                     name: {
                         show: false,
@@ -1219,6 +1264,9 @@
         },
         plotOptions: {
             radialBar: {
+                hollow: {
+                    size: '30%',
+                },
                 dataLabels: {
                     name: {
                         show: false,
@@ -1254,7 +1302,7 @@
             plotBackgroundImage: null,
             plotBorderWidth: 0,
             plotShadow: false,
-            height: '60%',
+            height: '300vh',
             // marginTop: 0,
             marginBottom: 0
         },

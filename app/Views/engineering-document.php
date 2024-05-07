@@ -165,7 +165,7 @@
                         <div class="card" style="height:100%;background-color:#FFFFFC;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
                             <div class="card-body">
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                    <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Manhour By Month</h4>
+                                    <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Manhour By Week</h4>
                                 </div>
                                 <div id="chart_man_hour" class="apex-chartss" dir="ltr"></div>
                             </div>
@@ -560,6 +560,8 @@
         function createChart() {
             console.log(Object.entries(<?= json_encode($data_chart_man_hour) ?>), 'fuadi data_chart_man_hour');
             const data_chart_man_hour = Object.entries(<?= json_encode($data_chart_man_hour) ?>)
+            console.log(data_chart_man_hour, 'data awal');
+            
             let label = []
             let datas = []
             let civilPlan = []

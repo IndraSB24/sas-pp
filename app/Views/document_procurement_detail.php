@@ -68,11 +68,11 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th rowspan="3" class="text-center">Group</th>
                                                 <th rowspan="3" class="text-center">Level 1</th>
                                                 <th rowspan="3" class="text-center">Level 2</th>
                                                 <th rowspan="3" class="text-center">Level 3</th>
                                                 <th rowspan="3" class="text-center">Level 4</th>
+                                                <th rowspan="3" class="text-center">Group</th>
                                                 <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center">JASA (IDR)</th>
                                                 <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
@@ -118,11 +118,11 @@
                                                         <td class="text-center"> <?= $index + 1 ?> </td>
                                                         <td class="text-center"> <?= $item->activity_code ?> </td>
 
-                                                        <td class="text-center"> <?= $item->group_name ?> </td>
                                                         <td> <?= $item->activity_name_lvl_1 ?> </td>
                                                         <td> <?= $item->activity_name_lvl_2 ?> </td>
                                                         <td> <?= $item->activity_name_lvl_3 ?> </td>
                                                         <td> <?= $item->activity_name_lvl_4 ?> </td>
+                                                        <td> <?= $item->group_name ?> </td>
 
                                                         <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
                                                         <th class="text-center"> <?= $item->quantity ?> </th>

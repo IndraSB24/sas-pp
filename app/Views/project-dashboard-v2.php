@@ -17,7 +17,7 @@
         .galon {
             border-radius: 20px;
             box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-            height: 200px;
+            /* height: 200px; */
             background-color: #ffffff;
         }
 
