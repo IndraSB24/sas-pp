@@ -594,13 +594,55 @@
                 pipingActual.push(dt.actual.man_hour_per_discipline.piping)
                 processActual.push(dt.actual.man_hour_per_discipline.process)
             })
-            label.map((d) => {
-                datas.push({
-                    name: "Plan",
-                    stack: d,
-                    data: [1,2,3]
-                })
-            })
+            datas.push({
+                name: "civilActual",
+                stack: 'plan',
+                data: civilActual
+            }, {
+                name: "electricalPlan",
+                stack: 'plan',
+                data: electricalPlan
+            }, {
+                name: "instrumentPlan",
+                stack: 'plan',
+                data: instrumentPlan
+            },{
+                name: "mechanicalPlan",
+                stack: 'plan',
+                data: mechanicalPlan
+            },{
+                name: "pipingPlan",
+                stack: 'plan',
+                data: pipingPlan
+            },{
+                name: "processPlan",
+                stack: 'plan',
+                data: processPlan
+            },{
+                name: "civilActual",
+                stack: 'actual',
+                data: civilActual
+            },{
+                name: "electricalActual",
+                stack: 'actual',
+                data: electricalActual
+            },{
+                name: "instrumentActual",
+                stack: 'actual',
+                data: instrumentActual
+            },{
+                name: "mechanicalActual",
+                stack: 'actual',
+                data: mechanicalActual
+            },{
+                name: "pipingActual",
+                stack: 'actual',
+                data: pipingActual
+            },{
+                name: "processActual",
+                stack: 'actual',
+                data: processActual
+            },)
             console.log(datas, 'fuadi all');
 
             $("#chart_man_hour").kendoChart({
@@ -613,26 +655,26 @@
                 seriesDefaults: {
                     type: "column"
                 },
-                series: [{
-                        name: "Auto",
-                        stack: "minggu 1",
-                        data: [10, 20, 30, 40], // plan
-                    }, {
-                        name: "Silver Medals",
-                        stack: "minggu 1",
-                        data: [30, 40], // actual
-                    }, {
-                        name: "Silver Medals",
-                        stack: "minggu 2",
-                        data: [1, 2],
-                    },
-                    {
-                        name: "Silver Medals",
-                        stack: "minggu 2",
-                        data: [3, 4],
-                    }
-                ],
-                // series: datas,
+                // series: [{
+                //         name: "Auto",
+                //         stack: "minggu 1",
+                //         data: [10, 20, 30, 40], // plan
+                //     }, {
+                //         name: "Silver Medals",
+                //         stack: "minggu 1",
+                //         data: [30, 40], // actual
+                //     }, {
+                //         name: "Silver Medals",
+                //         stack: "minggu 2",
+                //         data: [1, 2],
+                //     },
+                //     {
+                //         name: "Silver Medals",
+                //         stack: "minggu 2",
+                //         data: [3, 4],
+                //     }
+                // ],
+                series: datas,
                 valueAxis: {
                     line: {
                         visible: false
