@@ -134,9 +134,9 @@
                                                         <th class="text-center"> <?= $item->total_harga_jasa ?> </th>
                                                         <th class="text-center"> <?= $item->total_amount ?> </th>
                                                         <th class="text-center"> <?= $item->wf ?> </th>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item_rfs_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
