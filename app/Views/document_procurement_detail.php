@@ -135,14 +135,16 @@
                                                         <th class="text-center"> <?= $item->total_amount ?> </th>
                                                         <th class="text-center"> <?= $item->wf ?> </th>
                                                         <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
+                                                        <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= tgl_indo($item->rfs_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item->onsite_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
+                                                        <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= $action ?> </td>
                                                         <td class="text-center"> <?= $action ?></td>
