@@ -3,6 +3,9 @@
 <head>
     <?= $title_meta ?>
     <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.3.913/styles/kendo.default-ocean-blue.min.css" />
+    <script src="https://kendo.cdn.telerik.com/2022.3.913/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2022.3.913/js/kendo.all.min.js"></script>
     <?= $this->include('partials/head-css') ?>
     <style>
         .dot {
@@ -164,7 +167,7 @@
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Manhour By Month</h4>
                                 </div>
-                                <div id="chart_man_hour" class="apex-charts" dir="ltr"></div>
+                                <div id="chart_man_hour" class="apex-chartss" dir="ltr"></div>
                             </div>
                         </div>
                     </div>
@@ -553,7 +556,106 @@
         <?= $this->include('partials/footer') ?>
     </div>
     <!-- end main content-->
+    <script>
+        function createChart() {
+            console.log(Object.entries(<?= json_encode($data_chart_man_hour) ?>), 'fuadi data_chart_man_hour');
+            const data_chart_man_hour = Object.entries(<?= json_encode($data_chart_man_hour) ?>)
+            let label = []
+            let datas = []
+            let civilPlan = []
+            let electricalPlan = []
+            let instrumentPlan = []
+            let mechanicalPlan = []
+            let pipingPlan = []
+            let processPlan = []
+            let civilActual = []
+            let electricalActual = []
+            let instrumentActual = []
+            let mechanicalActual = []
+            let pipingActual = []
+            let processActual = []
+            data_chart_man_hour.map((data) => {
+                label.push(data[0])
+                let dt = data[1]
 
+                // plan
+                civilPlan.push(dt.plan.man_hour_per_discipline.civil)
+                electricalPlan.push(dt.plan.man_hour_per_discipline.electrical)
+                instrumentPlan.push(dt.plan.man_hour_per_discipline.instrument)
+                mechanicalPlan.push(dt.plan.man_hour_per_discipline.mechanical)
+                pipingPlan.push(dt.plan.man_hour_per_discipline.piping)
+                processPlan.push(dt.plan.man_hour_per_discipline.process)
+
+                // actual
+                civilActual.push(dt.actual.man_hour_per_discipline.civil)
+                electricalActual.push(dt.actual.man_hour_per_discipline.electrical)
+                instrumentActual.push(dt.actual.man_hour_per_discipline.instrument)
+                mechanicalActual.push(dt.actual.man_hour_per_discipline.mechanical)
+                pipingActual.push(dt.actual.man_hour_per_discipline.piping)
+                processActual.push(dt.actual.man_hour_per_discipline.process)
+            })
+            label.map((d) => {
+                datas.push({
+                    name: "Plan",
+                    stack: d,
+                    data: [1,2,3]
+                })
+            })
+            console.log(datas, 'fuadi all');
+
+            $("#chart_man_hour").kendoChart({
+                // title: {
+                //     text: "Practice Versoon"
+                // },
+                legend: {
+                    visible: false
+                },
+                seriesDefaults: {
+                    type: "column"
+                },
+                series: [{
+                        name: "Auto",
+                        stack: "minggu 1",
+                        data: [10, 20, 30, 40], // plan
+                    }, {
+                        name: "Silver Medals",
+                        stack: "minggu 1",
+                        data: [30, 40], // actual
+                    }, {
+                        name: "Silver Medals",
+                        stack: "minggu 2",
+                        data: [1, 2],
+                    },
+                    {
+                        name: "Silver Medals",
+                        stack: "minggu 2",
+                        data: [3, 4],
+                    }
+                ],
+                // series: datas,
+                valueAxis: {
+                    line: {
+                        visible: false
+                    }
+
+                },
+                categoryAxis: {
+                    // categories: ['minggu 1', 'Minggu 2'],
+                    categories: label,
+                    majorGridLines: {
+                        visible: false
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    template: "#= series.name #: #= value #"
+                }
+            });
+        }
+
+        $(document).ready(createChart());
+        $(document).bind("kendo:skinChange", createChart);
+    </script>
 </div>
 <!-- END layout-wrapper -->
 
@@ -1120,75 +1222,73 @@
     //     },
 
     // }
-    var options = {
-        series: [{
-                name: 'Q1 Budget',
-                group: 'budget',
-                data: [44000, 55000, 41000, 67000, 22000]
-            },
-            {
-                name: 'Q1 Actual',
-                group: 'actual',
-                data: [48000, 50000, 40000, 65000, 25000]
-            },
-            {
-                name: 'Q2 Budget',
-                group: 'budget',
-                data: [13000, 36000, 20000, 8000, 13000]
-            },
-            {
-                name: 'Q2 Actual',
-                group: 'actual',
-                data: [20000, 40000, 25000, 10000, 12000]
-            }
-        ],
-        chart: {
-            type: 'bar',
-            height: 350,
-            stacked: true,
-        },
-        stroke: {
-            width: 1,
-            colors: ['#fff']
-        },
-        dataLabels: {
-            formatter: (val) => {
-                return val / 1000 + 'K'
-            }
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true
-            }
-        },
-        xaxis: {
-            categories: [
-                'Online advertising',
-                'Sales Training',
-                'Print advertising',
-                'Catalogs',
-                'Meetings'
-            ],
-            labels: {
-                formatter: (val) => {
-                    return val / 1000 + 'K'
-                }
-            }
-        },
-        fill: {
-            opacity: 1,
-        },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-        legend: {
-            position: 'top',
-            horizontalAlign: 'left'
-        }
-    };
+    // var options = {
+    //     series: [{
+    //             name: 'Q1 Budget',
+    //             group: 'budget',
+    //             data: [44000, 55000, 41000, 67000, 22000]
+    //         },
+    //         {
+    //             name: 'Q1 Actual',
+    //             group: 'actual',
+    //             data: [48000, 50000, 40000, 65000, 25000]
+    //         },
+    //         {
+    //             name: 'Q2 Budget',
+    //             group: 'budget',
+    //             data: [13000, 36000, 20000, 8000, 13000]
+    //         },
+    //         {
+    //             name: 'Q2 Actual',
+    //             group: 'actual',
+    //             data: [20000, 40000, 25000, 10000, 12000]
+    //         }
+    //     ],
+    //     chart: {
+    //         type: 'bar',
+    //         height: 350,
+    //         stacked: true,
+    //     },
+    //     stroke: {
+    //         width: 1,
+    //         colors: ['#fff']
+    //     },
+    //     dataLabels: {
+    //         formatter: (val) => {
+    //             return val / 1000 + 'K'
+    //         }
+    //     },
+    //     plotOptions: {
+    //         bar: {
+    //             horizontal: true
+    //         }
+    //     },
+    //     xaxis: {
+    //         categories: [
+    //             'Online advertising',
+    //             'Sales Training',
+    //             'Print advertising',
+    //             'Catalogs',
+    //             'Meetings'
+    //         ],
+    //         labels: {
+    //             formatter: (val) => {
+    //                 return val / 1000 + 'K'
+    //             }
+    //         }
+    //     },
+    //     fill: {
+    //         opacity: 1,
+    //     },
+    //     colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+    //     legend: {
+    //         position: 'top',
+    //         horizontalAlign: 'left'
+    //     }
+    // };
 
-
-    var chart = new ApexCharts(document.querySelector("#chart_man_hour"), options);
-    chart.render();
-
+    // var chart = new ApexCharts(document.querySelector("#chart_man_hour"), options);
+    // chart.render();
     $(document).ready(function() {
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
