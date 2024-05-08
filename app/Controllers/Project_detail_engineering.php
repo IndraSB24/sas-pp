@@ -328,7 +328,7 @@ class Project_detail_engineering extends BaseController
             $nope_sandhi = "6287888276877";
             $nope_indra = "6285274897212";
             $data_wa = [
-                'penerima' => $nope_indra,
+                'penerima' => $nope_sandhi,
                 'doc_name' => $doc_name,
                 'doc_code' => $doc_code,
                 'tgl_upload' => $input_date,
