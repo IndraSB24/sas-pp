@@ -62,7 +62,7 @@
                                             <tr>
                                                 <th rowspan="4">NO</th>
                                                 <th rowspan="4">ACTIVITY CODE</th>
-                                                <th rowspan="1" colspan="5" style="width: 0px;" class="desc text-center">DESCRIPTION OF WORK</th>
+                                                <th rowspan="1" colspan="6" style="width: 0px;" class="desc text-center">DESCRIPTION OF WORK</th>
                                                 <th rowspan="4" style="width: 0px;" class="desc text-center">DETAIL/ SPECIFICATION</th>
                                                 <th rowspan="4" style="width: 0px;">QUANTITY</th>
                                                 <th rowspan="4" style="width: 0px;">UNIT</th>
@@ -80,6 +80,7 @@
                                                 <th rowspan="3" class="text-center">Level 2</th>
                                                 <th rowspan="3" class="text-center" style="position: sticky;left: 0;background-color: #ffffff !important;z-index: 1;">Level 3</th>
                                                 <th rowspan="3" class="text-center">Level 4</th>
+                                                <th rowspan="3" class="text-center">Level 5</th>
                                                 <th rowspan="3" class="text-center">Group</th>
                                                 <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center">JASA (IDR)</th>
@@ -186,6 +187,7 @@
                                                     <td> <?= $item->activity_name_lvl_2 ?> </td>
                                                     <td> <?= $item->activity_name_lvl_3 ?> </td>
                                                     <td> <?= $item->activity_name_lvl_4 ?> </td>
+                                                    <td> <?= $item->activity_name_lvl_5 ?> </td>
                                                     <td> <?= $item->group_name ?> </td>
 
                                                     <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
