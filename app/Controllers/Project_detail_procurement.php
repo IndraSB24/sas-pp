@@ -236,8 +236,8 @@ class Project_detail_procurement extends BaseController
             'step' => $step,
             'is_preview' => $isPreviw,
 		];
-        // print_r($data['doc_data']);die;
-		return view('test_view', $data);
+        // echo '<pre>'; print_r( $data );die; echo '</pre>';
+		return view('show_pdf_procurement', $data);
     }
 
 }

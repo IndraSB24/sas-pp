@@ -126,7 +126,7 @@
                                                         '
                                                     <br>
                                                     <br>
-                                                        <a href=' . base_url('commentPdf/') . '/' . $item->id . '/procurement/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/procurement/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                         >
