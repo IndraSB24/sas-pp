@@ -367,7 +367,12 @@ class Project_detail_engineering extends BaseController
     // approve internal engineerin
     public function approve_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -412,7 +417,12 @@ class Project_detail_engineering extends BaseController
     // reject internal engineerin
     public function reject_internal_engineering(){
         $id_doc = $this->request->getPost('id_doc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -457,7 +467,12 @@ class Project_detail_engineering extends BaseController
     // approve internal ho
     public function approve_internal_ho(){
         $id_doc = $this->request->getPost('id_doc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -502,7 +517,12 @@ class Project_detail_engineering extends BaseController
     // reject internal ho
     public function reject_internal_ho(){
         $id_doc = $this->request->getPost('id_doc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // udpate status
         $data = [
@@ -549,7 +569,13 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $version= $this->request->getPost('version');
         $plan_date = $this->request->getPost('plan_ifa');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
 
         if($version != null || $version != ""){
             $version = autoVersioning($version, 'issued');
@@ -618,7 +644,13 @@ class Project_detail_engineering extends BaseController
     // reject internal pem
     public function reject_internal_pem(){
         $id_doc = $this->request->getPost('id_doc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -664,7 +696,13 @@ class Project_detail_engineering extends BaseController
     public function approve_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifa');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+        
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -710,7 +748,13 @@ class Project_detail_engineering extends BaseController
     public function reject_external_ifa(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifa');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -758,7 +802,13 @@ class Project_detail_engineering extends BaseController
     public function approve_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -804,7 +854,13 @@ class Project_detail_engineering extends BaseController
     public function reject_external_ifc(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('plan_ifc');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
@@ -853,7 +909,13 @@ class Project_detail_engineering extends BaseController
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('external_asbuild_plan');
         $version = $this->request->getPost('version');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // udpate status
         $data = [
@@ -899,7 +961,13 @@ class Project_detail_engineering extends BaseController
     public function reject_external_asbuild(){
         $id_doc = $this->request->getPost('id_doc');
         $plan_date = $this->request->getPost('external_asbuild_plan');
-        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+        $input_date = $this->request->getPost('backdate');
+        if (!empty($input_date) && strtotime($input_date) !== false) {
+            $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+        } else {
+            $input_date = date('Y-m-d H:i:s');
+        }
         
         // update status
         $data = [
