@@ -4,7 +4,13 @@
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
     <style>
-        td:nth-child(5) {
+        td:nth-child(6) {
+            position: sticky;
+            left: 0;
+            background-color: #ffffff !important;
+            z-index: 1;
+        }
+        td:nth-child(7) {
             position: sticky;
             left: 0;
             background-color: #ffffff !important;
