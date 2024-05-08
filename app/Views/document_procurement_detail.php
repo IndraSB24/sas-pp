@@ -3,6 +3,14 @@
 <head>
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
+    <style>
+        td:nth-child(5) {
+            position: sticky;
+            left: 0;
+            background-color: #ffffff !important;
+            z-index: 1;
+        }
+    </style>
 </head>
 
 <?= $this->include('partials/body') ?>
@@ -70,7 +78,7 @@
                                             <tr>
                                                 <th rowspan="3" class="text-center">Level 1</th>
                                                 <th rowspan="3" class="text-center">Level 2</th>
-                                                <th rowspan="3" class="text-center">Level 3</th>
+                                                <th rowspan="3" class="text-center" style="position: sticky;left: 0;background-color: #ffffff !important;z-index: 1;">Level 3</th>
                                                 <th rowspan="3" class="text-center">Level 4</th>
                                                 <th rowspan="3" class="text-center">Group</th>
                                                 <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
@@ -113,21 +121,35 @@
                                             $action = 'no action yet';
 
                                             foreach ($list_doc_procurement as $index => $item) :
-                                                $po_act = '
-                                                no date yet
-                                            <br>
-                                                no file yet
-                                            <br>
-                                                <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                    data-id="' . $item->id . '"
-                                                    data-doc_desc="' . $item->description . '"
-                                                    data-path = "Project_detail_procurement/update/up_po"
-                                                    data-step = ""
-                                                    data-doc_name = "' . $item->description . '"
-                                                >
-                                                    &nbsp;UP FILE&nbsp;
-                                                </a>
-                                            ';
+                                                if ($item->po_status === 'uploaded') {
+                                                    $po_act =
+                                                        '
+                                                    <br>
+                                                    <br>
+                                                        <a href=' . base_url('commentPdf/') . '/' . $item->id . '/procurement/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
+                                                            data-id="' . $item->id . '"
+                                                            data-doc_desc="' . $item->description . '"
+                                                        >
+                                                            &nbsp;DETAIL&nbsp;
+                                                        </a>
+                                                    ';
+                                                } else {
+                                                    $po_act = '
+                                                    no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                        data-id="' . $item->id . '"
+                                                        data-doc_desc="' . $item->description . '"
+                                                        data-path = "Project_detail_procurement/update/up_po"
+                                                        data-step = ""
+                                                        data-doc_name = "' . $item->description . '"
+                                                    >
+                                                        &nbsp;UP FILE&nbsp;
+                                                    </a>
+                                                ';
+                                                }
                                             ?>
                                                 <tr>
                                                     <td class="text-center"> <?= $index + 1 ?> </td>
@@ -479,7 +501,7 @@
 </html>
 
 <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
         $('#update_btn_choose_file').click(function(e) {
             e.preventDefault(); // Prevent default behavior
             $('#upload_uploaded_file').trigger('click');
@@ -493,7 +515,7 @@
     });
 
     // upload file
-        $(document).on('click', '#btn-upload-file', function() {
+    $(document).on('click', '#btn-upload-file', function() {
         // Set data from button to Form Approval
         $('.upload_step').text($(this).data('step'));
         $('#upload_doc_desc').val($(this).data('doc_desc'));
@@ -531,7 +553,7 @@
 
         swalTitle = 'Upload File ' + fileDesc;
         console.log(file);
-        
+
         Swal.fire({
             title: swalTitle,
             icon: 'info',

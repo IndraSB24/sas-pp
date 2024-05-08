@@ -412,7 +412,13 @@
             mounted: function() {
                 // Kode yang akan dijalankan setelah instance Vue di-mount
                 console.log('Vue instance has been mounted!');
-                const url = "<?= base_url('upload/engineering_doc/list/' . $doc_data[0]->file) ?>";
+                const step = '<?= $step ?>'
+                let url;
+                if (step === 'procurement') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->file) ?>";
+                } else {
+                    url = "<?= base_url('upload/engineering_doc/list/' . $doc_data[0]->file) ?>";
+                }
 
                 function clearCanvas() {
                     canvas.clear();
