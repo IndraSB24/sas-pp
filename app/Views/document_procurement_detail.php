@@ -122,9 +122,36 @@
 
                                             foreach ($list_doc_procurement as $index => $item) :
                                                 if ($item->po_status === 'uploaded') {
-                                                    $po_act =
-                                                        '
+                                                    $po_act = tgl_indo($item->po_act) .   '
                                                     <br>
+                                                        <span class="text-primary">UPLOADED</span>
+                                                    <br>
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/procurement' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                            data-id="' . $item->id . '"
+                                                            data-doc_desc="' . $item->description . '"
+                                                        >
+                                                            &nbsp;DETAIL&nbsp;
+                                                        </a>
+                                                    ';
+                                                } else if ($item->po_status === 'uploaded') {
+                                                    $po_act = tgl_indo($item->po_act) .'
+                                                <br>
+                                                    <span class="text-danger">REJECTED</span>
+                                                <br>
+                                                <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                        data-id="' . $item->id . '"
+                                                        data-doc_desc="' . $item->description . '"
+                                                        data-path = "Project_detail_procurement/update/up_po"
+                                                        data-step = ""
+                                                        data-doc_name = "' . $item->description . '"
+                                                    >
+                                                        &nbsp;REUPLOAD&nbsp;
+                                                    </a>
+                                                ';
+                                                } else if ($item->po_status === 'approve') {
+                                                    $po_act = tgl_indo($item->po_act) .   '
+                                                    <br>
+                                                        <span class="text-success">APPROVED</span>
                                                     <br>
                                                         <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/procurement/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"

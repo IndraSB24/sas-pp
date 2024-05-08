@@ -58,6 +58,7 @@ $routes->get('document-timeline/(:segment)', 'Project_detail_engineering::show_d
 $routes->get('commentPdf/(:segment)/(:segment)/(:segment)', 'Project_detail_engineering::show_pdf/$1/$2/$3');
 $routes->get('commentPdf/(:segment)/(:segment)', 'Project_detail_engineering::show_pdf/$1/$2');
 $routes->get('reupload/(:segment)', 'Project_detail_engineering::show_pdf_reupload/$1');
+$routes->get('reupload_procurement/(:segment)', 'Project_detail_procurement::show_pdf_reupload/$1');
 // $routes->get('document-timeline', 'Project_detail_engineering::show_doc_timeline');
 $routes->get('show', 'Project_detail_engineering@show');
 $routes->get('engineering-doc-list/(:segment)', 'Project_detail_engineering::show_doc_list/$1');
@@ -66,6 +67,7 @@ $routes->get('engineering-doc-list/(:segment)', 'Project_detail_engineering::sho
 $routes->get('procurement-dashboard', 'Project_detail_procurement::index');
 $routes->get('procurement-doc-list/(:segment)', 'Project_detail_procurement::show_doc_list/$1');
 $routes->get('commentPdfProcurement/(:segment)/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2/$3');
+$routes->get('commentPdfProcurement/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2');
 
 
 
