@@ -121,7 +121,7 @@
                                                 <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
                                                     data-id="' . $item->id . '"
                                                     data-doc_desc="' . $item->description . '"
-                                                    data-path = "Project_detail_procurement/update/up_originator"
+                                                    data-path = "Project_detail_procurement/update/up_po"
                                                     data-step = ""
                                                     data-doc_name = "' . $item->description . '"
                                                 >
@@ -541,7 +541,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url: "<?= base_url('Project_detail_procurement/up_originator') ?>",
+                    url: "<?= base_url('Project_detail_procurement/up_po') ?>",
                     method: 'POST',
                     data: formData,
                     contentType: false,
