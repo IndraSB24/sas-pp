@@ -1239,27 +1239,27 @@ function generateWaitingBadge()
                             showConfirmButton: false
                         });
                     },
-                    // success: () => {
-                    //     Swal.fire({
-                    //         title: 'Diupload!',
-                    //         icon: 'success',
-                    //         text: 'File Berhasil Diupload.',
-                    //         buttons: false,
-                    //         timer: 1000,
-                    //         confirmButtonColor: "#5664d2",
-                    //         onBeforeOpen: function() {
-                    //             //Swal.showLoading()
-                    //             timerInterval = setInterval(function() {
-                    //                 Swal.getContent().querySelector('strong')
-                    //                     .textContent = Swal.getTimerLeft()
-                    //             }, 100)
-                    //         },
-                    //         onClose: function() {
-                    //             location.reload()
-                    //         }
-                    //     })
-                    // },
-                    // error: err => console.log(err),
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diupload!',
+                            icon: 'success',
+                            text: 'File Berhasil Diupload.',
+                            buttons: false,
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    },
+                    error: err => console.log(err),
                 });
             }
         })

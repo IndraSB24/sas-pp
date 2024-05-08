@@ -110,45 +110,60 @@
 
                                         <tbody>
                                             <?php
-                                                    $action = 'no action yet';
+                                            $action = 'no action yet';
 
-                                                    foreach ($list_doc_procurement as $index => $item) :
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center"> <?= $index + 1 ?> </td>
-                                                        <td class="text-center"> <?= $item->activity_code ?> </td>
+                                            foreach ($list_doc_procurement as $index => $item) :
+                                                $po_act = '
+                                                no date yet
+                                            <br>
+                                                no file yet
+                                            <br>
+                                                <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                    data-id="' . $item->id . '"
+                                                    data-doc_desc="' . $item->description . '"
+                                                    data-path = "Project_detail_procurement/update/up_originator"
+                                                    data-step = ""
+                                                    data-doc_name = "' . $item->description . '"
+                                                >
+                                                    &nbsp;UP FILE&nbsp;
+                                                </a>
+                                            ';
+                                            ?>
+                                                <tr>
+                                                    <td class="text-center"> <?= $index + 1 ?> </td>
+                                                    <td class="text-center"> <?= $item->activity_code ?> </td>
 
-                                                        <td> <?= $item->activity_name_lvl_1 ?> </td>
-                                                        <td> <?= $item->activity_name_lvl_2 ?> </td>
-                                                        <td> <?= $item->activity_name_lvl_3 ?> </td>
-                                                        <td> <?= $item->activity_name_lvl_4 ?> </td>
-                                                        <td> <?= $item->group_name ?> </td>
+                                                    <td> <?= $item->activity_name_lvl_1 ?> </td>
+                                                    <td> <?= $item->activity_name_lvl_2 ?> </td>
+                                                    <td> <?= $item->activity_name_lvl_3 ?> </td>
+                                                    <td> <?= $item->activity_name_lvl_4 ?> </td>
+                                                    <td> <?= $item->group_name ?> </td>
 
-                                                        <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
-                                                        <th class="text-center"> <?= $item->quantity ?> </th>
-                                                        <th class="text-center"> <?= $item->unit ?> </th>
+                                                    <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
+                                                    <th class="text-center"> <?= $item->quantity ?> </th>
+                                                    <th class="text-center"> <?= $item->unit ?> </th>
 
-                                                        <th class="text-center"> <?= $item->harga_satuan_material ?> </th>
-                                                        <th class="text-center"> <?= $item->harga_satuan_jasa ?> </th>
-                                                        <th class="text-center"> <?= $item->total_harga_material ?> </th>
-                                                        <th class="text-center"> <?= $item->total_harga_jasa ?> </th>
-                                                        <th class="text-center"> <?= $item->total_amount ?> </th>
-                                                        <th class="text-center"> <?= $item->wf ?> </th>
-                                                        <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= tgl_indo($item->rfs_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= tgl_indo($item->onsite_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
-                                                        
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                        <td class="text-center"> <?= $action ?> </td>
-                                                    </tr>
+                                                    <th class="text-center"> <?= $item->harga_satuan_material ?> </th>
+                                                    <th class="text-center"> <?= $item->harga_satuan_jasa ?> </th>
+                                                    <th class="text-center"> <?= $item->total_harga_material ?> </th>
+                                                    <th class="text-center"> <?= $item->total_harga_jasa ?> </th>
+                                                    <th class="text-center"> <?= $item->total_amount ?> </th>
+                                                    <th class="text-center"> <?= $item->wf ?> </th>
+                                                    <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
+                                                    <td class="text-center"> <?= $po_act ?></td>
+                                                    <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= tgl_indo($item->rfs_plan) ?> </td>
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= tgl_indo($item->onsite_plan) ?> </td>
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
+
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $action ?> </td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -408,9 +423,167 @@
     </div>
 </div>
 
+<!--Modal Upload All File-->
+<div id="modal-upload-file" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form action="#" method="POST" id="form-modal-upload-file" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Upload <span class="upload_step"></span> File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Document Description</label>
+                            <input type="text" class="form-control" name="upload_doc_desc" id="upload_doc_desc" readonly />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <!-- <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
+                                <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
+                            </div>
+                        </div> -->
+                        <div>
+                            <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
+                            <input name="upload_uploaded_file" id="upload_uploaded_file" type="file" multiple="multiple" style="display: none;" />
+                            &nbsp;<span id="upload_file_name">No File Choosen</span>
+                        </div>
+                        <!-- <div class="col-md-4 mt-4">
+                            <label class="form-label">Backdate</label>
+                            <div class="input-group" id="backdate1">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#backdate1" data-provide="datepicker" name="backdate" id="backdate" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Please input your Man-Hour</label></label>
+                                <input type="number" class="form-control" name="upload_man_hour" id="upload_man_hour"/>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="upload_id_doc" />
+                        <button type="button" class="btn btn-success" id="upload_btn_up" data-path="#" data-step="#" data-version="#" data-doc_name="#" data-doc_code="#">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
 </html>
 
 <script>
+        $(document).ready(function() {
+        $('#update_btn_choose_file').click(function(e) {
+            e.preventDefault(); // Prevent default behavior
+            $('#upload_uploaded_file').trigger('click');
+        });
+
+        $('#upload_uploaded_file').change(function() {
+            var fileInput = $(this);
+            var fileName = fileInput.val().split('\\').pop();
+            $('#upload_file_name').text("File Choosen: " + fileName);
+        });
+    });
+
+    // upload file
+        $(document).on('click', '#btn-upload-file', function() {
+        // Set data from button to Form Approval
+        $('.upload_step').text($(this).data('step'));
+        $('#upload_doc_desc').val($(this).data('doc_desc'));
+        $('#upload_id_doc').val($(this).data('id'));
+        $("#upload_btn_up").data("path", $(this).data('path'));
+        $("#upload_btn_up").data("step", $(this).data('step'));
+        $("#upload_btn_up").data("actual_man_hour", $(this).data('actual_man_hour'));
+        $("#upload_btn_up").data("version", $(this).data('version'));
+        $("#upload_btn_up").data("doc_name", $(this).data('doc_name'));
+        $("#upload_btn_up").data("doc_code", $(this).data('doc_code'));
+        $('#upload_file_name').text("No File Choosen");
+
+        // Call Modal Approval
+        $('#modal-upload-file').modal('show');
+    })
+
+    $(document).on('click', '#upload_btn_up', function() {
+        const path = $(this).data('path');
+        const fileDesc = $(this).data('step');
+        const version = $(this).data('version');
+        let id_doc, swalTitle;
+        var timerInterval, i, file;
+        var formData = new FormData();
+
+        id_doc = document.getElementById("upload_id_doc").value;
+        i = $('#upload_uploaded_file'),
+            file = i[0].files[0];
+        formData.append('file', file);
+        // formData.append('version', version);
+        formData.append('id_doc', id_doc);
+        // formData.append('backdate', $('#backdate').val());
+        formData.append('doc_name', $(this).data('doc_name'));
+        // formData.append('doc_code', $(this).data('doc_code'));
+        // formData.append('man_hour_actual', $('#actual_man_hour').val());
+
+        swalTitle = 'Upload File ' + fileDesc;
+        console.log(file);
+        
+        Swal.fire({
+            title: swalTitle,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: "<?= base_url('Project_detail_procurement/up_originator') ?>",
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    beforeSend: () => {
+                        Swal.fire({
+                            title: "Loading",
+                            text: "Please wait...",
+                            icon: "info",
+                            buttons: false,
+                            closeOnClickOutside: false,
+                            closeOnEsc: false,
+                            showConfirmButton: false
+                        });
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diupload!',
+                            icon: 'success',
+                            text: 'File Berhasil Diupload.',
+                            buttons: false,
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    },
+                    error: err => console.log(err),
+                });
+            }
+        })
+    })
+
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {
