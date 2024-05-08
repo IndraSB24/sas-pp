@@ -198,7 +198,7 @@ class Project_detail_procurement extends BaseController
                 'doc_name' => $doc_desc,
                 'doc_group' => $proc_data[0]->group_name,
                 'tgl_upload' => $input_date,
-                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdfProcurement/".$id_doc."/po"
+                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
             ];
             procurementPoUp($data_wa);
 
