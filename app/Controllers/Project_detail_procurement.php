@@ -178,15 +178,15 @@ class Project_detail_procurement extends BaseController
             // $this->timeline_doc_model->save($data_timeline);
 
 			$proc_data = $this->Model_doc_procurement->get_by_id($id_doc);
-			$doc_desc = $proc_data->activity_name_lvl_1;
-			if($proc_data->activity_name_lvl_2){
-				$doc_desc = $doc_desc . ' -> ' . $proc_data->activity_name_lvl_2;
+			$doc_desc = $proc_data[0]->activity_name_lvl_1;
+			if($proc_data[0]->activity_name_lvl_2){
+				$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_2;
 
-				if($proc_data->activity_name_lvl_3){
-					$doc_desc = $doc_desc . ' -> ' . $proc_data->activity_name_lvl_3;
+				if($proc_data[0]->activity_name_lvl_3){
+					$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_3;
 
-					if($proc_data->activity_name_lvl_4){
-						$doc_desc = $doc_desc . ' -> ' . $proc_data->activity_name_lvl_4;
+					if($proc_data[0]->activity_name_lvl_4){
+						$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_4;
 					}
 				}
 			}
@@ -198,7 +198,7 @@ class Project_detail_procurement extends BaseController
                 'doc_name' => $doc_desc,
                 'doc_group' => $proc_data[0]->group_name,
                 'tgl_upload' => $input_date,
-                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdfProcurement/".$id_doc."/po"
+                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
             ];
             procurementPoUp($data_wa);
 
