@@ -12,7 +12,7 @@
         }
         td:nth-child(7) {
             position: sticky;
-            left: 0;
+            left: 13em;
             background-color: #ffffff !important;
             z-index: 1;
         }
