@@ -5,16 +5,19 @@ use App\Models\Model_project;
 use App\Models\Model_doc_procurement;
 use App\Models\Model_doc_engineering;
 use App\Models\Model_data_helper;
+use App\Models\Model_procurement_doc_file;
 
 class Project_detail_procurement extends BaseController
 {
-    protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper;
+    protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
+		$Model_procurement_doc_file;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
         $this->Model_project = new Model_project();
 		$this->Model_doc_engineering = new Model_doc_engineering();
 		$this->Model_data_helper = new Model_data_helper();
+		$this->Model_procurement_doc_file = new Model_procurement_doc_file();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -124,4 +127,103 @@ class Project_detail_procurement extends BaseController
     public function pagination(){
         
     }
+
+	// upload po
+    public function up_po(){
+        // read the file
+        $uploaded_file = $this->request->getFile('file');
+                
+        // store the file
+        if($uploaded_file){
+            $store_file = $uploaded_file->move('upload/procurement_doc/list');
+            
+            $id_doc = $this->request->getPost('id_doc');
+            $doc_name= $this->request->getPost('doc_name');
+            $doc_code= $this->request->getPost('doc_code');
+            $man_hour_actual= $this->request->getPost('man_hour_actual');
+
+            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+            // safe file to procurement doc file
+            $data = [
+                'id_doc' => $id_doc,
+                'filename' => $uploaded_file->getName(),
+                'version' => "",
+                'created_by' => sess('active_user_id')
+            ];
+            $returned_id = $this->Model_procurement_doc_file->insertWithReturnId($data);
+            
+            // save file name to database
+            $data = [
+                'id' => $id_doc,
+                'po_filename' => $uploaded_file->getName(),
+                'po_act' => $input_date,
+				'po_id_file' => $returned_id,
+				'po_status' => 'uploaded'
+            ];
+            $update_doc = $this->Model_doc_procurement->save($data);
+            
+            // $data_timeline = [
+            //     'doc_id'                => $id_doc,
+            //     'detail_type'           => 'internal_engineering',
+            //     'time'                  => $input_date,
+            //     'timeline_title'        => 'internal originator file upload',
+            //     'timeline_description'  => 'new file upload',
+            //     'timeline_status'       => 'on time',
+            //     'new_file'              => $data['file'],
+            //     'file_status'           => 'internal',
+            //     'created_by'            => sess('active_user_id'),
+            //     'id_file'               => $returned_id
+            // ];
+            // $this->timeline_doc_model->save($data_timeline);
+
+            $nope_sandhi = "6287888276877";
+            $nope_indra = "6285274897212";
+            $data_wa = [
+                'penerima' => $nope_indra,
+                'doc_name' => $doc_name,
+                'doc_group' => $doc_code,
+                'tgl_upload' => $input_date,
+                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdfProcurement/".$id_doc."/po"
+            ];
+            procurementPoUp($data_wa);
+
+            // return and notif wa
+            if ($store_file && $returned_id && $update_doc){
+                $response = [
+                    'success' => true,
+                    'message' => 'File Uploaded successfully.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to Upload File.'
+                ];
+            }
+   
+        }else {
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
+        }
+
+        return json_encode($response);
+    }
+
+	// 
+	public function show_pdf($doc_id, $step, $isPreviw=false) {
+		$data = [   
+			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
+			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
+            'doc_id' => $doc_id,
+            'file_name' => 'test.pdf',
+            'doc_data' => $this->Model_doc_procurement->get_by_id($doc_id),
+            'step' => $step,
+            'is_preview' => $isPreviw,
+		];
+        // print_r($data['doc_data']);die;
+		return view('test_view', $data);
+    }
+
 }

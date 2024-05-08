@@ -3,9 +3,9 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class Model_procurement_doc_comment extends Model
+class Model_procurement_doc_file extends Model
 {
-    protected $table      = 'engineering_doc_comment';
+    protected $table      = 'engineering_doc_file';
     protected $primaryKey = 'id';
 
     protected $returnType     = 'object';
@@ -13,8 +13,7 @@ class Model_procurement_doc_comment extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by',
-        'comment_title', 'doc_step'
+        'id_doc', 'filename', 'version', 'created_by'
     ];
 
     protected $useTimestamps = true;
@@ -62,7 +61,6 @@ class Model_procurement_doc_comment extends Model
         $this->select('
             *
         ')
-        ->where('deleted_at', NULL)
         ->where('doc_id', $payload['id_doc']);
     
         if (isset($payload['id_approver']) && $payload['id_approver'] !== null) {
@@ -133,6 +131,19 @@ class Model_procurement_doc_comment extends Model
         $result['count_all'] = $this->countNoFiltered();
 
         return $result;
+    }
+
+    // insert with db transaction
+    public function insertWithReturnId($data) {
+        $this->db->transBegin();
+
+        $this->db->table('procurement_doc_file')->insert($data);
+
+        $transactionId = $this->db->insertID();
+
+        $this->db->transCommit();
+
+        return $transactionId;
     }
 
 }

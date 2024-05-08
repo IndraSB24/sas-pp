@@ -50,6 +50,27 @@
 		return true;
 	}
 
+    // procurement po file upload
+    function procurementPoUp($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*PROCUREMENT PO FILE UPLOAD*'.
+            '<br>---------------------------------------'.
+            '<br>GROUP : '.$data['doc_group'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>TANGGAL UPLOAD : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
     function approveInternalEngineering($data=null){
 	    $dataWa['image']    = false;
 		$dataWa['devId']	= hostWa('1');

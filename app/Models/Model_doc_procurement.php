@@ -27,7 +27,8 @@ class Model_doc_procurement extends Model
         'activity_name_lvl_1', 'activity_name_lvl_2', 'activity_name_lvl_3', 'activity_name_lvl_4', 'detail_or_spesifikasi', 
         'quantity', 'unit', 'harga_satuan_material', 'total_harga_material', 'total_amount_material', 'harga_satuan_jasa', 
         'total_harga_jasa', 'total_amount_jasa', 'wf', 'po_plan', 'po_act', 'fat_plan', 'fat_act', 'rfs_plan', 'rfs_act', 
-        'onsite_plan', 'onsite_act', 'install_plan', 'install_act', 'comm_plan', 'comm_act', 'id_group'
+        'onsite_plan', 'onsite_act', 'install_plan', 'install_act', 'comm_plan', 'comm_act', 'id_group',
+        'po_filename', 'po_status', 'po_id_file'
 
         
     ];
@@ -69,6 +70,16 @@ class Model_doc_procurement extends Model
         ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group')
         ->where('project_detail_procurement.deleted_at', NULL);
 
+        
+        return $this->get()->getResult();
+    }
+
+    // get by id
+    public function get_by_id($id_doc){
+        $this->select('
+            *
+        ')
+        ->where('id', $id_doc);
         
         return $this->get()->getResult();
     }
