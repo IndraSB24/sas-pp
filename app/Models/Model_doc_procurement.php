@@ -77,9 +77,11 @@ class Model_doc_procurement extends Model
     // get by id
     public function get_by_id($id_doc){
         $this->select('
-            *
+            project_detail_procurement.*,
+            dh.name as group_name
         ')
-        ->where('id', $id_doc);
+        ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group')
+        ->where('project_detail_procurement.id', $id_doc);
         
         return $this->get()->getResult();
     }
