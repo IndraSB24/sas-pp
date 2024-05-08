@@ -86,7 +86,7 @@
                                                 <th rowspan="3" class="text-center">Level 2</th>
                                                 <th rowspan="3" class="text-center">Level 3</th>
                                                 <th rowspan="3" class="text-center" style="position: sticky;left: 0;background-color: #ffffff !important;z-index: 1;">Level 4</th>
-                                                <th rowspan="3" class="text-center" style="position: sticky;left: 0;background-color: #ffffff !important;z-index: 1;">Level 5</th>
+                                                <th rowspan="3" class="text-center" style="position: sticky;left: 13em;background-color: #ffffff !important;z-index: 1;">Level 5</th>
                                                 <th rowspan="3" class="text-center">Group</th>
                                                 <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center">JASA (IDR)</th>
