@@ -196,7 +196,7 @@ class Project_detail_procurement extends BaseController
             $data_wa = [
                 'penerima' => $nope_indra,
                 'doc_name' => $doc_desc,
-                'doc_group' => $proc_data->group_name,
+                'doc_group' => $proc_data[0]->group_name,
                 'tgl_upload' => $input_date,
                 'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdfProcurement/".$id_doc."/po"
             ];
