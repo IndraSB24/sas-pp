@@ -276,7 +276,12 @@ class Project_detail_engineering extends BaseController
             $doc_code= $this->request->getPost('doc_code');
             $man_hour_actual= $this->request->getPost('man_hour_actual');
 
-            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+            $input_date = $this->request->getPost('backdate');
+            if (!empty($input_date) && strtotime($input_date) !== false) {
+                $input_date = date('Y-m-d H:i:s', strtotime($input_date));
+            } else {
+                $input_date = date('Y-m-d H:i:s');
+            }
 
             // safe file to engineering doc file
             $data = [
