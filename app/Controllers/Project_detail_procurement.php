@@ -300,7 +300,7 @@ class Project_detail_procurement extends BaseController
             $nope_sandhi = "6287888276877";
             $nope_indra = "6285274897212";
             $data_wa = [
-                'penerima' => $nope_sandhi,
+                'penerima' => $nope_indra,
                 'doc_name' => $doc_desc,
                 'doc_group' => $proc_data[0]->group_name,
                 'tgl_upload' => $input_date,
