@@ -13,7 +13,7 @@ class Model_procurement_doc_comment extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_doc_file', 'doc_id', 'comment_file', 'page_detail', 'created_by',
+        'id_doc_file', 'id_doc', 'comment_file', 'page_detail', 'created_by',
         'comment_title', 'doc_step'
     ];
 
@@ -63,7 +63,7 @@ class Model_procurement_doc_comment extends Model
             *
         ')
         ->where('deleted_at', NULL)
-        ->where('doc_id', $payload['id_doc']);
+        ->where('id_doc', $payload['id_doc']);
     
         if (isset($payload['id_approver']) && $payload['id_approver'] !== null) {
             $this->where('created_by', $payload['id_approver']);

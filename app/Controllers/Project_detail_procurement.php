@@ -7,11 +7,12 @@ use App\Models\Model_doc_engineering;
 use App\Models\Model_data_helper;
 use App\Models\Model_procurement_doc_file;
 use App\Models\Model_timeline_doc;
+use App\Models\Model_procurement_doc_comment;
 
 class Project_detail_procurement extends BaseController
 {
     protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
-		$Model_procurement_doc_file, $Model_timeline_doc;
+		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
@@ -20,6 +21,7 @@ class Project_detail_procurement extends BaseController
 		$this->Model_data_helper = new Model_data_helper();
 		$this->Model_procurement_doc_file = new Model_procurement_doc_file();
 		$this->Model_timeline_doc = new Model_timeline_doc();
+		$this->Model_procurement_doc_comment = new Model_procurement_doc_comment();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -373,6 +375,99 @@ class Project_detail_procurement extends BaseController
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('reupload_doc_view_procurement', $data);
+    }
+
+	// add comment
+    public function add_comment(){
+        $uploaded_file = $this->request->getFile('image');
+        // store the file
+        if($uploaded_file){
+            $uploaded_file->move('upload/procurement_doc/comment');
+            
+            // save file name to database
+            $data_add = [
+                'id_doc' => $this->request->getPost('id_doc'),
+                'id_doc_file' => $this->request->getPost('id_file'),
+                'comment_title' => $this->request->getPost('comment_title'),
+                'comment_file' => $uploaded_file->getName(),
+                'page_detail' => $this->request->getPost('page_detail'),
+                'created_by' => sess('active_user_id'),
+                'doc_step' => $this->request->getPost('doc_step')
+            ];
+            $save_file = $this->Model_procurement_doc_comment->save($data_add);
+
+            if ($save_file) {
+                $response = [
+                    'success' => true,
+                    'message' => 'Comment added successfully.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to add comment.'
+                ];
+            }
+        }
+        else {
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
+        }
+
+        return json_encode($response);
+    }
+
+    // delete comment
+    public function delete_comment(){  
+        $id_comment = $this->request->getPost('id_comment');
+
+        $deleteResult = $this->Model_procurement_doc_comment->delete($id_comment);
+
+        // Check the result of the delete operation
+        $response = [
+            'success' => $deleteResult, // Indicates whether the deletion was successful or not
+            'message' => $deleteResult ? 'Record deleted successfully.' : 'Failed to delete record.'
+        ];
+        
+        // Set the appropriate content type header
+        header('Content-Type: application/json');
+        
+        // Return JSON response
+        return json_encode($response);
+    }
+
+    // list comment
+    public function ajax_get_comment($id_doc, $id_approver=null){
+        // $id_doc = $this->request->getPost('id_doc');
+        // $id_approver = $this->request->getPost('id_approver') ?: null;
+    
+        $payload = [
+            'id_doc' => $id_doc,
+            'id_approver' => $id_approver
+        ];
+        $fetched_data = $this->Model_procurement_doc_comment->get_by_idDoc_idApprover($payload);
+        // Check if comments are fetched successfully
+        if ($fetched_data) {
+            // Return the fetched comments in JSON format
+            return json_encode($fetched_data);
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'No Data.'
+            ];
+            
+            return $this->response->setJSON($response);
+        }
+    }
+    
+    // time status checker
+    function timeStatusCheck($plan_date, $actual_date=null) {
+        $current_datetime = $actual_date ?: date('Y-m-d H:i:s');
+    
+        $status = $plan_date > $current_datetime ? "late" : "on time";
+    
+        return $status;
     }
 
 }
