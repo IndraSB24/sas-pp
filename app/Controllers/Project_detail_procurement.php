@@ -337,17 +337,81 @@ class Project_detail_procurement extends BaseController
 	public function approve(){
 		$id_doc = $this->request->getPost('id_doc');
         $man_hour_actual= $this->request->getPost('man_hour_actual');
+		$doc_step = $this->request->getPost('doc_step');
 
-            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+		$act_key = $doc_step . '_act';
+		$status_key = $doc_step . '_status';
 
-            // safe file to procurement doc file
-            $data = [
-                'id_doc' => $id_doc,
-                'filename' => $uploaded_file->getName(),
-                'version' => "",
-                'created_by' => sess('active_user_id')
-            ];
-            $returned_id = $this->Model_procurement_doc_file->insertWithReturnId($data);
+        $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+		// update doc data
+		$data_update_doc = [
+			'id' => $id_doc,
+			$act_key => $input_date,
+			$status_key => 'approve'
+		];
+		switch ($doc_step) {
+			case 'po':
+				$data_update_doc['fat_status'] = 'progress';
+				break;
+			case 'fat':
+				$data_update_doc['rfs_status'] = 'progress';
+				break;
+			case 'rfs':
+				$data_update_doc['onsite_status'] = 'progress';
+				break;
+			case 'onsite':
+				$data_update_doc['install_status'] = 'progress';
+				break;
+			case 'install':
+				$data_update_doc['comm_status'] = 'progress';
+				break;
+		}
+		$update_doc = $this->Model_doc_procurement->save($data_update_doc);
+		
+		// add timeliline
+		$data_timeline = [
+			'code'					=> 'procurement',
+			'doc_id'                => $id_doc,
+			'detail_type'           => 'procurement_'.$doc_step,
+			'time'                  => $input_date,
+			'timeline_title'        => $doc_step.'file approved',
+			'timeline_description'  => $doc_step.' file has been approved',
+			'timeline_status'       => 'on time',
+			'new_file'              => $data['filename'],
+			'file_status'           => '',
+			'created_by'            => sess('active_user_id'),
+			'id_file'               => $returned_id
+		];
+		$this->Model_timeline_doc->save($data_timeline);
+
+		$proc_data = $this->Model_doc_procurement->get_by_id($id_doc);
+		$doc_desc = $proc_data[0]->activity_name_lvl_1;
+		if($proc_data[0]->activity_name_lvl_2){
+			$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_2;
+
+			if($proc_data[0]->activity_name_lvl_3){
+				$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_3;
+
+				if($proc_data[0]->activity_name_lvl_4){
+					$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_4;
+				}
+			}
+		}
+
+		$nope_sandhi = "6287888276877";
+		$nope_indra = "6285274897212";
+		$data_wa = [
+			'penerima' => $nope_indra,
+			'doc_name' => $doc_desc,
+			'doc_group' => $proc_data[0]->group_name,
+			'doc_step' => $doc_step,
+			'tgl_upload' => $input_date,
+			'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
+		];
+		procurementApproveFile($data_wa);
+
+        
 	}
 
 	// 
