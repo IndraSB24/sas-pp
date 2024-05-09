@@ -27,10 +27,8 @@
 	    return $groupId;
 	}
 
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // format pesan PP -----------------------------------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------		
-	function originatorToInternalEngineering($data=null){
+    // engineering =================================================================================
+    function originatorToInternalEngineering($data=null){
 	    $dataWa['image']    = false;
 		$dataWa['devId']	= hostWa('1');
 		$dataWa['penerima']	= $data['penerima'];
@@ -40,48 +38,6 @@
             '<br>DOCUMENT NUMBER : '.$data['doc_code'].
             '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
             '<br>TANGGAL UPLOAD : '.$data['tgl_upload'].
-            '<br>---------------------------------------'.
-            '<br>'.
-            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
-            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
-            '<br>*TERIMAKASIH*'
-        ;
-        sendPersonalV2Kudus($dataWa);
-		return true;
-	}
-
-    // procurement file upload
-    function procurementUpFile($data=null){
-	    $dataWa['image']    = false;
-		$dataWa['devId']	= hostWa('1');
-		$dataWa['penerima']	= $data['penerima'];
-		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
-            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE UPLOAD*'.
-            '<br>---------------------------------------'.
-            '<br>GROUP : '.$data['doc_group'].
-            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
-            '<br>UPLOADED ON : '.$data['tgl_upload'].
-            '<br>---------------------------------------'.
-            '<br>'.
-            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
-            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
-            '<br>*TERIMAKASIH*'
-        ;
-        sendPersonalV2Kudus($dataWa);
-		return true;
-	}
-
-    // procurement approve file
-    function procurementApproveFile($data=null){
-	    $dataWa['image']    = false;
-		$dataWa['devId']	= hostWa('1');
-		$dataWa['penerima']	= $data['penerima'];
-		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
-            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE APPROVED*'.
-            '<br>---------------------------------------'.
-            '<br>GROUP : '.$data['doc_group'].
-            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
-            '<br>APPROVED ON : '.$data['tgl_upload'].
             '<br>---------------------------------------'.
             '<br>'.
             '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
@@ -146,6 +102,70 @@
             '<br>---------------------------------------'.
             '<br>'.
             '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA DAN BERIKAN REVISI SESUAI KOMENTAR, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    // procurement =================================================================================
+    // procurement file upload
+    function procurementUpFile($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE UPLOAD*'.
+            '<br>---------------------------------------'.
+            '<br>GROUP : '.$data['doc_group'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>UPLOADED ON : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    // procurement approve file
+    function procurementApproveFile($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE APPROVE*'.
+            '<br>---------------------------------------'.
+            '<br>GROUP : '.$data['doc_group'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>APPROVED ON : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
+            '<br>*TERIMAKASIH*'
+        ;
+        sendPersonalV2Kudus($dataWa);
+		return true;
+	}
+
+    // procurement reject file
+    function procurementRejectFile($data=null){
+	    $dataWa['image']    = false;
+		$dataWa['devId']	= hostWa('1');
+		$dataWa['penerima']	= $data['penerima'];
+		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
+            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE REJECT*'.
+            '<br>---------------------------------------'.
+            '<br>GROUP : '.$data['doc_group'].
+            '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
+            '<br>REJECTED ON : '.$data['tgl_upload'].
+            '<br>---------------------------------------'.
+            '<br>'.
+            '<br>KUNJUNGI LINK BERIKUT : '.$data['link_to_open'].
+            '<br><br><br>*HARAP DIPERIKSA DENGAN SEGERA, APABILA ADA KENDALA SEGERA HUBUNGI ADMIN*'.
             '<br>*TERIMAKASIH*'
         ;
         sendPersonalV2Kudus($dataWa);
