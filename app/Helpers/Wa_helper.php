@@ -56,7 +56,7 @@
 		$dataWa['devId']	= hostWa('1');
 		$dataWa['penerima']	= $data['penerima'];
 		$dataWa['pesan']	=   '*NOTIFIKASI SISTEM*'.
-            '<br><br>*PROCUREMENT '.$data['doc_step'].' FILE UPLOAD*'.
+            '<br><br>*PROCUREMENT '.strtoupper($data['doc_step']).' FILE UPLOAD*'.
             '<br>---------------------------------------'.
             '<br>GROUP : '.$data['doc_group'].
             '<br>DOCUMENT DESCRIPTION : '.$data['doc_name'].
