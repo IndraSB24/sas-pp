@@ -28,7 +28,7 @@ class Model_doc_procurement extends Model
         'quantity', 'unit', 'harga_satuan_material', 'total_harga_material', 'total_amount_material', 'harga_satuan_jasa', 
         'total_harga_jasa', 'total_amount_jasa', 'wf', 'po_plan', 'po_act', 'fat_plan', 'fat_act', 'rfs_plan', 'rfs_act', 
         'onsite_plan', 'onsite_act', 'install_plan', 'install_act', 'comm_plan', 'comm_act', 'id_group',
-        'po_filename', 'po_status', 'po_id_file'
+        'po_filename', 'po_status', 'po_id_file', 'activity_name_lvl_5'
 
         
     ];

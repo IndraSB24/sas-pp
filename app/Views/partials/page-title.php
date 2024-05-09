@@ -5,7 +5,9 @@
             <div>
 
                 <h2 class="mb-sm-0"><?= $pagetitle ?></h2>
-                <h4 style="color:#999999">INI JUDUL PROJECT</h4>
+                <h4 style="color:#999999">
+                    <?= $subtitle ?: 'Judul Project not set' ?>
+                </h4>
             </div>
 
             <div class="page-title-right">

@@ -24,7 +24,7 @@ class Project_detail_engineering extends BaseController
         helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
-	public function index($project_id=null){
+	public function index($project_id=null, $week=null){
         // man hour chart data
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
         $data_man_hour = [];
@@ -78,13 +78,14 @@ class Project_detail_engineering extends BaseController
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
-			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR']),
+			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR', 'subtitle' => 'Project Name']),
 			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
             'data_weight_factor' => $this->doc_engineering_model->get_weight_factor(),
             'data_weight_factor_plan' => $this->doc_engineering_model->get_plan_weight_factor(),
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
-            'data_chart_man_hour' => (array) $data_man_hour['year_month']
+            'data_chart_man_hour' => (array) $data_man_hour['year_month'],
+            'selected_week' => $week,
         ];
 
 		return view('engineering-document', $data);
