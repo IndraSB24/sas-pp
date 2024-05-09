@@ -413,7 +413,7 @@
                 // Kode yang akan dijalankan setelah instance Vue di-mount
                 const url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->po_filename) ?>";
                 console.log(url, 'fuadi');
-                
+
                 function clearCanvas() {
                     canvas.clear();
                     canvas.renderAll();
@@ -573,6 +573,164 @@
 
                     }
                 });
+
+                $(document).on('click', '#approveButton', function() {
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+                    const fileDesc = '<?= $step ?>';
+                    let id_file;
+                    let doc_filename;
+                    if (fileDesc === 'po') {
+                        id_file = '<?= isset($doc_data[0]->po_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'fat') {
+                        id_file = '<?= isset($doc_data[0]->fat_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'rfs') {
+                        id_file = '<?= isset($doc_data[0]->rfs_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'onsite') {
+                        id_file = '<?= isset($doc_data[0]->onsite_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'install') {
+                        id_file = '<?= isset($doc_data[0]->install_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'comm') {
+                        id_file = '<?= isset($doc_data[0]->comm_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    }
+                    let path = "<?= base_url('Project_detail_procurement/approve') ?>";
+                    id_doc = <?= $doc_id ?>;
+                    formData.append('id_doc', id_doc);
+                    formData.append('doc_step', '<?= $step ?>');
+                    formData.append('id_file', id_file);
+                    formData.append('doc_filename', doc_filename);
+                    if ($('#backdate').val()) {
+                        formData.append('backdate', $('#backdate').val());
+                    }
+                    swalTitle = 'Approve Document?';
+
+                    Swal.fire({
+                        title: swalTitle,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url: path,
+                                method: 'POST',
+                                data: formData,
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Approved!',
+                                        icon: 'success',
+                                        text: 'This Version is Approved.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        window.history.back();
+                                    })
+                                },
+                                error: function(xhr, status, error) {
+                                    // Aksi yang akan dilakukan jika terjadi kesalahan dalam permintaan
+                                    console.error('Terjadi kesalahan:', status, error);
+                                    // Tambahkan kode Anda di sini untuk menangani kesalahan
+                                }
+                            });
+
+                        }
+                    })
+                })
+
+                $(document).on('click', '#rejectButton', function() {
+                    let version = '';
+                    let id_doc, swalTitle;
+                    var timerInterval;
+                    var formData = new FormData();
+
+                    const fileDesc = '<?= $step ?>';
+                    let id_file;
+                    let doc_filename;
+                    if (fileDesc === 'po') {
+                        id_file = '<?= isset($doc_data[0]->po_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'fat') {
+                        id_file = '<?= isset($doc_data[0]->fat_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'rfs') {
+                        id_file = '<?= isset($doc_data[0]->rfs_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'onsite') {
+                        id_file = '<?= isset($doc_data[0]->onsite_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'install') {
+                        id_file = '<?= isset($doc_data[0]->install_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    } else if (fileDesc === 'comm') {
+                        id_file = '<?= isset($doc_data[0]->comm_id_file) ?>'
+                        doc_filename = '<?= isset($doc_data[0]->po_filename) ?>'
+                    }
+                    let path = "<?= base_url('Project_detail_procurement/reject') ?>";
+                    id_doc = <?= $doc_id ?>;
+                    formData.append('doc_step', '<?= $step ?>');
+                    formData.append('id_doc', id_doc);
+                    formData.append('id_file', id_file);
+                    formData.append('doc_filename', doc_filename);
+                    swalTitle = 'Reject document ?';
+
+                    Swal.fire({
+                        title: swalTitle,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url: path + '/' + id_doc,
+                                method: 'POST',
+                                data: formData,
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Rejected!',
+                                        icon: 'success',
+                                        text: 'This Version is Rejected.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        window.history.back();
+                                    })
+                                },
+                                error: function(xhr, status, error) {
+                                    // Aksi yang akan dilakukan jika terjadi kesalahan dalam permintaan
+                                    console.error('Terjadi kesalahan:', status, error);
+                                    // Tambahkan kode Anda di sini untuk menangani kesalahan
+                                }
+                            });
+                        }
+                    })
+                })
 
                 document.addEventListener('keydown', function(event) {
                     if (event.key === 'Delete') {

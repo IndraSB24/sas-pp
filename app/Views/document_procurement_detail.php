@@ -9,6 +9,7 @@
             left: 0;
             z-index: 1;
         }
+
         td:nth-child(7) {
             position: sticky;
             left: 13em;
@@ -138,8 +139,8 @@
                                                             &nbsp;DETAIL&nbsp;
                                                         </a>
                                                     ';
-                                                } else if ($item->po_status === 'uploaded') {
-                                                    $po_act = tgl_indo($item->po_act) .'
+                                                } else if ($item->po_status === 'reject') {
+                                                    $po_act = tgl_indo($item->po_act) . '
                                                 <br>
                                                     <span class="text-danger">REJECTED</span>
                                                 <br>
@@ -183,15 +184,85 @@
                                                 ';
                                                 }
 
-                                                $fat_act = '
-                                                no date yet
+                                                // if ($item->fat_status === 'uploaded') {
+
+                                                // } else if ($item->fat_status === 'reject') {
+
+                                                // } else if ($item->fat_status === 'approve') {
+
+                                                // } else if ($item->fat_status === 'progress') {
+
+                                                // } else {
+
+                                                // }
+
+                                                if ($item->fat_status === 'uploaded') {
+                                                    $fat_act = tgl_indo($item->po_act) .   '
+                                                    <br>
+                                                        <span class="text-primary">UPLOADED</span>
+                                                    <br>
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/fat' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                            data-id="' . $item->id . '"
+                                                            data-doc_desc="' . $item->description . '"
+                                                        >
+                                                            &nbsp;DETAIL&nbsp;
+                                                        </a>
+                                                    ';
+                                                } else if ($item->fat_status === 'reject') {
+                                                    $fat_act = tgl_indo($item->po_act) . '
+                                                    <br>
+                                                        <span class="text-danger">REJECTED</span>
+                                                    <br>
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                            data-id="' . $item->id . '"
+                                                            data-doc_desc="' . $item->description . '"
+                                                            data-path = "Project_detail_procurement/update/up_file"
+                                                            data-step = "fat"
+                                                            data-doc_name = "' . $item->description . '"
+                                                        >
+                                                            &nbsp;REUPLOAD&nbsp;
+                                                        </a>
+                                                    ';
+                                                } else if ($item->fat_status === 'approve') {
+                                                    $fat_act = tgl_indo($item->fat_act) .   '
+                                                    <br>
+                                                        <span class="text-success">APPROVED</span>
+                                                    <br>
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/fat/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
+                                                            data-id="' . $item->id . '"
+                                                            data-doc_desc="' . $item->description . '"
+                                                        >
+                                                            &nbsp;DETAIL&nbsp;
+                                                        </a>
+                                                    ';
+                                                } else if ($item->fat_status === 'progress') {
+                                                    $fat_act = '
+                                                    no date yet
                                                 <br>
                                                     no file yet
                                                 <br>
-                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
-                                                        &nbsp;WAITING&nbsp;
+                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                        data-id="' . $item->id . '"
+                                                        data-doc_desc="' . $item->description . '"
+                                                        data-path = "Project_detail_procurement/update/up_file"
+                                                        data-step = "fat"
+                                                        data-doc_name = "' . $item->description . '"
+                                                    >
+                                                        &nbsp;UP FILE&nbsp;
                                                     </a>
                                                 ';
+                                                } else {
+                                                    $fat_act = '
+                                                    no date yet
+                                                    <br>
+                                                        no file yet
+                                                    <br>
+                                                        <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                            &nbsp;WAITING&nbsp;
+                                                        </a>
+                                                    ';
+                                                }
+
                                                 $rfs_act = '
                                                 no date yet
                                                 <br>
