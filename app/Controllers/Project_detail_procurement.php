@@ -278,7 +278,7 @@ class Project_detail_procurement extends BaseController
                 'timeline_title'        => $doc_step.'file uplopad',
                 'timeline_description'  => 'new file upload',
                 'timeline_status'       => 'on time',
-                'new_file'              => $data['file'],
+                'new_file'              => $data['filename'],
                 'file_status'           => '',
                 'created_by'            => sess('active_user_id'),
                 'id_file'               => $returned_id
