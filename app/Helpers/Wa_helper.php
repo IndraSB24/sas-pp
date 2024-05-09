@@ -51,7 +51,7 @@
 	}
 
     // procurement po file upload
-    function procurementPoUp($data=null){
+    function procurementUpFile($data=null){
 	    $dataWa['image']    = false;
 		$dataWa['devId']	= hostWa('1');
 		$dataWa['penerima']	= $data['penerima'];

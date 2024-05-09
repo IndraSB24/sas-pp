@@ -309,7 +309,7 @@ class Project_detail_procurement extends BaseController
                 'tgl_upload' => $input_date,
                 'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
             ];
-            procurementPoUp($data_wa);
+            procurementUpFile($data_wa);
 
             // return and notif wa
             if ($store_file && $returned_id && $update_doc){
