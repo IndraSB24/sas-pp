@@ -60,7 +60,7 @@
             <div class="container-fluid">
                 <!--Modal Add Document-->
                 <div class="modal fade" id="modal_add_project_milestone" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-sm modal-dialog-centered">
                         <form action="#" method="POST">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -422,7 +422,7 @@
                                         <tbody>
                                             <tr>
                                                 <td style="text-align: left;">Contract Effective Date</td>
-                                                <td>28 Dec 23</td>
+                                                <td nowrap>28 Dec 23</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -431,7 +431,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Kick Off Meeting</td>
-                                                <td>18 Jan 24</td>
+                                                <td nowrap>18 Jan 24</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -440,7 +440,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Mechanical Completion</td>
-                                                <td>9 Jun 25</td>
+                                                <td nowrap>9 Jun 25</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -449,7 +449,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Commisioning</td>
-                                                <td>27 Jun 25</td>
+                                                <td nowrap>27 Jun 25</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -458,7 +458,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Operation Acceptance</td>
-                                                <td>27 Jun 25</td>
+                                                <td nowrap>27 Jun 25</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -492,8 +492,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="text-align: left;">Ready Mix Material-K430</td>
-                                                    <td>20-04-2024</td>
-                                                    <td>20-04-2024</td>
+                                                    <td nowrap>20-04-2024</td>
+                                                    <td nowrap>20-04-2024</td>
                                                     <td>Waiting</td>
                                                     <td>
                                                         <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>

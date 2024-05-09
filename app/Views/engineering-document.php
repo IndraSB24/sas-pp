@@ -117,7 +117,7 @@
                                                     <div class="dot" style="background-color: #219EBC"></div>
                                                     <small><strong id="waiting">-</strong></small>
                                                 </div>
-                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                <!-- <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #9B5DE5"></div>
                                                     <small><strong id="plan">-</strong></small>
 
@@ -125,7 +125,7 @@
                                                 <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #6A994E"></div>
                                                     <small><strong id="actual">-</strong></small>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -151,14 +151,6 @@
                                                 <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #2A9D8F;"></div>
                                                     <small><strong id="waiting_doc">-</strong></small>
-                                                </div>
-                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                    <div class="dot" style="background-color: #00BBF9"></div>
-                                                    <small><strong id="plan_doc">-</strong></small>
-                                                </div>
-                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                    <div class="dot" style="background-color: #F15BB5;"></div>
-                                                    <small><strong id="actual_doc">-</strong></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -1241,7 +1233,7 @@
     // }
     var options_percent = {
         chart: {
-            height: 220,
+            height: 300,
             type: 'radialBar',
         },
         plotOptions: {
@@ -1267,9 +1259,9 @@
                 }
             }
         },
-        series: [cum_percent_counter, 100 - cum_percent_counter, 100, 50],
-        labels: ['Complete', 'Waiting', 'Plan', 'Actual'],
-        colors: ["#FFB703", "#219EBC", '#9B5DE5', '#6A994E'],
+        series: [cum_percent_counter, 100 - cum_percent_counter],
+        labels: ['Plan', 'Actual'],
+        colors: ["#FFB703", "#219EBC"],
         legend: {
             offsetY: 5
         }
@@ -1314,7 +1306,7 @@
     // }
     var options_document = {
         chart: {
-            height: 220,
+            height: 300,
             type: 'radialBar',
         },
         plotOptions: {
@@ -1343,9 +1335,9 @@
                 }
             }
         },
-        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter, 100, 50],
-        labels: ["Complete Doc", "Waiting Doc", "Plan", "Actual"],
-        colors: ["#E9C46A", "#2A9D8F", "#00BBF9", "#F15BB5"],
+        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
+        labels: ["Plan", "Actual"],
+        colors: ["#E9C46A", "#2A9D8F"],
         legend: {
             offsetY: 5
         }
@@ -1502,14 +1494,10 @@
     $(document).ready(function() {
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
-        $('#complete').html(`Complete: ${cum_percent_counter.toFixed(1)}%`)
-        $('#waiting').html(`Waiting: ${(100 - cum_percent_counter).toFixed(1)}%`)
-        $('#plan').html(`Plan: 100%`)
-        $('#actual').html(`Actual: 50%`)
-        $('#complete_doc').html(`Complete Doc: ${total_done_doc_counter}`)
-        $('#waiting_doc').html(`Waiting Doc: ${(total_doc_counter - total_done_doc_counter)}`)
-        $('#plan_doc').html(`Plan: 100`)
-        $('#actual_doc').html(`Actual: 50`)
+        $('#complete').html(`Plan: ${cum_percent_counter.toFixed(1)}%`)
+        $('#waiting').html(`Actual: ${(100 - cum_percent_counter).toFixed(1)}%`)
+        $('#complete_doc').html(`Plan: ${total_done_doc_counter}`)
+        $('#waiting_doc').html(`Actual: ${(total_doc_counter - total_done_doc_counter)}`)
     });
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
