@@ -5,7 +5,14 @@
     <?= $title_meta ?>
 
     <?= $this->include('partials/head-css') ?>
-
+    <style>
+        .galon {
+            border-radius: 20px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            /* height: 200px; */
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 
 <?= $this->include('partials/body') ?>
@@ -32,7 +39,7 @@
                     <div class="col-xl-12">
                         <div class="row mb-4">
                             <div class="col-lg-12 mb-4">
-                                <div class="card">
+                                <div class="cards galon">
                                     <div class="card-body">
                                         <div class="table-rep-plugin">
                                             <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
@@ -69,9 +76,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                                <div class="card" style="height:100%;background-color:#B0E0E6;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #3f8bd9;">
                                     <div class="card-body">
-                                        <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                        <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                             <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
                                         </div>
                                         <!--chart-->
