@@ -338,6 +338,9 @@ class Project_detail_procurement extends BaseController
 		$id_doc = $this->request->getPost('id_doc');
         $man_hour_actual= $this->request->getPost('man_hour_actual');
 		$doc_step = $this->request->getPost('doc_step');
+		$filename = $this->request->getPost('doc_filename');
+		$id_file = $this->request->getPost('id_file');
+
 
 		$act_key = $doc_step . '_act';
 		$status_key = $doc_step . '_status';
@@ -378,10 +381,10 @@ class Project_detail_procurement extends BaseController
 			'timeline_title'        => $doc_step.'file approved',
 			'timeline_description'  => $doc_step.' file has been approved',
 			'timeline_status'       => 'on time',
-			'new_file'              => $data['filename'],
+			'new_file'              => $filename,
 			'file_status'           => '',
 			'created_by'            => sess('active_user_id'),
-			'id_file'               => $returned_id
+			'id_file'               => $id_file
 		];
 		$this->Model_timeline_doc->save($data_timeline);
 
@@ -410,14 +413,14 @@ class Project_detail_procurement extends BaseController
 			'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
 		];
 		procurementApproveFile($data_wa);
-
-        
 	}
 
 	public function reject(){
 		$id_doc = $this->request->getPost('id_doc');
         $man_hour_actual= $this->request->getPost('man_hour_actual');
 		$doc_step = $this->request->getPost('doc_step');
+		$filename = $this->request->getPost('doc_filename');
+		$id_file = $this->request->getPost('id_file');
 
 		$act_key = $doc_step . '_act';
 		$status_key = $doc_step . '_status';
@@ -441,10 +444,10 @@ class Project_detail_procurement extends BaseController
 			'timeline_title'        => $doc_step.'file reject',
 			'timeline_description'  => $doc_step.' file has been rejected with some comments',
 			'timeline_status'       => 'on time',
-			'new_file'              => $data['filename'],
+			'new_file'              => $filename,
 			'file_status'           => '',
 			'created_by'            => sess('active_user_id'),
-			'id_file'               => $returned_id
+			'id_file'               => $id_file
 		];
 		$this->Model_timeline_doc->save($data_timeline);
 
@@ -473,8 +476,6 @@ class Project_detail_procurement extends BaseController
 			'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
 		];
 		procurementRejectFile($data_wa);
-
-        
 	}
 
 	// 
