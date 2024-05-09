@@ -6,11 +6,12 @@ use App\Models\Model_doc_procurement;
 use App\Models\Model_doc_engineering;
 use App\Models\Model_data_helper;
 use App\Models\Model_procurement_doc_file;
+use App\Models\Model_timeline_doc;
 
 class Project_detail_procurement extends BaseController
 {
     protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
-		$Model_procurement_doc_file;
+		$Model_procurement_doc_file, $Model_timeline_doc;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
@@ -18,6 +19,7 @@ class Project_detail_procurement extends BaseController
 		$this->Model_doc_engineering = new Model_doc_engineering();
 		$this->Model_data_helper = new Model_data_helper();
 		$this->Model_procurement_doc_file = new Model_procurement_doc_file();
+		$this->Model_timeline_doc = new Model_timeline_doc();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -224,6 +226,126 @@ class Project_detail_procurement extends BaseController
 
         return json_encode($response);
     }
+
+	// upload po
+    public function up_file(){
+        // read the file
+        $uploaded_file = $this->request->getFile('file');
+		$doc_step = $this->request->getFile('doc_step');
+                
+        // store the file
+        if($uploaded_file){
+            $store_file = $uploaded_file->move('upload/procurement_doc/list');
+            
+            $id_doc = $this->request->getPost('id_doc');
+            $doc_name= $this->request->getPost('doc_name');
+            $doc_code= $this->request->getPost('doc_code');
+            $man_hour_actual= $this->request->getPost('man_hour_actual');
+            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+            // safe file to procurement doc file
+            $data = [
+                'id_doc' => $id_doc,
+                'filename' => $uploaded_file->getName(),
+                'version' => "",
+                'created_by' => sess('active_user_id')
+            ];
+            $returned_id = $this->Model_procurement_doc_file->insertWithReturnId($data);
+
+			// Construct field names based on $po_type
+			$filename_key = $doc_step . '_filename';
+			$act_key = $doc_step . '_act';
+			$id_file_key = $doc_step . '_id_file';
+			$status_key = $doc_step . '_status';
+
+			$data = [
+				'id' => $id_doc,
+				$filename_key => $uploaded_file->getName(),
+				$act_key => $input_date,
+				$id_file_key => $returned_id,
+				$status_key => 'uploaded'
+			];
+			$update_doc = $this->Model_doc_procurement->save($data);
+            
+			// add timeliline
+            $data_timeline = [
+				'code'					=> 'procurement',
+                'doc_id'                => $id_doc,
+                'detail_type'           => 'procurement_'.$doc_step,
+                'time'                  => $input_date,
+                'timeline_title'        => $doc_step.'file uplopad',
+                'timeline_description'  => 'new file upload',
+                'timeline_status'       => 'on time',
+                'new_file'              => $data['file'],
+                'file_status'           => '',
+                'created_by'            => sess('active_user_id'),
+                'id_file'               => $returned_id
+            ];
+            $this->timeline_doc_model->save($data_timeline);
+
+			$proc_data = $this->Model_doc_procurement->get_by_id($id_doc);
+			$doc_desc = $proc_data[0]->activity_name_lvl_1;
+			if($proc_data[0]->activity_name_lvl_2){
+				$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_2;
+
+				if($proc_data[0]->activity_name_lvl_3){
+					$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_3;
+
+					if($proc_data[0]->activity_name_lvl_4){
+						$doc_desc = $doc_desc . ' -> ' . $proc_data[0]->activity_name_lvl_4;
+					}
+				}
+			}
+
+            $nope_sandhi = "6287888276877";
+            $nope_indra = "6285274897212";
+            $data_wa = [
+                'penerima' => $nope_sandhi,
+                'doc_name' => $doc_desc,
+                'doc_group' => $proc_data[0]->group_name,
+                'tgl_upload' => $input_date,
+                'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
+            ];
+            procurementPoUp($data_wa);
+
+            // return and notif wa
+            if ($store_file && $returned_id && $update_doc){
+                $response = [
+                    'success' => true,
+                    'message' => 'File Uploaded successfully.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to Upload File.'
+                ];
+            }
+   
+        }else {
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
+        }
+
+        return json_encode($response);
+    }
+
+	public function approve(){
+		$id_doc = $this->request->getPost('id_doc');
+        $man_hour_actual= $this->request->getPost('man_hour_actual');
+
+            $input_date = $this->request->getPost('backdate') ?: date('Y-m-d H:i:s');
+
+            // safe file to procurement doc file
+            $data = [
+                'id_doc' => $id_doc,
+                'filename' => $uploaded_file->getName(),
+                'version' => "",
+                'created_by' => sess('active_user_id')
+            ];
+            $returned_id = $this->Model_procurement_doc_file->insertWithReturnId($data);
+	}
 
 	// 
 	public function show_pdf($doc_id, $step, $isPreviw=false) {

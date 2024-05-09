@@ -14,7 +14,7 @@ class Model_timeline_doc extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'doc_id', 'detail_type', 'time', 'old_file', 'new_file', 'file_status', 
+        'code', 'doc_id', 'detail_type', 'time', 'old_file', 'new_file', 'file_status', 
         'timeline_status','timeline_title', 'timeline_description', 'id_file'
     ];
 
