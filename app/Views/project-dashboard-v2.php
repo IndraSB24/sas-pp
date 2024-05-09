@@ -60,22 +60,19 @@
             <div class="container-fluid">
                 <!--Modal Add Document-->
                 <div class="modal fade" id="modal_add_project_milestone" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-sm">
                         <form action="#" method="POST">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Engineering Document</h5>
+                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row mb-4">
-                                        <label class="form-label">Plan</label>
-                                        <div class="col-md-4">
-                                            <label class="form-label">IFR</label>
-                                            <div class="input-group" id="ifr_date">
-                                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
-                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label">Actual/Forecast Date</label>
+                                        <div class="input-group" id="ifr_date">
+                                            <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
+                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                         </div>
                                     </div>
                                 </div>

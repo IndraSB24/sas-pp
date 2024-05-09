@@ -1616,7 +1616,7 @@
 
     var options = {
         series: [{
-            data: [90, 34, 50, 100]
+            data: [90, 34, 50, 100, 50, 23]
         }],
         chart: {
             type: 'bar',
@@ -1635,7 +1635,7 @@
                 },
             }
         },
-        colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
+        colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#F9A825', '#4CAF50'],
         dataLabels: {
             enabled: true,
             textAnchor: 'start',
@@ -1643,7 +1643,7 @@
                 colors: ['#fff']
             },
             formatter: function(val, opt) {
-                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val + "%"
             },
             offsetX: 0,
             dropShadow: {
@@ -1655,7 +1655,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['Structural', 'Piping', 'Electrical & Ins', 'Mechanical'],
+            categories: ['Pekerjaan Sipil', 'Pekerjaan Perpipaan', 'Pekerjaan Mechanical', 'Pekerjaan Instrument', 'Pekerjaan Electrical', 'Pekerjaan Fasilitas Hsse'],
         },
         yaxis: {
             labels: {

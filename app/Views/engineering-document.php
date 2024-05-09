@@ -213,6 +213,55 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6 pb-0 mt-4">
+                        <div class="cards galon" style="padding: 15px;padding-top: 15px;border: 1px solid #FDF0D5;">
+                            <div class="card-body">
+                                <div class="table-rep-plugin">
+                                    <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
+                                    <font size="2">
+                                        <table id="datatable" class="table table-bordered" style="border: 0px;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
+                                                    <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W16)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W17)</th>
+                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W17)</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
+                                                    <th class="text-center" style="background-color:blanchedalmond">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:blanchedalmond">VAR</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">PLAN</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">VAR</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">PLAN</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">VAR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="background-color: #d2e5f7;" nowrap>1</td>
+                                                    <td style="background-color: #d2e5f7;" nowrap>Lorem, ipsum dolor.</td>
+                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
+                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
+                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
+                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
+                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
+                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
+                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
+                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
+                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </font>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="col-md-4 mt-4 pt-0">
                         <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                             <div class="row" style="padding: 20px;padding-bottom:0">
