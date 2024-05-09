@@ -443,8 +443,8 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Mechanical Completion</td>
-                                                <td></td>
                                                 <td>9 Jun 25</td>
+                                                <td></td>
                                                 <td></td>
                                                 <td>
                                                     <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
@@ -452,8 +452,8 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Commisioning</td>
-                                                <td></td>
                                                 <td>27 Jun 25</td>
+                                                <td></td>
                                                 <td></td>
                                                 <td>
                                                     <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
@@ -461,8 +461,8 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Operation Acceptance</td>
-                                                <td></td>
                                                 <td>27 Jun 25</td>
+                                                <td></td>
                                                 <td></td>
                                                 <td>
                                                     <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
