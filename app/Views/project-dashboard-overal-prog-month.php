@@ -31,7 +31,33 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="row mb-4">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-rep-plugin">
+                                            <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
+                                            <font size="2">
+                                                <table id="datatable" class="table table-bordered nowrap" style="border: 0px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>NO</th>
+                                                            <th>Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td nowrap>1</td>
+                                                            <td nowrap>Lorem, ipsum dolor.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </font>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mb-4">
                                 <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
@@ -42,8 +68,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
+                                    <div class="card-body">
+                                        <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
+                                        </div>
+                                        <!--chart-->
+                                        <div id="scurve_proc" class="apex-charts"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -137,7 +174,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- end row -->
@@ -409,6 +446,103 @@
     var chartMixed = new ApexCharts(
         document.querySelector("#scurve_mdr"),
         optionsMixed
+    );
+    chartMixed.render();
+
+    var optionsMixedProc = {
+        chart: {
+            height: 300,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [0, 0, 4, 4],
+            curve: 'straight'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        series: [{
+                name: 'Plan',
+                type: 'column',
+                data: plan_mixed_chart
+            },
+            {
+                name: 'Actual',
+                type: 'column',
+                data: actual_mixed_chart
+            },
+            {
+                name: 'Cum Plan',
+                type: 'line',
+                data: cum_plan_mixed_chart
+            },
+            {
+                name: 'Cum Actual',
+                type: 'line',
+                data: cum_actual_mixed_chart
+            }
+        ],
+        fill: {
+            opacity: [0.85, 0.85, 1, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: labels_mixed_chart1,
+        markers: {
+            size: 4
+        },
+        xaxis: {
+            type: 'month'
+        },
+        yaxis: {
+            title: {
+                text: 'Percent (%)',
+            },
+            labels: {
+                formatter: function(value) {
+                    return Math.round(value); // Round the value to the nearest integer
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function(y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(2) + " %";
+                    }
+                    return y;
+
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            padding: {
+                bottom: 10
+            }
+        },
+        legend: {
+            offsetY: 7
+        }
+    }
+    var chartMixed = new ApexCharts(
+        document.querySelector("#scurve_proc"),
+        optionsMixedProc
     );
     chartMixed.render();
 

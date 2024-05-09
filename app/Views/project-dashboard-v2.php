@@ -58,10 +58,63 @@
 
         <div class="page-content">
             <div class="container-fluid">
-
+                <!--Modal Add Document-->
+                <div class="modal fade" id="modal_add_project_milestone" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <form action="#" method="POST">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Engineering Document</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row mb-4">
+                                        <label class="form-label">Plan</label>
+                                        <div class="col-md-4">
+                                            <label class="form-label">IFR</label>
+                                            <div class="input-group" id="ifr_date">
+                                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data" data-object="Project_detail_engineering/add/doc_engineering">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <!-- start page title -->
                 <?= $page_title ?>
                 <!-- end page title -->
+                <small class="form-label">CUT OFF WEEK: </small>
+                <!-- <div class="col-md-4">
+                    <div class="input-group mb-4" id="datepicker1" style="border-radius: 10px;">
+                        <input type="text" class="form-control rounded-start" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#datepicker1" data-provide="datepicker" name="cut_off_filter" id="cut_off_filter" style="border-radius: 15px 0 0 15px !important;" />
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+                        <i class="far fa-calendar"></i>  Filter
+                        </button>
+
+                    </div>
+                </div> -->
+                <div class="col-md-4 row mb-3">
+                    <div class="col-6">
+                        <select class="form-control select2">
+                            <option>Select</option>
+                            <option value="EL">Week 1</option>
+                            <option value="FA">Week 2</option>
+                            <option value="FI">Week 3</option>
+                        </select>
+                    </div>
+                    <div class="col-6" style="padding-left: 0;">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">
+                            Filter
+                        </button>
+                    </div>
+                </div>
                 <div class="row mb-5">
                     <div class="col-xl-8">
                         <div class="row mb-3">
@@ -365,6 +418,8 @@
                                                 <th style="text-align: left;">Title</th>
                                                 <th>BL Date</th>
                                                 <th>Actual/Forecast Date</th>
+                                                <th>Variant</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -372,25 +427,46 @@
                                                 <td style="text-align: left;">Contract Effective Date</td>
                                                 <td>28 Dec 23</td>
                                                 <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Kick Off Meeting</td>
                                                 <td>18 Jan 24</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Mechanical Completion</td>
                                                 <td></td>
                                                 <td>9 Jun 25</td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Commisioning</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: left;">Operation Acceptance</td>
                                                 <td></td>
                                                 <td>27 Jun 25</td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -409,10 +485,11 @@
                                         <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead style="background-color: antiquewhite">
                                                 <tr>
-                                                    <th style="text-align: left;">Material/Equipment</th>
-                                                    <th>ETA</th>
-                                                    <th>ROS</th>
-                                                    <th>Current Status</th>
+                                                    <th style="text-align: left;">Title</th>
+                                                    <th>BL Date</th>
+                                                    <th>Actual/Forecast Date</th>
+                                                    <th>Variant</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -421,6 +498,9 @@
                                                     <td>20-04-2024</td>
                                                     <td>20-04-2024</td>
                                                     <td>Waiting</td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    </td>
                                                 </tr>
 
                                             </tbody>
@@ -447,7 +527,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row d-none">
                         <div class="col-lg-12">
                             <div class="card">
@@ -841,7 +920,7 @@
             horizontalAlign: 'left',
             offsetX: 40
         },
-        
+
     }
     var chart_man_hour = new ApexCharts(
         document.querySelector("#chart_man_hour"),
@@ -862,7 +941,7 @@
             height: 350,
             stacked: true,
         },
-        
+
         plotOptions: {
             bar: {
                 horizontal: false,
@@ -910,7 +989,7 @@
             horizontalAlign: 'left',
             offsetX: 40
         },
-        
+
     };
 
     var chart = new ApexCharts(document.querySelector("#chart_man_power_stacked"), options);

@@ -49,6 +49,31 @@
         <div class="page-content">
             <div class="container-fluid">
                 <?= $page_title ?>
+                <small class="form-label">CUT OFF WEEK: </small>
+                <!-- <div class="col-md-4">
+                    <div class="input-group mb-4" id="datepicker1" style="border-radius: 10px;">
+                        <input type="text" class="form-control rounded-start" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#datepicker1" data-provide="datepicker" name="cut_off_filter" id="cut_off_filter" style="border-radius: 15px 0 0 15px !important;" />
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+                        <i class="far fa-calendar"></i>  Filter
+                        </button>
+
+                    </div>
+                </div> -->
+                <div class="col-md-4 row mb-3">
+                    <div class="col-6">
+                        <select class="form-control select2">
+                            <option>Select</option>
+                            <option value="EL">Week 1</option>
+                            <option value="FA">Week 2</option>
+                            <option value="FI">Week 3</option>
+                        </select>
+                    </div>
+                    <div class="col-6" style="padding-left: 0;">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document">
+                            Filter
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-6 pb-0">
                         <div class="card" style="height:100%;background-color:#D0F4DE;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;">
@@ -92,6 +117,15 @@
                                                     <div class="dot" style="background-color: #219EBC"></div>
                                                     <small><strong id="waiting">-</strong></small>
                                                 </div>
+                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                    <div class="dot" style="background-color: #9B5DE5"></div>
+                                                    <small><strong id="plan">-</strong></small>
+
+                                                </div>
+                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                    <div class="dot" style="background-color: #6A994E"></div>
+                                                    <small><strong id="actual">-</strong></small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +151,14 @@
                                                 <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #2A9D8F;"></div>
                                                     <small><strong id="waiting_doc">-</strong></small>
+                                                </div>
+                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                    <div class="dot" style="background-color: #00BBF9"></div>
+                                                    <small><strong id="plan_doc">-</strong></small>
+                                                </div>
+                                                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                    <div class="dot" style="background-color: #F15BB5;"></div>
+                                                    <small><strong id="actual_doc">-</strong></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -561,7 +603,7 @@
             console.log(Object.entries(<?= json_encode($data_chart_man_hour) ?>), 'fuadi data_chart_man_hour');
             const data_chart_man_hour = Object.entries(<?= json_encode($data_chart_man_hour) ?>)
             console.log(data_chart_man_hour, 'data awal');
-            
+
             let label = []
             let datas = []
             let civilPlan = []
@@ -608,43 +650,43 @@
                 name: "instrumentPlan",
                 stack: 'plan',
                 data: instrumentPlan
-            },{
+            }, {
                 name: "mechanicalPlan",
                 stack: 'plan',
                 data: mechanicalPlan
-            },{
+            }, {
                 name: "pipingPlan",
                 stack: 'plan',
                 data: pipingPlan
-            },{
+            }, {
                 name: "processPlan",
                 stack: 'plan',
                 data: processPlan
-            },{
+            }, {
                 name: "civilActual",
                 stack: 'actual',
                 data: civilActual
-            },{
+            }, {
                 name: "electricalActual",
                 stack: 'actual',
                 data: electricalActual
-            },{
+            }, {
                 name: "instrumentActual",
                 stack: 'actual',
                 data: instrumentActual
-            },{
+            }, {
                 name: "mechanicalActual",
                 stack: 'actual',
                 data: mechanicalActual
-            },{
+            }, {
                 name: "pipingActual",
                 stack: 'actual',
                 data: pipingActual
-            },{
+            }, {
                 name: "processActual",
                 stack: 'actual',
                 data: processActual
-            },)
+            }, )
             console.log(datas, 'fuadi all');
 
             $("#chart_man_hour").kendoChart({
@@ -1118,35 +1160,71 @@
     chartMixed.render();
 
     // Percent chart ================================================================================================
+    // var options_percent = {
+    //     chart: {
+    //         height: 200,
+    //         type: 'donut',
+    //     },
+    //     series: [cum_percent_counter, 100 - cum_percent_counter],
+    //     labels: ["Complete", "Waiting"],
+    //     colors: ["#FFB703", "#219EBC"],
+    //     legend: {
+    //         show: false,
+    //         position: 'bottom',
+    //         horizontalAlign: 'center',
+    //         verticalAlign: 'middle',
+    //         floating: false,
+    //         fontSize: '14px',
+    //         offsetX: 0,
+    //         offsetY: 5
+    //     },
+    //     responsive: [{
+    //         breakpoint: 600,
+    //         options: {
+    //             chart: {
+    //                 height: 100
+    //             },
+    //             legend: {
+    //                 show: false
+    //             },
+    //         }
+    //     }]
+    // }
     var options_percent = {
         chart: {
-            height: 200,
-            type: 'donut',
+            height: 220,
+            type: 'radialBar',
         },
-        series: [cum_percent_counter, 100 - cum_percent_counter],
-        labels: ["Complete", "Waiting"],
-        colors: ["#FFB703", "#219EBC"],
-        legend: {
-            show: false,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            verticalAlign: 'middle',
-            floating: false,
-            fontSize: '14px',
-            offsetX: 0,
-            offsetY: 5
-        },
-        responsive: [{
-            breakpoint: 600,
-            options: {
-                chart: {
-                    height: 100
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    size: '20%',
                 },
-                legend: {
-                    show: false
-                },
+                dataLabels: {
+                    name: {
+                        fontSize: '14',
+                    },
+                    value: {
+                        fontSize: '14px',
+                    },
+                    total: {
+                        show: false,
+                        label: 'Total',
+                        formatter: function(w) {
+                            return 249
+                        }
+                    },
+                    // margin: 15,
+                }
             }
-        }]
+        },
+        series: [cum_percent_counter, 100 - cum_percent_counter, 100, 50],
+        labels: ['Complete', 'Waiting', 'Plan', 'Actual'],
+        colors: ["#FFB703", "#219EBC", '#9B5DE5', '#6A994E'],
+        legend: {
+            offsetY: 5
+        }
+
     }
     var chart_percent = new ApexCharts(
         document.querySelector("#percent_chart"),
@@ -1155,35 +1233,74 @@
     chart_percent.render();
 
     // Document chart ==============================================================================================
+    // var options_document = {
+    //     chart: {
+    //         height: 200,
+    //         type: 'donut',
+    //     },
+    //     series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
+    //     labels: ["Complete Document", "Waiting Document"],
+    //     colors: ["#E9C46A", "#2A9D8F"],
+    //     legend: {
+    //         show: false,
+    //         position: 'bottom',
+    //         horizontalAlign: 'center',
+    //         verticalAlign: 'middle',
+    //         floating: false,
+    //         fontSize: '14px',
+    //         offsetX: 0,
+    //         offsetY: 5
+    //     },
+    //     responsive: [{
+    //         breakpoint: 600,
+    //         options: {
+    //             chart: {
+    //                 height: 100
+    //             },
+    //             legend: {
+    //                 show: false
+    //             },
+    //         }
+    //     }]
+    // }
     var options_document = {
         chart: {
-            height: 200,
-            type: 'donut',
+            height: 220,
+            type: 'radialBar',
         },
-        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
-        labels: ["Complete Document", "Waiting Document"],
-        colors: ["#E9C46A", "#2A9D8F"],
-        legend: {
-            show: false,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            verticalAlign: 'middle',
-            floating: false,
-            fontSize: '14px',
-            offsetX: 0,
-            offsetY: 5
-        },
-        responsive: [{
-            breakpoint: 600,
-            options: {
-                chart: {
-                    height: 100
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    size: '20%',
                 },
-                legend: {
-                    show: false
-                },
+                dataLabels: {
+                    name: {
+                        fontSize: '14',
+                    },
+                    value: {
+                        fontSize: '14px',
+                        formatter: function(val) {
+                            return val + ' Document'; // Return value as string without percentage symbol
+                        },
+                    },
+                    total: {
+                        show: false,
+                        label: 'Total',
+                        formatter: function(w) {
+                            return 249
+                        }
+                    },
+                    // margin: 15,
+                }
             }
-        }]
+        },
+        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter, 100, 50],
+        labels: ["Complete Doc", "Waiting Doc", "Plan", "Actual"],
+        colors: ["#E9C46A", "#2A9D8F", "#00BBF9", "#F15BB5"],
+        legend: {
+            offsetY: 5
+        }
+
     }
     var chart_document = new ApexCharts(
         document.querySelector("#document_chart"),
@@ -1336,10 +1453,14 @@
     $(document).ready(function() {
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
-        $('#complete').html(`Complete ${cum_percent_counter.toFixed(1)}%`)
-        $('#waiting').html(`Waiting ${(100 - cum_percent_counter).toFixed(1)}%`)
-        $('#complete_doc').html(`Complete Doc ${total_done_doc_counter}`)
-        $('#waiting_doc').html(`Waiting Doc ${(total_doc_counter - total_done_doc_counter)}`)
+        $('#complete').html(`Complete: ${cum_percent_counter.toFixed(1)}%`)
+        $('#waiting').html(`Waiting: ${(100 - cum_percent_counter).toFixed(1)}%`)
+        $('#plan').html(`Plan: 100%`)
+        $('#actual').html(`Actual: 50%`)
+        $('#complete_doc').html(`Complete Doc: ${total_done_doc_counter}`)
+        $('#waiting_doc').html(`Waiting Doc: ${(total_doc_counter - total_done_doc_counter)}`)
+        $('#plan_doc').html(`Plan: 100`)
+        $('#actual_doc').html(`Actual: 50`)
     });
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>

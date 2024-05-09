@@ -68,81 +68,49 @@
             <div class="container-fluid">
                 <?= $page_title ?>
                 <div class="row mb-0">
-                    <div class="col-lg-6 pb-0">
+                    <div class="col-lg-8 pb-0">
                         <div class="card" style="background-color:#D0F4DE;border-radius: 35px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;height:100%">
                             <div class="card-body">
                                 <div class="text-center" style="background-color: #ADC178; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
                                     <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
                                 </div>
-                                <!--chart-->
                                 <div id="scurve_mdr" class="apex-charts"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-0">
-                        <div class="galon" style="padding: 15px; padding-top: 10px; height:50vh; border: 1px solid #B5838D; overflow: hidden; position: relative;">
+                    <div class="col-lg-4 mb-0">
+                        <div class="galon" style="padding: 15px; padding-top: 10px; border: 1px solid #B5838D; overflow: hidden; position: relative;background-color:#FEFAE0;height:100%">
                             <div class="card-body">
-                                <div class="row" style="height: 55%;">
-                                    <div class="col-sm-12 text-center" style="height: 48vh; position: relative;">
-                                        <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
-                                            <!-- <i class="ri-building-4-fill"></i> -->
-                                            <h4 class="card-title mb-0" style="color:#ffffff;">Procurement Progress</h4>
+                                <div class="col-sm-12 text-center" style="position: relative;">
+                                    <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
+                                        <i class="ri-building-4-fill"></i>
+                                        <h4 class="card-title mb-0" style="color:#ffffff;">Procurement Progress</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding: 5px;">
+                                            <div style="background-color: #A8DADC;border-radius: 50px;border: 1px solid #457B9D;">
+                                                <div id="plan_progress" class="m-0 p-0"></div>
+                                                <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
+                                                    <h4 class="card-title mb-0" style="color:#ffffff;">PLAN</h4>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div id="gauge_chart" class="m-0 p-0" style="height: 70%;"></div>
-                                        <!-- <a href="procurement-doc-list/1" class="btn btn-sm btn-info">
-                                            Show Detail
-                                        </a> -->
+                                        <div class="col-md-6" style="padding: 5px;">
+                                            <div style="background-color:#DDE5B6;border-radius: 50px;border:1px solid #548C2F">
+                                                <div id="actual_progress" class="m-0 p-0"></div>
+                                                <div class="label_procurement_progresss text-center mb-2" style="background-color: #E07A5F;color:#ffffff; display: inline-flex; align-items: center; flex-direction: column; padding: 5px 15px; border-radius: 20px; font-size: 2rem;">
+                                                    <h4 class="card-title mb-0" style="color:#ffffff;">ACTUAL</h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;">
                             <div class="row">
-                                <div class="col-8">
-                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                        <div class="dot" style="background-color:lightgrey"></div>
-                                        <span><strong id="complete">Remaining</strong></span>
-                                    </div>
-                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                        <div class="dot" style="background-color: #BC4749"></div>
-                                        <span><strong id="complete">Progress</strong></span>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <!-- Div Induk -->
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
                                     <div class="text-center selectable" style="border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color:#EDE580; padding: 7px;" onclick="window.location.href = 'procurement-doc-list/1';">
-                                        <!-- Div Anak -->
                                         <strong><span style="padding-right: 5px;"><i class="fas fa-info-circle"></i> Click for Detail</span></strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="top:-70px">
-                                <div class="col-md-3 m-0 p-0 text-center">
-                                    <div id="structural_chart" class="apex-charts"></div>
-
-                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-shapes"></i> Structural</h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 m-0 p-0 text-center">
-                                    <div id="piping_chart" class="apex-charts"></div>
-
-                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="mdi mdi-pipe"></i> Piping</h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 m-0 p-0 text-center">
-                                    <div id="electrical_chart" class="apex-charts"></div>
-
-                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-bolt"></i> Electrical & Ins</h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 m-0 p-0 text-center">
-                                    <div id="mechanical_chart" class="apex-charts"></div>
-
-                                    <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                        <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-wrench"></i> Mechanical</h4>
                                     </div>
                                 </div>
                             </div>
@@ -156,8 +124,8 @@
                                     </div>
                                 </div>
                             </div> -->
-                    <div class="col-md-4 mt-4 pt-0">
-                        <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
+                    <div class="col-md-6 mt-2 pt-0">
+                        <div class="galon mt-2" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                             <div class="row" style="padding: 20px;padding-bottom:0">
                                 <div class="col-6">
                                     <h4>Analysis</h4>
@@ -169,6 +137,58 @@
                             <div style="padding: 20px">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, ab. Ex facilis dicta alias expedita.
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-0 mt-2">
+                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;">
+                            <!-- <div class="row">
+                                    <div class="col-8">
+                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                            <div class="dot" style="background-color:lightgrey"></div>
+                                            <span><strong id="complete">Remaining</strong></span>
+                                        </div>
+                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                            <div class="dot" style="background-color: #BC4749"></div>
+                                            <span><strong id="complete">Progress</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center selectable" style="border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color:#EDE580; padding: 7px;" onclick="window.location.href = 'procurement-doc-list/1';">
+                                            <strong><span style="padding-right: 5px;"><i class="fas fa-info-circle"></i> Click for Detail</span></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="top:-70px">
+                                    <div class="col-md-3 m-0 p-0 text-center">
+                                        <div id="structural_chart" class="apex-charts"></div>
+    
+                                        <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-shapes"></i> Structural</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 m-0 p-0 text-center">
+                                        <div id="piping_chart" class="apex-charts"></div>
+    
+                                        <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="mdi mdi-pipe"></i> Piping</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 m-0 p-0 text-center">
+                                        <div id="electrical_chart" class="apex-charts"></div>
+    
+                                        <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-bolt"></i> Electrical & Ins</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 m-0 p-0 text-center">
+                                        <div id="mechanical_chart" class="apex-charts"></div>
+    
+                                        <div class="text-center" style="background-color: #E07A5F; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-wrench"></i> Mechanical</h4>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            <div id="level_1_chart"></div>
                         </div>
                     </div>
                 </div>
@@ -1061,7 +1081,7 @@
 
     var options_scurve_mdr = {
         chart: {
-            height: 380,
+            height: 350,
             type: 'line',
             zoom: {
                 enabled: false
@@ -1295,99 +1315,341 @@
     chart_mechanical.render();
 
     // procurement progress
-    Highcharts.chart('gauge_chart', {
+    // Highcharts.chart('actual_progress', {
+    //     chart: {
+    //         type: 'gauge',
+    //         plotBackgroundColor: null,
+    //         plotBackgroundImage: null,
+    //         plotBorderWidth: 0,
+    //         plotShadow: false,
+    //         height: '400px',
+    //         // marginTop: 0,
+    //         marginBottom: 0
+    //     },
+    //     title: {
+    //         text: '',
+    //     },
+    //     pane: {
+    //         startAngle: -90,
+    //         endAngle: 89.9,
+    //         background: null,
+    //         center: ['50%', '50%'],
+    //         // size: '0%'
+    //     },
+    //     credits: {
+    //         position: {
+    //             y: -100,
+    //         },
+    //     },
+    //     // the value axis
+    //     yAxis: {
+    //         min: 0,
+    //         max: 100,
+    //         tickPixelInterval: 72,
+    //         tickPosition: 'inside',
+    //         tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
+    //         tickLength: 20,
+    //         tickWidth: 2,
+    //         minorTickInterval: null,
+    //         labels: {
+    //             distance: 20,
+    //             style: {
+    //                 fontSize: '14px'
+    //             }
+    //         },
+    //         lineWidth: 0,
+    //         plotBands: [{
+    //             from: 0,
+    //             to: 50,
+    //             color: '#55BF3B', // green
+    //             thickness: 20
+    //         }, {
+    //             from: 50,
+    //             to: 75,
+    //             color: '#DDDF0D', // yellow
+    //             thickness: 20
+    //         }, {
+    //             from: 75,
+    //             to: 100,
+    //             color: '#DF5353', // red
+    //             thickness: 20
+    //         }]
+    //     },
+    //     series: [{
+    //         name: 'Percentage',
+    //         data: [80],
+    //         tooltip: {
+    //             valueSuffix: '%'
+    //         },
+    //         dataLabels: {
+    //             format: '{y}%',
+    //             borderWidth: 0,
+    //             color: (
+    //                 Highcharts.defaultOptions.title &&
+    //                 Highcharts.defaultOptions.title.style &&
+    //                 Highcharts.defaultOptions.title.style.color
+    //             ) || '#333333',
+    //             style: {
+    //                 fontSize: '16px'
+    //             }
+    //         },
+    //         dial: {
+    //             radius: '80%',
+    //             backgroundColor: 'gray',
+    //             baseWidth: 12,
+    //             baseLength: '0%',
+    //             rearLength: '0%'
+    //         },
+    //         pivot: {
+    //             backgroundColor: 'gray',
+    //             radius: 6
+    //         }
+
+    //     }]
+
+    // });
+    var options_plan_progress = {
+        series: [75],
         chart: {
-            type: 'gauge',
-            plotBackgroundColor: null,
-            plotBackgroundImage: null,
-            plotBorderWidth: 0,
-            plotShadow: false,
-            height: '400px',
-            // marginTop: 0,
-            marginBottom: 0
+            height: 200,
+            type: 'radialBar',
+            // toolbar: {
+            //     show: true
+            // }
         },
-        title: {
-            text: '',
-        },
-        pane: {
-            startAngle: -90,
-            endAngle: 89.9,
-            background: null,
-            center: ['50%', '50%'],
-            // size: '0%'
-        },
-        credits: {
-            position: {
-                y: -100,
-            },
-        },
-        // the value axis
-        yAxis: {
-            min: 0,
-            max: 100,
-            tickPixelInterval: 72,
-            tickPosition: 'inside',
-            tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
-            tickLength: 20,
-            tickWidth: 2,
-            minorTickInterval: null,
-            labels: {
-                distance: 20,
-                style: {
-                    fontSize: '14px'
+        plotOptions: {
+            radialBar: {
+                startAngle: -135,
+                endAngle: 225,
+                hollow: {
+                    margin: 0,
+                    size: '70%',
+                    background: '#FEFAE0',
+                    image: undefined,
+                    imageOffsetX: 0,
+                    imageOffsetY: 0,
+                    position: 'front',
+                    dropShadow: {
+                        enabled: true,
+                        top: 3,
+                        left: 0,
+                        blur: 4,
+                        opacity: 0.24
+                    }
+                },
+                track: {
+                    background: '#fff',
+                    strokeWidth: '67%',
+                    margin: 0, // margin is in pixels
+                    dropShadow: {
+                        enabled: true,
+                        top: -3,
+                        left: 0,
+                        blur: 4,
+                        opacity: 0.35
+                    }
+                },
+
+                dataLabels: {
+                    show: true,
+                    name: {
+                        offsetY: -10,
+                        show: true,
+                        color: '#888',
+                        fontSize: '17px'
+                    },
+                    value: {
+                        formatter: function(val) {
+                            return `${parseInt(val)}%`;
+                        },
+                        color: '#111',
+                        fontSize: '29px',
+                        show: true,
+                    }
                 }
-            },
-            lineWidth: 0,
-            plotBands: [{
-                from: 0,
-                to: 50,
-                color: '#55BF3B', // green
-                thickness: 20
-            }, {
-                from: 50,
-                to: 75,
-                color: '#DDDF0D', // yellow
-                thickness: 20
-            }, {
-                from: 75,
-                to: 100,
-                color: '#DF5353', // red
-                thickness: 20
-            }]
-        },
-        series: [{
-            name: 'Percentage',
-            data: [80],
-            tooltip: {
-                valueSuffix: '%'
-            },
-            dataLabels: {
-                format: '{y}%',
-                borderWidth: 0,
-                color: (
-                    Highcharts.defaultOptions.title &&
-                    Highcharts.defaultOptions.title.style &&
-                    Highcharts.defaultOptions.title.style.color
-                ) || '#333333',
-                style: {
-                    fontSize: '16px'
-                }
-            },
-            dial: {
-                radius: '80%',
-                backgroundColor: 'gray',
-                baseWidth: 12,
-                baseLength: '0%',
-                rearLength: '0%'
-            },
-            pivot: {
-                backgroundColor: 'gray',
-                radius: 6
             }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#E07A5F'],
+                inverseColors: true,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+            }
+        },
+        stroke: {
+            lineCap: 'round'
+        },
+        labels: ['progress'],
+    };
 
-        }]
+    var chart = new ApexCharts(document.querySelector("#plan_progress"), options_plan_progress);
+    chart.render();
 
-    });
+
+    var options_actual_progress = {
+        series: [75],
+        chart: {
+            height: 200,
+            type: 'radialBar',
+            // toolbar: {
+            //     show: true
+            // }
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -135,
+                endAngle: 225,
+                hollow: {
+                    margin: 0,
+                    size: '70%',
+                    background: '#FEFAE0',
+                    image: undefined,
+                    imageOffsetX: 0,
+                    imageOffsetY: 0,
+                    position: 'front',
+                    dropShadow: {
+                        enabled: true,
+                        top: 3,
+                        left: 0,
+                        blur: 4,
+                        opacity: 0.24
+                    }
+                },
+                track: {
+                    background: '#fff',
+                    strokeWidth: '67%',
+                    margin: 0, // margin is in pixels
+                    dropShadow: {
+                        enabled: true,
+                        top: -3,
+                        left: 0,
+                        blur: 4,
+                        opacity: 0.35
+                    }
+                },
+
+                dataLabels: {
+                    show: true,
+                    name: {
+                        offsetY: -10,
+                        show: true,
+                        color: '#888',
+                        fontSize: '17px'
+                    },
+                    value: {
+                        formatter: function(val) {
+                            return `${parseInt(val)}%`;
+                        },
+                        color: '#111',
+                        fontSize: '29px',
+                        show: true,
+                    }
+                }
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#ABE5A1'],
+                inverseColors: true,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+            }
+        },
+        stroke: {
+            lineCap: 'round'
+        },
+        labels: ['progress'],
+    };
+
+    var chart = new ApexCharts(document.querySelector("#actual_progress"), options_actual_progress);
+    chart.render();
+
+    var options = {
+        series: [{
+            data: [90, 34, 50, 100]
+        }],
+        chart: {
+            type: 'bar',
+            height: 250,
+            toolbar: {
+                show: false
+            }
+        },
+        plotOptions: {
+            bar: {
+                barHeight: '100%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                },
+            }
+        },
+        colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa'],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                colors: ['#fff']
+            },
+            formatter: function(val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+            },
+            offsetX: 0,
+            dropShadow: {
+                enabled: true
+            }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: ['Structural', 'Piping', 'Electrical & Ins', 'Mechanical'],
+        },
+        yaxis: {
+            labels: {
+                show: false
+            },
+            max: 100,
+        },
+        // title: {
+        //     text: 'Custom DataLabels',
+        //     align: 'center',
+        //     floating: true
+        // },
+        // subtitle: {
+        //     text: 'Category Names as DataLabels inside bars',
+        //     align: 'center',
+        // },
+        tooltip: {
+            theme: 'dark',
+            x: {
+                show: false
+            },
+            y: {
+                title: {
+                    formatter: function() {
+                        return ''
+                    }
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#level_1_chart"), options);
+    chart.render();
 
     // Add some life
     // setInterval(() => {
