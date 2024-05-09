@@ -61,7 +61,7 @@
                                 </div>
                                 <!-- <div style="overflow-x:auto;"> -->
                                 <font size="2">
-                                    <table id="datatable" class="table table-bordered nowrap">
+                                    <table id="scroll-vertical-datatable" class="table table-bordered nowrap">
                                         <thead style="border-top-width: 4px">
                                             <tr>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
@@ -131,7 +131,7 @@
                                                     <br>
                                                         <span class="text-primary">UPLOADED</span>
                                                     <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/procurement' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/po' . ' class="badge bg-primary mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                         >
@@ -158,7 +158,7 @@
                                                     <br>
                                                         <span class="text-success">APPROVED</span>
                                                     <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/procurement/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
+                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/po/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                         >
@@ -299,7 +299,7 @@
         <form action="#" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Engineering Document</h5>
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Procurement Document</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -361,7 +361,7 @@
         <form action="#" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Engineering Document</h5>
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Procurement Document</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -411,7 +411,7 @@
                 <div class="modal-footer">
                     <input type="hidden" id="id_doc_edit" />
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_engineering/update/document_detail">Save</button>
+                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_procurement/update/document_detail">Save</button>
                 </div>
             </div>
         </form>

@@ -142,7 +142,7 @@
                                                     <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit Comment</button>
                                                 </div>
                                                 <div style="text-align: left" class="mt-2">
-                                                    <small for="event-category">Document Approval</small>
+                                                    <small for="event-category">Document Approval fuad</small>
                                                 </div>
                                                 <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
                                                     <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
@@ -307,13 +307,13 @@
                 fetchComment: function() {
                     $.ajax({
                         method: 'GET',
-                        url: `<?= base_url('Project_detail_engineering/ajax_get_comment/' . $doc_id) ?>`,
+                        url: `<?= base_url('Project_detail_procurement/ajax_get_comment/' . $doc_id) ?>`,
                         dataType: "json",
                         contentType: 'application/json; charset=utf-8',
                         delay: 250,
                     }).done((resp) => {
                         console.log(resp, 'fuadi resp');
-                        const baseUrl = '<?= base_url('upload/engineering_doc/comment/') ?>/'
+                        const baseUrl = '<?= base_url('upload/procurement_doc/comment/') ?>/'
                         const step = '<?= $step ?>'
                         const isPreview = '<?= $is_preview ?>'
                         const tmp = resp.length > 0 ? resp.filter(f => isPreview ? f.doc_step === step : true).map(d => ({
@@ -347,7 +347,7 @@
                 },
                 deleteComment(item) {
                     console.log(item);
-                    const path = '<?= base_url('Project_detail_engineering/delete_comment') ?>'
+                    const path = '<?= base_url('Project_detail_procurement/delete_comment') ?>'
                     var formData = new FormData();
                     formData.append('id_comment', item.id);
                     Swal.fire({
@@ -790,7 +790,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '<?= base_url('Project_detail_engineering/add_comment') ?>',
+                        url: '<?= base_url('Project_detail_procurement/add_comment') ?>',
                         processData: false, // Memproses data menjadi string tidak diperlukan
                         contentType: false, // Jenis konten tidak diperlukan, karena FormData akan mengatur header secara otomatis
                         data: formData,

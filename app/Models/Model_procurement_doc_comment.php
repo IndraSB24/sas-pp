@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class Model_procurement_doc_comment extends Model
 {
-    protected $table      = 'engineering_doc_comment';
+    protected $table      = 'procurement_doc_comment';
     protected $primaryKey = 'id';
 
     protected $returnType     = 'object';
