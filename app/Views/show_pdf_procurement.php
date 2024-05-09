@@ -411,7 +411,21 @@
             },
             mounted: function() {
                 // Kode yang akan dijalankan setelah instance Vue di-mount
-                const url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->po_filename) ?>";
+                const step = '<?= $step ?>';
+                let url;
+                if (step === 'po') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->po_filename) ?>";
+                } else if (step === 'fat') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->fat_filename) ?>";
+                } else if (step === 'rfs') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->rfs_filename) ?>";
+                } else if (step === 'onsite') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->onsite_filename) ?>";
+                } else if (step === 'install') {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->install_filename) ?>";
+                } else {
+                    url = "<?= base_url('upload/procurement_doc/list/' . $doc_data[0]->comm_filename) ?>";
+                }
                 console.log(url, 'fuadi');
 
                 function clearCanvas() {
