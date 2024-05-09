@@ -142,7 +142,7 @@
                                                     <button class="btn btn-sm btn-info waves-effect waves-light" id="submitBtn"><i class="far fa-hdd"></i> Submit Comment</button>
                                                 </div>
                                                 <div style="text-align: left" class="mt-2">
-                                                    <small for="event-category">Document Approval fuad</small>
+                                                    <small for="event-category">Document Approval</small>
                                                 </div>
                                                 <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
                                                     <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
