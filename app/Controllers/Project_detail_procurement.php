@@ -283,7 +283,7 @@ class Project_detail_procurement extends BaseController
                 'created_by'            => sess('active_user_id'),
                 'id_file'               => $returned_id
             ];
-            $this->timeline_doc_model->save($data_timeline);
+            $this->Model_timeline_doc->save($data_timeline);
 
 			$proc_data = $this->Model_doc_procurement->get_by_id($id_doc);
 			$doc_desc = $proc_data[0]->activity_name_lvl_1;
