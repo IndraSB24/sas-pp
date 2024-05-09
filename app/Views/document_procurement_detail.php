@@ -7,13 +7,11 @@
         td:nth-child(6) {
             position: sticky;
             left: 0;
-            background-color: #ffffff !important;
             z-index: 1;
         }
         td:nth-child(7) {
             position: sticky;
             left: 13em;
-            background-color: #ffffff !important;
             z-index: 1;
         }
     </style>
@@ -63,63 +61,63 @@
                                 </div>
                                 <!-- <div style="overflow-x:auto;"> -->
                                 <font size="2">
-                                    <table id="datatable" class="table table-striped table-bordered nowrap">
+                                    <table id="datatable" class="table table-bordered nowrap">
                                         <thead style="border-top-width: 4px">
                                             <tr>
-                                                <th rowspan="4">NO</th>
-                                                <th rowspan="4">ACTIVITY CODE</th>
-                                                <th rowspan="1" colspan="6" style="width: 0px;" class="desc text-center">DESCRIPTION OF WORK</th>
-                                                <th rowspan="4" style="width: 0px;" class="desc text-center">DETAIL/ SPECIFICATION</th>
-                                                <th rowspan="4" style="width: 0px;">QUANTITY</th>
-                                                <th rowspan="4" style="width: 0px;">UNIT</th>
-                                                <th rowspan="1" colspan="2" style="width: 0px;" class="desc text-center">HARGA SATUAN</th>
-                                                <th colspan="2" class="desc text-center">TOTAL HARGA</th>
-                                                <th rowspan="4">TOTAL AMOUNT</th>
-                                                <th rowspan="4">WF</th>
-                                                <th rowspan="1" colspan="12" class="text-center">PROC</th>
-                                                <th rowspan="4" class="text-center">
+                                                <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
+                                                <th rowspan="4" style="background-color: #b0cbf7;">ACTIVITY CODE</th>
+                                                <th rowspan="1" colspan="6" style="width: 0px;background-color:#fad8a2" class="desc text-center">DESCRIPTION OF WORK</th>
+                                                <th rowspan="4" style="width: 0px;background-color: #D6CCC2" class="desc">DETAIL/ SPECIFICATION</th>
+                                                <th rowspan="4" style="width: 0px;background-color: #D6CCC2">QUANTITY</th>
+                                                <th rowspan="4" style="width: 0px;background-color: #D6CCC2">UNIT</th>
+                                                <th rowspan="1" colspan="2" style="width: 0px;background-color:#CF8BA9" class="desc text-center">HARGA SATUAN</th>
+                                                <th colspan="2" class="desc text-center" style="background-color:#FF8FAB">TOTAL HARGA</th>
+                                                <th rowspan="4" style="background-color: #b0cbf7">TOTAL AMOUNT</th>
+                                                <th rowspan="4" style="background-color: #b0cbf7">WF</th>
+                                                <th rowspan="1" colspan="12" class="text-center" style="background-color:#9dc9ae">PROC</th>
+                                                <th rowspan="4" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th rowspan="3" class="text-center">Level 1</th>
-                                                <th rowspan="3" class="text-center">Level 2</th>
-                                                <th rowspan="3" class="text-center">Level 3</th>
-                                                <th rowspan="3" class="text-center" style="position: sticky;left: 0;background-color: #ffffff !important;z-index: 1;">Level 4</th>
-                                                <th rowspan="3" class="text-center" style="position: sticky;left: 13em;background-color: #ffffff !important;z-index: 1;">Level 5</th>
-                                                <th rowspan="3" class="text-center">Group</th>
-                                                <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
-                                                <th rowspan="3" class="text-center">JASA (IDR)</th>
-                                                <th rowspan="3" class="text-center">MATERIAL (IDR)</th>
-                                                <th rowspan="3" class="text-center">JASA (IDR)</th>
-                                                <th colspan="2" class="text-center">PO</th>
-                                                <th colspan="2" class="text-center">FAT</th>
-                                                <th colspan="2" class="text-center">RFS</th>
-                                                <th colspan="2" class="text-center">ONSITE</th>
-                                                <th colspan="2" class="text-center">INSTALL</th>
-                                                <th colspan="2" class="text-center">COMM</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 1</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 2</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 3</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 0;z-index: 1;">Level 4</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 13em;z-index: 1;">Level 5</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Group</th>
+                                                <th rowspan="3" class="text-center" style="background-color:#DCB6D5">MATERIAL (IDR)</th>
+                                                <th rowspan="3" class="text-center" style="background-color:#DCB6D5">JASA (IDR)</th>
+                                                <th rowspan="3" class="text-center" style="background-color:#FFC2D1">MATERIAL (IDR)</th>
+                                                <th rowspan="3" class="text-center" style="background-color:#FFC2D1">JASA (IDR)</th>
+                                                <th colspan="2" class="text-center" style="background-color:#C5EDAC">PO</th>
+                                                <th colspan="2" class="text-center" style="background-color:#BFD200">FAT</th>
+                                                <th colspan="2" class="text-center" style="background-color:#57CC99">RFS</th>
+                                                <th colspan="2" class="text-center" style="background-color:#80ED99">ONSITE</th>
+                                                <th colspan="2" class="text-center" style="background-color:#90BE6D">INSTALL</th>
+                                                <th colspan="2" class="text-center" style="background-color:#90BAAD">COMM</th>
                                             </tr>
                                             <tr>
-                                                <th colspan="2" class="text-center">10%</th>
-                                                <th colspan="2" class="text-center">10%</th>
-                                                <th colspan="2" class="text-center">20%</th>
-                                                <th colspan="2" class="text-center">35%</th>
-                                                <th colspan="2" class="text-center">20%</th>
-                                                <th colspan="2" class="text-center">5%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#C5EDAC">10%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#BFD200">10%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#57CC99">20%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#80ED99">35%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#90BE6D">20%</th>
+                                                <th colspan="2" class="text-center" style="background-color:#90BAAD">5%</th>
                                             </tr>
                                             <tr>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
-                                                <th>PLAN</th>
-                                                <th>ACT</th>
+                                                <th style="background-color:#C5EDAC">PLAN</th>
+                                                <th style="background-color:#C5EDAC">ACT</th>
+                                                <th style="background-color:#DDDF00">PLAN</th>
+                                                <th style="background-color:#DDDF00">ACT</th>
+                                                <th style="background-color:#57CC99">PLAN</th>
+                                                <th style="background-color:#57CC99">ACT</th>
+                                                <th style="background-color:#80ED99">PLAN</th>
+                                                <th style="background-color:#80ED99">ACT</th>
+                                                <th style="background-color:#90BE6D">PLAN</th>
+                                                <th style="background-color:#90BE6D">ACT</th>
+                                                <th style="background-color:#90BAAD">PLAN</th>
+                                                <th style="background-color:#90BAAD">ACT</th>
                                             </tr>
                                         </thead>
 
@@ -232,39 +230,39 @@
                                                 ';
                                             ?>
                                                 <tr>
-                                                    <td class="text-center"> <?= $index + 1 ?> </td>
-                                                    <td class="text-center"> <?= $item->activity_code ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->activity_code ?> </td>
 
-                                                    <td> <?= $item->activity_name_lvl_1 ?> </td>
-                                                    <td> <?= $item->activity_name_lvl_2 ?> </td>
-                                                    <td> <?= $item->activity_name_lvl_3 ?> </td>
-                                                    <td> <?= $item->activity_name_lvl_4 ?> </td>
-                                                    <td> <?= $item->activity_name_lvl_5 ?> </td>
-                                                    <td> <?= $item->group_name ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_1 ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_2 ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_3 ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_4 ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_5 ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->group_name ?> </td>
 
-                                                    <th class="text-center"> <?= $item->detail_or_spesifikasi ?> </th>
-                                                    <th class="text-center"> <?= $item->quantity ?> </th>
-                                                    <th class="text-center"> <?= $item->unit ?> </th>
+                                                    <th style="background-color:#E3D5CA"> <?= $item->detail_or_spesifikasi ?> </th>
+                                                    <th style="background-color:#E3D5CA" class="text-center"> <?= $item->quantity ?> </th>
+                                                    <th style="background-color:#E3D5CA" class="text-center"> <?= $item->unit ?> </th>
 
-                                                    <th class="text-center"> <?= $item->harga_satuan_material ?> </th>
-                                                    <th class="text-center"> <?= $item->harga_satuan_jasa ?> </th>
-                                                    <th class="text-center"> <?= $item->total_harga_material ?> </th>
-                                                    <th class="text-center"> <?= $item->total_harga_jasa ?> </th>
-                                                    <th class="text-center"> <?= $item->total_amount ?> </th>
-                                                    <th class="text-center"> <?= $item->wf ?> </th>
-                                                    <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
-                                                    <td class="text-center"> <?= $po_act ?></td>
-                                                    <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
-                                                    <td class="text-center"> <?= $fat_act ?> </td>
-                                                    <td class="text-center"> <?= tgl_indo($item->rfs_plan) ?> </td>
-                                                    <td class="text-center"> <?= $rfs_act ?> </td>
-                                                    <td class="text-center"> <?= tgl_indo($item->onsite_plan) ?> </td>
-                                                    <td class="text-center"> <?= $onsite_act ?> </td>
-                                                    <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
-                                                    <td class="text-center"> <?= $install_act ?> </td>
-                                                    <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
-                                                    <td class="text-center"> <?= $comm_act ?> </td>
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <th class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_material ?> </th>
+                                                    <th class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_jasa ?> </th>
+                                                    <th class="text-center" style="background-color:#FFE5EC"> <?= $item->total_harga_material ?> </th>
+                                                    <th class="text-center" style="background-color:#FFE5EC"> <?= $item->total_harga_jasa ?> </th>
+                                                    <th class="text-center" style="background-color:#d2e5f7"> <?= $item->total_amount ?> </th>
+                                                    <th class="text-center" style="background-color:#d2e5f7"> <?= $item->wf ?> </th>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= tgl_indo($item->po_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $po_act ?></td>
+                                                    <td class="text-center" style="background-color:#EEEF20"> <?= tgl_indo($item->fat_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#EEEF20"> <?= $fat_act ?> </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> <?= tgl_indo($item->rfs_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> <?= $rfs_act ?> </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> <?= tgl_indo($item->onsite_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> <?= $onsite_act ?> </td>
+                                                    <td class="text-center" style="background-color:#C9E3AC"> <?= tgl_indo($item->install_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#C9E3AC"> <?= $install_act ?> </td>
+                                                    <td class="text-center" style="background-color:#A1E5AB"> <?= tgl_indo($item->comm_plan) ?> </td>
+                                                    <td class="text-center" style="background-color:#A1E5AB"> <?= $comm_act ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $action ?> </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>

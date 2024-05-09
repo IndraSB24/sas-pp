@@ -427,7 +427,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -436,7 +436,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -445,7 +445,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -454,7 +454,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -463,7 +463,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -497,7 +497,7 @@
                                                     <td nowrap>20-04-2024</td>
                                                     <td>Waiting</td>
                                                     <td>
-                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">tambah</button>
+                                                        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                     </td>
                                                 </tr>
 
