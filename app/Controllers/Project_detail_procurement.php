@@ -234,6 +234,11 @@ class Project_detail_procurement extends BaseController
         // read the file
         $uploaded_file = $this->request->getFile('file');
 		$doc_step = $this->request->getPost('doc_step');
+
+		$filename_key = $doc_step . '_filename';
+		$act_key = $doc_step . '_act';
+		$id_file_key = $doc_step . '_id_file';
+		$status_key = $doc_step . '_status';
                 
         // store the file
         if($uploaded_file){
@@ -254,20 +259,15 @@ class Project_detail_procurement extends BaseController
             ];
             $returned_id = $this->Model_procurement_doc_file->insertWithReturnId($data);
 
-			// Construct field names based on $po_type
-			$filename_key = $doc_step . '_filename';
-			$act_key = $doc_step . '_act';
-			$id_file_key = $doc_step . '_id_file';
-			$status_key = $doc_step . '_status';
-
-			$data = [
+			// update doc data
+			$data_update_doc = [
 				'id' => $id_doc,
 				$filename_key => $uploaded_file->getName(),
 				$act_key => $input_date,
 				$id_file_key => $returned_id,
 				$status_key => 'uploaded'
 			];
-			$update_doc = $this->Model_doc_procurement->save($data);
+			$update_doc = $this->Model_doc_procurement->save($data_update_doc);
             
 			// add timeliline
             $data_timeline = [
