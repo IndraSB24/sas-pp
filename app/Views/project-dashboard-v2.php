@@ -3,6 +3,7 @@
 <head>
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
+    <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
     <style>
         /* CSS untuk menentukan latar belakang div */
         .background-div {
@@ -222,9 +223,9 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                                    <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4>
+                                                    <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Week</h4>
                                                 </div>
-                                                <!-- <h4 class="card-title mb-1">Overall Progress by Month fuad</h4> -->
+                                                <!-- <h4 class="card-title mb-1">Overall Progress by Week fuad</h4> -->
                                             </div>
                                             <div class="col-sm-6 d-flex justify-content-end">
                                                 <a href="project-show-over-prog-month" class="btn btn-sm btn-warning mb-3">
@@ -241,7 +242,7 @@
                             <div class="col-lg-12">
                                 <div class="card ">
                                     <div class="card-body">
-                                        <h4 class="card-title mb-1">Overall Progress by Month</h4>
+                                        <h4 class="card-title mb-1">Overall Progress by Week</h4>
                                         <a href="project-show-over-prog-month" class="btn btn-sm btn-info mb-3">
                                             Show Detail
                                         </a>
@@ -255,7 +256,7 @@
                                 <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 35px 0 0 35px">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                            <h4 class="card-title mb-0" style="color:#ffffff">Manpower By Month</h4>
+                                            <h4 class="card-title mb-0" style="color:#ffffff">Manpower by Week</h4>
                                         </div>
                                         <div id="chart_man_power_stacked" class="apex-charts" dir="ltr"></div>
                                     </div>
@@ -265,7 +266,7 @@
                                 <div class="card background-divs" style="background-color: rgba(135, 206, 250, 0.9);background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));border-radius: 0 35px 35px 0;">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                            <h4 class="card-title mb-0" style="color:#ffffff">Manhour By Month</h4>
+                                            <h4 class="card-title mb-0" style="color:#ffffff">Manhour by Week</h4>
                                         </div>
                                         <div id="chart_man_hour" class="apex-charts" dir="ltr"></div>
                                     </div>
@@ -309,7 +310,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-center mt-2" style="background-color: rgba(255, 255, 224, 0.9); display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px;border: 1px solid #E0E0E0; border-radius: 20px;font-size:4rem">
-                                                <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Month</h4> -->
+                                                <!-- <h4 class="card-title mb-0" style="color:#ffffff">Overall Progress by Week</h4> -->
                                                 <strong style="font-size: 2rem;color:#fcb92c">4.022.020</strong>
                                             </div>
                                             <div class="mt-2">
@@ -593,7 +594,7 @@
 </body>
 
 </html>
-
+<script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 <script>
     // chart progress tracking
     var options_prog_chart = {
@@ -993,6 +994,10 @@
     chart.render();
 
     $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: 'Pilih opsi',
+            maximumSelectionLength: 2 // contoh konfigurasi tambahan
+        });
         $("#Detail-Engineering").click(function() {
             window.location.href = "engineering-dashboard"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });

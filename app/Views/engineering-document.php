@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.3.913/styles/kendo.default-ocean-blue.min.css" />
     <script src="https://kendo.cdn.telerik.com/2022.3.913/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2022.3.913/js/kendo.all.min.js"></script>
+        <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
+
     <?= $this->include('partials/head-css') ?>
     <style>
         .dot {
@@ -797,6 +799,7 @@
 
 <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
 <script src="assets/js/pages/jquery-knob.init.js"></script>
+<script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 
 <script>
     // chart
@@ -1105,7 +1108,7 @@
 
     var optionsMixed = {
         chart: {
-            height: 300,
+            height: 250,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -1233,7 +1236,7 @@
     // }
     var options_percent = {
         chart: {
-            height: 300,
+            height: 250,
             type: 'radialBar',
         },
         plotOptions: {
@@ -1306,7 +1309,7 @@
     // }
     var options_document = {
         chart: {
-            height: 300,
+            height: 250,
             type: 'radialBar',
         },
         plotOptions: {
@@ -1492,6 +1495,10 @@
     // var chart = new ApexCharts(document.querySelector("#chart_man_hour"), options);
     // chart.render();
     $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: 'Pilih opsi',
+            maximumSelectionLength: 2 // contoh konfigurasi tambahan
+        });
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
         $('#complete').html(`Plan: ${cum_percent_counter.toFixed(1)}%`)

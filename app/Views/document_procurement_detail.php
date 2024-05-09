@@ -176,14 +176,60 @@
                                                     <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
                                                         data-id="' . $item->id . '"
                                                         data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_po"
-                                                        data-step = ""
+                                                        data-path = "Project_detail_procurement/update/up_file"
+                                                        data-step = "po"
                                                         data-doc_name = "' . $item->description . '"
                                                     >
                                                         &nbsp;UP FILE&nbsp;
                                                     </a>
                                                 ';
                                                 }
+
+                                                $fat_act = '
+                                                no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                        &nbsp;WAITING&nbsp;
+                                                    </a>
+                                                ';
+                                                $rfs_act = '
+                                                no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                        &nbsp;WAITING&nbsp;
+                                                    </a>
+                                                ';
+                                                $onsite_act = '
+                                                no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                        &nbsp;WAITING&nbsp;
+                                                    </a>
+                                                ';
+                                                $install_act = '
+                                                no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                        &nbsp;WAITING&nbsp;
+                                                    </a>
+                                                ';
+                                                $comm_act = '
+                                                no date yet
+                                                <br>
+                                                    no file yet
+                                                <br>
+                                                    <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs" >
+                                                        &nbsp;WAITING&nbsp;
+                                                    </a>
+                                                ';
                                             ?>
                                                 <tr>
                                                     <td class="text-center"> <?= $index + 1 ?> </td>
@@ -209,16 +255,15 @@
                                                     <td class="text-center"> <?= tgl_indo($item->po_plan) ?> </td>
                                                     <td class="text-center"> <?= $po_act ?></td>
                                                     <td class="text-center"> <?= tgl_indo($item->fat_plan) ?> </td>
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $fat_act ?> </td>
                                                     <td class="text-center"> <?= tgl_indo($item->rfs_plan) ?> </td>
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $rfs_act ?> </td>
                                                     <td class="text-center"> <?= tgl_indo($item->onsite_plan) ?> </td>
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $onsite_act ?> </td>
                                                     <td class="text-center"> <?= tgl_indo($item->install_plan) ?> </td>
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $install_act ?> </td>
                                                     <td class="text-center"> <?= tgl_indo($item->comm_plan) ?> </td>
-
-                                                    <td class="text-center"> <?= $action ?> </td>
+                                                    <td class="text-center"> <?= $comm_act ?> </td>
                                                     <td class="text-center"> <?= $action ?> </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -579,10 +624,11 @@
         i = $('#upload_uploaded_file'),
             file = i[0].files[0];
         formData.append('file', file);
-        // formData.append('version', version);
         formData.append('id_doc', id_doc);
-        // formData.append('backdate', $('#backdate').val());
         formData.append('doc_name', $(this).data('doc_name'));
+        formData.append('doc_step', fileDesc);
+        // formData.append('version', version);
+        // formData.append('backdate', $('#backdate').val());
         // formData.append('doc_code', $(this).data('doc_code'));
         // formData.append('man_hour_actual', $('#actual_man_hour').val());
 
@@ -598,7 +644,7 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url: "<?= base_url('Project_detail_procurement/up_po') ?>",
+                    url: "<?= base_url('Project_detail_procurement/up_file') ?>",
                     method: 'POST',
                     data: formData,
                     contentType: false,
@@ -922,4 +968,14 @@
             }
         })
     })
+
+    function waitingSwal() {
+        Swal.fire({
+            title: 'Nothing You Can Do Here!',
+            icon: 'warning',
+            text: 'The progress is not here yet',
+            timer: 5000,
+            confirmButtonColor: "#5664d2",
+        })
+    }
 </script>

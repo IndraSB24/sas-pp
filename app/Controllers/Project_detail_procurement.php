@@ -231,7 +231,7 @@ class Project_detail_procurement extends BaseController
     public function up_file(){
         // read the file
         $uploaded_file = $this->request->getFile('file');
-		$doc_step = $this->request->getFile('doc_step');
+		$doc_step = $this->request->getPost('doc_step');
                 
         // store the file
         if($uploaded_file){

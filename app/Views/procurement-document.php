@@ -9,6 +9,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
 
     <style>
         .galon {
@@ -67,6 +68,21 @@
         <div class="page-content">
             <div class="container-fluid">
                 <?= $page_title ?>
+                <div class="col-md-4 row mb-3">
+                    <div class="col-6">
+                        <select class="form-control select2">
+                            <option >Select</option>
+                            <option value="EL">Week 1</option>
+                            <option value="FA">Week 2</option>
+                            <option value="FI">Week 3</option>
+                        </select>
+                    </div>
+                    <div class="col-6" style="padding-left: 0;">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone">
+                            Filter
+                        </button>
+                    </div>
+                </div>
                 <div class="row mb-0">
                     <div class="col-lg-8 pb-0">
                         <div class="card" style="background-color:#D0F4DE;border-radius: 35px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #ADC178;height:100%">
@@ -790,6 +806,7 @@
 <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/continents/jquery.vmap.indonesia.js"></script>-->
+<script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 
 <script>
     // btn simpan document
@@ -1706,4 +1723,10 @@
     //     }
 
     // }, 3000);
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: 'Pilih opsi',
+            maximumSelectionLength: 2 // contoh konfigurasi tambahan
+        });
+    });
 </script>
