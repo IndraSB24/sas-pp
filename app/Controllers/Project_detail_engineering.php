@@ -86,6 +86,7 @@ class Project_detail_engineering extends BaseController
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
+            'subtitle' => 'Judul Project'
         ];
 
 		return view('engineering-document', $data);
