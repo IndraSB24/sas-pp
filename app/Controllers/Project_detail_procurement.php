@@ -303,6 +303,7 @@ class Project_detail_procurement extends BaseController
                 'penerima' => $nope_indra,
                 'doc_name' => $doc_desc,
                 'doc_group' => $proc_data[0]->group_name,
+				'doc_step' => $doc_step,
                 'tgl_upload' => $input_date,
                 'link_to_open' => "https://sasinfinity.com/inpormasi/public/commentPdf/".$id_doc."/procurement/preview"
             ];
