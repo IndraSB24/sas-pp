@@ -418,7 +418,7 @@
                                                 <th style="text-align: left;">Title</th>
                                                 <th>BL Date</th>
                                                 <th>Actual/Forecast Date</th>
-                                                <th>Variant</th>
+                                                <th>Variance</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -488,7 +488,7 @@
                                                     <th style="text-align: left;">Title</th>
                                                     <th>BL Date</th>
                                                     <th>Actual/Forecast Date</th>
-                                                    <th>Variant</th>
+                                                    <th>Variance</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
