@@ -24,11 +24,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
     <style>
         #canvasContainer {
-            display: flex;
+            /* display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 100vh; */
             /* background-color: red; */
             background-color: rgba(200, 200, 200, 0.5);
             /* Warna latar belakang dengan opasitas */
@@ -596,9 +596,9 @@
                             var bg = canvasEl.toDataURL("image/png");
 
                             fabric.Image.fromURL(bg, function(img) {
-                                img.scaleToHeight(1000);
-                                canvas.setHeight(1000);
-                                canvas.setWidth(750);
+                                img.scaleToHeight(viewport.height);
+                                canvas.setHeight(viewport.height);
+                                canvas.setWidth(viewport.width);
                                 canvas.setBackgroundImage(img);
                             });
                             canvas.renderAll();
@@ -671,9 +671,9 @@
                                 var bg = canvasEl.toDataURL("image/png");
 
                                 fabric.Image.fromURL(bg, function(img) {
-                                    img.scaleToHeight(1000);
-                                    canvas.setHeight(1000);
-                                    canvas.setWidth(750);
+                                    img.scaleToHeight(viewport.height);
+                                    canvas.setHeight(viewport.height);
+                                    canvas.setWidth(viewport.width);
                                     canvas.setBackgroundImage(img);
                                 });
                                 canvas.renderAll();
