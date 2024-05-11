@@ -203,7 +203,7 @@ class Model_doc_engineering extends Model
                 dw.week_number as week_number,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
                  SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
-                 SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) AS cum_plan_wf
+                 SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0)/100 AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN 
@@ -228,9 +228,9 @@ class Model_doc_engineering extends Model
         $sql = "
             SELECT 
                 dw.week_number as week_number,
-                SUM(pde1.weight_factor * 0.25) AS ifa_plan_wf,
-                SUM(pde2.weight_factor * 0.65) AS ifc_plan_wf,
-                SUM(pde3.weight_factor * 0.10) AS asbuild_plan_wf
+                SUM(pde1.weight_factor * 0.25)/100 AS ifa_plan_wf,
+                SUM(pde2.weight_factor * 0.65)/100 AS ifc_plan_wf,
+                SUM(pde3.weight_factor * 0.10)/100 AS asbuild_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN 
