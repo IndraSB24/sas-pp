@@ -89,7 +89,8 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
             'subtitle' => 'Judul Project',
-            'getScurveDataPlan' => $this->doc_engineering_model->getScurveDataPlan()
+            'getScurveDataPlan' => $this->doc_engineering_model->getScurveDataPlan(),
+            'getScurveDataActual' => $this->doc_engineering_model->getScurveDataActual()
         ];
 
 		return view('engineering-document', $data);

@@ -195,15 +195,15 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
-    // get scurve chart data
+    // get scurve chart data plan
     public function getScurveDataPlan($idProject = 1)
     {
         $sql = "
             SELECT 
-                dw.week_number as week_number,
+                dw.week_number AS week_number,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
-                 SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
-                 SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0)/100 AS cum_plan_wf
+                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
+                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0)/100 AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN 
@@ -212,6 +212,33 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            GROUP BY 
+                dw.id
+            ORDER BY 
+                dw.id
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get scurve chart data actual
+    public function getScurveDataActual($idProject = 1)
+    {
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
+                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
+                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0)/100 AS cum_plan_wf
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde1 ON (pde1.actual_ifa BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde2 ON (pde2.actual_ifc BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
             GROUP BY 
                 dw.id
             ORDER BY 
