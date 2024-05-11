@@ -213,7 +213,7 @@ class Model_doc_engineering extends Model
             GROUP BY 
                 dw.id
             ORDER BY 
-                week.id
+                dw.id
         ";
 
         $query = $this->db->query($sql);
