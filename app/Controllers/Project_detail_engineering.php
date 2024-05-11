@@ -8,11 +8,12 @@ use App\Models\Model_timeline_doc;
 use App\Models\Model_engineering_doc_comment;
 use App\Models\Model_engineering_doc_file;
 use App\Models\Model_data_helper;
+use App\Models\Model_week;
 
 class Project_detail_engineering extends BaseController
 {
     protected $doc_engineering_model, $project_model, $timeline_doc_model, $Model_engineering_doc_comment,
-        $Model_engineering_doc_file, $Model_data_helper;
+        $Model_engineering_doc_file, $Model_data_helper, $Model_week;
  
     function __construct(){
         $this->doc_engineering_model = new Model_doc_engineering();
@@ -21,6 +22,7 @@ class Project_detail_engineering extends BaseController
         $this->Model_engineering_doc_comment = new Model_engineering_doc_comment();
         $this->Model_engineering_doc_file = new Model_engineering_doc_file();
         $this->Model_data_helper = new Model_data_helper();
+        $this->Model_week = new Model_week();
         helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -86,7 +88,8 @@ class Project_detail_engineering extends BaseController
             'total_doc' => $this->doc_engineering_model->count_all_doc(),
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
-            'subtitle' => 'Judul Project'
+            'subtitle' => 'Judul Project',
+            'getScurveDataPlan' => $this->doc_engineering_model->getScurveDataPlan()
         ];
 
 		return view('engineering-document', $data);
@@ -1103,6 +1106,16 @@ class Project_detail_engineering extends BaseController
         $status = $plan_date > $current_datetime ? "late" : "on time";
     
         return $status;
+    }
+
+    // get chart data for scurve
+    public function get_scurve_data($id_project){
+        // get week data
+        $data_week = $this->Model_week->getWeeksByProject($id_project);
+        $data_wf = $this->Model_data_helper->get_by_type('engineering_doc_weight');
+        $data_doc_engineering = $this->doc_engineering_model->findAll();
+
+
     }
 
 }

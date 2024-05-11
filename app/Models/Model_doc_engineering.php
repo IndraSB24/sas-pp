@@ -179,4 +179,45 @@ class Model_doc_engineering extends Model
         return $this->get()->getResult();
     }
 
+    // get scurve dashboard mdr
+    public function getScurveDashboardMDR(){
+        $this->select('
+            WEEK(project_detail_engineering.external_asbuild_plan) as weeks,
+            MONTH(project_detail_engineering.external_asbuild_plan) as asbuild_plan_month,
+            dh.name as dicipline_name,
+            SUM(project_detail_engineering.man_hour_plan) AS man_hour_plan,
+            SUM(project_detail_engineering.man_hour_actual) AS man_hour_actual
+        ')
+        ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline')
+        ->where('project_detail_engineering.deleted_at', NULL)
+        ->groupBy('asbuild_plan_year, asbuild_plan_month, dicipline_name');
+ 
+        return $this->get()->getResult();
+    }
+
+    // get scurve chart data
+    public function getScurveDataPlan($idProject = 1)
+    {
+        $sql = "
+            SELECT 
+                dw.week_number as week_number,
+                SUM( (pde1.weight_factor * 0.25) + (pde2.weight_factor * 0.65) + (pde3.weight_factor * 0.10) ) AS cum_plan_wf
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde1 ON (pde1.plan_ifa BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            GROUP BY 
+                dw.id
+            ORDER BY 
+                week.id
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
 }
