@@ -196,12 +196,14 @@ class Model_doc_engineering extends Model
     }
 
     // get scurve chart data
-    public function getScurveDataPlan_1($idProject = 1)
+    public function getScurveDataPlan($idProject = 1)
     {
         $sql = "
             SELECT 
                 dw.week_number as week_number,
-                COALESCE(SUM( (pde1.weight_factor * 0.25) + (pde2.weight_factor * 0.65) + (pde3.weight_factor * 0.10) ), 0) AS cum_plan_wf
+                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
+                 SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
+                 SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN 
@@ -221,7 +223,7 @@ class Model_doc_engineering extends Model
     }
 
     // get scurve chart data
-    public function getScurveDataPlan($idProject = 1)
+    public function getScurveDataPlan_0($idProject = 1)
     {
         $sql = "
             SELECT 
