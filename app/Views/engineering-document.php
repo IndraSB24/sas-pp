@@ -809,6 +809,7 @@
     let total_doc_counter = parseInt(<?= $total_doc ?>);
 
     console.log(<?= json_encode($data_chart_man_hour) ?>);
+    console.log(<?= json_encode($getScurveDataPlan) ?>);
 
     //  Scurve mdr
     let weekList = [],
