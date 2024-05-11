@@ -233,8 +233,9 @@
                                 <button class="btn btn-primary waves-effect waves-light" @click="prevImage" id="prev">Prev</button>
                                 <button class="btn btn-primary waves-effect waves-light" @click="nextImage" style="margin-left: 5px" id="next">Next</button>
                             </div>
-                            <!-- <img :src="selectedFile.comment_file" alt="File"> -->
-                            <img :src="selectedFile.link" alt="File">
+                            <div class="mt-2" style="overflow: auto;">
+                                <img :src="selectedFile.link" alt="File">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
