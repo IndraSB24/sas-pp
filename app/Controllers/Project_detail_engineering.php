@@ -78,6 +78,33 @@ class Project_detail_engineering extends BaseController
         
         // echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
+        // get pan and actual data by week
+        $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan();
+        $getScurveDataActual = $this->doc_engineering_model->getScurveDataActual();
+
+        // count plan cum
+        $getScurveDataPlanCum = [];
+        $plan_cum_counted = 0;
+        foreach ($getScurveDataPlan as $key => $value) {
+            $plan_cum_counted += $value->cum_plan_wf;
+            $getScurveDataPlanCum[$key] = $plan_cum_counted;
+        }
+
+        // count act cum
+        $getScurveDataActualCum = [];
+        $actual_cum_counted = 0;
+        foreach ($getScurveDataActual as $key => $value) {
+            $actual_cum_counted += $value->cum_actual_wf;
+            $getScurveDataActualCum[$key] = $actual_cum_counted;
+        }
+
+        $data['scurveData'] = [
+            'dataPlan' => $getScurveDataPlan,
+            'dataActual' => $getScurveDataActual,
+            'dataPlanCum' => $getScurveDataPlanCum,
+            'dataActualCum' => $getScurveDataActualCum
+        ];
+
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR', 'subtitle' => 'Project Name']),
@@ -89,32 +116,7 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
             'subtitle' => 'Judul Project',
-            'dataWeek' => $this->Model_week->findAll(),
-            'getScurveDataPlan' => $this->doc_engineering_model->getScurveDataPlan(),
-            'getScurveDataActual' => $this->doc_engineering_model->getScurveDataActual()
-        ];
-
-        // count plan cum
-        $data['getScurveDataPlanCum'] = [];
-        $plan_cum_counted = 0;
-        foreach ($data['getScurveDataPlan'] as $key => $value) {
-            $plan_cum_counted += $value->cum_plan_wf;
-            $data['getScurveDataPlanCum'][$key] = $plan_cum_counted;
-        }
-
-        // count act cum
-        $data['getScurveDataActualCum'] = [];
-        $actual_cum_counted = 0;
-        foreach ($data['getScurveDataActual'] as $key => $value) {
-            $actual_cum_counted += $value->cum_actual_wf;
-            $data['getScurveDataActualCum'][$key] = $actual_cum_counted;
-        }
-
-        $data['scurveData'] = [
-            'dataPlan' => $data['getScurveDataPlan'],
-            'dataActual' => $data['getScurveDataActual'],
-            'dataPlanCum' => $data['getScurveDataPlanCum'],
-            'dataActualCum' => $data['getScurveDataActualCum']
+            'dataWeek' => $this->Model_week->findAll()
         ];
 
 		return view('engineering-document', $data);

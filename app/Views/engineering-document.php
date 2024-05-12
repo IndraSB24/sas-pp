@@ -808,10 +808,6 @@
     let total_done_doc_counter = 0;
     let total_doc_counter = parseInt(<?= $total_doc ?>);
 
-    // console.log(<?= json_encode($getScurveDataPlan) ?>);
-    // console.log(<?= json_encode($getScurveDataActual) ?>);
-    // console.log(<?= json_encode($getScurveDataPlanCum) ?>);
-    // console.log(<?= json_encode($getScurveDataActualCum) ?>);
     console.log(<?= json_encode($scurveData) ?>);
 
     //  Scurve mdr
