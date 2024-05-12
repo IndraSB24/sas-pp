@@ -110,6 +110,13 @@ class Project_detail_engineering extends BaseController
             $data['getScurveDataActualCum'][$key] = $actual_cum_counted;
         }
 
+        $data['scurveData'] = [
+            'dataPlan' => $data['getScurveDataPlan'],
+            'dataActual' => $data['getScurveDataActual'],
+            'dataPlanCum' => $data['getScurveDataPlanCum'],
+            'dataActualCum' => $data['getScurveDataActualCum']
+        ];
+
 		return view('engineering-document', $data);
 	}
 	
