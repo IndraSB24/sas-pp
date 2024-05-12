@@ -212,6 +212,8 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            WHERE
+                dw.id_project = '$idProject'
             GROUP BY 
                 dw.id
             ORDER BY 
@@ -239,6 +241,8 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde2 ON (pde2.actual_ifc BETWEEN dw.start_date AND dw.end_date)
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
+            WHERE
+                dw.id_project = '$idProject'
             GROUP BY 
                 dw.id
             ORDER BY 
@@ -257,7 +261,6 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                dw.week_number AS week_number,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
                     SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
                     SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) / 100 AS cum_progress_plan
@@ -270,11 +273,7 @@ class Model_doc_engineering extends Model
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
             WHERE 
-                dw.start_date <= '$currentDate'
-            GROUP BY 
-                dw.id
-            ORDER BY 
-                dw.id
+                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
         ";
 
         $query = $this->db->query($sql);
@@ -289,7 +288,6 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                dw.week_number AS week_number,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
                     SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
                     SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) AS cum_progress_actual
@@ -302,7 +300,7 @@ class Model_doc_engineering extends Model
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
             WHERE 
-                dw.start_date <= '$currentDate'
+                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
         ";
 
         $query = $this->db->query($sql);
