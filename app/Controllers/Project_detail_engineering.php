@@ -89,9 +89,26 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
             'subtitle' => 'Judul Project',
+            'dataWeek' => $this->Model_week->findAll(),
             'getScurveDataPlan' => $this->doc_engineering_model->getScurveDataPlan(),
             'getScurveDataActual' => $this->doc_engineering_model->getScurveDataActual()
         ];
+
+        // count plan cum
+        $data['getScurveDataPlanCum'] = [];
+        $plan_cum_counted = 0;
+        foreach ($data['getScurveDataPlan'] as $key => $value) {
+            $plan_cum_counted += $value;
+            $data['getScurveDataPlanCum'][$key] = $plan_cum_counted;
+        }
+
+        // count act cum
+        $data['getScurveDataActualCum'] = [];
+        $actual_cum_counted = 0;
+        foreach ($data['getScurveDataActual'] as $key => $value) {
+            $actual_cum_counted += $value;
+            $data['getScurveDataActualCum'][$key] = $actual_cum_counted;
+        }
 
 		return view('engineering-document', $data);
 	}

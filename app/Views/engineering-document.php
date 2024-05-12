@@ -810,6 +810,8 @@
 
     console.log(<?= json_encode($getScurveDataPlan) ?>);
     console.log(<?= json_encode($getScurveDataActual) ?>);
+    console.log(<?= json_encode($getScurveDataPlanCum) ?>);
+    console.log(<?= json_encode($getScurveDataActualCum) ?>);
 
     //  Scurve mdr
     let weekList = [],
