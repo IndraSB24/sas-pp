@@ -249,31 +249,35 @@ class Model_doc_engineering extends Model
         return $query->getResult();
     }
 
-    // get scurve chart data
-    public function getScurveDataPlan_0($idProject = 1)
+    // get cum percent progress till today
+    public function getCumDataPlanPerToday($idProject = 1)
     {
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
         $sql = "
             SELECT 
-                dw.week_number as week_number,
-                SUM(pde1.weight_factor * 0.25)/100 AS ifa_plan_wf,
-                SUM(pde2.weight_factor * 0.65)/100 AS ifc_plan_wf,
-                SUM(pde3.weight_factor * 0.10)/100 AS asbuild_plan_wf
+                dw.week_number AS week_number,
+                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
+                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
+                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) / 100 AS cum_progress_plan
             FROM 
                 data_week dw
             LEFT JOIN 
                 project_detail_engineering pde1 ON (pde1.plan_ifa BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN 
+            LEFT JOIN
                 project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN 
+            LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            WHERE 
+                dw.start_date <= '$currentDate'
             GROUP BY 
-                dw.id
-            ORDER BY 
-                dw.id
+                dw.id_project
         ";
 
         $query = $this->db->query($sql);
         return $query->getResult();
     }
+
 
 }

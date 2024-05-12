@@ -808,7 +808,15 @@
     let total_done_doc_counter = 0;
     let total_doc_counter = parseInt(<?= $total_doc ?>);
 
-    console.log(<?= json_encode($scurveData) ?>);
+    console.log({
+        title: 'scurveData',
+        <?= json_encode($scurveData) ?>
+    });
+    console.log({
+        title: 'progressChartData',
+        <?= json_encode($progressChartData) ?>
+    });
+    
 
     //  Scurve mdr
     let weekList = [],
