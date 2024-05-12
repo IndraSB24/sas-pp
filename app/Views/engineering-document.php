@@ -1251,6 +1251,8 @@
     //         }
     //     }]
     // }
+    const progressChartData = <?= json_encode($progressChartData)?>;
+    
     var options_percent = {
         chart: {
             height: 250,
@@ -1279,7 +1281,7 @@
                 }
             }
         },
-        series: [cum_percent_counter, 100 - cum_percent_counter],
+        series: [progressChartData.percent_plan[0].cum_progress_plan, progressChartData.percent_actual[0].cum_progress_actual],
         labels: ['Plan', 'Actual'],
         colors: ["#FFB703", "#219EBC"],
         legend: {
@@ -1355,7 +1357,7 @@
                 }
             }
         },
-        series: [total_done_doc_counter, total_doc_counter - total_done_doc_counter],
+        series: [progressChartData.doc_plan[0].total_plan_doc, progressChartData.doc_actual[0].total_actual_doc],
         labels: ["Plan", "Actual"],
         colors: ["#E9C46A", "#2A9D8F"],
         legend: {
@@ -1518,10 +1520,10 @@
         });
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
-        $('#complete').html(`Plan: ${cum_percent_counter.toFixed(1)}%`)
-        $('#waiting').html(`Actual: ${(100 - cum_percent_counter).toFixed(1)}%`)
-        $('#complete_doc').html(`Plan: ${total_done_doc_counter}`)
-        $('#waiting_doc').html(`Actual: ${(total_doc_counter - total_done_doc_counter)}`)
+        $('#complete').html(`Plan: ${parseFloat(progressChartData.percent_plan[0].cum_progress_plan).toFixed(1)}%`)
+        $('#waiting').html(`Actual: ${parseFloat(progressChartData.percent_actual[0].cum_progress_actual).toFixed(1)}%`)
+        $('#complete_doc').html(`Plan: ${progressChartData.doc_plan[0].total_plan_doc}`)
+        $('#waiting_doc').html(`Actual: ${(progressChartData.doc_actual[0].total_actual_doc)}`)
     });
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
