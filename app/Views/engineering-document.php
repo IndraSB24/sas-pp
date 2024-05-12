@@ -1110,6 +1110,19 @@
         cum_plan_mixed_chart
     }, 'fuadi data  ')
 
+    const scurveData = <?= json_encode($scurveData) ?>;
+    const labels = [];
+    const plans = [];
+    const actuals = [];
+    const actualCum = [];
+    const planCum = [];
+    for(let i = 0; i < scurveData.dataPlan.length; i++) {
+        labels.push(`Week ${scurveData.dataPlan[i].week_number}`);
+        plans.push(scurveData.dataPlan[i].cum_plan_wf);
+        actuals.push(scurveData.dataActual[i].cum_actual_wf);
+        actualCum.push(scurveData.dataActualCum[i]);
+        planCum.push(scurveData.dataPlanCum[i]);
+    }
     var optionsMixed = {
         chart: {
             height: 250,
@@ -1132,22 +1145,22 @@
         series: [{
                 name: 'Plan',
                 type: 'column',
-                data: plan_mixed_chart
+                data: plans
             },
             {
                 name: 'Actual',
                 type: 'column',
-                data: actual_mixed_chart
+                data: actuals
             },
             {
                 name: 'Cum Plan',
                 type: 'line',
-                data: cum_plan_mixed_chart
+                data: planCum
             },
             {
                 name: 'Cum Actual',
                 type: 'line',
-                data: cum_actual_mixed_chart
+                data: actualCum
             }
         ],
         fill: {
@@ -1161,7 +1174,7 @@
                 stops: [0, 100, 100, 100]
             }
         },
-        labels: labels_mixed_chart1,
+        labels: labels,
         markers: {
             size: 4
         },
