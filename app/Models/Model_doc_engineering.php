@@ -273,8 +273,6 @@ class Model_doc_engineering extends Model
                 dw.start_date <= '$currentDate'
             GROUP BY 
                 dw.id
-            GROUP BY 
-                dw.id_project
             ORDER BY 
                 dw.id
         ";
