@@ -27,7 +27,7 @@ class Project_detail_engineering extends BaseController
     }
     
 	public function index($project_id=null, $week=null){
-        // man hour chart data
+        // start of man hour chart data =========================================================
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
         $data_man_hour = [];
 
@@ -74,11 +74,12 @@ class Project_detail_engineering extends BaseController
             $data_man_hour['year_month'][$yearMonth]['actual']['man_hour_per_discipline'][$discipline] += $row->man_hour_actual; // Access object property
         }
 
-        unset($data_man_hour['year_month']['-']); 
+        unset($data_man_hour['year_month']['-']);
+        // end of man hour chart data ============================================================
         
         // echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
-        // get pan and actual data by week
+        // start of scurve data count ============================================================
         $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan();
         $getScurveDataActual = $this->doc_engineering_model->getScurveDataActual();
 
@@ -97,6 +98,7 @@ class Project_detail_engineering extends BaseController
             $actual_cum_counted += $value->cum_actual_wf;
             $getScurveDataActualCum[$key] = $actual_cum_counted;
         }
+        // end of scurve data ===================================================================
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
