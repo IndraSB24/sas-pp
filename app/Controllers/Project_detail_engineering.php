@@ -122,7 +122,8 @@ class Project_detail_engineering extends BaseController
                 'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday(),
                 'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday(),
                 'doc_actual' => $this->doc_engineering_model->getCumActualDocumentPerToday(),
-                'doc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerToday()
+                'doc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerToday(),
+                'doc_total' => $this->doc_engineering_model->countAllResults()
                 
             ]
         ];
