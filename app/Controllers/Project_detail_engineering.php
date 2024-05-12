@@ -98,7 +98,7 @@ class Project_detail_engineering extends BaseController
         $data['getScurveDataPlanCum'] = [];
         $plan_cum_counted = 0;
         foreach ($data['getScurveDataPlan'] as $key => $value) {
-            $plan_cum_counted += $value;
+            $plan_cum_counted += $value->cum_plan_wf;
             $data['getScurveDataPlanCum'][$key] = $plan_cum_counted;
         }
 
@@ -106,7 +106,7 @@ class Project_detail_engineering extends BaseController
         $data['getScurveDataActualCum'] = [];
         $actual_cum_counted = 0;
         foreach ($data['getScurveDataActual'] as $key => $value) {
-            $actual_cum_counted += $value;
+            $actual_cum_counted += $value->cum_actual_wf;
             $data['getScurveDataActualCum'][$key] = $actual_cum_counted;
         }
 
