@@ -167,12 +167,12 @@
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
-                                                            <small><strong>Plan <?= $data_page->chart_pt_engineering_plan ?>%</strong></small>
+                                                            <small><strong>Plan <?= number_format(floatval($progressChartDataEngineering['percent_plan'][0]->cum_progress_plan), 1) ?>%</strong></small>
 
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
-                                                            <small><strong>Actual <?= $data_page->chart_pt_engineering_actual ?>%</strong></small>
+                                                            <small><strong>Actual <?= number_format(floatval($progressChartDataEngineering['percent_actual'][0]->cum_progress_actual), 1) ?>%</strong></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -692,8 +692,8 @@
                 }
             }
         },
-        series: [<?= $data_page->chart_pt_engineering_actual ?>, <?= $data_page->chart_pt_engineering_plan ?>],
-        labels: ['Actual', 'Plan'],
+        series: [<?= number_format(floatval($progressChartDataEngineering['percent_plan'][0]->cum_progress_plan), 1) ?>, <?= number_format(floatval($progressChartDataEngineering['percent_actual'][0]->cum_progress_actual), 1) ?>],
+        labels: ['Plan', 'Actual'],
         colors: ['#5664d2', '#fcb92c'],
         legend: {
             offsetY: 5
