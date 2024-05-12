@@ -303,10 +303,6 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
             WHERE 
                 dw.start_date <= '$currentDate'
-            GROUP BY 
-                dw.id
-            ORDER BY 
-                dw.id
         ";
 
         $query = $this->db->query($sql);
