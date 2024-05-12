@@ -257,7 +257,7 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                COUNT(dw.week_number) AS week_total,
+                dw.week_number AS week_number,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
                     SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
                     SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) / 100 AS cum_progress_plan
@@ -271,14 +271,10 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
             WHERE 
                 dw.start_date <= '$currentDate'
-            GROUP BY 
-                dw.id
-            ORDER BY 
-                dw.id
         ";
 
         $query = $this->db->query($sql);
-        return $query->getResult();
+        return $query->getRow();
     }
 
 
