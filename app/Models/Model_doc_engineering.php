@@ -257,7 +257,7 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                dw.week_number AS week_number,
+                COUNT(dw.week_number) AS week_total,
                 COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
                     SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
                     SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) / 100 AS cum_progress_plan
@@ -273,6 +273,8 @@ class Model_doc_engineering extends Model
                 dw.start_date <= '$currentDate'
             GROUP BY 
                 dw.id
+            GROUP BY 
+                dw.id_project
             ORDER BY 
                 dw.id
         ";
