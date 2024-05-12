@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.3.913/styles/kendo.default-ocean-blue.min.css" />
     <script src="https://kendo.cdn.telerik.com/2022.3.913/js/jquery.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2022.3.913/js/kendo.all.min.js"></script>
-        <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/libs/select2/css/select2.min.css') ?>" rel="stylesheet" type="text/css">
 
     <?= $this->include('partials/head-css') ?>
     <style>
@@ -32,6 +32,9 @@
             background-color: #7390A4 !important;
             color: #fff !important;
             cursor: pointer;
+        }
+        #total_doc {
+            font-weight: 700;
         }
     </style>
 </head>
@@ -153,6 +156,10 @@
                                                 <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #2A9D8F;"></div>
                                                     <small><strong id="waiting_doc">-</strong></small>
+                                                </div>
+                                                <div class="mt-1" style="display: flex; justify-content: flex-start; align-items: center;">
+                                                    <div class="dot" style="background-color: #F4F0BE;"></div>
+                                                    <small><h5 id="total_doc" style="font-size: 0.7rem;">-</h5></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -812,7 +819,7 @@
     console.log(<?= json_encode($scurveData) ?>);
     console.log('progress chart data');
     console.log(<?= json_encode($progressChartData) ?>);
-    
+
 
     //  Scurve mdr
     let weekList = [],
@@ -1116,7 +1123,7 @@
     const actuals = [];
     const actualCum = [];
     const planCum = [];
-    for(let i = 0; i < scurveData.dataPlan.length; i++) {
+    for (let i = 0; i < scurveData.dataPlan.length; i++) {
         labels.push(`Week ${scurveData.dataPlan[i].week_number}`);
         plans.push(scurveData.dataPlan[i].cum_plan_wf);
         actuals.push(scurveData.dataActual[i].cum_actual_wf);
@@ -1251,8 +1258,9 @@
     //         }
     //     }]
     // }
-    const progressChartData = <?= json_encode($progressChartData)?>;
-    
+    const progressChartData = <?= json_encode($progressChartData) ?>;
+    console.log(progressChartData, 'fuadi progressChartData');
+
     var options_percent = {
         chart: {
             height: 250,
@@ -1326,21 +1334,31 @@
     //         }
     //     }]
     // }
+    const max = progressChartData.doc_total
+    function valueToPercent(value) {
+        return (value * 100) / max
+    }
+
     var options_document = {
         chart: {
             height: 250,
             type: 'radialBar',
+            max: 200,
         },
         plotOptions: {
             radialBar: {
                 hollow: {
                     size: '20%',
                 },
+                hover: {
+                    enabled: false, // Menonaktifkan hover
+                },
                 dataLabels: {
                     name: {
                         fontSize: '14',
                     },
                     value: {
+                        show: false,
                         fontSize: '14px',
                         formatter: function(val) {
                             return val + ' Document'; // Return value as string without percentage symbol
@@ -1350,14 +1368,14 @@
                         show: false,
                         label: 'Total',
                         formatter: function(w) {
-                            return 249
+                            return progressChartData.doc_total
                         }
                     },
                     // margin: 15,
                 }
             }
         },
-        series: [progressChartData.doc_plan[0].total_plan_doc, progressChartData.doc_actual[0].total_actual_doc],
+        series: [valueToPercent(progressChartData.doc_plan[0].total_plan_doc), valueToPercent(progressChartData.doc_actual[0].total_actual_doc)],
         labels: ["Plan", "Actual"],
         colors: ["#E9C46A", "#2A9D8F"],
         legend: {
@@ -1524,6 +1542,7 @@
         $('#waiting').html(`Actual: ${parseFloat(progressChartData.percent_actual[0].cum_progress_actual).toFixed(1)}%`)
         $('#complete_doc').html(`Plan: ${progressChartData.doc_plan[0].total_plan_doc}`)
         $('#waiting_doc').html(`Actual: ${(progressChartData.doc_actual[0].total_actual_doc)}`)
+        $('#total_doc').html(`Total Doc: ${progressChartData.doc_total}`)
     });
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>

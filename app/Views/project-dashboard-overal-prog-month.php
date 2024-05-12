@@ -359,6 +359,19 @@
     //     sum_plan += parseFloat(value);
     //     cum_plan_mixed_chart.push(sum_plan);
     // });
+    const scurveDataEngineering = <?= json_encode($scurveDataEngineering) ?>;
+    const labelsEngineering = [];
+    const plansEngineering = [];
+    const actualsEngineering = [];
+    const actualCumEngineering = [];
+    const planCumEngineering = [];
+    for(let i = 0; i < scurveDataEngineering.dataPlan.length; i++) {
+        labelsEngineering.push(`Week ${scurveDataEngineering.dataPlan[i].week_number}`);
+        plansEngineering.push(scurveDataEngineering.dataPlan[i].cum_plan_wf);
+        actualsEngineering.push(scurveDataEngineering.dataActual[i].cum_actual_wf);
+        actualCumEngineering.push(scurveDataEngineering.dataActualCum[i]);
+        planCumEngineering.push(scurveDataEngineering.dataPlanCum[i]);
+    }
     var optionsMixed = {
         chart: {
             height: 300,
@@ -381,22 +394,22 @@
         series: [{
                 name: 'Plan',
                 type: 'column',
-                data: plan_mixed_chart
+                data: plansEngineering
             },
             {
                 name: 'Actual',
                 type: 'column',
-                data: actual_mixed_chart
+                data: actualsEngineering
             },
             {
                 name: 'Cum Plan',
                 type: 'line',
-                data: cum_plan_mixed_chart
+                data: planCumEngineering
             },
             {
                 name: 'Cum Actual',
                 type: 'line',
-                data: cum_actual_mixed_chart
+                data: actualCumEngineering
             }
         ],
         fill: {
@@ -410,7 +423,7 @@
                 stops: [0, 100, 100, 100]
             }
         },
-        labels: labels_mixed_chart1,
+        labels: labelsEngineering,
         markers: {
             size: 4
         },
