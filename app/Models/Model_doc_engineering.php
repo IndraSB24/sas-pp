@@ -307,5 +307,29 @@ class Model_doc_engineering extends Model
         return $query->getResult();
     }
 
+    // get cum actual document progress till today
+    public function getCumActualDocumentPerToday($idProject = 1)
+    {
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        $sql = "
+            SELECT 
+                COALESCE(
+                    COUNT(pde.id), 
+                    0
+                ) AS total_actual_doc
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde ON (pde.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
+            WHERE 
+                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
 
 }
