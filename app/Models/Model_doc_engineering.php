@@ -249,7 +249,7 @@ class Model_doc_engineering extends Model
         return $query->getResult();
     }
 
-    // get cum percent progress till today
+    // get cum plan percent progress till today
     public function getCumDataPlanPerToday($idProject = 1)
     {
         // Get the current date
@@ -269,6 +269,38 @@ class Model_doc_engineering extends Model
                 project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
             LEFT JOIN
                 project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            WHERE 
+                dw.start_date <= '$currentDate'
+            GROUP BY 
+                dw.id
+            ORDER BY 
+                dw.id
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get cum actual percent progress till today
+    public function getCumDataActualPerToday($idProject = 1)
+    {
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
+                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
+                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) AS cum_progress_actual
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde1 ON (pde1.actual_ifa BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde2 ON (pde2.actual_ifc BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN
+                project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
             WHERE 
                 dw.start_date <= '$currentDate'
             GROUP BY 
