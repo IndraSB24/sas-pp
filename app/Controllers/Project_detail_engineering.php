@@ -98,13 +98,6 @@ class Project_detail_engineering extends BaseController
             $getScurveDataActualCum[$key] = $actual_cum_counted;
         }
 
-        $data['scurveData'] = [
-            'dataPlan' => $getScurveDataPlan,
-            'dataActual' => $getScurveDataActual,
-            'dataPlanCum' => $getScurveDataPlanCum,
-            'dataActualCum' => $getScurveDataActualCum
-        ];
-
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR', 'subtitle' => 'Project Name']),
@@ -116,7 +109,13 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => (array) $data_man_hour['year_month'],
             'selected_week' => $week,
             'subtitle' => 'Judul Project',
-            'dataWeek' => $this->Model_week->findAll()
+            'dataWeek' => $this->Model_week->findAll(),
+            'scurveData' => [
+                'dataPlan' => $getScurveDataPlan,
+                'dataActual' => $getScurveDataActual,
+                'dataPlanCum' => $getScurveDataPlanCum,
+                'dataActualCum' => $getScurveDataActualCum
+            ]
         ];
 
 		return view('engineering-document', $data);
