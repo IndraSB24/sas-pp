@@ -272,7 +272,9 @@ class Model_doc_engineering extends Model
             WHERE 
                 dw.start_date <= '$currentDate'
             GROUP BY 
-                dw.id_project
+                dw.id
+            ORDER BY 
+                dw.id
         ";
 
         $query = $this->db->query($sql);
