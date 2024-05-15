@@ -378,7 +378,7 @@ class Model_doc_engineering extends Model
                 COALESCE(
                     COUNT(pde.id), 
                     0
-                ) AS total_actual_doc
+                ) AS total
             FROM 
                 data_week dw
             LEFT JOIN 
@@ -417,7 +417,7 @@ class Model_doc_engineering extends Model
                 COALESCE(
                     COUNT(pde.id), 
                     0
-                ) AS total_plan_doc
+                ) AS total
             FROM 
                 data_week dw
             LEFT JOIN 
