@@ -356,7 +356,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual document progress till today
-    public function getCumActualDocumentPerTodayByStep($idProject = 1, $step)
+    public function getCumActualDocumentPerTodayByStep($idProject, $step)
     {
         switch($step){
             case 'ifa':
@@ -395,7 +395,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum plan document progress till today
-    public function getCumPlanDocumentPerTodayByStep($idProject = 1, $step)
+    public function getCumPlanDocumentPerTodayByStep($idProject, $step)
     {
         switch($step){
             case 'ifa':
