@@ -454,9 +454,9 @@ class Model_doc_engineering extends Model
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
-                dw.id, dh.id
+                dw.id
             ORDER BY 
-                dw.id, dh.id
+                dw.id
         ";
 
         $query = $this->db->query($sql);
