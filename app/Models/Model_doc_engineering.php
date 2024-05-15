@@ -454,9 +454,7 @@ class Model_doc_engineering extends Model
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
-                dw.id 
-            GROUP BY 
-                dh.id
+                dw.id, dh.id
             ORDER BY 
                 dw.id
         ";
