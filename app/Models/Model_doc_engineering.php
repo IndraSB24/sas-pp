@@ -563,7 +563,7 @@ class Model_doc_engineering extends Model
         }
 
         // Optionally, convert the data to JSON for easier use in JavaScript front-end
-        $jsonData = json_encode(array_values($data), JSON_PRETTY_PRINT);
+        $jsonData = json_encode(array_values($data));
         return $jsonData;
     }
 
