@@ -454,13 +454,37 @@ class Model_doc_engineering extends Model
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
-                dw.id
+                dw.id, dh.id
             ORDER BY 
-                dw.id
+                dw.id, dh.id
         ";
 
         $query = $this->db->query($sql);
-        return $query->getResult();
+        $result = $query->getResult();
+
+        $data = [];
+
+        foreach ($results as $row) {
+            $weekNumber = $row->week_number;
+            $disciplineName = $row->discipline_name;
+
+            if (!isset($data[$weekNumber])) {
+                $data[$weekNumber] = [
+                    'weekNumber' => $weekNumber,
+                    'disciplines' => []
+                ];
+            }
+
+            $data[$weekNumber]['disciplines'][] = [
+                'disciplineName' => $disciplineName,
+                'man_hour_plan' => $row->man_hour_plan,
+                'man_hour_actual' => $row->man_hour_actual
+            ];
+        }
+
+        // Optionally, convert the data to JSON for easier use in JavaScript front-end
+        $jsonData = json_encode(array_values($data));
+        return $jsonData;
     }
 
 }
