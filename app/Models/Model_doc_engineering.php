@@ -434,7 +434,7 @@ class Model_doc_engineering extends Model
     }
 
     // get manhour per week
-    public function getManHourByDiciplinePerWeek($idProject = 1)
+    public function getManHourByDiciplinePerWeek_1($idProject = 1)
     {
         // Get the current date
         $currentDate = date('Y-m-d');
@@ -486,5 +486,86 @@ class Model_doc_engineering extends Model
         $jsonData = json_encode(array_values($data));
         return $jsonData;
     }
+
+    // get dic list
+    public function getDisciplineList()
+    {
+        $sql = "
+            SELECT DISTINCT name
+            FROM data_helper
+            WHERE type = 'doc_discipline_engineering'
+        ";
+        
+        $query = $this->db->query($sql);
+        $results = $query->getResult();
+        
+        return array_map(function($row) {
+            return $row->name;
+        }, $results);
+    }
+
+    public function getManHourByDiciplinePerWeek($idProject = 1)
+    {
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                dh.name AS discipline_name,
+                COALESCE(SUM(pde.man_hour_plan), 0) AS man_hour_plan,
+                COALESCE(SUM(pde.man_hour_actual), 0) AS man_hour_actual
+            FROM 
+                data_week dw
+            CROSS JOIN 
+                (SELECT DISTINCT dh.name FROM data_helper dh WHERE dh.type = 'doc_discipline_engineering') dh
+            LEFT JOIN 
+                project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date AND pde.id_doc_discipline = dh.id)
+            WHERE 
+                dw.id_project = '$idProject'
+            GROUP BY 
+                dw.week_number, dh.name
+            ORDER BY 
+                dw.week_number, dh.name
+        ";
+
+        $query = $this->db->query($sql);
+        $results = $query->getResult();
+
+        $data = [];
+
+        // Ensure all weeks have all disciplines
+        $disciplineList = $this->getDisciplineList(); // Assuming this method returns a list of all disciplines
+
+        foreach ($results as $row) {
+            $weekNumber = $row->week_number;
+            $disciplineName = $row->discipline_name;
+
+            if (!isset($data[$weekNumber])) {
+                $data[$weekNumber] = [
+                    'weekNumber' => $weekNumber,
+                    'disciplines' => []
+                ];
+                
+                // Initialize all disciplines with 0 values
+                foreach ($disciplineList as $discipline) {
+                    $data[$weekNumber]['disciplines'][$discipline] = [
+                        'disciplineName' => $discipline,
+                        'man_hour_plan' => 0,
+                        'man_hour_actual' => 0
+                    ];
+                }
+            }
+
+            // Populate actual data
+            $data[$weekNumber]['disciplines'][$disciplineName] = [
+                'disciplineName' => $disciplineName,
+                'man_hour_plan' => $row->man_hour_plan,
+                'man_hour_actual' => $row->man_hour_actual
+            ];
+        }
+
+        // Optionally, convert the data to JSON for easier use in JavaScript front-end
+        $jsonData = json_encode(array_values($data), JSON_PRETTY_PRINT);
+        return $jsonData;
+    }
+
 
 }
