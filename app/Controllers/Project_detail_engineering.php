@@ -126,12 +126,12 @@ class Project_detail_engineering extends BaseController
                 'doc_total' => $this->doc_engineering_model->countAll()
             ],
             'docProgress' => [
-                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep('ifa'),
-                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep('ifa'),
-                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep('ifc'),
-                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep('ifc'),
-                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep('asbuild'),
-                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep('asbuild')
+                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'ifa' ),
+                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'ifa' ),
+                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'ifc' ),
+                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'ifc' ),
+                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'asbuild' ),
+                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'asbuild' )
             ]
         ];
 
