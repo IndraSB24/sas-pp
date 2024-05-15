@@ -460,7 +460,7 @@ class Model_doc_engineering extends Model
         ";
 
         $query = $this->db->query($sql);
-        $result = $query->getResult();
+        $results = $query->getResult();
 
         $data = [];
 
