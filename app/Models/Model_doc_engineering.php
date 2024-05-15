@@ -388,7 +388,10 @@ class Model_doc_engineering extends Model
         ";
 
         $query = $this->db->query($sql);
-        return $query->getResult();
+        $result = $query->getRow();
+
+        // Return the total_actual_doc value directly
+        return $result ? $result->total : 0;
     }
 
     // get cum plan document progress till today
@@ -424,7 +427,10 @@ class Model_doc_engineering extends Model
         ";
 
         $query = $this->db->query($sql);
-        return $query->getResult();
+        $result = $query->getRow();
+
+        // Return the total_actual_doc value directly
+        return $result ? $result->total : 0;
     }
 
 
