@@ -456,7 +456,7 @@ class Model_doc_engineering extends Model
             GROUP BY 
                 dw.id, dh.id
             ORDER BY 
-                dw.id
+                dw.id, dh.id
         ";
 
         $query = $this->db->query($sql);
