@@ -434,7 +434,7 @@ class Model_doc_engineering extends Model
     }
 
     // get manhour per week
-    public function getManHourByDiciplinePerWeek_1($idProject = 1)
+    public function getManHourByDiciplinePerWeek($idProject = 1)
     {
         // Get the current date
         $currentDate = date('Y-m-d');
@@ -454,37 +454,37 @@ class Model_doc_engineering extends Model
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
-                dw.id, dh.id
+                dw.id
             ORDER BY 
-                dw.id, dh.id
+                dw.id
         ";
 
         $query = $this->db->query($sql);
-        $results = $query->getResult();
+        return $results = $query->getResult();
 
-        $data = [];
+        // $data = [];
 
-        foreach ($results as $row) {
-            $weekNumber = $row->week_number;
-            $disciplineName = $row->dicipline_name;
+        // foreach ($results as $row) {
+        //     $weekNumber = $row->week_number;
+        //     $disciplineName = $row->dicipline_name;
 
-            if (!isset($data[$weekNumber])) {
-                $data[$weekNumber] = [
-                    'weekNumber' => $weekNumber,
-                    'disciplines' => []
-                ];
-            }
+        //     if (!isset($data[$weekNumber])) {
+        //         $data[$weekNumber] = [
+        //             'weekNumber' => $weekNumber,
+        //             'disciplines' => []
+        //         ];
+        //     }
 
-            $data[$weekNumber]['disciplines'][] = [
-                'disciplineName' => $disciplineName,
-                'man_hour_plan' => $row->man_hour_plan,
-                'man_hour_actual' => $row->man_hour_actual
-            ];
-        }
+        //     $data[$weekNumber]['disciplines'][] = [
+        //         'disciplineName' => $disciplineName,
+        //         'man_hour_plan' => $row->man_hour_plan,
+        //         'man_hour_actual' => $row->man_hour_actual
+        //     ];
+        // }
 
-        // Optionally, convert the data to JSON for easier use in JavaScript front-end
-        $jsonData = json_encode(array_values($data));
-        return $jsonData;
+        // // Optionally, convert the data to JSON for easier use in JavaScript front-end
+        // $jsonData = json_encode(array_values($data));
+        // return $jsonData;
     }
 
     // get dic list
@@ -504,7 +504,7 @@ class Model_doc_engineering extends Model
         }, $results);
     }
 
-    public function getManHourByDiciplinePerWeek($idProject = 1)
+    public function getManHourByDiciplinePerWeek_1($idProject = 1)
     {
         $sql = "
             SELECT 
