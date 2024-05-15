@@ -819,6 +819,8 @@
     console.log(<?= json_encode($scurveData) ?>);
     console.log('progress chart data');
     console.log(<?= json_encode($progressChartData) ?>);
+    console.log('doc progress');
+    console.log(<?= json_encode($docProgress) ?>);
 
 
     //  Scurve mdr

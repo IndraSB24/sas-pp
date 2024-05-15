@@ -355,5 +355,77 @@ class Model_doc_engineering extends Model
         return $query->getResult();
     }
 
+    // get cum actual document progress till today
+    public function getCumActualDocumentPerTodayByStep($idProject = 1, $step)
+    {
+        switch($step){
+            case 'ifa':
+                $columnStep = 'actual_ifa';
+                break;
+            case 'ifc':
+                $columnStep = 'actual_ifc';
+                break;
+            case 'asbuild':
+                $columnStep = 'external_asbuild_actual';
+                break;
+        }
+
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        $sql = "
+            SELECT 
+                COALESCE(
+                    COUNT(pde.id), 
+                    0
+                ) AS total_actual_doc
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde ON (pde.$columnStep BETWEEN dw.start_date AND dw.end_date)
+            WHERE 
+                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get cum plan document progress till today
+    public function getCumPlanDocumentPerTodayByStep($idProject = 1, $step)
+    {
+        switch($step){
+            case 'ifa':
+                $columnStep = 'plan_ifa';
+                break;
+            case 'ifc':
+                $columnStep = 'plan_ifc';
+                break;
+            case 'asbuild':
+                $columnStep = 'external_asbuild_plan';
+                break;
+        }
+
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        $sql = "
+            SELECT 
+                COALESCE(
+                    COUNT(pde.id), 
+                    0
+                ) AS total_plan_doc
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                project_detail_engineering pde ON (pde.$columnStep BETWEEN dw.start_date AND dw.end_date)
+            WHERE 
+                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
 
 }
