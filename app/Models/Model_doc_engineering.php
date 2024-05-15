@@ -433,5 +433,36 @@ class Model_doc_engineering extends Model
         return $result ? $result->total : 0;
     }
 
+    // get manhour per week
+    public function getManHourByDiciplinePerWeek($idProject = 1)
+    {
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                dh.name as dicipline_name,
+                COALESCE ( SUM(pde.man_hour_plan) , 0 )  AS man_hour_plan,
+                COALESCE ( SUM(pde.man_hour_actual) , 0 )  AS man_hour_actual,
+            FROM 
+                data_week dw
+            LEFT JOIN
+                project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+            LEFT JOIN 
+                data_helper dh ON (dh.id = pde.id_doc_dicipline)
+            WHERE 
+                dw.id_project = '$idProject'
+            GROUP BY 
+                dw.id 
+            GROUP BY 
+                dh.id
+            ORDER BY 
+                dw.id
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
 
 }

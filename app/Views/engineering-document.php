@@ -821,6 +821,7 @@
     console.log(<?= json_encode($progressChartData) ?>);
     console.log('doc progress');
     console.log(<?= json_encode($docProgress) ?>);
+    console.log(<?= json_encode($manHourPerWeek) ?>, 'man hour by week');
 
 
     //  Scurve mdr
