@@ -450,7 +450,7 @@ class Model_doc_engineering extends Model
             LEFT JOIN
                 project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
             LEFT JOIN 
-                data_helper dh ON (dh.id = pde.id_doc_dicipline)
+                data_helper dh ON (dh.id = pde.id_doc_dicipline AND dh.type = 'doc_dicipline_engineering')
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
