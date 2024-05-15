@@ -517,7 +517,7 @@ class Model_doc_engineering extends Model
             CROSS JOIN 
                 (SELECT DISTINCT dh.name FROM data_helper dh WHERE dh.type = 'doc_discipline_engineering') dh
             LEFT JOIN 
-                project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date AND pde.id_doc_discipline = dh.id)
+                project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date AND pde.id_doc_dicipline = dh.id)
             WHERE 
                 dw.id_project = '$idProject'
             GROUP BY 
