@@ -444,7 +444,7 @@ class Model_doc_engineering extends Model
                 dw.week_number AS week_number,
                 dh.name as dicipline_name,
                 COALESCE ( SUM(pde.man_hour_plan) , 0 )  AS man_hour_plan,
-                COALESCE ( SUM(pde.man_hour_actual) , 0 )  AS man_hour_actual,
+                COALESCE ( SUM(pde.man_hour_actual) , 0 )  AS man_hour_actual
             FROM 
                 data_week dw
             LEFT JOIN
