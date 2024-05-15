@@ -736,8 +736,8 @@
                 }
             }
         },
-        series: [<?= $data_page->chart_pt_procurement_actual ?>, <?= $data_page->chart_pt_procurement_plan ?>],
-        labels: ['Actual', 'Plan'],
+        series: [<?= $data_page->chart_pt_procurement_plan ?>, <?= $data_page->chart_pt_procurement_actual ?>],
+        labels: ['Plan', 'Actual'],
         colors: ['#5664d2', '#fcb92c'],
         legend: {
             offsetY: 5

@@ -33,6 +33,7 @@
             color: #fff !important;
             cursor: pointer;
         }
+
         #total_doc {
             font-weight: 700;
         }
@@ -143,9 +144,8 @@
                                                 <h4 class="card-title mb-0">Document Progress</h4>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-7 mb-2">
-                                                <!-- <div id="radial_chart_2" class="apex-charts m-0 p-0"></div> -->
+                                        <div class="row" style="padding: 10px;">
+                                            <!-- <div class="col-7 mb-2">
                                                 <div id="document_chart" class="apex-charts"></div>
                                             </div>
                                             <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
@@ -160,6 +160,42 @@
                                                 <div class="mt-1" style="display: flex; justify-content: flex-start; align-items: center;">
                                                     <div class="dot" style="background-color: #F4F0BE;"></div>
                                                     <small><h5 id="total_doc" style="font-size: 0.7rem;">-</h5></small>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-4">
+                                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-success) 0%, 
+                                                    var(--bs-success) <?= ($docProgress['ifa_actual'] / $docProgress['ifa_plan'] * 100) ?>%, #ffffff 0%, #ffffff 100%);">
+                                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifa_actual'] ?> / <?= $docProgress['ifa_plan'] ?> </span>
+                                                        <h6 class="card-title text-truncate font-size-14 mb-2 text-center">IFA</h6>
+                                                        <!-- <div style="display: flex; justify-content: center; align-items: center;">
+                                                            <i class="fas fa-ruler-combined" style="font-size: 1rem;"></i>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-warning) 0%, 
+                                                    var(--bs-warning) <?= ($docProgress['ifc_actual'] / $docProgress['ifc_plan'] * 100) ?>%, #ffffff 0%, #ffffff 100%);">
+                                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifc_actual'] ?> / <?= $docProgress['ifc_plan'] ?> </span>
+                                                        <h6 class="card-title text-truncate font-size-14 mb-2 text-center">IFC</h6>
+                                                        <!-- <div style="display: flex; justify-content: center; align-items: center;">
+                                                            <i class="fas fa-glasses" style="font-size: 1rem;"></i>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
+                                                    var(--bs-danger) <?= ($docProgress['asbuild_actual'] / $docProgress['asbuild_plan'] * 100) ?>%, #ffffff 0%, #ffffff 100%);">
+                                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['asbuild_actual'] ?> / <?= $docProgress['asbuild_plan'] ?> </span>
+                                                        <h6 class="card-title text-truncate mb-2 text-center" style="font-size: 8px;font-weight:700">ASBUILD</h6>
+                                                        <!-- <div style="display: flex; justify-content: center; align-items: center;">
+                                                            <i class="far fa-chart-bar" style="font-size: 1rem;"></i>
+                                                        </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1127,7 +1163,7 @@
     const actualCum = [];
     const planCum = [];
     for (let i = 0; i < scurveData.dataPlan.length; i++) {
-        labels.push(`Week ${scurveData.dataPlan[i].week_number}`);
+        labels.push(`W ${scurveData.dataPlan[i].week_number}`);
         plans.push(scurveData.dataPlan[i].cum_plan_wf);
         actuals.push(scurveData.dataActual[i].cum_actual_wf);
         actualCum.push(scurveData.dataActualCum[i]);
@@ -1189,7 +1225,14 @@
             size: 4
         },
         xaxis: {
-            type: 'month'
+            type: 'month',
+            labels: {
+            rotate: -90, // Rotate labels to vertical
+            style: {
+                fontSize: '12px',
+                colors: []
+            }
+        }
         },
         yaxis: {
             title: {
@@ -1338,6 +1381,7 @@
     //     }]
     // }
     const max = progressChartData.doc_total
+
     function valueToPercent(value) {
         return (value * 100) / max
     }
