@@ -36,7 +36,7 @@ class Project extends BaseController
 
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Project Dashboard']),
-			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => 'INI JUDUL PROJECT']),
+			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => 'TBBM BIAK']),
 			'data_page' => $data_page,
 			'progressChartDataEngineering' => [
                 'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
