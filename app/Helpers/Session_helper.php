@@ -19,5 +19,10 @@
             return $session->get('nama');
         }
     }
+
+    function sessActiveRole(){
+        $session = session();
+        return $session->get('role');
+    }
     
 ?>
