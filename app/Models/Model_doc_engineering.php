@@ -212,7 +212,7 @@ class Model_doc_engineering extends Model
                             SUM(COALESCE(pde2.weight_factor, 0)) * 0.65 +
                             SUM(COALESCE(pde3.weight_factor, 0)) * 0.10
                     END
-                ) / 100 AS cum_plan_wf
+                ) AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN 
