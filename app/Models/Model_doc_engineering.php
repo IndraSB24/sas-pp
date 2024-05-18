@@ -358,6 +358,8 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.plan_ifa BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS IFA ON dw.week_number = IFA.week_number
             LEFT JOIN (
                 SELECT 
@@ -372,6 +374,8 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.plan_ifc BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS IFC ON dw.week_number = IFC.week_number
             LEFT JOIN (
                 SELECT 
@@ -386,6 +390,8 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS Asbuild ON dw.week_number = Asbuild.week_number
             WHERE
                 dw.id_project = '$idProject'
