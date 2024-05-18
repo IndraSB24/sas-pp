@@ -342,7 +342,7 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_progress_plan
+                SUM(COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_progress_plan
             FROM 
                 data_week dw
             LEFT JOIN (
@@ -358,6 +358,8 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.plan_ifa BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS IFA ON dw.week_number = IFA.week_number
             LEFT JOIN (
                 SELECT 
@@ -372,6 +374,8 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.plan_ifc BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS IFC ON dw.week_number = IFC.week_number
             LEFT JOIN (
                 SELECT 
@@ -386,11 +390,11 @@ class Model_doc_engineering extends Model
                     project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
             ) AS Asbuild ON dw.week_number = Asbuild.week_number
             WHERE
                 dw.id_project = '$idProject'
-            GROUP BY
-                dw.id_project
         ";
 
         $query = $this->db->query($sql);
@@ -405,19 +409,59 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
-                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
-                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) AS cum_progress_actual
+                SUM(COALESCE(IFA.counted_actual, 0) + COALESCE(IFC.counted_actual, 0) + COALESCE(Asbuild.counted_actual, 0)) AS cum_progress_actual
             FROM 
                 data_week dw
-            LEFT JOIN 
-                project_detail_engineering pde1 ON (pde1.actual_ifa BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN
-                project_detail_engineering pde2 ON (pde2.actual_ifc BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN
-                project_detail_engineering pde3 ON (pde3.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
-            WHERE 
-                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.25
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.actual_ifa BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS IFA ON dw.week_number = IFA.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.40
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.65
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.actual_ifc BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS IFC ON dw.week_number = IFC.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.10
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS Asbuild ON dw.week_number = Asbuild.week_number
+            WHERE
+                dw.id_project = '$idProject'
         ";
 
         $query = $this->db->query($sql);
