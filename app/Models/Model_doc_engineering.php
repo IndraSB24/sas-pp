@@ -203,7 +203,7 @@ class Model_doc_engineering extends Model
                 dw.week_number AS week_number,
                 (
                     CASE 
-                        WHEN pde1.id_doc_dicipline = NULL THEN 
+                        WHEN pde1.id_doc_dicipline IS NULL THEN 
                             SUM(COALESCE(pde1.weight_factor, 0)) * 0.30 +
                             SUM(COALESCE(pde2.weight_factor, 0)) * 0.40 +
                             SUM(COALESCE(pde3.weight_factor, 0)) * 0.30
