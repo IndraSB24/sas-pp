@@ -24,5 +24,10 @@
         $session = session();
         return $session->get('role');
     }
+
+    function sessUserSignature(){
+        $session = session();
+        return $session->get('signatureFile');
+    }
     
 ?>
