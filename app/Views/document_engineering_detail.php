@@ -119,6 +119,7 @@ function generateWaitingBadge()
         z-index: 1;
         /* Optional: set z-index to ensure it's above other elements */
     }
+
     td:nth-child(5) {
         position: sticky;
         left: 13em;
@@ -177,183 +178,459 @@ function generateWaitingBadge()
                                 <div class="table-rep-plugin">
                                     <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                     <font size="2">
-                                        <table id="scroll-vertical-datatable" class="table table-bordered nowrap" style="border: 0px;">
-                                            <thead>
-                                                <tr>
-                                                    <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
-                                                    <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
-                                                    <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
-                                                    <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
-                                                    <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
-                                                    <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
-                                                    <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
-                                                    <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
-                                                    <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
-                                                </tr>
-                                                <tr>
+                                        <?php if (sessActiveRole() === 'vendor_external') { ?>
+                                            <table id="scroll-vertical-datatable" class="table table-bordered nowrap" style="border: 0px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
+                                                        <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                        <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
+                                                        <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                        <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
 
-                                                    <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
-                                                    <th rowspan="3" style="background-color:blanchedalmond">ENGINER PP</th>
-                                                    <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
-                                                    <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th>
-                                                    <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
-                                                    <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
-                                                    <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFA</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFA</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">100%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">100%</th>
+                                                    </tr>
+                                                </thead>
 
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center" style="background-color:#d2fad2">IFR</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">IFA</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">IFR</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">IFA</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#d2fad2">100%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
-                                                    <th class="text-center" style="background-color:#c1f5d9">100%</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <?php
-                                                $week = 0;
-                                                $weekPlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                $weekActual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                $weekDates = [
-                                                    '15-6-2023',
-                                                    '22-6-2023',
-                                                    '29-6-2023',
-                                                    '6-7-2023',
-                                                    '13-7-2023',
-                                                    '20-7-2023',
-                                                    '27-7-2023',
-                                                    '3-8-2023',
-                                                    '10-8-2023',
-                                                    '17-8-2023',
-                                                    '24-8-2023',
-                                                    '31-9-2023'
-                                                ];
-                                                $WF_IFR = 0.5;
-                                                $WF_IFA = 0.4;
-                                                $WF_IFC = 0.1;
-                                                $no = 0;
-                                                foreach ($list_doc_engineering as $row) :
-                                                    $no++;
-                                                    for ($i = 0; $i < count($weekDates); $i++) {
-                                                        $date = world_date($row->plan_ifr);
-                                                        $targetDate = world_date($weekDates[$i]);
-
-                                                        if ($date <= $targetDate) {
-                                                            $weekPlan[$i] += $WF_IFR * $row->weight_factor;
-                                                            break; // Exit the loop
-                                                        }
-                                                    }
-
-                                                    for ($i = 0; $i < count($weekDates); $i++) {
-                                                        $date = world_date($row->plan_ifa);
-                                                        $targetDate = world_date($weekDates[$i]);
-
-                                                        if ($date <= $targetDate) {
-                                                            $weekPlan[$i] += $WF_IFA * $row->weight_factor;
-                                                            break; // Exit the loop
-                                                        }
-                                                    }
-
-                                                    for ($i = 0; $i < count($weekDates); $i++) {
-                                                        $date = world_date($row->plan_ifc);
-                                                        $targetDate = world_date($weekDates[$i]);
-
-                                                        if ($date <= $targetDate) {
-                                                            $weekPlan[$i] += $WF_IFC * $row->weight_factor;
-                                                            break; // Exit the loop
-                                                        }
-                                                    }
-
-                                                    // set plan cumulative
-                                                    $plan_cumulative = 0;
-                                                    if (world_date($row->plan_ifr) <= date_now()) {
-                                                        $plan_cumulative += $WF_IFR * $row->weight_factor;
-                                                    }
-                                                    if (world_date($row->plan_ifa) <= date_now()) {
-                                                        $plan_cumulative += $WF_IFA * $row->weight_factor;
-                                                    }
-                                                    if (world_date($row->plan_ifc) <= date_now()) {
-                                                        $plan_cumulative += $WF_IFC * $row->weight_factor;
-                                                    }
-
-                                                    // set actual cumulative
-                                                    $actual_cumulative = 0;
-                                                    if ($row->actual_ifr) {
-                                                        $actual_cumulative += $WF_IFR * $row->weight_factor;
-
+                                                <tbody>
+                                                    <?php
+                                                    $week = 0;
+                                                    $weekPlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekActual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekDates = [
+                                                        '15-6-2023',
+                                                        '22-6-2023',
+                                                        '29-6-2023',
+                                                        '6-7-2023',
+                                                        '13-7-2023',
+                                                        '20-7-2023',
+                                                        '27-7-2023',
+                                                        '3-8-2023',
+                                                        '10-8-2023',
+                                                        '17-8-2023',
+                                                        '24-8-2023',
+                                                        '31-9-2023'
+                                                    ];
+                                                    $WF_IFR = 0.5;
+                                                    $WF_IFA = 0.4;
+                                                    $WF_IFC = 0.1;
+                                                    $no = 0;
+                                                    foreach ($list_doc_engineering as $row) :
+                                                        $no++;
                                                         for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->actual_ifr);
+                                                            $date = world_date($row->plan_ifr);
                                                             $targetDate = world_date($weekDates[$i]);
 
                                                             if ($date <= $targetDate) {
-                                                                $weekActual[$i] += $WF_IFR * $row->weight_factor;
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                    if ($row->actual_ifa) {
-                                                        $actual_cumulative += $WF_IFA * $row->weight_factor;
-
-                                                        for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->actual_ifa);
-                                                            $targetDate = world_date($weekDates[$i]);
-
-                                                            if ($date <= $targetDate) {
-                                                                $weekActual[$i] += $WF_IFA * $row->weight_factor;
-                                                                break;
-                                                            }
-                                                        }
-                                                    }
-                                                    if ($row->actual_ifc) {
-                                                        $actual_cumulative += $WF_IFC * $row->weight_factor;
-
-                                                        for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->actual_ifc);
-                                                            $targetDate = world_date($weekDates[$i]);
-
-                                                            if ($date <= $targetDate) {
-                                                                $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                $weekPlan[$i] += $WF_IFR * $row->weight_factor;
                                                                 break; // Exit the loop
                                                             }
                                                         }
+
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifa);
+                                                            $targetDate = world_date($weekDates[$i]);
+
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFA * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifc);
+                                                            $targetDate = world_date($weekDates[$i]);
+
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFC * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+
+                                                        // set plan cumulative
+                                                        $plan_cumulative = 0;
+                                                        if (world_date($row->plan_ifr) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFR * $row->weight_factor;
+                                                        }
+                                                        if (world_date($row->plan_ifa) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFA * $row->weight_factor;
+                                                        }
+                                                        if (world_date($row->plan_ifc) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFC * $row->weight_factor;
+                                                        }
+
+                                                        // set actual cumulative
+                                                        $actual_cumulative = 0;
+                                                        if ($row->actual_ifr) {
+                                                            $actual_cumulative += $WF_IFR * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifr);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFR * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifa) {
+                                                            $actual_cumulative += $WF_IFA * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifa);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFA * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifc) {
+                                                            $actual_cumulative += $WF_IFC * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifc);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                    break; // Exit the loop
+                                                                }
+                                                            }
+                                                        }
+
+                                                        // set variance status
+                                                        if ($actual_cumulative == $plan_cumulative) {
+                                                            $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
+                                                        } else if ($actual_cumulative > $plan_cumulative) {
+                                                            $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
+                                                        } else {
+                                                            $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
+                                                        }
+
+
+                                                        $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
+                                                        $file_version = $row->file_version ? $row->file_version : 'nothing';
+                                                        // set actual IFR status
+                                                        if ($row->actual_ifr) {
+                                                            $actual_ifr = tgl_indo($row->actual_ifr) .
+                                                                '
+                                                            <br>
+                                                                Issued V ' . $row->file_version . '
+                                                            <br>
+                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
+                                                                    data-id="' . $row->id . '"
+                                                                    data-doc_desc="' . $row->description . '"
+                                                                    data-link_file = "' . $linkFile . '"
+                                                                    data-step = "IFR"
+                                                                    data-version = "' . $file_version . '"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                        } else {
+                                                            $actual_ifr = '
+                                                            no date yet
+                                                            <br>
+                                                                no file yet
+                                                            <br>
+                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                    &nbsp;WAITING&nbsp;
+                                                                </a>
+                                                            ';
+                                                        }
+
+                                                        // set actual IFA status
+                                                        $actual_ifa = generateStatusBadge(
+                                                            $row->actual_ifa_status,
+                                                            $row->actual_ifa,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'IFA',
+                                                            $file_version,
+                                                            'external_ifa',
+                                                            'version ' . $file_version
+                                                        );
+                                                        $actual_AsBuild = generateStatusBadge(
+                                                            $row->external_asbuild_status,
+                                                            $row->external_asbuild_actual,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'AsBuild',
+                                                            $file_version,
+                                                            'external_asbuild',
+                                                            'version ' . $file_version
+                                                        );
+
+                                                        // set actual IFC status                                                       
+                                                        $actual_ifc = generateStatusBadge(
+                                                            $row->actual_ifc_status,
+                                                            $row->actual_ifc,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'IFC',
+                                                            $file_version,
+                                                            'external_ifc',
+                                                            'version ' . $file_version
+                                                        );
+                                                    ?>
+                                                        <tr>
+                                                            <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
+                                                            <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
+                                                            <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
+                                                            <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;">
+                                                                <a href="<?= base_url('document-timeline/' . $row->id) ?>">
+                                                                    <?= $status ?>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <?php
+                                                    for ($i_cum_plan = 1; $i_cum_plan < count($weekPlan); $i_cum_plan++) {
+                                                        $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan - 1];
                                                     }
-
-                                                    // set variance status
-                                                    if ($actual_cumulative == $plan_cumulative) {
-                                                        $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
-                                                    } else if ($actual_cumulative > $plan_cumulative) {
-                                                        $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
-                                                    } else {
-                                                        $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
+                                                    for ($i_cum_act = 1; $i_cum_act < count($weekActual); $i_cum_act++) {
+                                                        $weekActual[$i_cum_act] += $weekActual[$i_cum_act - 1];
                                                     }
+                                                    for ($week_counter = 0; $week_counter < count($weekPlan); $week_counter++) {
+                                                        echo '
+                                                            <input type="hidden" id="week_plan_' . $week_counter . '" value="' . $weekPlan[$week_counter] . '" />
+                                                            <input type="hidden" id="week_actual_' . $week_counter . '" value="' . $weekActual[$week_counter] . '" />
+                                                        ';
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        <?php } else { ?>
+                                            <table id="scroll-vertical-datatable" class="table table-bordered nowrap" style="border: 0px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
+                                                        <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
+                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
+                                                        <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                        <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
+                                                        <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
+                                                        <th rowspan="3" style="background-color:blanchedalmond">ENGINER PP</th>
+                                                        <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
+                                                        <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th>
+                                                        <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
+                                                        <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                        <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFA</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFA</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">100%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">100%</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php
+                                                    $week = 0;
+                                                    $weekPlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekActual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                    $weekDates = [
+                                                        '15-6-2023',
+                                                        '22-6-2023',
+                                                        '29-6-2023',
+                                                        '6-7-2023',
+                                                        '13-7-2023',
+                                                        '20-7-2023',
+                                                        '27-7-2023',
+                                                        '3-8-2023',
+                                                        '10-8-2023',
+                                                        '17-8-2023',
+                                                        '24-8-2023',
+                                                        '31-9-2023'
+                                                    ];
+                                                    $WF_IFR = 0.5;
+                                                    $WF_IFA = 0.4;
+                                                    $WF_IFC = 0.1;
+                                                    $no = 0;
+                                                    foreach ($list_doc_engineering as $row) :
+                                                        $no++;
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifr);
+                                                            $targetDate = world_date($weekDates[$i]);
+
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFR * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifa);
+                                                            $targetDate = world_date($weekDates[$i]);
+
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFA * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+
+                                                        for ($i = 0; $i < count($weekDates); $i++) {
+                                                            $date = world_date($row->plan_ifc);
+                                                            $targetDate = world_date($weekDates[$i]);
+
+                                                            if ($date <= $targetDate) {
+                                                                $weekPlan[$i] += $WF_IFC * $row->weight_factor;
+                                                                break; // Exit the loop
+                                                            }
+                                                        }
+
+                                                        // set plan cumulative
+                                                        $plan_cumulative = 0;
+                                                        if (world_date($row->plan_ifr) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFR * $row->weight_factor;
+                                                        }
+                                                        if (world_date($row->plan_ifa) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFA * $row->weight_factor;
+                                                        }
+                                                        if (world_date($row->plan_ifc) <= date_now()) {
+                                                            $plan_cumulative += $WF_IFC * $row->weight_factor;
+                                                        }
+
+                                                        // set actual cumulative
+                                                        $actual_cumulative = 0;
+                                                        if ($row->actual_ifr) {
+                                                            $actual_cumulative += $WF_IFR * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifr);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFR * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifa) {
+                                                            $actual_cumulative += $WF_IFA * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifa);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFA * $row->weight_factor;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        if ($row->actual_ifc) {
+                                                            $actual_cumulative += $WF_IFC * $row->weight_factor;
+
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->actual_ifc);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                    break; // Exit the loop
+                                                                }
+                                                            }
+                                                        }
+
+                                                        // set variance status
+                                                        if ($actual_cumulative == $plan_cumulative) {
+                                                            $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
+                                                        } else if ($actual_cumulative > $plan_cumulative) {
+                                                            $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
+                                                        } else {
+                                                            $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
+                                                        }
 
 
-                                                    // internal section
-                                                    $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
-                                                    $file_version = $row->file_version ? $row->file_version : 'nothing';
-                                                    if ($row->internal_originator_status === 'uploaded') {
-                                                        $actual_JEDHI = tgl_indo($row->internal_originator_date) .
-                                                            '
+                                                        // internal section
+                                                        $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
+                                                        $file_version = $row->file_version ? $row->file_version : 'nothing';
+                                                        if ($row->internal_originator_status === 'uploaded') {
+                                                            $actual_JEDHI = tgl_indo($row->internal_originator_date) .
+                                                                '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
@@ -366,8 +643,8 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_originator_status === 'progress') {
-                                                        $actual_JEDHI = '
+                                                        } else if ($row->internal_originator_status === 'progress') {
+                                                            $actual_JEDHI = '
                                                                 no date yet
                                                             <br>
                                                                 no file yet
@@ -384,8 +661,8 @@ function generateWaitingBadge()
                                                                     &nbsp;REUPLOAD&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else {
-                                                        $actual_JEDHI = '
+                                                        } else {
+                                                            $actual_JEDHI = '
                                                                 no date yet
                                                             <br>
                                                                 no file yet
@@ -402,10 +679,10 @@ function generateWaitingBadge()
                                                                     &nbsp;UP FILE&nbsp;
                                                                 </a>
                                                             ';
-                                                    }
+                                                        }
 
-                                                    if ($row->internal_engineering_status === 'approve') {
-                                                        $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                        if ($row->internal_engineering_status === 'approve') {
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
@@ -418,8 +695,8 @@ function generateWaitingBadge()
                                                                     &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_engineering_status === 'reject') {
-                                                        $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                        } else if ($row->internal_engineering_status === 'reject') {
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
@@ -432,8 +709,8 @@ function generateWaitingBadge()
                                                                     &nbsp;REJECTED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_engineering_status === 'progress') {
-                                                        $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                        } else if ($row->internal_engineering_status === 'progress') {
+                                                            $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
@@ -446,8 +723,8 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else {
-                                                        $enginerPP = '
+                                                        } else {
+                                                            $enginerPP = '
                                                             no date yet
                                                             <br>
                                                                 no file yet
@@ -456,9 +733,9 @@ function generateWaitingBadge()
                                                                     &nbsp;WAITING&nbsp;
                                                                 </a>
                                                             ';
-                                                    }
-                                                    if ($row->internal_ho_status === 'approve') {
-                                                        $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                        }
+                                                        if ($row->internal_ho_status === 'approve') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
@@ -471,8 +748,8 @@ function generateWaitingBadge()
                                                                     &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_ho_status === 'reject') {
-                                                        $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                        } else if ($row->internal_ho_status === 'reject') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
@@ -485,8 +762,8 @@ function generateWaitingBadge()
                                                                     &nbsp;REJECTED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_ho_status === 'progress') {
-                                                        $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                        } else if ($row->internal_ho_status === 'progress') {
+                                                            $hoPP = tgl_indo($row->internal_ho_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
@@ -499,8 +776,8 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else {
-                                                        $hoPP = '
+                                                        } else {
+                                                            $hoPP = '
                                                                 no date yet
                                                             <br>
                                                                 no file yet
@@ -509,9 +786,9 @@ function generateWaitingBadge()
                                                                     &nbsp;WAITING&nbsp;
                                                                 </a>
                                                             ';
-                                                    }
-                                                    if ($row->internal_pem_status === 'approve') {
-                                                        $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                        }
+                                                        if ($row->internal_pem_status === 'approve') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
@@ -524,8 +801,8 @@ function generateWaitingBadge()
                                                                     &nbsp;APPROVED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_pem_status === 'reject') {
-                                                        $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                        } else if ($row->internal_pem_status === 'reject') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
@@ -538,8 +815,8 @@ function generateWaitingBadge()
                                                                     &nbsp;REJECTED&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else if ($row->internal_pem_status === 'progress') {
-                                                        $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                        } else if ($row->internal_pem_status === 'progress') {
+                                                            $pemPP = tgl_indo($row->internal_pem_date) . '
                                                             <br>
                                                             <br>
                                                                 <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
@@ -552,8 +829,8 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else {
-                                                        $pemPP = '
+                                                        } else {
+                                                            $pemPP = '
                                                                 no date yet
                                                             <br>
                                                                 no file yet
@@ -562,13 +839,13 @@ function generateWaitingBadge()
                                                                     &nbsp;WAITING&nbsp;
                                                                 </a>
                                                             ';
-                                                    }
-                                                    // end internal section
+                                                        }
+                                                        // end internal section
 
-                                                    // set actual IFR status
-                                                    if ($row->actual_ifr) {
-                                                        $actual_ifr = tgl_indo($row->actual_ifr) .
-                                                            '
+                                                        // set actual IFR status
+                                                        if ($row->actual_ifr) {
+                                                            $actual_ifr = tgl_indo($row->actual_ifr) .
+                                                                '
                                                             <br>
                                                                 Issued V ' . $row->file_version . '
                                                             <br>
@@ -582,8 +859,8 @@ function generateWaitingBadge()
                                                                     &nbsp;DETAIL&nbsp;
                                                                 </a>
                                                             ';
-                                                    } else {
-                                                        $actual_ifr = '
+                                                        } else {
+                                                            $actual_ifr = '
                                                             no date yet
                                                             <br>
                                                                 no file yet
@@ -592,100 +869,101 @@ function generateWaitingBadge()
                                                                     &nbsp;WAITING&nbsp;
                                                                 </a>
                                                             ';
+                                                        }
+
+                                                        // set actual IFA status
+                                                        $actual_ifa = generateStatusBadge(
+                                                            $row->actual_ifa_status,
+                                                            $row->actual_ifa,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'IFA',
+                                                            $file_version,
+                                                            'external_ifa',
+                                                            'version ' . $file_version
+                                                        );
+                                                        $actual_AsBuild = generateStatusBadge(
+                                                            $row->external_asbuild_status,
+                                                            $row->external_asbuild_actual,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'AsBuild',
+                                                            $file_version,
+                                                            'external_asbuild',
+                                                            'version ' . $file_version
+                                                        );
+
+                                                        // set actual IFC status                                                       
+                                                        $actual_ifc = generateStatusBadge(
+                                                            $row->actual_ifc_status,
+                                                            $row->actual_ifc,
+                                                            $row->id,
+                                                            $row->description,
+                                                            $linkFile,
+                                                            'IFC',
+                                                            $file_version,
+                                                            'external_ifc',
+                                                            'version ' . $file_version
+                                                        );
+                                                    ?>
+                                                        <tr>
+                                                            <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
+                                                            <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
+                                                            <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
+                                                            <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
+                                                            <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
+                                                            <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
+                                                            <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td>
+                                                            <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
+                                                            <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
+                                                            <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
+                                                            <td class="text-center" style="background-color: #d2e5f7;">
+                                                                <a href="<?= base_url('document-timeline/' . $row->id) ?>">
+                                                                    <?= $status ?>
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                                <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
+                                                                    <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                                </a>
+                                                                &nbsp;
+                                                                <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_engineering/delete">
+                                                                    <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <?php
+                                                    for ($i_cum_plan = 1; $i_cum_plan < count($weekPlan); $i_cum_plan++) {
+                                                        $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan - 1];
                                                     }
-
-                                                    // set actual IFA status
-                                                    $actual_ifa = generateStatusBadge(
-                                                        $row->actual_ifa_status,
-                                                        $row->actual_ifa,
-                                                        $row->id,
-                                                        $row->description,
-                                                        $linkFile,
-                                                        'IFA',
-                                                        $file_version,
-                                                        'external_ifa',
-                                                        'version ' . $file_version
-                                                    );
-                                                    $actual_AsBuild = generateStatusBadge(
-                                                        $row->external_asbuild_status,
-                                                        $row->external_asbuild_actual,
-                                                        $row->id,
-                                                        $row->description,
-                                                        $linkFile,
-                                                        'AsBuild',
-                                                        $file_version,
-                                                        'external_asbuild',
-                                                        'version ' . $file_version
-                                                    );
-
-                                                    // set actual IFC status                                                       
-                                                    $actual_ifc = generateStatusBadge(
-                                                        $row->actual_ifc_status,
-                                                        $row->actual_ifc,
-                                                        $row->id,
-                                                        $row->description,
-                                                        $linkFile,
-                                                        'IFC',
-                                                        $file_version,
-                                                        'external_ifc',
-                                                        'version ' . $file_version
-                                                    );
-                                                ?>
-                                                    <tr>
-                                                        <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
-                                                        <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
-                                                        <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
-                                                        <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
-                                                        <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
-                                                        <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
-                                                        <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
-                                                        <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
-                                                        <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
-                                                        <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
-                                                        <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td>
-                                                        <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
-                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
-                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
-                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
-                                                        <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
-                                                        <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
-                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
-                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
-                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
-                                                        <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
-                                                        <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
-                                                        <td class="text-center" style="background-color: #d2e5f7;">
-                                                            <a href="<?= base_url('document-timeline/' . $row->id) ?>">
-                                                                <?= $status ?>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                            <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>">
-                                                                <i class="ri-pencil-fill text-info font-size-20"></i>
-                                                            </a>
-                                                            &nbsp;
-                                                            <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_engineering/delete">
-                                                                <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                                <?php
-                                                for ($i_cum_plan = 1; $i_cum_plan < count($weekPlan); $i_cum_plan++) {
-                                                    $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan - 1];
-                                                }
-                                                for ($i_cum_act = 1; $i_cum_act < count($weekActual); $i_cum_act++) {
-                                                    $weekActual[$i_cum_act] += $weekActual[$i_cum_act - 1];
-                                                }
-                                                for ($week_counter = 0; $week_counter < count($weekPlan); $week_counter++) {
-                                                    echo '
+                                                    for ($i_cum_act = 1; $i_cum_act < count($weekActual); $i_cum_act++) {
+                                                        $weekActual[$i_cum_act] += $weekActual[$i_cum_act - 1];
+                                                    }
+                                                    for ($week_counter = 0; $week_counter < count($weekPlan); $week_counter++) {
+                                                        echo '
                                                             <input type="hidden" id="week_plan_' . $week_counter . '" value="' . $weekPlan[$week_counter] . '" />
                                                             <input type="hidden" id="week_actual_' . $week_counter . '" value="' . $weekActual[$week_counter] . '" />
                                                         ';
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        <?php } ?>
                                     </font>
                                 </div>
                             </div>
@@ -1212,7 +1490,7 @@ function generateWaitingBadge()
         formData.append('man_hour_actual', $('#actual_man_hour').val());
 
         swalTitle = 'Upload File ' + fileDesc;
-        
+
         Swal.fire({
             title: swalTitle,
             icon: 'info',
