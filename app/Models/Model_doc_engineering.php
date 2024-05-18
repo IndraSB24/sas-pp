@@ -342,7 +342,7 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_progress_plan
+                SUM(COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_progress_plan
             FROM 
                 data_week dw
             LEFT JOIN (
@@ -389,8 +389,6 @@ class Model_doc_engineering extends Model
             ) AS Asbuild ON dw.week_number = Asbuild.week_number
             WHERE
                 dw.id_project = '$idProject'
-            GROUP BY
-                dw.id_project
         ";
 
         $query = $this->db->query($sql);
