@@ -204,7 +204,7 @@ class Model_doc_engineering extends Model
                 COALESCE(IFA.counted_plan, 0) AS counted_plan_ifa,
                 COALESCE(IFC.counted_plan, 0) AS counted_plan_ifc,
                 COALESCE(Asbuild.counted_plan, 0) AS counted_plan_asbuild,
-                (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS total_counted_plan
+                (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN (

@@ -87,7 +87,7 @@ class Project_detail_engineering extends BaseController
         $getScurveDataPlanCum = [];
         $plan_cum_counted = 0;
         foreach ($getScurveDataPlan as $key => $value) {
-            $plan_cum_counted += $value->total_counted_plan;
+            $plan_cum_counted += $value->cum_plan_wf;
             $getScurveDataPlanCum[$key] = $plan_cum_counted;
         }
 
