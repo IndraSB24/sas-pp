@@ -189,34 +189,34 @@ function generateWaitingBadge()
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
-                                                        <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                        <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
                                                     </tr>
                                                     <tr>
                                                         <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
-                                                        <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
-                                                        <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
 
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                        <!-- <th class="text-center" style="background-color:#d2fad2">IFR</th> -->
                                                         <th class="text-center" style="background-color:#d2fad2">IFA</th>
                                                         <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
                                                         <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
-                                                        <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                        <!-- <th class="text-center" style="background-color:#c1f5d9">IFR</th> -->
                                                         <th class="text-center" style="background-color:#c1f5d9">IFA</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
+                                                        <!-- <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th> -->
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2">100%</th>
-                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
+                                                        <!-- <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th> -->
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
@@ -420,12 +420,12 @@ function generateWaitingBadge()
                                                             <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
                                                             <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
                                                             <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
-                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                            <!-- <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td> -->
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
-                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
+                                                            <!-- <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td> -->
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
@@ -465,7 +465,7 @@ function generateWaitingBadge()
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                         <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
-                                                        <th colspan="11" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                        <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                     </tr>
@@ -476,29 +476,29 @@ function generateWaitingBadge()
                                                         <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
                                                         <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th>
                                                         <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
-                                                        <th colspan="5" class="text-center" style="background-color:#b0f5b0">PLAN</th>
-                                                        <th colspan="5" class="text-center" style="background-color:#a0faca">ACTUAL</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
 
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                        <!-- <th class="text-center" style="background-color:#d2fad2">IFR</th> -->
                                                         <th class="text-center" style="background-color:#d2fad2">IFA</th>
                                                         <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
                                                         <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
-                                                        <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                        <!-- <th class="text-center" style="background-color:#c1f5d9">IFR</th> -->
                                                         <th class="text-center" style="background-color:#c1f5d9">IFA</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th>
+                                                        <!-- <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[0]->description ?>%</th> -->
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[1]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[2]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2"><?= $data_weight[3]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#d2fad2">100%</th>
-                                                        <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th>
+                                                        <!-- <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[0]->description ?>%</th> -->
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[1]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[2]->description ?>%</th>
                                                         <th class="text-center" style="background-color:#c1f5d9"><?= $data_weight[3]->description ?>%</th>
@@ -921,12 +921,12 @@ function generateWaitingBadge()
                                                             <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
                                                             <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td>
                                                             <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
-                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td>
+                                                            <!-- <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td> -->
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
                                                             <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
-                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td>
+                                                            <!-- <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td> -->
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
                                                             <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
