@@ -201,9 +201,6 @@ class Model_doc_engineering extends Model
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
-                COALESCE(IFA.counted_plan, 0) AS counted_plan_ifa,
-                COALESCE(IFC.counted_plan, 0) AS counted_plan_ifc,
-                COALESCE(Asbuild.counted_plan, 0) AS counted_plan_asbuild,
                 (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_plan_wf
             FROM 
                 data_week dw

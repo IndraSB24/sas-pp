@@ -142,5 +142,45 @@ class Karyawan extends BaseController
 
         return $this->response->setJSON($fetch_edit_data[0]);
     }
+
+    // set signature ======================================================
+    public function setSignature(){
+        // read the file
+        $uploaded_file = $this->request->getFile('file');
+        $id_karyawan = $this->request->getFile('id_karyawan');
+                
+        // store the file
+        if($uploaded_file){
+            $store_file = $uploaded_file->move('upload/user_signature');
+
+            // save file name to database
+            $data = [
+                'id' => $id_karyawan,
+                'signature_filename' => $uploaded_file->getName()
+            ];
+            $update = $this->doc_engineering_model->save($data);
+
+            // return
+            if ($update){
+                $response = [
+                    'success' => true,
+                    'message' => 'suceess.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed'
+                ];
+            }
+   
+        }else {
+            $response = [
+                'success' => false,
+                'message' => 'No file specified.'
+            ];
+        }
+
+        return json_encode($response);
+    }
     
 }

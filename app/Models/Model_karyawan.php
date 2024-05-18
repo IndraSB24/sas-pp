@@ -13,7 +13,7 @@ class Model_karyawan extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'name', 'email', 'phone', 'created_by'
+        'name', 'email', 'phone', 'created_by', 'signature_filename'
     ];
 
     protected $useTimestamps = true;
