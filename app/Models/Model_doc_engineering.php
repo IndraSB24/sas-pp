@@ -208,8 +208,8 @@ class Model_doc_engineering extends Model
                             SUM(COALESCE(pde2.weight_factor, 0)) * 0.40 +
                             SUM(COALESCE(pde3.weight_factor, 0)) * 0.30
                         ELSE 
-                            SUM(COALESCE(pde1.weight_factor, 0)) * 0.20 +
-                            SUM(COALESCE(pde2.weight_factor, 0)) * 0.70 +
+                            SUM(COALESCE(pde1.weight_factor, 0)) * 0.25 +
+                            SUM(COALESCE(pde2.weight_factor, 0)) * 0.65 +
                             SUM(COALESCE(pde3.weight_factor, 0)) * 0.10
                     END
                 ) / 100 AS cum_plan_wf
