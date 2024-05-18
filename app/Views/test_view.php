@@ -59,6 +59,7 @@
 
                 <!-- start page title -->
                 <?= $page_title ?>
+                <img class="d-none" id="sign_image" src="<?= base_url('assets/images/logo-sm-light.png') ?>" alt="logo-sm-light" height="40">
                 <!-- end page title -->
                 <div class='row'>
                     <div class="col-md-8">
@@ -73,7 +74,7 @@
                                 </div>
                             </div>
                             <div id="canvasContainer" class="card" style="padding: 20px">
-                                <canvas id="canvas" ></canvas>
+                                <canvas id="canvas"></canvas>
                                 <input id='currentPdf' type="hidden">
                             </div>
                         </div>
@@ -96,6 +97,7 @@
                                                         <option value="square">Square</option>
                                                         <option value="circle">Circle</option>
                                                         <option value="freeDraw">Free Draw</option>
+                                                        <option value="signature">Signature</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -434,7 +436,7 @@
                 });
 
                 this.fetchComment();
-                
+
                 function convertDataURIToBlob(dataURI) {
                     var byteString;
                     if (dataURI.split(',')[0].indexOf('base64') >= 0)
@@ -723,6 +725,21 @@
                             canvas.add(rectangle);
                             snapToGrid(rectangle);
                         }
+                    } else if (this.typeAction === 'signature') {
+                        if (options.target) {
+                            snapToGrid(options.target);
+                        } else {
+                            var pointer = canvas.getPointer(options.e);
+                            var x = pointer.x;
+                            var y = pointer.y;
+                            var imgElement = document.getElementById('sign_image');
+                            var imgInstance = new fabric.Image(imgElement, {
+                                left: x - 50,
+                                top: y - 50,
+                            });
+                            canvas.add(imgInstance);
+                            snapToGrid(imgInstance);
+                        }
                     } else if (this.typeAction === 'circle') {
                         if (options.target) {
                             snapToGrid(options.target);
@@ -774,11 +791,11 @@
                         var viewport = page.getViewport(2.0);
                         var canvasEl = document.querySelector("canvas")
                         console.log(viewport, 'fuadi viewport');
-                        
+
                         canvasEl.height = viewport.height;
                         canvasEl.width = viewport.width;
                         console.log(canvasEl, 'fuadi canvasEl');
-                        
+
                         page.render({
                             canvasContext: canvasEl.getContext('2d'),
                             viewport: viewport
