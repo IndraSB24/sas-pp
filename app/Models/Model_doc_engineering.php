@@ -261,9 +261,7 @@ class Model_doc_engineering extends Model
                 dw.week_number
         ";
         $query = $this->db->query($sql);
-        return $query->getResult();
-
-        
+        return $query->getResult();        
     }
 
     // get scurve chart data actual
@@ -344,19 +342,53 @@ class Model_doc_engineering extends Model
 
         $sql = "
             SELECT 
-                COALESCE(SUM(COALESCE(pde1.weight_factor, 0) * 0.25) +
-                    SUM(COALESCE(pde2.weight_factor, 0) * 0.65) +
-                    SUM(COALESCE(pde3.weight_factor, 0) * 0.10), 0) / 100 AS cum_progress_plan
+                (COALESCE(IFA.counted_plan, 0) + COALESCE(IFC.counted_plan, 0) + COALESCE(Asbuild.counted_plan, 0)) AS cum_progress_plan
             FROM 
                 data_week dw
-            LEFT JOIN 
-                project_detail_engineering pde1 ON (pde1.plan_ifa BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN
-                project_detail_engineering pde2 ON (pde2.plan_ifc BETWEEN dw.start_date AND dw.end_date)
-            LEFT JOIN
-                project_detail_engineering pde3 ON (pde3.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
-            WHERE 
-                dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.25
+                    END AS counted_plan
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.plan_ifa BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+            ) AS IFA ON dw.week_number = IFA.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.40
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.65
+                    END AS counted_plan
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.plan_ifc BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+            ) AS IFC ON dw.week_number = IFC.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.10
+                    END AS counted_plan
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+            ) AS Asbuild ON dw.week_number = Asbuild.week_number
+            WHERE
+                dw.id_project = '$idProject'
         ";
 
         $query = $this->db->query($sql);
