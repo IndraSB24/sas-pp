@@ -295,28 +295,28 @@
                                                                     '. angka(2, $value['cumPlanLastWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. $value['cumActualLastWeek'] .'
+                                                                    '. angka(2, $value['cumActualLastWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. $value['cumActual'] .'
+                                                                    '. angka(2, $value['cumActualLastWeek']) - angka(2, $value['cumPlanLastWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $value['cumPlanCurrentWeek'] .'
+                                                                    '. angka(2, $value['cumPlanCurrentWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $value['cumActualCurrentWeek'] .'
+                                                                    '. angka(2, $value['cumActualCurrentWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $value['cumActual'] .'
+                                                                    '. angka(2, $value['cumActualCurrentWeek']) - angka(2, $value['cumPlanCurrentWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $value['cumPlan'] .'
+                                                                    '. angka(2, $value['cumPlan']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $value['cumActual'] .'
+                                                                    '. angka(2, $value['cumActual']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $value['cumActual'] .'
+                                                                    '. angka(2, $value['cumActual']) - angka(2, $value['cumPlan']) .'%
                                                                 </td>
                                                             </tr>
                                                         ';
