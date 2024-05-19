@@ -288,6 +288,7 @@
 
     <script src="assets/js/app.js"></script>
     <script>
+        console.log('<?= sessUserSignature() ?>', 'user signature');
         document.addEventListener('DOMContentLoaded', function() {})
         var app = new Vue({
             el: '#app',
