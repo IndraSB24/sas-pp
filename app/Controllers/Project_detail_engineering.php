@@ -118,10 +118,14 @@ class Project_detail_engineering extends BaseController
                 'dataPlanCum' => $getScurveDataPlanCum,
                 'dataActualCum' => $getScurveDataActualCum
             ],
-            'progressChartData' => [
-                'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday(),
-                'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday()
-            ],
+            // 'progressChartData' => [
+            //     'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday(),
+            //     'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday()
+            // ],
+            'progressChartDataEngineering' => [
+				'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
+				'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
+			],
             'docProgress' => [
                 'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'ifa' ),
                 'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'ifa' ),
