@@ -500,6 +500,7 @@
                     // Convert data URL to Blob
                     var blob = dataURLtoBlob(dataUrl);
                     formData.append('signImage', blob, 'signImage.png');
+                    formData.append('id_engineering_doc_file', <?= $doc_data[0]->id_engineering_doc_file ?>);
 
                     const fileDesc = '<?= $step ?>';
                     let path;
