@@ -654,7 +654,7 @@ class Model_doc_engineering extends Model
             FROM 
                 data_helper
             WHERE 
-                type = 'doc_dicipline_engineering'
+                type = 'doc_dicipline_engineering' AND name != 'survey & project management'
         ";
         
         $query = $this->db->query($sql);
