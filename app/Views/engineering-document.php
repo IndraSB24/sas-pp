@@ -279,15 +279,17 @@
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                    $counter = 0;
                                                     // Iterate over the array
                                                     foreach ($progressByDicipline['data'] as $key => $value) {
+                                                        $counter += 1;
                                                         echo '
                                                             <tr>
                                                                 <td class="text-center" style="background-color: #b0cbf7;">
-                                                                    '. $key .'
+                                                                    '. $counter .'
                                                                 </td>
                                                                 <td style="background-color: #b0cbf7;">
-                                                                    test
+                                                                    '. $key .'
                                                                 </td>
                                                             </tr>
                                                         ';
