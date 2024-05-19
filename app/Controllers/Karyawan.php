@@ -3,14 +3,16 @@
 namespace App\Controllers;
 use App\Models\Model_project;
 use App\Models\Model_karyawan;
+use App\Models\Model_user;
 
 
 class Karyawan extends BaseController
 {
-    protected $Model_karyawan;
+    protected $Model_karyawan, $Model_user;
 
     function __construct(){
         $this->Model_karyawan = new Model_karyawan();
+        $this->Model_user = new Model_user();
 		helper(['session_helper']);
     }
     
@@ -25,6 +27,16 @@ class Karyawan extends BaseController
 
 	// add karyawan
     public function add_karyawan(){
+        // create user
+        $dataAddUser = [
+            'username' => $this->request->getPost('email'),
+            'nama' => $this->request->getPost('name'),
+            'password' => password_hash('pp123', PASSWORD_DEFAULT),
+            'status' => 1,
+            'id_role' => 7
+        ];
+        $insertedId = $this->Model_user->insertWithReturnId($dataAddUser);
+
 		$data_add = array_intersect_key(
             $this->request->getPost(),
             array_flip([
@@ -33,6 +45,7 @@ class Karyawan extends BaseController
         );
         // echo '<pre>'; print_r( $data_add );die; echo '</pre>';
         $data_add['created_by'] = sess('active_user_id');
+        $data_add['id_user'] = $insertedId;
 
         $uploaded_file = $this->request->getFile('file');
         // store the file
