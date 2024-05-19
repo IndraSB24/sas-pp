@@ -307,7 +307,7 @@
                                                                     '. angka(2, $value['cumActualCurrentWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. angka(2, $value['cumActualCurrentWeek']) - angka(2, $value['cumPlanCurrentWeek']) .'%
+                                                                    '. angka(2, (float) $value['cumActualCurrentWeek'] - (float) $value['cumPlanCurrentWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
                                                                     '. angka(2, $value['cumPlan']) .'%
@@ -316,7 +316,7 @@
                                                                     '. angka(2, $value['cumActual']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. angka(2, $value['cumActual']) - angka(2, $value['cumPlan']) .'%
+                                                                    '. angka(2, (float) $value['cumActual'] - (float) $value['cumPlan']) .'%
                                                                 </td>
                                                             </tr>
                                                         ';
