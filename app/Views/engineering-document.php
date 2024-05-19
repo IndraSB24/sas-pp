@@ -283,16 +283,16 @@
 
                                                     // Iterate over the array
                                                     foreach ($dataArray as $key => $value) {
-                                                        echo '
-                                                            <tr>
-                                                                <td class="text-center" style="background-color: #b0cbf7;">
-                                                                    '. $key + 1 .'
-                                                                </td>
-                                                                <td style="background-color: #b0cbf7;">
-                                                                    '. $value[0] .'
-                                                                </td>
-                                                            </tr>
-                                                        ';
+                                                        // echo '
+                                                        //     <tr>
+                                                        //         <td class="text-center" style="background-color: #b0cbf7;">
+                                                        //             '. $key + 1 .'
+                                                        //         </td>
+                                                        //         <td style="background-color: #b0cbf7;">
+                                                        //             '. $value[0] .'
+                                                        //         </td>
+                                                        //     </tr>
+                                                        // ';
                                                     }
                                                 ?>
                                             </tbody>
@@ -862,7 +862,7 @@
     console.log('doc progress');
     console.log(<?= json_encode($docProgress) ?>);
     console.log(<?= json_encode($manHourPerWeek) ?>, 'man hour by week');
-    console.log(<?= json_encode($progressByDicipline) ?>, 'progressByDicipline');
+    console.log(<?= json_decode(json_encode($progressByDicipline->data), true) ?>, 'progressByDicipline');
 
     //  Scurve mdr
     let weekList = [],
