@@ -114,6 +114,17 @@
                                 </div>
                             </div>
                             <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-select" name="category" id="role">
+                                        <option selected> --Select-- </option>
+                                        <option value="7">Staff PP</option>
+                                        <option value="8">Internal Vendor</option>
+                                        <option value="9">External Vendor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row">
@@ -186,6 +197,17 @@
                                     <label class="form-label">Phone</label>
                                     <input type="text" class="form-control num-only" name="weight_factor" id="edit_phone" />
                                     <small class="text-muted">Please enter only numeric characters (0-9).</small>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-select" name="category" id="edit_role">
+                                        <option selected> --Select-- </option>
+                                        <option value="7">Staff PP</option>
+                                        <option value="8">Internal Vendor</option>
+                                        <option value="9">External Vendor</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -369,7 +391,7 @@
             $('#dataSign_edit').val($('#signature-pad_edit')[0])
             let imageDataUrl = canvas.toDataURL();
             console.log(imageDataUrl, 'fuadi imageDataUrlimageDataUrl');
-            
+
 
             let $imgElement = $("<img>").attr("src", imageDataUrl);
 
@@ -515,6 +537,7 @@
             name: $('#name').val(),
             email: $('#email').val(),
             phone: $('#phone').val(),
+            role: $('#role').val(),
         };
 
         loadQuestionalSwal(
@@ -525,13 +548,14 @@
         $('#name').val(null)
         $('#email').val(null)
         $('#phone').val(null)
+        $('#role').val(null)
     });
 
     $(document).on('click', '#btn_update', function() {
         const path = "<?= site_url('Karyawan/edit_karyawan') ?>";
         const pathSign = "<?= base_url('Karyawan/setSignature') ?>"
         console.log($('#signType_edit').val());
-        
+
         if ($('#signType_edit').val() == 'image') {
             // jika TTD upload gambar
             let selectedFile = $("#file-input_edit")[0].files[0];
@@ -561,7 +585,7 @@
             let canvas = $('#signature-pad_edit')[0]
             let imageDataUrl = canvas.toDataURL();
             console.log(imageDataUrl, 'fuadi imageDataUrl');
-            
+
             const image = $("<img>").attr("src", imageDataUrl);
             image.on("load", function() {
                 // Buat elemen <canvas> baru untuk mengubah gambar menjadi Blob
@@ -601,6 +625,7 @@
             name: $('#edit_name').val(),
             email: $('#edit_email').val(),
             phone: $('#edit_phone').val(),
+            role: $('#edit_role').val(),
         };
 
         loadQuestionalSwal(
