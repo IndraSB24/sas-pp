@@ -59,7 +59,7 @@
 
                 <!-- start page title -->
                 <?= $page_title ?>
-                <img class="d-none" id="sign_image" src="<?= base_url('assets/images/logo-sm-light.png') ?>" alt="logo-sm-light" height="40">
+                <img class="d-none" id="sign_image" src="<?= base_url('upload/user_signature/'.sessUserSignature()) ?>" alt="logo-sm-light" height="40">
                 <!-- end page title -->
                 <div class='row'>
                     <div class="col-md-8">
