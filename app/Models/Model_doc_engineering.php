@@ -1058,7 +1058,7 @@ class Model_doc_engineering extends Model
         }
     
         // Return the aggregated data
-        return $returnData;
+        return $diciplineList;
     }
     
 
