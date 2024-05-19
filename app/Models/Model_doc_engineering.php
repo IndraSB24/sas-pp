@@ -1050,10 +1050,10 @@ class Model_doc_engineering extends Model
             $returnData[$value->name] = [
                 'cumPlan' => $this->getCumDataPlan($idProject, $value->id, true, null),
                 'cumActual' => $this->getCumDataActual($idProject, $value->id, true, null),
-                // 'cumPlanCurrentWeek' => $this->getCumDataPlan($idProject, $value->id, false, $currentWeek),
-                // 'cumActualCurrentWeek' => $this->getCumDataActual($idProject, $value->id, false, $currentWeek),
-                // 'cumPlanLastWeek' => $this->getCumDataPlan($idProject, $value->id, false, $lastWeek),
-                // 'cumActualLastWeek' => $this->getCumDataActual($idProject, $value->id, false, $lastWeek)
+                'cumPlanCurrentWeek' => $this->getCumDataPlan($idProject, $value->id, false, $currentWeek),
+                'cumActualCurrentWeek' => $this->getCumDataActual($idProject, $value->id, false, $currentWeek),
+                'cumPlanLastWeek' => $this->getCumDataPlan($idProject, $value->id, false, $lastWeek),
+                'cumActualLastWeek' => $this->getCumDataActual($idProject, $value->id, false, $lastWeek)
             ];
         }
     
