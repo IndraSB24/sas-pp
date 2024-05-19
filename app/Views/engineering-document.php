@@ -291,6 +291,33 @@
                                                                 <td style="background-color: #b0cbf7;">
                                                                     '. $key .'
                                                                 </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. $value['cumActual'] .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. $key .'
+                                                                </td>
                                                             </tr>
                                                         ';
                                                     }
