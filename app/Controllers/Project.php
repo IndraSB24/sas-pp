@@ -38,14 +38,14 @@ class Project extends BaseController
 			'title_meta' => view('partials/title-meta', ['title' => 'Project Dashboard']),
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => 'TBBM BIAK']),
 			'data_page' => $data_page,
-			// 'progressChartDataEngineering' => [
-            //     'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
-            //     'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
-            // ],
 			'progressChartDataEngineering' => [
-				'percent_plan' => [(object) ['cum_progress_plan' => 12.345]],
-				'percent_actual' => [(object) ['cum_progress_actual' => 67.8910]]
-			]
+                'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
+                'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
+            ],
+			// 'progressChartDataEngineering' => [
+			// 	'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
+			// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
+			// ]
 		];
 		// return view('project-dashboard', $data);
 		return view('project-dashboard-v2', $data);
