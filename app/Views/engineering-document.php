@@ -278,19 +278,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="background-color: #d2e5f7;" nowrap>1</td>
-                                                    <td style="background-color: #d2e5f7;" nowrap>Lorem, ipsum dolor.</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                </tr>
+                                                <?php
+                                                    $dataArray = json_decode(json_encode($progressByDicipline->data), true);
+
+                                                    // Iterate over the array
+                                                    foreach ($dataArray as $key => $value) {
+                                                        echo '
+                                                            <tr>
+                                                                <td class="text-center" style="background-color: #b0cbf7;">
+                                                                    '. $key + 1 .'
+                                                                </td>
+                                                                <td style="background-color: #b0cbf7;">
+                                                                    '. $value[0] .'
+                                                                </td>
+                                                            </tr>
+                                                        ';
+                                                    }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </font>
@@ -858,7 +862,7 @@
     console.log('doc progress');
     console.log(<?= json_encode($docProgress) ?>);
     console.log(<?= json_encode($manHourPerWeek) ?>, 'man hour by week');
-    console.log(<?= json_encode($progressByDicipline) ?>, 'progressByDicipline');
+    console.log(<?= json_decode(json_encode($progressByDicipline->data), true) ?>, 'progressByDicipline');
 
     //  Scurve mdr
     let weekList = [],
