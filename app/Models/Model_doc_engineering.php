@@ -654,7 +654,7 @@ class Model_doc_engineering extends Model
             FROM 
                 data_helper
             WHERE 
-                type = 'doc_discipline_engineering'
+                type = 'doc_dicipline_engineering'
         ";
         
         $query = $this->db->query($sql);
@@ -1058,7 +1058,7 @@ class Model_doc_engineering extends Model
         }
     
         // Return the aggregated data
-        return $diciplineList;
+        return $returnData;
     }
     
 
