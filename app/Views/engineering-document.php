@@ -292,31 +292,31 @@
                                                                     '. $key .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. $value['cumPlanLastWeek'] .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. $value['cumActualLastWeek'] .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
                                                                     '. $value['cumActual'] .'
                                                                 </td>
-                                                                <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. $key .'
-                                                                </td>
-                                                                <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. $key .'
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. $value['cumPlanCurrentWeek'] .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $key .'
+                                                                    '. $value['cumActualCurrentWeek'] .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $key .'
-                                                                </td>
-                                                                <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. $key .'
+                                                                    '. $value['cumActual'] .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $key .'
+                                                                    '. $value['cumPlan'] .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $key .'
+                                                                    '. $value['cumActual'] .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. $key .'
+                                                                    '. $value['cumActual'] .'
                                                                 </td>
                                                             </tr>
                                                         ';
