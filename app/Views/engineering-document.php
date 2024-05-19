@@ -280,18 +280,18 @@
                                             <tbody>
                                                 <?php
                                                     // Iterate over the array
-                                                    // foreach ($progressByDicipline->data as $key => $value) {
-                                                    //     echo '
-                                                    //         <tr>
-                                                    //             <td class="text-center" style="background-color: #b0cbf7;">
-                                                    //                 '. $key + 1 .'
-                                                    //             </td>
-                                                    //             <td style="background-color: #b0cbf7;">
-                                                    //                 '. $value[0] .'
-                                                    //             </td>
-                                                    //         </tr>
-                                                    //     ';
-                                                    // }
+                                                    foreach ($progressByDicipline['data'] as $key => $value) {
+                                                        echo '
+                                                            <tr>
+                                                                <td class="text-center" style="background-color: #b0cbf7;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td style="background-color: #b0cbf7;">
+                                                                    test
+                                                                </td>
+                                                            </tr>
+                                                        ';
+                                                    }
                                                 ?>
                                             </tbody>
                                         </table>
