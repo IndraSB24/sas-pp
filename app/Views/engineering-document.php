@@ -1585,13 +1585,13 @@
         });
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
-        // $('#complete').html(`Plan: ${parseFloat(progressChartData.percent_plan[0].cum_progress_plan).toFixed(2)}%`)
-        // $('#waiting').html(`Actual: ${parseFloat(progressChartData.percent_actual[0].cum_progress_actual).toFixed(2)}%`)
+        $('#complete').html(`Plan: ${parseFloat(progressChartData.percent_plan[0].cum_progress_plan).toFixed(2)}%`)
+        $('#waiting').html(`Actual: ${parseFloat(progressChartData.percent_actual[0].cum_progress_actual).toFixed(2)}%`)
         // $('#complete_doc').html(`Plan: ${progressChartData.doc_plan[0].total_plan_doc}`)
         // $('#waiting_doc').html(`Actual: ${(progressChartData.doc_actual[0].total_actual_doc)}`)
         // $('#total_doc').html(`Total Doc: ${progressChartData.doc_total}`)
-        $('#complete').html(`Plan: 5%`)
-        $('#waiting').html(`Actual: 72%`)
+        // $('#complete').html(`Plan: 5%`)
+        // $('#waiting').html(`Actual: 72%`)
     });
 </script>
 <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
