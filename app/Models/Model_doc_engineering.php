@@ -1058,7 +1058,12 @@ class Model_doc_engineering extends Model
         }
     
         // Return the aggregated data
-        return $returnData;
+        return [
+            'currentWeek' => $currentWeek,
+            'lastWeek' => $lastWeek,
+            'data' => $returnData
+        ];
+        
     }
     
 
