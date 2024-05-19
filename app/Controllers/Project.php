@@ -43,8 +43,8 @@ class Project extends BaseController
             //     'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
             // ],
 			'progressChartDataEngineering' => [
-				'percent_plan' => [(object) ['cum_progress_plan' => 12345]],
-				'percent_actual' => [(object) ['cum_progress_actual' => 678910]]
+				'percent_plan' => [(object) ['cum_progress_plan' => 12.345]],
+				'percent_actual' => [(object) ['cum_progress_actual' => 67.8910]]
 			]
 		];
 		// return view('project-dashboard', $data);
