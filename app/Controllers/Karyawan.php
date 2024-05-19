@@ -32,7 +32,15 @@ class Karyawan extends BaseController
             ])
         );
         // echo '<pre>'; print_r( $data_add );die; echo '</pre>';
-        $data['created_by'] = sess('active_user_id');
+        $data_add['created_by'] = sess('active_user_id');
+
+        $uploaded_file = $this->request->getFile('file');
+        // store the file
+        if($uploaded_file){
+            $store_file = $uploaded_file->move('upload/user_signature');
+            $data_add['signature_filename'] = $uploaded_file->getName();
+        }
+
 		$save_file = $this->Model_karyawan->save($data_add);
 
 		if ($save_file) {
@@ -60,6 +68,13 @@ class Karyawan extends BaseController
         );
         $data['id'] = $this->request->getPost('edit_id');
         $data['created_by'] = sess('active_user_id');
+
+        $uploaded_file = $this->request->getFile('file');
+        // store the file
+        if($uploaded_file){
+            $store_file = $uploaded_file->move('upload/user_signature');
+            $data_add['signature_filename'] = $uploaded_file->getName();
+        }
 
         $insertData = $this->Model_karyawan->save($data);
         
