@@ -517,10 +517,10 @@
             phone: $('#phone').val(),
         };
 
-        // loadQuestionalSwal(
-        //     path, data, 'Tambahkan karyawan dengan nama: ' + $('#name').val() + ' ?',
-        //     'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil ditambahkan.', 'main_modal'
-        // );
+        loadQuestionalSwal(
+            path, data, 'Tambahkan karyawan dengan nama: ' + $('#name').val() + ' ?',
+            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil ditambahkan.', 'main_modal'
+        );
 
         $('#name').val(null)
         $('#email').val(null)
