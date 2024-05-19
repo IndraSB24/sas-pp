@@ -1055,12 +1055,12 @@ class Model_doc_engineering extends Model
             $cumActualLastWeek = $this->getCumDataActual($idProject, $value->id, false, $lastWeek);
             
             $returnData[$value->name] = [
-                'cumPlan' => $cumPlan[0],
-                'cumActual' => $cumActual[0],
-                'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0],
-                'cumActualCurrentWeek' => $cumActualCurrentWeek[0],
-                'cumPlanLastWeek' => $cumPlanLastWeek[0],
-                'cumActualLastWeek' => $cumActualLastWeek[0]
+                'cumPlan' => $cumPlan[0]->cum_progress_plan,
+                'cumActual' => $cumActual[0]->cum_progress_actual,
+                'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0]->cum_progress_plan,
+                'cumActualCurrentWeek' => $cumActualCurrentWeek[0]->cum_progress_actual,
+                'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
+                'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
             ];
         }
     
