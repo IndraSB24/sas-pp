@@ -1068,7 +1068,7 @@ class Model_doc_engineering extends Model
         return [
             'currentWeek' => $currentWeek,
             'lastWeek' => $lastWeek,
-            'data' => array($returnData)
+            'data' => $returnData
         ];
         
     }
