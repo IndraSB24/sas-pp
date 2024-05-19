@@ -147,8 +147,8 @@ class Karyawan extends BaseController
     public function setSignature(){
         // read the file
         $uploaded_file = $this->request->getFile('file');
-        $id_karyawan = $this->request->getFile('id_karyawan');
-                
+        $id_karyawan = $this->request->getPost('id_karyawan');
+        // echo '<pre>'; print_r( $uploaded_file);die; echo '</pre>';
         // store the file
         if($uploaded_file){
             $store_file = $uploaded_file->move('upload/user_signature');
@@ -158,7 +158,7 @@ class Karyawan extends BaseController
                 'id' => $id_karyawan,
                 'signature_filename' => $uploaded_file->getName()
             ];
-            $update = $this->doc_engineering_model->save($data);
+            $update = $this->Model_karyawan->save($data);
 
             // return
             if ($update){

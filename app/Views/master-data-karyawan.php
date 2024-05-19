@@ -317,7 +317,7 @@
 
             $('#signPlace').html($imgElement)
             $('#signType').val('signPad')
-            signaturePad.clear();
+            // signaturePad.clear();
         });
 
         $("#file-input").change(function() {
@@ -325,7 +325,7 @@
             let selectedFile = this.files[0];
             if (selectedFile) {
                 if (selectedFile.size >= 500000) {
-                    swal("Error", 'Size terlalu besar!', "error")
+                    Swal.fire("Error", 'Size terlalu besar!', "error")
                     $(this).val('');
                     return;
                 }
@@ -368,12 +368,14 @@
             let canvas = $('#signature-pad_edit')[0]
             $('#dataSign_edit').val($('#signature-pad_edit')[0])
             let imageDataUrl = canvas.toDataURL();
+            console.log(imageDataUrl, 'fuadi imageDataUrlimageDataUrl');
+            
 
             let $imgElement = $("<img>").attr("src", imageDataUrl);
 
             $('#signPlace_edit').html($imgElement)
             $('#signType_edit').val('signPad')
-            signaturePad_edit.clear();
+            // signaturePad_edit.clear();
         });
 
         $("#file-input_edit").change(function() {
@@ -381,7 +383,7 @@
             let selectedFile = this.files[0];
             if (selectedFile) {
                 if (selectedFile.size >= 500000) {
-                    swal("Error", 'Size terlalu besar!', "error")
+                    Swal.fire("Error", 'Size terlalu besar!', "error")
                     $(this).val('');
                     return;
                 }
@@ -471,7 +473,7 @@
                 //     swal("Error", 'Terjadi Kesalahan', "error")
                 // });
             }
-        } else if ($('#signType').val() == 'signPad') {
+        } else {
             // jika TTD sign pad
             let canvas = $('#signature-pad')[0]
             let imageDataUrl = canvas.toDataURL();
@@ -527,6 +529,7 @@
 
     $(document).on('click', '#btn_update', function() {
         const path = "<?= site_url('Karyawan/edit_karyawan') ?>";
+        const pathSign = "<?= base_url('Karyawan/setSignature') ?>"
         console.log($('#signType_edit').val());
         
         if ($('#signType_edit').val() == 'image') {
@@ -535,27 +538,30 @@
             if (selectedFile) {
                 const name = selectedFile.name;
                 const file = new FormData();
-                file.append(name, selectedFile);
+                file.append('file', selectedFile);
+                file.append("id_karyawan", $('#edit_id').val());
                 console.log(file, 'image');
-                // $.ajax({
-                //     method: 'post',
-                //     url: `https://api-image.assist.id/hospitalImage`,
-                //     data: file,
-                //     processData: false,
-                //     contentType: false,
-                //     crossDomain: true,
-                // }).done((resp) => {
-                //     console.log(resp)
-                //     submitImageName(resp)
-                // }).fail((err) => {
-                //     console.log(err)
-                //     swal("Error", 'Terjadi Kesalahan', "error")
-                // });
+                $.ajax({
+                    method: 'post',
+                    url: pathSign,
+                    data: file,
+                    processData: false,
+                    contentType: false,
+                    crossDomain: true,
+                }).done((resp) => {
+                    console.log(resp)
+                    // submitImageName(resp)
+                }).fail((err) => {
+                    console.log(err)
+                    Swal.fire("Error", 'Terjadi Kesalahan', "error")
+                });
             }
-        } else if ($('#signType_edit').val() == 'signPad') {
+        } else {
             // jika TTD sign pad
-            let canvas = $('#signature-pad')[0]
+            let canvas = $('#signature-pad_edit')[0]
             let imageDataUrl = canvas.toDataURL();
+            console.log(imageDataUrl, 'fuadi imageDataUrl');
+            
             const image = $("<img>").attr("src", imageDataUrl);
             image.on("load", function() {
                 // Buat elemen <canvas> baru untuk mengubah gambar menjadi Blob
@@ -569,22 +575,23 @@
                 canvas.toBlob(function(blob) {
                     // Buat objek FormData dan tambahkan Blob ke dalamnya
                     const formData = new FormData();
-                    formData.append("signature", blob, "signature.png");
+                    formData.append("file", blob, "signature.png");
+                    formData.append("id_karyawan", $('#edit_id').val());
                     console.log(formData, 'pad');
 
-                    // $.ajax({
-                    //     method: 'post',
-                    //     url: `https://api-image.assist.id/hospitalImage`,
-                    //     // dataType: 'json',
-                    //     data: formData,
-                    //     processData: false,
-                    //     contentType: false,
-                    //     crossDomain: true,
-                    // }).done((resp) => {
-                    //     submitImageName(resp)
-                    // }).fail(resp => {
-                    //     swal("Error", 'Terjadi Kesalahan!', "error")
-                    // })
+                    $.ajax({
+                        method: 'post',
+                        url: pathSign,
+                        // dataType: 'json',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        crossDomain: true,
+                    }).done((resp) => {
+                        // submitImageName(resp)
+                    }).fail(resp => {
+                        Swal.fire("Error", 'Terjadi Kesalahan!', "error")
+                    })
 
                 }, "image/png");
             });
@@ -596,10 +603,10 @@
             phone: $('#edit_phone').val(),
         };
 
-        // loadQuestionalSwal(
-        //     path, data, 'Edit data karyawan dengan nama: ' + $('#edit_name').val() + ' ?',
-        //     'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil diedit.', 'edit_modal'
-        // );
+        loadQuestionalSwal(
+            path, data, 'Edit data karyawan dengan nama: ' + $('#edit_name').val() + ' ?',
+            'Disimpan!', 'Karyawan dengan nama: ' + $('#name').val() + ' berhasil diedit.', 'edit_modal'
+        );
     });
 
 
