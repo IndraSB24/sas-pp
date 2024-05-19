@@ -279,10 +279,10 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $dataArray = json_decode(json_encode($progressByDicipline->data), true);
+                                                    // $dataArray = json_decode(json_encode($progressByDicipline->data), true);
 
                                                     // Iterate over the array
-                                                    foreach ($dataArray as $key => $value) {
+                                                    // foreach ($dataArray as $key => $value) {
                                                         // echo '
                                                         //     <tr>
                                                         //         <td class="text-center" style="background-color: #b0cbf7;">
@@ -293,7 +293,7 @@
                                                         //         </td>
                                                         //     </tr>
                                                         // ';
-                                                    }
+                                                    // }
                                                 ?>
                                             </tbody>
                                         </table>
