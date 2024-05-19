@@ -122,7 +122,7 @@ class Project_detail_engineering extends BaseController
             //     'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday(),
             //     'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday()
             // ],
-            'progressChartDataEngineering' => [
+            'progressChartData' => [
 				'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
 				'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
 			],
