@@ -1032,27 +1032,35 @@ class Model_doc_engineering extends Model
     
 
     // get percent progress by dicipline
-    public function getProgressByDicipline($idProject=1){
+    public function getProgressByDicipline($idProject = 1) {
         $currentDate = date('Y-m-d');
-
+    
+        // Get the current week number and last week number
         $currentWeek = $this->getWeekNumberByDate($currentDate);
         $lastWeek = $currentWeek - 1;
+    
+        // Initialize the return data array
         $returnData = [];
-
+    
+        // Get the list of disciplines
         $diciplineList = $this->getDisciplineList();
-
-        foreach ($diciplineList as $key => $value) {
-
+    
+        // Iterate through each discipline
+        foreach ($diciplineList as $value) {
             $returnData[$value->name] = [
-                'cumPlan' => $this->getCumDataPlan(1, $value->id, true, null),
-                'cumActual' => $this->getCumDataActual(1, $value->id, true, null),
-                'cumPlanCurrentWeek' => $this->getCumDataPlan(1, $value->id, false, $currentWeek),
-                'cumActualCurrentWeek' => $this->getCumDataActual(1, $value->id, false, $currentWeek),
-                'cumPlanLastWeek' => $this->getCumDataPlan(1, $value->id, false, $lastWeek),
-                'cumActualLastWeek' => $this->getCumDataActual(1, $value->id, false, $lastWeek)
+                'cumPlan' => $this->getCumDataPlan($idProject, $value->id, true, null),
+                'cumActual' => $this->getCumDataActual($idProject, $value->id, true, null),
+                'cumPlanCurrentWeek' => $this->getCumDataPlan($idProject, $value->id, false, $currentWeek),
+                'cumActualCurrentWeek' => $this->getCumDataActual($idProject, $value->id, false, $currentWeek),
+                'cumPlanLastWeek' => $this->getCumDataPlan($idProject, $value->id, false, $lastWeek),
+                'cumActualLastWeek' => $this->getCumDataActual($idProject, $value->id, false, $lastWeek)
             ];
         }
+    
+        // Return the aggregated data
+        return $returnData;
     }
+    
 
 
 }
