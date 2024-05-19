@@ -495,6 +495,12 @@
                     var timerInterval;
                     var formData = new FormData();
 
+                    var pdf = new jsPDF();
+                    var dataUrl = canvas.toDataURL('image/png');
+                    // Convert data URL to Blob
+                    var blob = dataURLtoBlob(dataUrl);
+                    formData.append('signImage', blob, 'signImage.png');
+
                     const fileDesc = '<?= $step ?>';
                     let path;
                     if (fileDesc === 'internal_engineering') {
