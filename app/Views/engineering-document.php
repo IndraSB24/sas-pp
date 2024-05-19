@@ -1585,8 +1585,8 @@
         });
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
-        $('#complete').html(`Plan: ${parseFloat(progressChartData.percent_plan[0].cum_progress_plan).toFixed(2)}%`)
-        $('#waiting').html(`Actual: ${parseFloat(progressChartData.percent_actual[0].cum_progress_actual).toFixed(2)}%`)
+        $('#complete').html(`Plan: ${progressChartData.percent_plan[0].cum_progress_plan}%`)
+        $('#waiting').html(`Actual: ${progressChartData.percent_actual[0].cum_progress_actual}%`)
         $('#complete_doc').html(`Plan: ${progressChartData.doc_plan[0].total_plan_doc}`)
         $('#waiting_doc').html(`Actual: ${(progressChartData.doc_actual[0].total_actual_doc)}`)
         $('#total_doc').html(`Total Doc: ${progressChartData.doc_total}`)
