@@ -78,4 +78,36 @@ class Auth extends BaseController
         return redirect()->to('/');
     }
 
+    // add user
+    public function addUser()
+    {   
+        // Get the username and password from POST data
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        // Validate the input (this is basic validation, you can expand it as needed)
+        if (empty($username) || empty($password)) {
+            return redirect()->back()->with('error', 'Username and password are required.');
+        }
+
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Create an instance of UserModel
+        $userModel = new UserModel();
+
+        // Prepare the data to be inserted
+        $data = [
+            'username' => $username,
+            'password' => $hashedPassword,
+        ];
+
+        // Insert the data
+        if ($userModel->insert($data)) {
+            return redirect()->back()->with('success', 'User created successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to create user.');
+        }
+    }
+
 }

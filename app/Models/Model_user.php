@@ -61,4 +61,17 @@ class Model_user extends Model
         
         return $this->get()->getRow();
     }
+
+    // insert with db transaction
+    public function insertWithReturnId($data) {
+        $this->db->transBegin();
+
+        $this->db->table('user')->insert($data);
+
+        $transactionId = $this->db->insertID();
+
+        $this->db->transCommit();
+
+        return $transactionId;
+    }
 }
