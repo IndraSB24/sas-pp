@@ -261,9 +261,9 @@
                                                 <tr>
                                                     <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
                                                     <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W16)</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W17)</th>
-                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W17)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W<?= $progressByDicipline->lastWeek ?>)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W<?= $progressByDicipline->currentWeek ?>)</th>
+                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W<?= $progressByDicipline->lastWeek ?>)</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
@@ -279,20 +279,18 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    // $dataArray = json_decode(json_encode($progressByDicipline->data), true);
-
                                                     // Iterate over the array
-                                                    // foreach ($dataArray as $key => $value) {
-                                                        // echo '
-                                                        //     <tr>
-                                                        //         <td class="text-center" style="background-color: #b0cbf7;">
-                                                        //             '. $key + 1 .'
-                                                        //         </td>
-                                                        //         <td style="background-color: #b0cbf7;">
-                                                        //             '. $value[0] .'
-                                                        //         </td>
-                                                        //     </tr>
-                                                        // ';
+                                                    // foreach ($progressByDicipline->data as $key => $value) {
+                                                    //     echo '
+                                                    //         <tr>
+                                                    //             <td class="text-center" style="background-color: #b0cbf7;">
+                                                    //                 '. $key + 1 .'
+                                                    //             </td>
+                                                    //             <td style="background-color: #b0cbf7;">
+                                                    //                 '. $value[0] .'
+                                                    //             </td>
+                                                    //         </tr>
+                                                    //     ';
                                                     // }
                                                 ?>
                                             </tbody>
