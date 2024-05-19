@@ -292,7 +292,7 @@
                                                                     '. $key .'
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. $value['cumPlanLastWeek'] .'
+                                                                    '. angka(2, $value['cumPlanLastWeek']) .'%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
                                                                     '. $value['cumActualLastWeek'] .'
