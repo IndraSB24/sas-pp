@@ -34,7 +34,7 @@ class Project extends BaseController
     
 	public function index($project_detail=""){
 		if (!$this->checkLogin()) {
-			return;
+			redirect('login');
 		}
 
 		$data_page = (object)[
