@@ -24,37 +24,35 @@ class Project extends BaseController
     }
     
 	public function index($project_detail=""){
-		if (sess('active_user_id') == '10') {
+		if (!sess('active_user_id')) {
 			redirect('login');
-		}else{
-			$data_page = (object)[
-				'overal_plan' => 75,
-				'overal_actual' => 60,
-				'overal_variance' => 15,
-				'chart_pt_engineering_plan' => 50,
-				'chart_pt_engineering_actual' => 30,
-				'chart_pt_procurement_plan' => 70,
-				'chart_pt_procurement_actual' => 15,
-			];
-	
-			$data = [
-				'title_meta' => view('partials/title-meta', ['title' => 'Project Dashboard']),
-				'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => 'TBBM BIAK']),
-				'data_page' => $data_page,
-				'progressChartDataEngineering' => [
-					'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
-					'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
-				],
-				// 'progressChartDataEngineering' => [
-				// 	'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
-				// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
-				// ]
-			];
-			// return view('project-dashboard', $data);
-			return view('project-dashboard-v2', $data);
 		}
 
-		
+		$data_page = (object)[
+			'overal_plan' => 75,
+			'overal_actual' => 60,
+			'overal_variance' => 15,
+			'chart_pt_engineering_plan' => 50,
+			'chart_pt_engineering_actual' => 30,
+			'chart_pt_procurement_plan' => 70,
+			'chart_pt_procurement_actual' => 15,
+		];
+
+		$data = [
+			'title_meta' => view('partials/title-meta', ['title' => 'Project Dashboard']),
+			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => 'TBBM BIAK']),
+			'data_page' => $data_page,
+			'progressChartDataEngineering' => [
+                'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
+                'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
+            ],
+			// 'progressChartDataEngineering' => [
+			// 	'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
+			// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
+			// ]
+		];
+		// return view('project-dashboard', $data);
+		return view('project-dashboard-v2', $data);
 	}
 	
 	public function show_project_list(){
