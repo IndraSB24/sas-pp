@@ -59,7 +59,7 @@ class Auth extends BaseController
                 ];
                 $session->set($ses_data);
                 $session->setFlashdata('message', 'Login Berhasil');
-                return redirect()->to('/project-dashboard');
+                return redirect()->to('/dashboard');
             }else{
                 $session->setFlashdata('error', 'Password Anda Salah');
                 return redirect()->to('/');
