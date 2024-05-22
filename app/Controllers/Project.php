@@ -24,7 +24,7 @@ class Project extends BaseController
     }
 
 	function checkLogin(){
-		if(sess('active_user_id') != null){
+		if(sess('active_user_id') == '10'){
 			redirect()->to('login');
 		}
 	}
