@@ -596,7 +596,7 @@
 </html>
 <script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 <script>
-    console.log(<?= json_encode($sess('active_user_id')) ?>, 'activeUserId');
+    console.log(<?= json_encode(sess('active_user_id')) ?>, 'activeUserId');
     // chart progress tracking
     var options_prog_chart = {
         chart: {
