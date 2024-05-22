@@ -30,7 +30,7 @@ class Project extends BaseController
 	}
     
 	public function index($project_detail=""){
-		checkLogin();
+		$this->checkLogin();
 		$data_page = (object)[
 			'overal_plan' => 75,
 			'overal_actual' => 60,
