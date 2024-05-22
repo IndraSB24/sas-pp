@@ -26,11 +26,16 @@ class Project extends BaseController
 	function checkLogin(){
 		if(sess('active_user_id') == '10'){
 			redirect()->to('login');
+			return false;
+		}else{
+			return true;
 		}
 	}
     
 	public function index($project_detail=""){
-		$this->checkLogin();
+		if (!$this->checkLogin()) {
+			return;
+		}
 
 		$data_page = (object)[
 			'overal_plan' => 75,
