@@ -22,8 +22,15 @@ class Project extends BaseController
         $this->Model_week = new Model_week();
 		helper(['session_helper', 'upload_path_helper']);
     }
+
+	function checkLogin(){
+		if(sess('active_user_id')){
+			redirect()->to('login');
+		}
+	}
     
 	public function index($project_detail=""){
+		checkLogin();
 		$data_page = (object)[
 			'overal_plan' => 75,
 			'overal_actual' => 60,
