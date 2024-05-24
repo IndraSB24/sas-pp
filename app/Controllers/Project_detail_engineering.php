@@ -146,7 +146,8 @@ class Project_detail_engineering extends BaseController
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Engineering', 'pagetitle' => 'Document List']),
 			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
-            'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight')
+            'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight'),
+            'list_doc_dicipline' => $this->Model_data_helper->get_by_type('doc_dicipline_engineering')
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_engineering_detail', $data);
