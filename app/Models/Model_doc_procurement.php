@@ -192,57 +192,94 @@ class Model_doc_procurement extends Model
 
         $sql = "
             SELECT 
-                SUM(COALESCE(IFA.counted_actual, 0) + COALESCE(IFC.counted_actual, 0) + COALESCE(Asbuild.counted_actual, 0)) AS cum_progress_actual
+                SUM(
+                    COALESCE(PO.counted_actual, 0) + 
+                    COALESCE(FAT.counted_actual, 0) + 
+                    COALESCE(RFS.counted_actual, 0) +
+                    COALESCE(ONSITE.counted_actual, 0) + 
+                    COALESCE(INSTALL.counted_actual, 0) + 
+                    COALESCE(COMM.counted_actual, 0)
+                ) AS cum_progress_actual
             FROM 
                 data_week dw
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.25
-                    END AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_actual
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_engineering pde ON (pde.actual_ifa BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.po_actual BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
                     dw.week_number
-            ) AS IFA ON dw.week_number = IFA.week_number
+            ) AS PO ON dw.week_number = PO.week_number
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.40
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.65
-                    END AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_actual
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_engineering pde ON (pde.actual_ifc BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.fat_actual BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
                     dw.week_number
-            ) AS IFC ON dw.week_number = IFC.week_number
+            ) AS FAT ON dw.week_number = FAT.week_number
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.10
-                    END AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_actual
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_engineering pde ON (pde.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.rfs_actual BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
                     dw.week_number
-            ) AS Asbuild ON dw.week_number = Asbuild.week_number
+            ) AS RFS ON dw.week_number = RFS.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_procurement pdp ON (pdp.onsite_actual BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS ONSITE ON dw.week_number = ONSITE.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_procurement pdp ON (pdp.install_actual BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS INSTALL ON dw.week_number = INSTALL.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_procurement pdp ON (pdp.comm_actual BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                GROUP BY
+                    dw.week_number
+            ) AS COMM ON dw.week_number = COMM.week_number
             WHERE
                 dw.id_project = '$idProject'
         ";

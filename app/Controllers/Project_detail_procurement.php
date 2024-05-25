@@ -32,7 +32,7 @@ class Project_detail_procurement extends BaseController
 			'list_doc_procurement' => $this->Model_doc_engineering->findAll(),
             'progressChartData' => [
                 'percent_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
-                'percent_actual' => $this->Model_doc_procurement->getCumDataPlanPerToday()
+                'percent_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
             ],
 		];
 		return view('procurement-document', $data);
