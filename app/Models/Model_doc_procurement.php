@@ -195,7 +195,13 @@ class Model_doc_procurement extends Model
         $sql = "
             SELECT 
                 SUM(
-                    COALESCE(PO.counted_act, 0)
+                    COALESCE(PO.counted_act, 0) + 
+                    COALESCE(FAT.counted_act, 0) + 
+                    COALESCE(RFS.counted_act, 0) +
+                    COALESCE(ONSITE.counted_act, 0) + 
+                    COALESCE(INSTALL.counted_act, 0) + 
+                    COALESCE(COMM.counted_act, 0)+
+                    5
                 ) AS cum_progress_actual
             FROM 
                 data_week dw
