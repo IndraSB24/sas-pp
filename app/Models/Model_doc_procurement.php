@@ -193,23 +193,23 @@ class Model_doc_procurement extends Model
         $sql = "
             SELECT 
                 SUM(
-                    COALESCE(PO.counted_actual, 0) + 
-                    COALESCE(FAT.counted_actual, 0) + 
-                    COALESCE(RFS.counted_actual, 0) +
-                    COALESCE(ONSITE.counted_actual, 0) + 
-                    COALESCE(INSTALL.counted_actual, 0) + 
-                    COALESCE(COMM.counted_actual, 0)
+                    COALESCE(PO.counted_act, 0) + 
+                    COALESCE(FAT.counted_act, 0) + 
+                    COALESCE(RFS.counted_act, 0) +
+                    COALESCE(ONSITE.counted_act, 0) + 
+                    COALESCE(INSTALL.counted_act, 0) + 
+                    COALESCE(COMM.counted_act, 0)
                 ) AS cum_progress_actual
             FROM 
                 data_week dw
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.po_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.po_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
@@ -218,11 +218,11 @@ class Model_doc_procurement extends Model
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.fat_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.fat_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
@@ -231,11 +231,11 @@ class Model_doc_procurement extends Model
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.rfs_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.rfs_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
@@ -244,11 +244,11 @@ class Model_doc_procurement extends Model
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.onsite_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.onsite_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
@@ -257,11 +257,11 @@ class Model_doc_procurement extends Model
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.install_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.install_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
@@ -270,11 +270,11 @@ class Model_doc_procurement extends Model
             LEFT JOIN (
                 SELECT 
                     dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_actual
+                    SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_act
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.comm_actual BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.comm_act BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
