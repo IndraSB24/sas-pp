@@ -287,6 +287,8 @@ class Model_doc_procurement extends Model
         ";
 
         $query = $this->db->query($sql);
-        return $query->getResult();
+        $result = $query->getResult();
+
+        return $result[0]->cum_progress_actual ?: 0;
     }
 }
