@@ -144,7 +144,7 @@ class Model_doc_procurement extends Model
                 FROM 
                     data_week dw
                 LEFT JOIN 
-                    project_detail_procurement pdp ON (onsite.po_plan BETWEEN dw.start_date AND dw.end_date)
+                    project_detail_procurement pdp ON (pdp.onsite_plan BETWEEN dw.start_date AND dw.end_date)
                 WHERE
                     dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
                 GROUP BY
