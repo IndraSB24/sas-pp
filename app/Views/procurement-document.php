@@ -809,6 +809,7 @@
 <script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 
 <script>
+    console.log(<?= json_encode($progressChartData) ?>, 'CHART PROGRESS');
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {
