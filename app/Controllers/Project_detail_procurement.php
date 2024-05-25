@@ -26,6 +26,26 @@ class Project_detail_procurement extends BaseController
     }
     
 	public function index($project_id=null){
+        // start of scurve data count ============================================================
+        $getScurveDataPlan = $this->Model_doc_procurement->getScurveDataPlan();
+        $getScurveDataActual = $this->Model_doc_procurement->getScurveDataActual();
+
+        // count plan cum
+        $getScurveDataPlanCum = [];
+        $plan_cum_counted = 0;
+        foreach ($getScurveDataPlan as $key => $value) {
+            $plan_cum_counted += $value->cum_plan_wf;
+            $getScurveDataPlanCum[$key] = $plan_cum_counted;
+        }
+
+        // count act cum
+        $getScurveDataActualCum = [];
+        $actual_cum_counted = 0;
+        foreach ($getScurveDataActual as $key => $value) {
+            $actual_cum_counted += $value->cum_actual_wf;
+            $getScurveDataActualCum[$key] = $actual_cum_counted;
+        }
+
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Procurement']),
@@ -34,6 +54,12 @@ class Project_detail_procurement extends BaseController
                 'percent_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
                 'percent_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
             ],
+            'scurveData' => [
+                'dataPlan' => $getScurveDataPlan,
+                'dataActual' => $getScurveDataActual,
+                'dataPlanCum' => $getScurveDataPlanCum,
+                'dataActualCum' => $getScurveDataActualCum
+            ]
 		];
 		return view('procurement-document', $data);
 	}
