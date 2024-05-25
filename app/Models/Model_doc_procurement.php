@@ -183,7 +183,7 @@ class Model_doc_procurement extends Model
         $query = $this->db->query($sql);
         $result = $query->getResult();
 
-        return $result->cum_progress_plan ?: 0;
+        return $result[0]->cum_progress_plan ?: 0;
     }
 
     // get cum actual percent progress till today
