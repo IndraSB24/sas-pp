@@ -1467,7 +1467,7 @@
 
     // });
     var options_plan_progress = {
-        series: [75],
+        series: ['<?= $progressChartData['percent_plan']?>'],
         chart: {
             height: 200,
             type: 'radialBar',
@@ -1551,7 +1551,7 @@
 
 
     var options_actual_progress = {
-        series: [75],
+        series: ['<?= $progressChartData['percent_actual']?>'],
         chart: {
             height: 200,
             type: 'radialBar',
