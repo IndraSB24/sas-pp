@@ -999,7 +999,7 @@ function generateWaitingBadge()
                 <div class="modal-body">
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Level 1 Code</label>
+                            <label class="form-label">Document Number</label>
                             <input type="text" class="form-control" name="level_code" id="level_code" />
                         </div>
                     </div>
@@ -1007,6 +1007,17 @@ function generateWaitingBadge()
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
                             <input type="text" class="form-control" name="description" id="description" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label for="actual_man_hour" class="form-label">Discipline</label>
+                            <select class="form-control" id="discipline">
+                                <option value="">--Select--</option>
+                                <?php foreach ($list_doc_dicipline as $row) : ?>
+                                    <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -1078,6 +1089,17 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label for="actual_man_hour" class="form-label">Discipline</label>
+                            <select class="form-control" id="discipline_edit">
+                                <option value="">--Select--</option>
+                                <?php foreach ($list_doc_dicipline as $row) : ?>
+                                    <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
@@ -1139,9 +1161,17 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
+                        <div class="col-md-12 mb-3">
+                            <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
+                            <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
+                        </div>
                         <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
+                            <div class="col-md-6">
+                                <label for="actual_man_hour" class="form-label">IFA Version</label>
+                                <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="actual_man_hour" class="form-label">IFC Version</label>
                                 <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
                             </div>
                         </div>
@@ -1248,6 +1278,7 @@ function generateWaitingBadge()
         const level_code = document.getElementById("level_code").value;
         const description = document.getElementById("description").value;
         const weight_factor = document.getElementById("weight_factor").value;
+        const discipline = document.getElementById("discipline").value;
         const external_asbuild_plan = document.getElementById("external_asbuild_plan").value;
         const plan_ifa = document.getElementById("plan_ifa").value;
         const plan_ifc = document.getElementById("plan_ifc").value;
@@ -1269,6 +1300,7 @@ function generateWaitingBadge()
                         level_code: level_code,
                         description: description,
                         weight_factor: weight_factor,
+                        discipline: discipline,
                         external_asbuild_plan: external_asbuild_plan,
                         plan_ifa: plan_ifa,
                         plan_ifc: plan_ifc,
@@ -1353,6 +1385,7 @@ function generateWaitingBadge()
             levelCode = $(this).data('level_code'),
             description = $(this).data('description'),
             weightFactor = $(this).data('weight_factor'),
+            discipline = $(this).data('discipline'),
             external_asbuild_plan = $(this).data('external_asbuild_plan'),
             planIfa = $(this).data('plan_ifa'),
             plan_man_hour = $(this).data('plan_man_hour'),
@@ -1363,6 +1396,7 @@ function generateWaitingBadge()
         $('#level_code_edit').val(levelCode);
         $('#description_edit').val(description);
         $('#weight_factor_edit').val(weightFactor);
+        $('#discipline_edit').val(discipline);
         $('#external_asbuild_plan_edit').val(external_asbuild_plan);
         $('#plan_ifa_edit').val(planIfa);
         $('#plan_ifc_edit').val(planIfc);
@@ -1378,6 +1412,7 @@ function generateWaitingBadge()
         levelCodeEdit = document.getElementById("level_code_edit").value,
             descriptionEdit = document.getElementById("description_edit").value,
             weightFactorEdit = document.getElementById("weight_factor_edit").value,
+            disciplineEdit = document.getElementById("discipline_edit").value,
             external_asbuild_plan_edit = document.getElementById("external_asbuild_plan_edit").value;
         planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
@@ -1402,6 +1437,7 @@ function generateWaitingBadge()
                         level_code: levelCodeEdit,
                         description: descriptionEdit,
                         weight_factor: weightFactorEdit,
+                        discipline: disciplineEdit,
                         external_asbuild_plan: external_asbuild_plan_edit,
                         plan_ifa: planIfaEdit,
                         plan_ifc: planIfcEdit,

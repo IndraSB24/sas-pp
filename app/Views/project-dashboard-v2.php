@@ -114,51 +114,53 @@
                     </div>
                 </div>
                 <div class="row mb-5">
-                    <div class="col-xl-8">
+                    <div class="col-xl-12">
                         <div class="row mb-3">
-                            <div class="col-md-2">
-                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-success) 0%, 
+                            <div class="row col-md-4">
+                                <div class="col-md-4">
+                                    <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-success) 0%, 
                                         var(--bs-success) <?= $data_page->overal_plan ?>%, #ffffff 0%, #ffffff 100%);">
-                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
-                                        <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Plan</h5>
-                                        <div style="display: flex; justify-content: center; align-items: center;">
-                                            <i class="fas fa-ruler-combined" style="font-size: 3rem;"></i>
+                                        <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                            <h3 class="mb-0 text-center"><?= $data_page->overal_plan ?>%</h3>
+                                            <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Plan</h5>
+                                            <div style="display: flex; justify-content: center; align-items: center;">
+                                                <i class="fas fa-ruler-combined" style="font-size: 3rem;"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-warning) 0%, 
+                                <div class="col-md-4">
+                                    <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-warning) 0%, 
                                     var(--bs-warning) <?= $data_page->overal_actual ?>%, #ffffff 0%, #ffffff 100%);">
-                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center"><?= $data_page->overal_actual ?>%</h3>
-                                        <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Actual</h5>
-                                        <div style="display: flex; justify-content: center; align-items: center;">
-                                            <i class="fas fa-glasses" style="font-size: 3rem;"></i>
+                                        <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                            <h3 class="mb-0 text-center"><?= $data_page->overal_actual ?>%</h3>
+                                            <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Actual</h5>
+                                            <div style="display: flex; justify-content: center; align-items: center;">
+                                                <i class="fas fa-glasses" style="font-size: 3rem;"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
+                                <div class="col-md-4">
+                                    <div class="galon d-flex align-items-center" style="border: 10px solid #fff;height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
                                     var(--bs-danger) <?= $data_page->overal_variance ?>%, #ffffff 0%, #ffffff 100%);">
-                                    <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                        <h3 class="mb-0 text-center">-<?= $data_page->overal_variance ?>%</h3>
-                                        <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Variance</h5>
-                                        <div style="display: flex; justify-content: center; align-items: center;">
-                                            <i class="far fa-chart-bar" style="font-size: 3rem;"></i>
+                                        <div style="background-color:white;padding: 10px;border-radius: 20px;">
+                                            <h3 class="mb-0 text-center">-<?= $data_page->overal_variance ?>%</h3>
+                                            <h5 class="card-title text-truncate font-size-14 mb-2 text-center">Variance</h5>
+                                            <div style="display: flex; justify-content: center; align-items: center;">
+                                                <i class="far fa-chart-bar" style="font-size: 3rem;"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="galon" style="padding: 15px;padding-top: 10px">
                                     <div class="text-center">
                                         <span> Progress Tracking</span>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="selectable" id="Detail-Engineering" style="border: 1px solid #E0E0E0; border-radius: 8px;">
                                                 <div class="row">
                                                     <div class="col-7">
@@ -181,7 +183,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="selectable" id="Detail-Procurement" style="border: 1px solid #E0E0E0; border-radius: 8px;">
                                                 <div class="row">
                                                     <div class="col-7">
@@ -203,18 +205,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-md-6">
-                                            <div style="border: 1px solid #E0E0E0; border-radius: 8px;">
-                                                <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
+                                        <div class="col-md-4">
+                                            <div class="selectable" id="Detail-Procurement" style="border: 1px solid #E0E0E0; border-radius: 8px;">
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <div id="radial_chart_3" class="apex-charts m-0 p-0"></div>
+                                                    </div>
+                                                    <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
+                                                            <small><strong>Plan <?= $data_page->chart_pt_procurement_plan ?>%</strong></small>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <div class="dot" style="background-color: #fcb92c;"></div>
+                                                            <small><strong>Actual <?= $data_page->chart_pt_procurement_actual ?>%</strong></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div style="background-color:antiquewhite" class="text-center">
-                                                    <strong><small style="padding-left: 5px;">Detail Procurement</small></strong>
+                                                    <strong><small style="padding-left: 5px;">Detail Constructor</small></strong>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-xl-8">
                         <!-- end row -->
                         <div class="row" id="overal_progress_elem">
                             <div class="col-lg-12">
@@ -750,6 +768,50 @@
         options_1
     );
     chart_1.render();
+
+    //  Radial chart 3
+    var options_3 = {
+        chart: {
+            height: 150,
+            type: 'radialBar',
+            margin: 0
+        },
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    size: '20%',
+                },
+                dataLabels: {
+                    name: {
+                        fontSize: '10px',
+                    },
+                    value: {
+                        fontSize: '8px',
+                    },
+                    total: {
+                        show: false,
+                        label: 'Total',
+                        formatter: function(w) {
+                            return 249
+                        }
+                    },
+                    margin: 0
+                }
+            }
+        },
+        series: [<?= $data_page->chart_pt_procurement_plan ?>, <?= $data_page->chart_pt_procurement_actual ?>],
+        labels: ['Plan', 'Actual'],
+        colors: ['#5664d2', '#fcb92c'],
+        legend: {
+            offsetY: 5
+        }
+
+    }
+    var chart_3 = new ApexCharts(
+        document.querySelector("#radial_chart_3"),
+        options_3
+    );
+    chart_3.render();
 
     // Mixed chart
     var optionsMixed = {
