@@ -879,9 +879,9 @@ function generateWaitingBadge()
                                                             $row->description,
                                                             $linkFile,
                                                             'IFA',
-                                                            $file_version,
+                                                            $row->ifa_version,
                                                             'external_ifa',
-                                                            'version ' . $file_version
+                                                            'IFA Version: ' . $row->ifa_version
                                                         );
                                                         $actual_AsBuild = generateStatusBadge(
                                                             $row->external_asbuild_status,
@@ -903,9 +903,9 @@ function generateWaitingBadge()
                                                             $row->description,
                                                             $linkFile,
                                                             'IFC',
-                                                            $file_version,
+                                                            $row->ifc_version,
                                                             'external_ifc',
-                                                            'version ' . $file_version
+                                                            'IFC Version: ' . $row->ifc_version
                                                         );
                                                     ?>
                                                         <tr>

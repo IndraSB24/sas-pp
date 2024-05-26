@@ -1417,55 +1417,55 @@
         return (value * 100) / max
     }
 
-    var options_document = {
-        chart: {
-            height: 250,
-            type: 'radialBar',
-            max: 200,
-        },
-        plotOptions: {
-            radialBar: {
-                hollow: {
-                    size: '20%',
-                },
-                hover: {
-                    enabled: false, // Menonaktifkan hover
-                },
-                dataLabels: {
-                    name: {
-                        fontSize: '14',
-                    },
-                    value: {
-                        show: false,
-                        fontSize: '14px',
-                        formatter: function(val) {
-                            return val + ' Document'; // Return value as string without percentage symbol
-                        },
-                    },
-                    total: {
-                        show: false,
-                        label: 'Total',
-                        formatter: function(w) {
-                            return progressChartData.doc_total
-                        }
-                    },
-                    // margin: 15,
-                }
-            }
-        },
-        series: [valueToPercent(progressChartData.doc_plan[0].total_plan_doc), valueToPercent(progressChartData.doc_actual[0].total_actual_doc)],
-        labels: ["Plan", "Actual"],
-        colors: ["#E9C46A", "#2A9D8F"],
-        legend: {
-            offsetY: 5
-        }
+    // var options_document = {
+    //     chart: {
+    //         height: 250,
+    //         type: 'radialBar',
+    //         max: 200,
+    //     },
+    //     plotOptions: {
+    //         radialBar: {
+    //             hollow: {
+    //                 size: '20%',
+    //             },
+    //             hover: {
+    //                 enabled: false, // Menonaktifkan hover
+    //             },
+    //             dataLabels: {
+    //                 name: {
+    //                     fontSize: '14',
+    //                 },
+    //                 value: {
+    //                     show: false,
+    //                     fontSize: '14px',
+    //                     formatter: function(val) {
+    //                         return val + ' Document'; // Return value as string without percentage symbol
+    //                     },
+    //                 },
+    //                 total: {
+    //                     show: false,
+    //                     label: 'Total',
+    //                     formatter: function(w) {
+    //                         return progressChartData.doc_total
+    //                     }
+    //                 },
+    //                 // margin: 15,
+    //             }
+    //         }
+    //     },
+    //     series: [valueToPercent(progressChartData.doc_plan[0].total_plan_doc), valueToPercent(progressChartData.doc_actual[0].total_actual_doc)],
+    //     labels: ["Plan", "Actual"],
+    //     colors: ["#E9C46A", "#2A9D8F"],
+    //     legend: {
+    //         offsetY: 5
+    //     }
 
-    }
-    var chart_document = new ApexCharts(
-        document.querySelector("#document_chart"),
-        options_document
-    );
-    chart_document.render();
+    // }
+    // var chart_document = new ApexCharts(
+    //     document.querySelector("#document_chart"),
+    //     options_document
+    // );
+    // chart_document.render();
 
     const data_chart_man_hour = <?= json_encode($data_chart_man_hour) ?>
 
