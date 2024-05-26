@@ -130,7 +130,6 @@
 
                                         <tbody>
                                             <?php
-                                            $action = 'no action yet';
                                             $status = '<span class="badge bg-success p-2 w-xs">DETAIL</span>';
                                             foreach ($list_doc_procurement as $index => $item) :
                                                 if ($item->po_status === 'uploaded') {
@@ -560,7 +559,15 @@
                                                             <?= $status ?>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $action ?> </td>
+                                                    <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $item->id ?>">
+                                                            <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                        </a>
+                                                        &nbsp;
+                                                        <a href="#" id="btn-hapus-doc" data-id="<?= $item->id ?>" data-object="Project_detail_procurement/delete">
+                                                            <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -746,42 +753,123 @@
                 <div class="modal-body">
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Level 1 Code</label>
+                            <label class="form-label">Level 1</label>
                             <input type="text" class="form-control" name="level_code_edit" id="level_code_edit" />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
+                            <label class="form-label">Level 2</label>
+                            <input type="text" class="form-control" name="level_code_2_edit" id="level_code_2_edit" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Level 3</label>
+                            <input type="text" class="form-control" name="level_code_3_edit" id="level_code_3_edit" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Level 4</label>
+                            <input type="text" class="form-control" name="level_code_4_edit" id="level_code_4_edit" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Level 5</label>
+                            <input type="text" class="form-control" name="level_code_5_edit" id="level_code_5_edit" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Group</label>
+                            <select class="form-control" id="group_edit">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="row mb-4">
+                        <div class="col-md-12">
                             <label class="form-label">Description</label>
                             <input type="text" class="form-control" name="description_edit" id="description_edit" />
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
                         </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Quantity</label>
+                            <select class="form-control" id="quantity_edit">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Unit</label>
+                            <select class="form-control" id="unit_edit">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row mb-4">
                         <label class="form-label">Plan</label>
                         <div class="col-md-4">
+                            <label class="form-label">PO</label>
+                            <div class="input-group" id="po_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#po_date_edit" data-provide="datepicker" name="po_date_edit" id="plan_po_edit" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">FAT</label>
+                            <div class="input-group" id="fat_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#fat_date_edit" data-provide="datepicker" name="fat_date_edit" id="plan_fat_edit" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">RFS</label>
+                            <div class="input-group" id="rfs_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#rfs_date_edit" data-provide="datepicker" name="rfs_date_edit" id="plan_rfs_edit" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
                             <label class="form-label">RFQ</label>
-                            <div class="input-group" id="ifr_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date_edit" data-provide="datepicker" name="plan_ifr_edit" id="plan_ifr_edit" />
+                            <div class="input-group" id="ifr_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">TBE</label>
-                            <div class="input-group" id="ifa_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date_edit" data-provide="datepicker" name="plan_ifa_edit" id="plan_ifa_edit" />
+                            <div class="input-group" id="ifa_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date" data-provide="datepicker" name="plan_ifa" id="plan_ifa" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">ONSITE</label>
+                            <div class="input-group" id="onsite_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#onsite_date_edit" data-provide="datepicker" name="onsite_date_edit" id="plan_onsite_edit" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">PO</label>
-                            <div class="input-group" id="ifc_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifc_date_edit" data-provide="datepicker" name="plan_ifc_edit" id="plan_ifc_edit" />
+                            <label class="form-label">INSTALL</label>
+                            <div class="input-group" id="install_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#install_date_edit" data-provide="datepicker" name="install_date_edit" id="plan_install_edit" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">COMM</label>
+                            <div class="input-group" id="comm_date_edit">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#comm_date_edit" data-provide="datepicker" name="comm_date_edit" id="plan_comm_edit" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -1164,25 +1252,27 @@
                     dataType: "JSON",
                     data: {
                         id_project: id
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Dihapus!',
+                            icon: 'success',
+                            text: 'Document berhasil dihapus.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
                     }
                 });
-                Swal.fire({
-                    title: 'Dihapus!',
-                    icon: 'success',
-                    text: 'Document berhasil dihapus.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen: function() {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                            Swal.getContent().querySelector('strong')
-                                .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function() {
-                        location.reload()
-                    }
-                })
             }
         })
     })
@@ -1194,20 +1284,47 @@
         // get data from button edit
         const id_edit = $(this).data('id'),
             levelCode = $(this).data('level_code'),
-            description = $(this).data('description'),
-            weightFactor = $(this).data('weight_factor'),
-            planIfr = $(this).data('plan_ifr'),
-            planIfa = $(this).data('plan_ifa'),
-            planIfc = $(this).data('plan_ifc');
+            levelCode2 = $(this).data('level_code_2'),
+            levelCode3 = $(this).data('level_code_3'),
+            levelCode4 = $(this).data('level_code_4'),
+            levelCode5 = $(this).data('level_code_5'),
+            group = $(this).data('group'),
+            quantity = $(this).data('quantity'),
+            unit = $(this).data('unit'),
+            weightFactor = $(this).data('weight_factor');
+            // description = $(this).data('description'),
+
+        planPo = $(this).data('plan_po');
+        planFat = $(this).data('plan_fat');
+        planRfs = $(this).data('plan_rfs');
+        planOnsite = $(this).data('plan_onsite');
+        planInstall = $(this).data('plan_install');
+        planComm = $(this).data('plan_comm');
+        // planIfr = $(this).data('plan_ifr'),
+        // planIfa = $(this).data('plan_ifa'),
+        // planIfc = $(this).data('plan_ifc');
 
         // Set data to Form Edit
         $('#id_doc_edit').val(id_edit);
         $('#level_code_edit').val(levelCode);
-        $('#description_edit').val(description);
+        $('#level_code_2_edit').val(levelCode2);
+        $('#level_code_3_edit').val(levelCode3);
+        $('#level_code_4_edit').val(levelCode4);
+        $('#level_code_5_edit').val(levelCode5);
+        $('#group_edit').val(group);
+        $('#quantity_edit').val(quantity);
+        $('#unit_edit').val(unit);
         $('#weight_factor_edit').val(weightFactor);
-        $('#plan_ifr_edit').val(planIfr);
-        $('#plan_ifa_edit').val(planIfa);
-        $('#plan_ifc_edit').val(planIfc);
+        $('#plan_po_edit').val(planPo);
+        $('#plan_fat_edit').val(planFat);
+        $('#plan_rfs_edit').val(planRfs);
+        $('#plan_onsite_edit').val(planOnsite);
+        $('#plan_install_edit').val(planInstall);
+        $('#plan_comm_edit').val(planComm);
+        // $('#description_edit').val(description);
+        // $('#plan_ifr_edit').val(planIfr);
+        // $('#plan_ifa_edit').val(planIfa);
+        // $('#plan_ifc_edit').val(planIfc);
 
         // Call Modal Edit
         $('#modal-edit-document').modal('show');
@@ -1217,9 +1334,22 @@
         const objek = $(this).data('object'),
             id = document.getElementById("id_doc_edit").value,
             levelCodeEdit = document.getElementById("level_code_edit").value,
-            descriptionEdit = document.getElementById("description_edit").value,
             weightFactorEdit = document.getElementById("weight_factor_edit").value,
-            planIfrEdit = document.getElementById("plan_ifr_edit").value;
+            levelCode2Edit = document.getElementById("level_code_2_edit").value,
+            levelCode3Edit = document.getElementById("level_code_3_edit").value,
+            levelCode4Edit = document.getElementById("level_code_4_edit").value,
+            levelCode5Edit = document.getElementById("level_code_5_edit").value,
+            groupEdit = document.getElementById("group_edit").value,
+            quantityEdit = document.getElementById("quantity_edit").value,
+            unitEdit = document.getElementById("unit_edit").value,
+            planPoEdit = document.getElementById("plan_po_edit").value,
+            planFatEdit = document.getElementById("plan_fat_edit").value,
+            planRfsEdit = document.getElementById("plan_rfs_edit").value,
+            planOnsiteEdit = document.getElementById("plan_onsite_edit").value,
+            planInstallEdit = document.getElementById("plan_install_edit").value,
+            planCommEdit = document.getElementById("plan_comm_edit").value,
+            // descriptionEdit = document.getElementById("description_edit").value,
+            // planIfrEdit = document.getElementById("plan_ifr_edit").value;
         planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
         var timerInterval;
@@ -1238,30 +1368,45 @@
                     dataType: "JSON",
                     data: {
                         level_code_edit: levelCodeEdit,
-                        description_edit: descriptionEdit,
+                        level_code_2_edit :levelCode2Edit,
+                        level_code_3_edit :levelCode3Edit,
+                        level_code_4_edit :levelCode4Edit,
+                        level_code_5_edit :levelCode5Edit,
                         weight_factor_edit: weightFactorEdit,
-                        plan_ifr_edit: planIfrEdit,
-                        plan_ifa_edit: planIfaEdit,
-                        plan_ifc_edit: planIfcEdit
+                        group_edit :groupEdit,
+                        quantity_edit :quantityEdit,
+                        unit_edit :unitEdit,
+                        plan_po_edit :planPoEdit,
+                        plan_fat_edit :planFatEdit,
+                        plan_rfs_edit :planRfsEdit,
+                        plan_onsite_edit :planOnsiteEdit,
+                        plan_install_edit :planInstallEdit,
+                        plan_comm_edit :planCommEdit,
+                        // description_edit: descriptionEdit,
+                        // plan_ifr_edit: planIfrEdit,
+                        // plan_ifa_edit: planIfaEdit,
+                        // plan_ifc_edit: planIfcEdit
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diedit!',
+                            icon: 'success',
+                            text: 'Document Berhasil Diedit.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
                     }
                 });
-                Swal.fire({
-                    title: 'Diedit!',
-                    icon: 'success',
-                    text: 'Document Berhasil Diedit.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen: function() {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                            Swal.getContent().querySelector('strong')
-                                .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function() {
-                        location.reload()
-                    }
-                })
             }
         })
     })
