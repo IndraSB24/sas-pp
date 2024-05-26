@@ -407,8 +407,8 @@ class Model_doc_procurement extends Model
 
         $sql = "
             SELECT 
-                dw.week_number AS week_number
-                
+                dw.week_number AS week_number,
+                0 as cum_plan_wf
             FROM 
                 data_week dw
             
