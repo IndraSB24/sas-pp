@@ -235,21 +235,21 @@ class Project_detail_engineering extends BaseController
                     'actual_ifr_file'   => $this->request->getPost('file'),
                     'actual_ifr'        => date_now(),
                 ];
-                $this->doc_engineering_model->update($id_update, $data);
+                // $this->doc_engineering_model->update($id_update, $data);
             break;
             case 'actual_ifa_file':
                 $data = [
                     'actual_ifa_file'   => $this->request->getPost('file'),
                     'actual_ifa'        => date_now(),
                 ];
-                $this->doc_engineering_model->update($id_update, $data);
+                // $this->doc_engineering_model->update($id_update, $data);
             break;
             case 'actual_ifc_file':
                 $data = [
                     'actual_ifc_file'   => $this->request->getPost('file'),
                     'actual_ifc'        => date_now(),
                 ];
-                $this->doc_engineering_model->update($id_update, $data);
+                // $this->doc_engineering_model->update($id_update, $data);
             break;
         }
     }
