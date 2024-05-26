@@ -603,25 +603,90 @@
                 <div class="modal-body">
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Level 1 Code</label>
+                            <label class="form-label">Level 1</label>
                             <input type="text" class="form-control" name="level_code" id="level_code" />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                            <input type="text" class="form-control" name="description" id="description" />
+                            <label class="form-label">Level 2</label>
+                            <input type="text" class="form-control" name="level_code_2" id="level_code_2" />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-12">
+                            <label class="form-label">Level 3</label>
+                            <input type="text" class="form-control" name="level_code_3" id="level_code_3" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Level 4</label>
+                            <input type="text" class="form-control" name="level_code_4" id="level_code_4" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Level 5</label>
+                            <input type="text" class="form-control" name="level_code_5" id="level_code_5" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Group</label>
+                            <select class="form-control" id="group">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" name="description" id="description" />
+                        </div>
+                    </div> -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Quantity</label>
+                            <select class="form-control" id="quantity">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Unit</label>
+                            <select class="form-control" id="unit">
+                                <option value="">--Select--</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <label class="form-label">Plan</label>
                         <div class="col-md-4">
+                            <label class="form-label">PO</label>
+                            <div class="input-group" id="po_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#po_date" data-provide="datepicker" name="po_date" id="plan_po" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">FAT</label>
+                            <div class="input-group" id="fat_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#fat_date" data-provide="datepicker" name="fat_date" id="plan_fat" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">RFS</label>
+                            <div class="input-group" id="rfs_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#rfs_date" data-provide="datepicker" name="rfs_date" id="plan_rfs" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
                             <label class="form-label">RFQ</label>
                             <div class="input-group" id="ifr_date">
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
@@ -634,11 +699,27 @@
                                 <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date" data-provide="datepicker" name="plan_ifa" id="plan_ifa" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">ONSITE</label>
+                            <div class="input-group" id="onsite_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#onsite_date" data-provide="datepicker" name="onsite_date" id="plan_onsite" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">PO</label>
-                            <div class="input-group" id="ifc_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifc_date" data-provide="datepicker" name="plan_ifc" id="plan_ifc" />
+                            <label class="form-label">INSTALL</label>
+                            <div class="input-group" id="install_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#install_date" data-provide="datepicker" name="install_date" id="plan_install" />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">COMM</label>
+                            <div class="input-group" id="comm_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#comm_date" data-provide="datepicker" name="comm_date" id="plan_comm" />
                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -676,7 +757,7 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
                         </div>
@@ -988,11 +1069,24 @@
     $(document).on('click', '#btn-simpan-doc', function() {
         const objek = $(this).data('object')
         const level_code = document.getElementById("level_code").value;
-        const description = document.getElementById("description").value;
+        const level_code_2 = document.getElementById("level_code_2").value;
+        const level_code_3 = document.getElementById("level_code_3").value;
+        const level_code_4 = document.getElementById("level_code_4").value;
+        const level_code_5 = document.getElementById("level_code_5").value;
+        const group = document.getElementById("group").value;
+        const quantity = document.getElementById("quantity").value;
+        const unit = document.getElementById("unit").value;
+        // const description = document.getElementById("description").value;
         const weight_factor = document.getElementById("weight_factor").value;
-        const plan_ifr = document.getElementById("plan_ifr").value;
-        const plan_ifa = document.getElementById("plan_ifa").value;
-        const plan_ifc = document.getElementById("plan_ifc").value;
+        // const plan_ifr = document.getElementById("plan_ifr").value;
+        // const plan_ifa = document.getElementById("plan_ifa").value;
+        // const plan_ifc = document.getElementById("plan_ifc").value;
+        const plan_po = document.getElementById("plan_po").value;
+        const plan_fat = document.getElementById("plan_fat").value;
+        const plan_rfs = document.getElementById("plan_rfs").value;
+        const plan_onsite = document.getElementById("plan_onsite").value;
+        const plan_install = document.getElementById("plan_install").value;
+        const plan_comm = document.getElementById("plan_comm").value;
         var timerInterval;
         Swal.fire({
             title: 'Tambah Dokumen?',
@@ -1008,11 +1102,24 @@
                     dataType: "JSON",
                     data: {
                         level_code: level_code,
-                        description: description,
+                        // description: description,
                         weight_factor: weight_factor,
-                        plan_ifr: plan_ifr,
-                        plan_ifa: plan_ifa,
-                        plan_ifc: plan_ifc
+                        // plan_ifr: plan_ifr,
+                        // plan_ifa: plan_ifa,
+                        // plan_ifc: plan_ifc
+                        level_code_2: level_code_2,
+                        level_code_3: level_code_3,
+                        level_code_4: level_code_4,
+                        level_code_5: level_code_5,
+                        group: group,
+                        quantity: quantity,
+                        unit: unit,
+                        plan_po: plan_po,
+                        plan_fat: plan_fat,
+                        plan_rfs: plan_rfs,
+                        plan_onsite: plan_onsite,
+                        plan_install: plan_install,
+                        plan_comm: plan_com,
                     }
                 });
                 Swal.fire({
