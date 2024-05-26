@@ -628,4 +628,19 @@ class Project_detail_procurement extends BaseController
         return $status;
     }
 
+    // timeline
+    public function show_doc_timeline($doc_id){
+	    $all_timeline_data = $this->timeline_doc_model
+	        ->where('doc_id', $doc_id)
+            ->where('code', 'procurement')
+	        ->findALl();
+	   
+		$data = [
+			'title_meta' => view('partials/title-meta', ['title' => 'Document Timeline']),
+			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Timeline Document']),
+			'timeline_data' => array_reverse($all_timeline_data)
+		];
+		return view('timeline-document', $data);
+	}
+
 }

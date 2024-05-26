@@ -208,6 +208,7 @@ class Project_detail_engineering extends BaseController
 	public function show_doc_timeline($doc_id){
 	    $all_timeline_data = $this->timeline_doc_model
 	        ->where('doc_id', $doc_id)
+            ->where('code', 'engineering')
 	        ->findALl();
 	   // $all_timeline_data = $this->timeline_doc_model->findAll();
 		$data = [
