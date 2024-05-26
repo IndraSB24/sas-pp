@@ -37,6 +37,9 @@
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document">
                             Add Document
                         </button>
+                        <a href="<?= base_url('procurement-dashboard') ?>" class="btn btn-warning waves-effect waves-light">
+                            Procurement Dashboard
+                        </a>
                     </div>
                 </div>
                 <div class="row">
