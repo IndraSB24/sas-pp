@@ -408,94 +408,10 @@ class Model_doc_procurement extends Model
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
-                SUM(
-                    COALESCE(PO.counted_plan, 0) + 
-                    COALESCE(FAT.counted_plan, 0) + 
-                    COALESCE(RFS.counted_plan, 0) +
-                    COALESCE(ONSITE.counted_plan, 0) + 
-                    COALESCE(INSTALL.counted_plan, 0) + 
-                    COALESCE(COMM.counted_plan, 0)
-                ) AS cum_plan_wf
+                0 as cum_plan_wf
             FROM 
                 data_week dw
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.po_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS PO ON dw.week_number = PO.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.fat_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS FAT ON dw.week_number = FAT.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.rfs_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS RFS ON dw.week_number = RFS.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.onsite_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS ONSITE ON dw.week_number = ONSITE.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.install_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS INSTALL ON dw.week_number = INSTALL.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_plan
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_procurement pdp ON (pdp.comm_plan BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY
-                    dw.week_number
-            ) AS COMM ON dw.week_number = COMM.week_number
+            
             WHERE
                 dw.id_project = '$idProject'
             ORDER BY 
