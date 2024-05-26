@@ -65,6 +65,7 @@ $routes->get('engineering-doc-list/(:segment)', 'Project_detail_engineering::sho
 
 // Project Detail Procurement Doc
 $routes->get('procurement-dashboard', 'Project_detail_procurement::index');
+$routes->get('document-timeline-procurement/(:segment)', 'Project_detail_procurement::show_doc_timeline/$1');
 $routes->get('procurement-doc-list/(:segment)', 'Project_detail_procurement::show_doc_list/$1');
 $routes->get('commentPdfProcurement/(:segment)/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2/$3');
 $routes->get('commentPdfProcurement/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2');

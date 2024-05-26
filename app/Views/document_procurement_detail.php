@@ -77,6 +77,9 @@
                                                 <th rowspan="4" style="background-color: #b0cbf7">WF</th>
                                                 <th rowspan="1" colspan="12" class="text-center" style="background-color:#9dc9ae">PROC</th>
                                                 <th rowspan="4" class="text-center" style="background-color: #b0cbf7">
+                                                    TIMELINE
+                                                </th>
+                                                <th rowspan="4" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
                                                 </th>
                                             </tr>
@@ -125,7 +128,7 @@
                                         <tbody>
                                             <?php
                                             $action = 'no action yet';
-
+                                            $status = '<span class="badge bg-success p-2 w-xs">DETAIL</span>';
                                             foreach ($list_doc_procurement as $index => $item) :
                                                 if ($item->po_status === 'uploaded') {
                                                     $po_act = tgl_indo($item->po_act) .   '
@@ -549,6 +552,11 @@
                                                     <td class="text-center" style="background-color:#C9E3AC"> <?= $install_act ?> </td>
                                                     <td class="text-center" style="background-color:#A1E5AB"> <?= tgl_indo($item->comm_plan) ?> </td>
                                                     <td class="text-center" style="background-color:#A1E5AB"> <?= $comm_act ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7">
+                                                        <a href="<?= base_url('document-timeline-procurement/' . $item->id) ?>">
+                                                            <?= $status ?>
+                                                        </a>
+                                                    </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $action ?> </td>
                                                 </tr>
                                             <?php endforeach; ?>
