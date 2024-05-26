@@ -265,7 +265,7 @@ class Project_detail_engineering extends BaseController
             		'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
             		'external_asbuild_plan'      => date_db_format($this->request->getPost('external_asbuild_plan')),
                     'man_hour_plan' => $this->request->getPost('man_hour_plan'),
-                    'id_doc_dicipline' => $this->request->getPost('id_doc_dicipline'),
+                    'id_doc_dicipline' => $this->request->getPost('discipline')
             	];
             	$this->doc_engineering_model->reset_increment();
             	$this->doc_engineering_model->save($data);
@@ -327,6 +327,8 @@ class Project_detail_engineering extends BaseController
             $doc_name= $this->request->getPost('doc_name');
             $doc_code= $this->request->getPost('doc_code');
             $man_hour_actual= $this->request->getPost('man_hour_actual');
+            $ifa_version = $this->request->getPost('ifa_version');
+            $ifc_version = $this->request->getPost('ifc_version');
 
             $input_date = $this->request->getPost('backdate');
             if (!empty($input_date) && strtotime($input_date) !== false) {
@@ -364,7 +366,9 @@ class Project_detail_engineering extends BaseController
                 'actual_ifa_status' => '',
                 'actual_ifc' => null,
                 'actual_ifc_status' => '',
-                'man_hour_actual' => $man_hour_actual
+                'man_hour_actual' => $man_hour_actual,
+                'ifa_version' => $ifa_version,
+                'ifc_version' => $ifc_version
             ];
             $update_doc = $this->doc_engineering_model->save($data);
             
