@@ -223,7 +223,7 @@
                                                     </div>
                                                 </div>
                                                 <div style="background-color:antiquewhite" class="text-center">
-                                                    <strong><small style="padding-left: 5px;">Detail Constructor</small></strong>
+                                                    <strong><small style="padding-left: 5px;">Detail Construction</small></strong>
                                                 </div>
                                             </div>
                                         </div>

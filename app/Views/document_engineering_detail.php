@@ -1161,19 +1161,17 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-4">
                             <label for="actual_man_hour" class="form-label">Actual Man Hour</label>
                             <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label for="actual_man_hour" class="form-label">IFA Version</label>
-                                <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="actual_man_hour" class="form-label">IFC Version</label>
-                                <input type="number" class="form-control" name="actual_man_hour" id="actual_man_hour" />
-                            </div>
+                        <div class="col-md-4">
+                            <label for="actual_man_hour" class="form-label">IFA Version</label>
+                            <input type="number" class="form-control" name="actual_man_hour" id="ifa_version" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="actual_man_hour" class="form-label">IFC Version</label>
+                            <input type="number" class="form-control" name="actual_man_hour" id="ifc_version" />
                         </div>
                         <div>
                             <label for="upload_uploaded_file" id="upload_btn_choose_file" class="btn btn-info">Choose File</label>
@@ -1483,6 +1481,8 @@ function generateWaitingBadge()
         $("#upload_btn_up").data("path", $(this).data('path'));
         $("#upload_btn_up").data("step", $(this).data('step'));
         $("#upload_btn_up").data("actual_man_hour", $(this).data('actual_man_hour'));
+        $("#upload_btn_up").data("ifa_version", $(this).data('ifa_version'));
+        $("#upload_btn_up").data("ifc_version", $(this).data('ifc_version'));
         $("#upload_btn_up").data("version", $(this).data('version'));
         $("#upload_btn_up").data("doc_name", $(this).data('doc_name'));
         $("#upload_btn_up").data("doc_code", $(this).data('doc_code'));
@@ -1524,6 +1524,8 @@ function generateWaitingBadge()
         formData.append('doc_name', $(this).data('doc_name'));
         formData.append('doc_code', $(this).data('doc_code'));
         formData.append('man_hour_actual', $('#actual_man_hour').val());
+        formData.append('ifa_version', $('#ifa_version').val());
+        formData.append('ifc_version', $('#ifc_version').val());
 
         swalTitle = 'Upload File ' + fileDesc;
 
