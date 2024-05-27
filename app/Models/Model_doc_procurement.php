@@ -408,14 +408,14 @@ class Model_doc_procurement extends Model
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
-                SUM(
+                COALESCE(SUM(
                     COALESCE(PO.counted_plan, 0) + 
                     COALESCE(FAT.counted_plan, 0) + 
                     COALESCE(RFS.counted_plan, 0) +
                     COALESCE(ONSITE.counted_plan, 0) + 
                     COALESCE(INSTALL.counted_plan, 0) + 
                     COALESCE(COMM.counted_plan, 0)
-                ) AS cum_plan_wf
+                ), 0) AS cum_plan_wf
             FROM 
                 data_week dw
             LEFT JOIN (
