@@ -842,7 +842,7 @@
 <script>
     console.log(<?= json_encode($scurveData) ?>, 'scurveData');
     console.log(<?= json_encode($progressChartData) ?>, 'CHART PROGRESS');
-    console.log(<?= json_encode($progressByLevel1) ?>, 'progressByLevel1');
+    console.log(<?= json_encode($getProgressByLevel1ForChart) ?>, 'getProgressByLevel1ForChart');
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {

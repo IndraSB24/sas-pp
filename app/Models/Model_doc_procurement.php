@@ -1010,7 +1010,7 @@ class Model_doc_procurement extends Model
     }
     
 
-    // get percent progress by dicipline
+    // get percent progress by level 1
     public function getProgressByLevel1($idProject = 1) {
         $currentDate = date('Y-m-d');
     
@@ -1021,10 +1021,10 @@ class Model_doc_procurement extends Model
         // Initialize the return data array
         $returnData = [];
     
-        // Get the list of disciplines
+        // Get the list of level 1
         $level1List = $this->getLevel1List();
     
-        // Iterate through each discipline
+        // Iterate through each level 1
         foreach ($level1List as $value) {
             $cumPlan = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, true, null);
             $cumActual = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, true, null);
@@ -1040,6 +1040,40 @@ class Model_doc_procurement extends Model
                 'cumActualCurrentWeek' => $cumActualCurrentWeek[0]->cum_progress_actual,
                 'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
                 'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
+            ];
+        }
+    
+        // Return the aggregated data
+        return [
+            'currentWeek' => $currentWeek,
+            'lastWeek' => $lastWeek,
+            'data' => $returnData
+        ];
+        
+    }
+
+    // get percent progress by level 1
+    public function getProgressByLevel1ForChart($idProject = 1) {
+        $currentDate = date('Y-m-d');
+    
+        // Get the current week number and last week number
+        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $lastWeek = $currentWeek - 1;
+    
+        // Initialize the return data array
+        $returnData = [];
+    
+        // Get the list of level 1
+        $level1List = $this->getLevel1List();
+    
+        // Iterate through each level 1
+        foreach ($level1List as $value) {
+            $cumPlan = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, true, null);
+            $cumActual = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, true, null);
+            
+            $returnData[$value->activity_name_lvl_1] = [
+                'cumPlan' => $cumPlan[0]->cum_progress_plan,
+                'cumActual' => $cumActual[0]->cum_progress_actual
             ];
         }
     

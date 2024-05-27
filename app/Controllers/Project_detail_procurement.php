@@ -60,7 +60,8 @@ class Project_detail_procurement extends BaseController
                 'dataPlanCum' => $getScurveDataPlanCum,
                 'dataActualCum' => $getScurveDataActualCum
             ],
-            'progressByLevel1' => $this->Model_doc_procurement->getProgressByLevel1()
+            'progressByLevel1' => $this->Model_doc_procurement->getProgressByLevel1(),
+            'getProgressByLevel1ForChart' => $this->Model_doc_procurement->getProgressByLevel1ForChart()
 		];
 		return view('procurement-document', $data);
 	}
