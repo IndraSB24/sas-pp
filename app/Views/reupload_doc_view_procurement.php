@@ -362,7 +362,6 @@
                 });
 
                 $(document).on('click', '#upload_btn_up', function() {
-                    const path = 'Project_detail_engineering/update/up_originator';
                     const fileDesc = $(this).data('step');
                     const version = '';
                     let id_doc, swalTitle;
@@ -396,7 +395,7 @@
                     }).then(function(result) {
                         if (result.value) {
                             $.ajax({
-                                url: "<?= base_url('Project_detail_engineering/up_originator') ?>",
+                                url: "<?= base_url('Project_detail_procurement/up_file') ?>",
                                 method: 'POST',
                                 data: formData,
                                 contentType: false,
