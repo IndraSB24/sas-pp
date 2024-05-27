@@ -1033,7 +1033,7 @@ class Model_doc_procurement extends Model
             $cumPlanLastWeek = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, false, $lastWeek);
             $cumActualLastWeek = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, false, $lastWeek);
             
-            $returnData[$value->name] = [
+            $returnData[$value->activity_name_lvl_1] = [
                 'cumPlan' => $cumPlan[0]->cum_progress_plan,
                 'cumActual' => $cumActual[0]->cum_progress_actual,
                 'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0]->cum_progress_plan,
