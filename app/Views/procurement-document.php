@@ -139,13 +139,13 @@
                                     <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                     <font size="2">
                                         <table id="datatable" class="table table-bordered" style="border: 0px;">
-                                            <thead>
+                                        <thead>
                                                 <tr>
                                                     <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
-                                                    <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W16)</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W17)</th>
-                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W17)</th>
+                                                    <th rowspan="2" style="background-color: #b0cbf7;">ACTIVITY LEVEL 1</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W<?= $progressByDicipline['lastWeek'] ?>)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W<?= $progressByDicipline['currentWeek'] ?>)</th>
+                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W<?= $progressByDicipline['currentWeek'] ?>)</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
@@ -160,19 +160,50 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td style="background-color: #d2e5f7;" nowrap>1</td>
-                                                    <td style="background-color: #d2e5f7;" nowrap>Lorem, ipsum dolor.</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#faf1e3" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#dff5c9" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                    <td style="background-color:#FFC8DD" nowrap>Lorem</td>
-                                                </tr>
+                                                <?php
+                                                    $counter = 0;
+                                                    // Iterate over the array
+                                                    foreach ($progressByLevel1['data'] as $key => $value) {
+                                                        $counter += 1;
+                                                        echo '
+                                                            <tr>
+                                                                <td class="text-center" style="background-color: #b0cbf7;">
+                                                                    '. $counter .'
+                                                                </td>
+                                                                <td style="background-color: #b0cbf7;">
+                                                                    '. $key .'
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. angka(2, $value['cumPlanLastWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. angka(2, $value['cumActualLastWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFEBCD;">
+                                                                    '. angka(2, (float) $value['cumActualLastWeek'] - (float) $value['cumPlanLastWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. angka(2, $value['cumPlanCurrentWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. angka(2, $value['cumActualCurrentWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #d3f5b0;">
+                                                                    '. angka(2, (float) $value['cumActualCurrentWeek'] - (float) $value['cumPlanCurrentWeek']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. angka(2, $value['cumPlan']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. angka(2, $value['cumActual']) .'%
+                                                                </td>
+                                                                <td class="text-center" style="background-color: #FFAFCC;">
+                                                                    '. angka(2, (float) $value['cumActual'] - (float) $value['cumPlan']) .'%
+                                                                </td>
+                                                            </tr>
+                                                        ';
+                                                    }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </font>

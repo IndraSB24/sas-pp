@@ -504,5 +504,553 @@ class Model_doc_procurement extends Model
         return $query->getResult();
     }
 
+    // get cum plan percent progress by param
+    public function getCumDataPlan($idProject = 1, $level_1, $isCum=true, $weekNumber=null)
+    {
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        if($isCum){
+            $sql = "
+                SELECT 
+                    SUM(
+                        COALESCE(PO.counted_plan, 0) + 
+                        COALESCE(FAT.counted_plan, 0) + 
+                        COALESCE(RFS.counted_plan, 0) +
+                        COALESCE(ONSITE.counted_plan, 0) + 
+                        COALESCE(INSTALL.counted_plan, 0) + 
+                        COALESCE(COMM.counted_plan, 0)
+                    ) AS cum_progress_plan
+                FROM 
+                    data_week dw
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.po_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS PO ON dw.week_number = PO.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.fat_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS FAT ON dw.week_number = FAT.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.rfs_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS RFS ON dw.week_number = RFS.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.onsite_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS ONSITE ON dw.week_number = ONSITE.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.install_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS INSTALL ON dw.week_number = INSTALL.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.comm_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS COMM ON dw.week_number = COMM.week_number
+                WHERE
+                    dw.id_project = '$idProject'
+            ";
+        }else{
+            $sql = "
+                SELECT 
+                    SUM(
+                        COALESCE(PO.counted_plan, 0) + 
+                        COALESCE(FAT.counted_plan, 0) + 
+                        COALESCE(RFS.counted_plan, 0) +
+                        COALESCE(ONSITE.counted_plan, 0) + 
+                        COALESCE(INSTALL.counted_plan, 0) + 
+                        COALESCE(COMM.counted_plan, 0)
+                    ) AS cum_progress_plan
+                FROM 
+                    data_week dw
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.po_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS PO ON dw.week_number = PO.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.fat_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS FAT ON dw.week_number = FAT.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.rfs_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS RFS ON dw.week_number = RFS.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.onsite_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS ONSITE ON dw.week_number = ONSITE.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.install_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS INSTALL ON dw.week_number = INSTALL.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_plan
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.comm_plan BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS COMM ON dw.week_number = COMM.week_number
+                WHERE
+                    dw.id_project = '$idProject' AND dw.week_number=$weekNumber
+            ";
+        }
+        
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get cum actual percent progress till today
+    public function getCumDataActual($idProject = 1, $level_1, $isCum=true, $weekNumber=null){
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        if($isCum){
+            $sql = "
+                SELECT 
+                    SUM(
+                        COALESCE(PO.counted_act, 0) + 
+                        COALESCE(FAT.counted_act, 0) + 
+                        COALESCE(RFS.counted_act, 0) +
+                        COALESCE(ONSITE.counted_act, 0) + 
+                        COALESCE(INSTALL.counted_act, 0) + 
+                        COALESCE(COMM.counted_act, 0)
+                    ) AS cum_progress_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.po_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS PO ON dw.week_number = PO.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.fat_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS FAT ON dw.week_number = FAT.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.rfs_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS RFS ON dw.week_number = RFS.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.onsite_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS ONSITE ON dw.week_number = ONSITE.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.install_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS INSTALL ON dw.week_number = INSTALL.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.comm_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS COMM ON dw.week_number = COMM.week_number
+                WHERE
+                    dw.id_project = '$idProject'
+            ";
+        }else{
+            $sql = "
+                SELECT 
+                    SUM(
+                        COALESCE(PO.counted_act, 0) + 
+                        COALESCE(FAT.counted_act, 0) + 
+                        COALESCE(RFS.counted_act, 0) +
+                        COALESCE(ONSITE.counted_act, 0) + 
+                        COALESCE(INSTALL.counted_act, 0) + 
+                        COALESCE(COMM.counted_act, 0)
+                    ) AS cum_progress_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.po_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS PO ON dw.week_number = PO.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.10 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.fat_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS FAT ON dw.week_number = FAT.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.rfs_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS RFS ON dw.week_number = RFS.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.35 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.onsite_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS ONSITE ON dw.week_number = ONSITE.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.20 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.install_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS INSTALL ON dw.week_number = INSTALL.week_number
+                LEFT JOIN (
+                    SELECT 
+                        dw.week_number AS week_number,
+                        SUM(COALESCE(pdp.wf, 0)) * 0.05 AS counted_act
+                    FROM 
+                        data_week dw
+                    LEFT JOIN 
+                        project_detail_procurement pdp ON (
+                            pdp.activity_name_lvl_1 = '$level_1' AND
+                            pdp.comm_act BETWEEN dw.start_date AND dw.end_date
+                        )
+                    WHERE
+                        dw.start_date <= '$currentDate' AND dw.id_project = '$idProject'
+                    GROUP BY
+                        dw.week_number
+                ) AS COMM ON dw.week_number = COMM.week_number
+                WHERE
+                    dw.id_project = '$idProject' AND dw.week_number=$weekNumber
+            ";
+        }
+        
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get week number
+    public function getWeekNumberByDate($date) {
+        $sql = "
+            SELECT
+                week_number
+            FROM
+                data_week
+            WHERE
+                start_date <= ? AND end_date >= ?
+        ";
+    
+        $query = $this->db->query($sql, [$date, $date]);
+        $result = $query->getRow();
+    
+        return $result ? $result->week_number : null;
+    }
+
+    // get dic list
+    public function getLevel1List($id_project = 1)
+    {
+        $sql = "
+            SELECT 
+                DISTINCT activity_name_lvl_1
+            FROM 
+                project_detail_procurement
+            WHERE 
+                id_project = $id_project
+        ";
+        
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+    
+
+    // get percent progress by dicipline
+    public function getProgressByLevel1($idProject = 1) {
+        $currentDate = date('Y-m-d');
+    
+        // Get the current week number and last week number
+        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $lastWeek = $currentWeek - 1;
+    
+        // Initialize the return data array
+        $returnData = [];
+    
+        // Get the list of disciplines
+        $level1List = $this->getLevel1List();
+    
+        // Iterate through each discipline
+        foreach ($level1List as $value) {
+            $cumPlan = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, true, null);
+            $cumActual = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, true, null);
+            $cumPlanCurrentWeek = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, false, $currentWeek);
+            $cumActualCurrentWeek = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, false, $currentWeek);
+            $cumPlanLastWeek = $this->getCumDataPlan($idProject, $value->activity_name_lvl_1, false, $lastWeek);
+            $cumActualLastWeek = $this->getCumDataActual($idProject, $value->activity_name_lvl_1, false, $lastWeek);
+            
+            $returnData[$value->name] = [
+                'cumPlan' => $cumPlan[0]->cum_progress_plan,
+                'cumActual' => $cumActual[0]->cum_progress_actual,
+                'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0]->cum_progress_plan,
+                'cumActualCurrentWeek' => $cumActualCurrentWeek[0]->cum_progress_actual,
+                'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
+                'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
+            ];
+        }
+    
+        // Return the aggregated data
+        return [
+            'currentWeek' => $currentWeek,
+            'lastWeek' => $lastWeek,
+            'data' => $returnData
+        ];
+        
+    }
+
 
 }
