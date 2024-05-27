@@ -143,9 +143,9 @@
                                                 <tr>
                                                     <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
                                                     <th rowspan="2" style="background-color: #b0cbf7;">ACTIVITY LEVEL 1</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W<?= $progressByDicipline['lastWeek'] ?>)</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W<?= $progressByDicipline['currentWeek'] ?>)</th>
-                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W<?= $progressByDicipline['currentWeek'] ?>)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W<?= $progressByLevel1['lastWeek'] ?>)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W<?= $progressByLevel1['currentWeek'] ?>)</th>
+                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W<?= $progressByLevel1['currentWeek'] ?>)</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
