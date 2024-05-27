@@ -330,7 +330,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-4 mt-4 pt-0">
+                    <div class="col-md-12 mt-4 pt-0">
                         <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                             <div class="row" style="padding: 20px;padding-bottom:0">
                                 <div class="col-6">
