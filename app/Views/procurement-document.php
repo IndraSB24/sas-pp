@@ -1584,7 +1584,7 @@
                     },
                     value: {
                         formatter: function(val) {
-                            return `${parseInt(val)}%`;
+                            return `${parseFloat(val)}%`;
                         },
                         color: '#111',
                         fontSize: '29px',
@@ -1668,7 +1668,7 @@
                     },
                     value: {
                         formatter: function(val) {
-                            return `${parseInt(val)}%`;
+                            return `${parseFloat(val)}%`;
                         },
                         color: '#111',
                         fontSize: '29px',
