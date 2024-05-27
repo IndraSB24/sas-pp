@@ -266,14 +266,14 @@
                         <div class="galon mt-3" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                             <div class="row" style="padding: 20px;padding-bottom:0">
                                 <div class="col-6">
-                                    <h4>Analysis</h4>
+                                    <h4>Analysis (Coming soon)</h4>
                                 </div>
                                 <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
                                     <i class="fas fa-paperclip"></i>
                                 </div>
                             </div>
                             <div style="padding: 20px">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, ab. Ex facilis dicta alias expedita.
+                                Analisis terkait progress procurement akan ditampilkan disini.
                             </div>
                         </div>
                     </div>
