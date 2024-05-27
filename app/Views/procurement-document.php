@@ -1137,82 +1137,116 @@
         dataActual.push(document.getElementById("week_actual_7").value);
     }
 
+    const scurveData = <?= json_encode($scurveData) ?>;
+    const labels = [];
+    const plans = [];
+    const actuals = [];
+    const actualCum = [];
+    const planCum = [];
+    for (let i = 0; i < scurveData.dataPlan.length; i++) {
+        labels.push(`W ${scurveData.dataPlan[i].week_number}`);
+        plans.push(scurveData.dataPlan[i].cum_plan_wf);
+        actuals.push(scurveData.dataActual[i].cum_actual_wf);
+        actualCum.push(scurveData.dataActualCum[i]);
+        planCum.push(scurveData.dataPlanCum[i]);
+    }
     var options_scurve_mdr = {
         chart: {
-            height: 350,
+            height: 250,
             type: 'line',
-            zoom: {
-                enabled: false
-            },
+            stacked: false,
             toolbar: {
                 show: false
             }
         },
-        colors: ['#5664d2', '#1cbb8c'],
-        dataLabels: {
-            enabled: false,
-        },
         stroke: {
-            width: [3, 3],
+            width: [0, 0, 4, 4],
             curve: 'straight'
         },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
         series: [{
-                name: "Plan",
-                data: dataPlan
+                name: 'Plan',
+                type: 'column',
+                data: plans
             },
             {
-                name: "Actual",
-                data: dataActual
+                name: 'Actual',
+                type: 'column',
+                data: actuals
+            },
+            {
+                name: 'Cum Plan',
+                type: 'line',
+                data: planCum
+            },
+            {
+                name: 'Cum Actual',
+                type: 'line',
+                data: actualCum
             }
         ],
-        // title: {
-        //     text: 'SCurve Project',
-        //     align: 'left'
-        // },
-        grid: {
-            row: {
-                colors: ['transparent', 'transparent'], // takes an array which will be repeated on columns
-                opacity: 0.2
-            },
-            borderColor: '#f1f1f1'
+        fill: {
+            opacity: [0.85, 0.85, 1, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
         },
+        labels: labels,
         markers: {
-            style: 'inverted',
-            size: 6
+            size: 4
         },
         xaxis: {
-            categories: weekList,
-            title: {
-                text: 'Weeks'
+            type: 'month',
+            labels: {
+            rotate: -90, // Rotate labels to vertical
+            style: {
+                fontSize: '12px',
+                colors: []
             }
+        }
         },
         yaxis: {
             title: {
-                text: 'Progress in percent'
+                text: 'Percent (%)',
             },
-            min: 0,
-            max: 100
+            labels: {
+                formatter: function(value) {
+                    return Math.round(value); // Round the value to the nearest integer
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function(y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(2) + " %";
+                    }
+                    return y;
+
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            padding: {
+                bottom: 10
+            }
         },
         legend: {
-            position: 'top',
-            horizontalAlign: 'right',
-            floating: true,
-            offsetY: -25,
-            offsetX: -5
-        },
-        responsive: [{
-            breakpoint: 600,
-            options: {
-                chart: {
-                    toolbar: {
-                        show: false
-                    }
-                },
-                legend: {
-                    show: false
-                },
-            }
-        }]
+            offsetY: 7
+        }
     }
     var chart = new ApexCharts(
         document.querySelector("#scurve_mdr"),
