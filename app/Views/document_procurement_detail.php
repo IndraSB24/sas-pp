@@ -560,7 +560,17 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $item->id ?>">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" 
+                                                        data-group="<?= $item->group_name ?>"
+                                                        data-quantity="<?= $item->quantity ?>"
+                                                        data-unit="<?= $item->unit ?>"
+                                                        data-weight_factor="<?= $item->wf ?>"
+                                                        data-plan_fat="<?= $item->fat_plan ?>"
+                                                        data-plan_rfs="<?= $item->rfs_plan ?>"
+                                                        data-plan_onsite="<?= $item->onsite_plan ?>"
+                                                        data-plan_install="<?= $item->install_plan ?>"
+                                                        data-plan_comm="<?= $item->comm_plan ?>"
+                                                        data-plan_po="<?= $item->po_plan ?>" data-level_code_5="<?= $item->activity_name_lvl_5 ?>" data-level_code_4="<?= $item->activity_name_lvl_4 ?>" data-level_code_3="<?= $item->activity_name_lvl_3 ?>" data-level_code_2="<?= $item->activity_name_lvl_2 ?>" data-level_code="<?= $item->activity_name_lvl_1 ?>" data-id="<?= $item->id ?>">
                                                             <i class="ri-pencil-fill text-info font-size-20"></i>
                                                         </a>
                                                         &nbsp;
@@ -1292,6 +1302,7 @@
             quantity = $(this).data('quantity'),
             unit = $(this).data('unit'),
             weightFactor = $(this).data('weight_factor');
+            
             // description = $(this).data('description'),
 
         planPo = $(this).data('plan_po');
