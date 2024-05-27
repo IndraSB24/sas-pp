@@ -388,6 +388,8 @@ class Model_doc_procurement extends Model
             ) AS COMM ON dw.week_number = COMM.week_number
             WHERE
                 dw.id_project = '$idProject'
+            GROUP BY 
+                dw.week_number
             ORDER BY 
                 dw.week_number
         ";
