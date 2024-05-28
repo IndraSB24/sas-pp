@@ -149,7 +149,7 @@
                                                 <br>
                                                     <span class="text-danger">REJECTED</span>
                                                 <br>
-                                                <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/po' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                         data-id="' . $item->id . '"
                                                         data-doc_desc="' . $item->description . '"
                                                         data-path = "Project_detail_procurement/update/up_po"
@@ -206,7 +206,7 @@
                                                     <br>
                                                         <span class="text-danger">REJECTED</span>
                                                     <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/fat' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                             data-path = "Project_detail_procurement/update/up_file"
@@ -272,7 +272,7 @@
                                                     <br>
                                                         <span class="text-danger">REJECTED</span>
                                                     <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/rfs' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                             data-path = "Project_detail_procurement/update/up_file"
@@ -338,7 +338,7 @@
                                                     <br>
                                                         <span class="text-danger">REJECTED</span>
                                                     <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/onsite' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                             data-path = "Project_detail_procurement/update/up_file"
@@ -404,7 +404,7 @@
                                                     <br>
                                                         <span class="text-danger">REJECTED</span>
                                                     <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/install' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                             data-path = "Project_detail_procurement/update/up_file"
@@ -471,7 +471,7 @@
                                                     <br>
                                                         <span class="text-danger">REJECTED</span>
                                                     <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/comm' . ' class="badge bg-warning mt-1 p-2 w-xs"
                                                             data-id="' . $item->id . '"
                                                             data-doc_desc="' . $item->description . '"
                                                             data-path = "Project_detail_procurement/update/up_file"

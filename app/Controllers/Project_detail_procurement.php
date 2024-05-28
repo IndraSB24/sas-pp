@@ -525,13 +525,14 @@ class Project_detail_procurement extends BaseController
 		return view('show_pdf_procurement', $data);
     }
 
-    public function show_pdf_reupload($doc_id) {
+    public function show_pdf_reupload($doc_id, $doc_step) {
 		$data = [   
 			'title_meta' => view('partials/title-meta', ['title' => 'Comment PDF']),
 			'page_title' => view('partials/page-title', ['title' => 'Document', 'pagetitle' => 'Comment PDF']),
             'doc_id' => $doc_id,
             'file_name' => 'test.pdf',
             'doc_data' => $this->Model_doc_procurement->get_by_id($doc_id),
+            'doc_step' => $doc_step,
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('reupload_doc_view_procurement', $data);

@@ -363,7 +363,6 @@
 
                 $(document).on('click', '#upload_btn_up', function() {
                     const fileDesc = $(this).data('step');
-                    const version = '';
                     let id_doc, swalTitle;
                     var timerInterval, i, file;
                     var formData = new FormData();
@@ -373,12 +372,11 @@
                         file = i[0].files[0];
                     
                     console.log(file, 'fuadi file');
-                    console.log(version, 'fuadi version');
                     console.log(id_doc, 'fuadi id_doc');
                     formData.append('file', file);
-                    formData.append('version', version);
                     formData.append('id_doc', id_doc);
-                    formData.append('doc_name', '<?= $doc_data[0]->description?>');
+                    formData.append('doc_step', '<?= $doc_step ?>');
+                    formData.append('doc_name', '<?= $doc_data[0]->activity_name_lvl_1 ?>');
                     formData.append('doc_code', '');
                     formData.append('man_hour_actual', $('#actual_man_hour').val());
 
