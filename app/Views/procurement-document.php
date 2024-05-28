@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5 mb-0 mt-2">
-                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;">
+                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #B5838D;height:min-content;overflow: hidden;position: relative;background-color:#fce1ef">
                             <!-- <div class="row">
                                     <div class="col-8">
                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
