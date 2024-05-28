@@ -71,7 +71,7 @@
                 <div class="col-md-4 row mb-3">
                     <div class="col-6">
                         <select class="form-control select2">
-                            <option >Select</option>
+                            <option>Select</option>
                             <option value="EL">Week 1</option>
                             <option value="FA">Week 2</option>
                             <option value="FI">Week 3</option>
@@ -139,7 +139,7 @@
                                     <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                     <font size="2">
                                         <table id="datatable" class="table table-bordered" style="border: 0px;">
-                                        <thead>
+                                            <thead>
                                                 <tr>
                                                     <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
                                                     <th rowspan="2" style="background-color: #b0cbf7;">ACTIVITY LEVEL 1</th>
@@ -161,48 +161,48 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $counter = 0;
-                                                    // Iterate over the array
-                                                    foreach ($progressByLevel1['data'] as $key => $value) {
-                                                        $counter += 1;
-                                                        echo '
+                                                $counter = 0;
+                                                // Iterate over the array
+                                                foreach ($progressByLevel1['data'] as $key => $value) {
+                                                    $counter += 1;
+                                                    echo '
                                                             <tr>
                                                                 <td class="text-center" style="background-color: #b0cbf7;">
-                                                                    '. $counter .'
+                                                                    ' . $counter . '
                                                                 </td>
                                                                 <td style="background-color: #b0cbf7;">
-                                                                    '. $key .'
+                                                                    ' . $key . '
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. angka(2, $value['cumPlanLastWeek']) .'%
+                                                                    ' . angka(2, $value['cumPlanLastWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. angka(2, $value['cumActualLastWeek']) .'%
+                                                                    ' . angka(2, $value['cumActualLastWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFEBCD;">
-                                                                    '. angka(2, (float) $value['cumActualLastWeek'] - (float) $value['cumPlanLastWeek']) .'%
+                                                                    ' . angka(2, (float) $value['cumActualLastWeek'] - (float) $value['cumPlanLastWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. angka(2, $value['cumPlanCurrentWeek']) .'%
+                                                                    ' . angka(2, $value['cumPlanCurrentWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. angka(2, $value['cumActualCurrentWeek']) .'%
+                                                                    ' . angka(2, $value['cumActualCurrentWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #d3f5b0;">
-                                                                    '. angka(2, (float) $value['cumActualCurrentWeek'] - (float) $value['cumPlanCurrentWeek']) .'%
+                                                                    ' . angka(2, (float) $value['cumActualCurrentWeek'] - (float) $value['cumPlanCurrentWeek']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. angka(2, $value['cumPlan']) .'%
+                                                                    ' . angka(2, $value['cumPlan']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. angka(2, $value['cumActual']) .'%
+                                                                    ' . angka(2, $value['cumActual']) . '%
                                                                 </td>
                                                                 <td class="text-center" style="background-color: #FFAFCC;">
-                                                                    '. angka(2, (float) $value['cumActual'] - (float) $value['cumPlan']) .'%
+                                                                    ' . angka(2, (float) $value['cumActual'] - (float) $value['cumPlan']) . '%
                                                                 </td>
                                                             </tr>
                                                         ';
-                                                    }
+                                                }
                                                 ?>
                                             </tbody>
                                         </table>
@@ -1240,12 +1240,12 @@
         xaxis: {
             type: 'month',
             labels: {
-            rotate: -90, // Rotate labels to vertical
-            style: {
-                fontSize: '12px',
-                colors: []
+                rotate: -90, // Rotate labels to vertical
+                style: {
+                    fontSize: '12px',
+                    colors: []
+                }
             }
-        }
         },
         yaxis: {
             title: {
@@ -1533,7 +1533,7 @@
 
     // });
     var options_plan_progress = {
-        series: ['<?= $progressChartData['percent_plan']?>'],
+        series: ['<?= $progressChartData['percent_plan'] ?>'],
         chart: {
             height: 200,
             type: 'radialBar',
@@ -1617,7 +1617,7 @@
 
 
     var options_actual_progress = {
-        series: ['<?= $progressChartData['percent_actual']?>'],
+        series: ['<?= $progressChartData['percent_actual'] ?>'],
         chart: {
             height: 200,
             type: 'radialBar',
@@ -1699,9 +1699,53 @@
     var chart = new ApexCharts(document.querySelector("#actual_progress"), options_actual_progress);
     chart.render();
 
+    function calculatePercentage(data) {
+        const actual = parseFloat(data.cumActual);
+        const plan = parseFloat(data.cumPlan);
+        if (plan === 0) {
+            return 0;
+        }
+        const percentage = (actual / plan) * 100;
+        console.log(percentage, 'final');
+        return percentage.toFixed(2);
+    }
+
+    // const ProgressByLevel1 = {
+    //     currentWeek: "22",
+    //     lastWeek: 21,
+    //     data: {
+    //         "PEKERJAAN SIPIL": {
+    //             "cumPlan": "1.6500000000000001",
+    //             "cumActual": "0"
+    //         },
+    //         "PEKERJAAN PERPIPAAN": {
+    //             "cumPlan": "0",
+    //             "cumActual": "0"
+    //         },
+    //         "PEKERJAAN MECHANICAL": {
+    //             "cumPlan": "0",
+    //             "cumActual": "0"
+    //         },
+    //         "PEKERJAAN INSTRUMENT": {
+    //             "cumPlan": "0",
+    //             "cumActual": "0"
+    //         },
+    //         "PEKERJAAN ELECTRICAL": {
+    //             "cumPlan": "0.30000000000000004",
+    //             "cumActual": "0"
+    //         },
+    //         "PEKERJAAN FASILITAS HSE": {
+    //             "cumPlan": "0",
+    //             "cumActual": "0"
+    //         }
+    //     }
+    // }
+
+    const ProgressByLevel1 = <?= json_encode($getProgressByLevel1ForChart) ?>
+
     var options = {
         series: [{
-            data: [90, 34, 50, 100, 50, 23]
+            data: [calculatePercentage(ProgressByLevel1.data['PEKERJAAN SIPIL']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN PERPIPAAN']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN MECHANICAL']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN INSTRUMENT']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN FASILITAS HSE']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN ELECTRICAL'])]
         }],
         chart: {
             type: 'bar',
@@ -1741,6 +1785,7 @@
         },
         xaxis: {
             categories: ['Pekerjaan Sipil', 'Pekerjaan Perpipaan', 'Pekerjaan Mechanical', 'Pekerjaan Instrument', 'Pekerjaan Electrical', 'Pekerjaan Fasilitas Hsse'],
+            // categories: [ProgressByLevel1.data['PEKERJAAN SIPIL'], ProgressByLevel1.data['PEKERJAAN PERPIPAAN'], ProgressByLevel1.data['PEKERJAAN MECHANICAL'], ProgressByLevel1.data['PEKERJAAN INSTRUMENT'], ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'], ProgressByLevel1.data['PEKERJAAN ELECTRICAL']],
         },
         yaxis: {
             labels: {
