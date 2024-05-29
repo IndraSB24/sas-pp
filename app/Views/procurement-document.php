@@ -1810,14 +1810,7 @@
                 'Pekerjaan Instrument', 
                 'Pekerjaan Electrical', 
                 'Pekerjaan Fasilitas Hsse'
-            ],
-            labels: {
-                show: true,
-                style: {
-                    color: 'white',
-                    fontSize: '12px'
-                },
-            }
+            ]
             // categories: [ProgressByLevel1.data['PEKERJAAN SIPIL'], ProgressByLevel1.data['PEKERJAAN PERPIPAAN'], ProgressByLevel1.data['PEKERJAAN MECHANICAL'], ProgressByLevel1.data['PEKERJAAN INSTRUMENT'], ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'], ProgressByLevel1.data['PEKERJAAN ELECTRICAL']],
         },
         yaxis: {
@@ -1836,7 +1829,7 @@
         //     align: 'center',
         // },
         tooltip: {
-            theme: 'dark',
+            theme: 'light',
             x: {
                 show: false
             },
