@@ -1748,18 +1748,18 @@
     // }
 
     const ProgressByLevel1 = <?= json_encode($getProgressByLevel1ForChart) ?>
-    const pekerjaanSipil = ProgressByLevel1.data['PEKERJAAN SIPIL'] ? ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual : 0
-    const pekerjaanPerpipaan = ProgressByLevel1.data['PEKERJAAN PERPIPAAN'] ? ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual : 0
-    const pekerjaanMechanical = ProgressByLevel1.data['PEKERJAAN MECHANICAL'] ? ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual : 0
-    const pekerjaanInstrument = ProgressByLevel1.data['PEKERJAAN INSTRUMENT'] ? ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual : 0
-    const pekerjaanFasilitasHse = ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'] ? ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual : 0
-    const pekerjaanElectrical = ProgressByLevel1.data['PEKERJAAN ELECTRICAL'] ? ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual : 0
-    console.log(pekerjaanSipil, 'fuadi pekerjaanSipil')
-    console.log(pekerjaanPerpipaan, 'fuadi pekerjaanPerpipaan')
-    console.log(pekerjaanMechanical, 'fuadi pekerjaanMechanical')
-    console.log(pekerjaanInstrument, 'fuadi pekerjaanInstrument')
-    console.log(pekerjaanFasilitasHse, 'fuadi pekerjaanFasilitasHse')
-    console.log(pekerjaanElectrical, 'fuadi pekerjaanElectrical')
+    // const pekerjaanSipil = ProgressByLevel1.data['PEKERJAAN SIPIL'] ? ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual : 0
+    // const pekerjaanPerpipaan = ProgressByLevel1.data['PEKERJAAN PERPIPAAN'] ? ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual : 0
+    // const pekerjaanMechanical = ProgressByLevel1.data['PEKERJAAN MECHANICAL'] ? ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual : 0
+    // const pekerjaanInstrument = ProgressByLevel1.data['PEKERJAAN INSTRUMENT'] ? ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual : 0
+    // const pekerjaanFasilitasHse = ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'] ? ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual : 0
+    // const pekerjaanElectrical = ProgressByLevel1.data['PEKERJAAN ELECTRICAL'] ? ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual : 0
+    // console.log(pekerjaanSipil, 'fuadi pekerjaanSipil')
+    // console.log(pekerjaanPerpipaan, 'fuadi pekerjaanPerpipaan')
+    // console.log(pekerjaanMechanical, 'fuadi pekerjaanMechanical')
+    // console.log(pekerjaanInstrument, 'fuadi pekerjaanInstrument')
+    // console.log(pekerjaanFasilitasHse, 'fuadi pekerjaanFasilitasHse')
+    // console.log(pekerjaanElectrical, 'fuadi pekerjaanElectrical')
     var options = {
         series: [{
             data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
