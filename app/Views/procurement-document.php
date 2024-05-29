@@ -1618,8 +1618,9 @@
     chart.render();
 
 
+    const percent_actual = '<?= $progressChartData['percent_actual'] ?>'
     var options_actual_progress = {
-        series: ['<?= $progressChartData['percent_actual'] ?>'],
+        series: [parseFloat(percent_actual).toFixed(2)],
         chart: {
             height: 200,
             type: 'radialBar',
