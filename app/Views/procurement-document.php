@@ -1532,8 +1532,9 @@
     //     }]
 
     // });
+    const percent_plan = '<?= $progressChartData['percent_plan'] ?>'
     var options_plan_progress = {
-        series: ['<?= $progressChartData['percent_plan'] ?>'],
+        series: ['fuadi'],
         chart: {
             height: 200,
             type: 'radialBar',
