@@ -1762,8 +1762,8 @@
     console.log(pekerjaanElectrical, 'fuadi pekerjaanElectrical')
     var options = {
         series: [{
-            // data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
-            data: [pekerjaanSipil, pekerjaanPerpipaan, pekerjaanMechanical, pekerjaanInstrument, pekerjaanFasilitasHse, pekerjaanElectrical]
+            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
+            // data: [pekerjaanSipil, pekerjaanPerpipaan, pekerjaanMechanical, pekerjaanInstrument, pekerjaanFasilitasHse, pekerjaanElectrical]
         }],
         chart: {
             type: 'bar',
