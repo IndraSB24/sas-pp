@@ -1535,7 +1535,7 @@
     const percent_plan = '<?= $progressChartData['percent_plan'] ?>'
     console.log(percent_plan, 'fuadi percent_plan');
     var options_plan_progress = {
-        series: [percent_plan.toFixed(2)],
+        series: [parseFloat(percent_plan).toFixed(2)],
         chart: {
             height: 200,
             type: 'radialBar',
