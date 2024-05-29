@@ -1812,10 +1812,11 @@
                 'Pekerjaan Fasilitas Hsse'
             ],
             labels: {
+                show: true,
                 style: {
-                    colors: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff'],
-                    // fontSize: '12px'
-                }
+                    color: 'white',
+                    fontSize: '12px'
+                },
             }
             // categories: [ProgressByLevel1.data['PEKERJAAN SIPIL'], ProgressByLevel1.data['PEKERJAAN PERPIPAAN'], ProgressByLevel1.data['PEKERJAAN MECHANICAL'], ProgressByLevel1.data['PEKERJAAN INSTRUMENT'], ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'], ProgressByLevel1.data['PEKERJAAN ELECTRICAL']],
         },
