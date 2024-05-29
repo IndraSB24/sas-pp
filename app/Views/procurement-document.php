@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5 mb-0 mt-2">
-                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #009F75;height:min-content;overflow: hidden;position: relative;background-color:#009F75">
+                        <div class="galon mt-2" style="padding: 15px;padding-top: 10px;border: 1px solid #88C6ED;height:min-content;overflow: hidden;position: relative;background-color:#88C6ED">
                             <!-- <div class="row">
                                     <div class="col-8">
                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
@@ -1788,7 +1788,7 @@
             enabled: true,
             textAnchor: 'start',
             style: {
-                colors: ['#fff']
+                colors: ['#000']
             },
             formatter: function(val, opt) {
                 return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val + "%"
@@ -1800,7 +1800,7 @@
         },
         stroke: {
             width: 1,
-            colors: ['#fff']
+            colors: ['#000']
         },
         xaxis: {
             categories: [
