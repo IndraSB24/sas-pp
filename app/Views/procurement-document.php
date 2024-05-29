@@ -1754,6 +1754,12 @@
     const pekerjaanInstrument = ProgressByLevel1.data['PEKERJAAN INSTRUMENT'] && ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual
     const pekerjaanFasilitasHse = ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'] && ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual
     const pekerjaanElectrical = ProgressByLevel1.data['PEKERJAAN ELECTRICAL'] && ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual
+    console.log(pekerjaanSipil, 'fuadi pekerjaanSipil')
+    console.log(pekerjaanPerpipaan, 'fuadi pekerjaanPerpipaan')
+    console.log(pekerjaanMechanical, 'fuadi pekerjaanMechanical')
+    console.log(pekerjaanInstrument, 'fuadi pekerjaanInstrument')
+    console.log(pekerjaanFasilitasHse, 'fuadi pekerjaanFasilitasHse')
+    console.log(pekerjaanElectrical, 'fuadi pekerjaanElectrical')
     var options = {
         series: [{
             // data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
