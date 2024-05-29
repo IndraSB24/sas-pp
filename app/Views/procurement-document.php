@@ -1795,7 +1795,7 @@
             },
             offsetX: 0,
             dropShadow: {
-                enabled: true
+                enabled: false
             }
         },
         stroke: {
@@ -1803,7 +1803,14 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['Pekerjaan Sipil', 'Pekerjaan Perpipaan', 'Pekerjaan Mechanical', 'Pekerjaan Instrument', 'Pekerjaan Electrical', 'Pekerjaan Fasilitas Hsse'],
+            categories: [
+                'Pekerjaan Sipil', 
+                'Pekerjaan Perpipaan', 
+                'Pekerjaan Mechanical', 
+                'Pekerjaan Instrument', 
+                'Pekerjaan Electrical', 
+                'Pekerjaan Fasilitas Hsse'
+            ],
             labels: {
                 style: {
                     colors: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff'],
