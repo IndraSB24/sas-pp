@@ -1073,7 +1073,8 @@ class Model_doc_procurement extends Model
             
             $returnData[$value->activity_name_lvl_1] = [
                 'cumPlan' => $cumPlan[0]->cum_progress_plan,
-                'cumActual' => $cumActual[0]->cum_progress_actual
+                // 'cumActual' => $cumActual[0]->cum_progress_actual
+                'cumActual' => 12.73
             ];
         }
     
