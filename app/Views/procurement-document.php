@@ -1748,11 +1748,16 @@
     // }
 
     const ProgressByLevel1 = <?= json_encode($getProgressByLevel1ForChart) ?>
-
+    const pekerjaanSipil = ProgressByLevel1.data['PEKERJAAN SIPIL'] && ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual
+    const pekerjaanPerpipaan = ProgressByLevel1.data['PEKERJAAN PERPIPAAN'] && ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual
+    const pekerjaanMechanical = ProgressByLevel1.data['PEKERJAAN MECHANICAL'] && ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual
+    const pekerjaanInstrument = ProgressByLevel1.data['PEKERJAAN INSTRUMENT'] && ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual
+    const pekerjaanFasilitasHse = ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'] && ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual
+    const pekerjaanElectrical = ProgressByLevel1.data['PEKERJAAN ELECTRICAL'] && ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual
     var options = {
         series: [{
             // data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
-            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, 0, 0, 0, 0, 0]
+            data: [pekerjaanSipil, pekerjaanPerpipaan, pekerjaanMechanical, pekerjaanInstrument, pekerjaanFasilitasHse, pekerjaanElectrical]
         }],
         chart: {
             type: 'bar',
