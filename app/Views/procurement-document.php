@@ -1803,6 +1803,7 @@
             colors: ['#fff']
         },
         xaxis: {
+            colors: ['#fff'],
             categories: ['Pekerjaan Sipil', 'Pekerjaan Perpipaan', 'Pekerjaan Mechanical', 'Pekerjaan Instrument', 'Pekerjaan Electrical', 'Pekerjaan Fasilitas Hsse'],
             // categories: [ProgressByLevel1.data['PEKERJAAN SIPIL'], ProgressByLevel1.data['PEKERJAAN PERPIPAAN'], ProgressByLevel1.data['PEKERJAAN MECHANICAL'], ProgressByLevel1.data['PEKERJAAN INSTRUMENT'], ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'], ProgressByLevel1.data['PEKERJAAN ELECTRICAL']],
         },
