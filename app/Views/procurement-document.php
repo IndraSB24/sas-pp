@@ -1751,7 +1751,8 @@
 
     var options = {
         series: [{
-            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
+            // data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
+            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, 0, 0, 0, 0, 0]
         }],
         chart: {
             type: 'bar',
