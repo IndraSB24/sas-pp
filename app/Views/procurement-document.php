@@ -1701,20 +1701,20 @@
     var chart = new ApexCharts(document.querySelector("#actual_progress"), options_actual_progress);
     chart.render();
 
-    function calculatePercentage(data) {
-        if (data) {
-            const actual = parseFloat(data.cumActual);
-            const plan = parseFloat(data.cumPlan);
-            if (plan === 0) {
-                return 0;
-            }
-            const percentage = (actual / plan) * 100;
-            console.log(percentage, 'final');
-            return percentage.toFixed(2);
-        } else {
-            return 0;
-        }
-    }
+    // function calculatePercentage(data) {
+    //     if (data) {
+    //         const actual = parseFloat(data.cumActual);
+    //         const plan = parseFloat(data.cumPlan);
+    //         if (plan === 0) {
+    //             return 0;
+    //         }
+    //         const percentage = (actual / plan) * 100;
+    //         console.log(percentage, 'final');
+    //         return percentage.toFixed(2);
+    //     } else {
+    //         return 0;
+    //     }
+    // }
 
     // const ProgressByLevel1 = {
     //     currentWeek: "22",
@@ -1751,7 +1751,7 @@
 
     var options = {
         series: [{
-            data: [calculatePercentage(ProgressByLevel1.data['PEKERJAAN SIPIL']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN PERPIPAAN']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN MECHANICAL']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN INSTRUMENT']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN FASILITAS HSE']), calculatePercentage(ProgressByLevel1.data['PEKERJAAN ELECTRICAL'])]
+            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
         }],
         chart: {
             type: 'bar',
