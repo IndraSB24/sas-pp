@@ -1702,14 +1702,18 @@
     chart.render();
 
     function calculatePercentage(data) {
-        const actual = parseFloat(data.cumActual);
-        const plan = parseFloat(data.cumPlan);
-        if (plan === 0) {
+        if (data) {
+            const actual = parseFloat(data.cumActual);
+            const plan = parseFloat(data.cumPlan);
+            if (plan === 0) {
+                return 0;
+            }
+            const percentage = (actual / plan) * 100;
+            console.log(percentage, 'final');
+            return percentage.toFixed(2);
+        } else {
             return 0;
         }
-        const percentage = (actual / plan) * 100;
-        console.log(percentage, 'final');
-        return percentage.toFixed(2);
     }
 
     // const ProgressByLevel1 = {
