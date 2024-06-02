@@ -4,17 +4,17 @@
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
     <style>
-        td:nth-child(6) {
+        td:nth-child(3) {
             position: sticky;
             left: 0;
             z-index: 1;
         }
 
-        td:nth-child(7) {
+        /* td:nth-child(7) {
             position: sticky;
             left: 13em;
             z-index: 1;
-        }
+        } */
     </style>
 </head>
 
@@ -70,7 +70,9 @@
                                             <tr>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">ACTIVITY CODE</th>
-                                                <th rowspan="1" colspan="6" style="width: 0px;background-color:#fad8a2" class="desc text-center">DESCRIPTION OF WORK</th>
+                                                <th rowspan="4" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
+                                                <th rowspan="4" style="background-color: #D6CCC2;">GROUP</th>
+                                                <!-- <th rowspan="1" colspan="6" style="width: 0px;background-color:#fad8a2" class="desc text-center">DESCRIPTION OF WORK</th> -->
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2" class="desc">DETAIL/ SPECIFICATION</th>
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2">QUANTITY</th>
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2">UNIT</th>
@@ -87,12 +89,12 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 1</th>
+                                                <!-- <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 1</th>
                                                 <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 2</th>
                                                 <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 3</th>
                                                 <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 0;z-index: 1;">Level 4</th>
                                                 <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 13em;z-index: 1;">Level 5</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Group</th>
+                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Group</th> -->
                                                 <th rowspan="3" class="text-center" style="background-color:#DCB6D5">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center" style="background-color:#DCB6D5">JASA (IDR)</th>
                                                 <th rowspan="3" class="text-center" style="background-color:#FFC2D1">MATERIAL (IDR)</th>
@@ -524,17 +526,25 @@
                                                 <tr>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $item->activity_code ?> </td>
+                                                    <td style="background-color:#faf1e3">
+                                                        <?= $item->activity_name_lvl_1 ? 'Level 1: ' .  $item->activity_name_lvl_1 : '' ?> <br>
+                                                        <?= $item->activity_name_lvl_2 ? 'Level 2: ' .  $item->activity_name_lvl_2 : '' ?> <br>
+                                                        <?= $item->activity_name_lvl_3 ? 'Level 3: ' .  $item->activity_name_lvl_3 : '' ?> <br>
+                                                        <?= $item->activity_name_lvl_4 ? 'Level 4: ' .  $item->activity_name_lvl_4 : '' ?> <br>
+                                                        <?= $item->activity_name_lvl_5 ? 'Level 5: ' .  $item->activity_name_lvl_5 : '' ?>
+                                                    </td>
+                                                    <td style="background-color:#faf1e3"><?= $item->group_name ?></td>
 
-                                                    <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_1 ?> </td>
+                                                    <!-- <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_1 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_2 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_3 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_4 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_5 ?> </td>
-                                                    <td style="background-color:#faf1e3"> <?= $item->group_name ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->group_name ?> </td> -->
 
-                                                    <th style="background-color:#E3D5CA"> <?= $item->detail_or_spesifikasi ?> </th>
-                                                    <th style="background-color:#E3D5CA" class="text-center"> <?= $item->quantity ?> </th>
-                                                    <th style="background-color:#E3D5CA" class="text-center"> <?= $item->unit ?> </th>
+                                                    <th style="background-color:#faf1e3"> <?= $item->detail_or_spesifikasi ?> </th>
+                                                    <th style="background-color:#faf1e3" class="text-center"> <?= $item->quantity ?> </th>
+                                                    <th style="background-color:#faf1e3" class="text-center"> <?= $item->unit ?> </th>
 
                                                     <th class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_material ?> </th>
                                                     <th class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_jasa ?> </th>
@@ -560,17 +570,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" 
-                                                        data-group="<?= $item->group_name ?>"
-                                                        data-quantity="<?= $item->quantity ?>"
-                                                        data-unit="<?= $item->unit ?>"
-                                                        data-weight_factor="<?= $item->wf ?>"
-                                                        data-plan_fat="<?= $item->fat_plan ?>"
-                                                        data-plan_rfs="<?= $item->rfs_plan ?>"
-                                                        data-plan_onsite="<?= $item->onsite_plan ?>"
-                                                        data-plan_install="<?= $item->install_plan ?>"
-                                                        data-plan_comm="<?= $item->comm_plan ?>"
-                                                        data-plan_po="<?= $item->po_plan ?>" data-level_code_5="<?= $item->activity_name_lvl_5 ?>" data-level_code_4="<?= $item->activity_name_lvl_4 ?>" data-level_code_3="<?= $item->activity_name_lvl_3 ?>" data-level_code_2="<?= $item->activity_name_lvl_2 ?>" data-level_code="<?= $item->activity_name_lvl_1 ?>" data-id="<?= $item->id ?>">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-group="<?= $item->group_name ?>" data-quantity="<?= $item->quantity ?>" data-unit="<?= $item->unit ?>" data-weight_factor="<?= $item->wf ?>" data-plan_fat="<?= $item->fat_plan ?>" data-plan_rfs="<?= $item->rfs_plan ?>" data-plan_onsite="<?= $item->onsite_plan ?>" data-plan_install="<?= $item->install_plan ?>" data-plan_comm="<?= $item->comm_plan ?>" data-plan_po="<?= $item->po_plan ?>" data-level_code_5="<?= $item->activity_name_lvl_5 ?>" data-level_code_4="<?= $item->activity_name_lvl_4 ?>" data-level_code_3="<?= $item->activity_name_lvl_3 ?>" data-level_code_2="<?= $item->activity_name_lvl_2 ?>" data-level_code="<?= $item->activity_name_lvl_1 ?>" data-id="<?= $item->id ?>">
                                                             <i class="ri-pencil-fill text-info font-size-20"></i>
                                                         </a>
                                                         &nbsp;
@@ -1302,8 +1302,8 @@
             quantity = $(this).data('quantity'),
             unit = $(this).data('unit'),
             weightFactor = $(this).data('weight_factor');
-            
-            // description = $(this).data('description'),
+
+        // description = $(this).data('description'),
 
         planPo = $(this).data('plan_po');
         planFat = $(this).data('plan_fat');
@@ -1361,7 +1361,7 @@
             planCommEdit = document.getElementById("plan_comm_edit").value,
             // descriptionEdit = document.getElementById("description_edit").value,
             // planIfrEdit = document.getElementById("plan_ifr_edit").value;
-        planIfaEdit = document.getElementById("plan_ifa_edit").value;
+            planIfaEdit = document.getElementById("plan_ifa_edit").value;
         planIfcEdit = document.getElementById("plan_ifc_edit").value;
         var timerInterval;
         Swal.fire({
@@ -1379,20 +1379,20 @@
                     dataType: "JSON",
                     data: {
                         level_code_edit: levelCodeEdit,
-                        level_code_2_edit :levelCode2Edit,
-                        level_code_3_edit :levelCode3Edit,
-                        level_code_4_edit :levelCode4Edit,
-                        level_code_5_edit :levelCode5Edit,
+                        level_code_2_edit: levelCode2Edit,
+                        level_code_3_edit: levelCode3Edit,
+                        level_code_4_edit: levelCode4Edit,
+                        level_code_5_edit: levelCode5Edit,
                         weight_factor_edit: weightFactorEdit,
-                        group_edit :groupEdit,
-                        quantity_edit :quantityEdit,
-                        unit_edit :unitEdit,
-                        plan_po_edit :planPoEdit,
-                        plan_fat_edit :planFatEdit,
-                        plan_rfs_edit :planRfsEdit,
-                        plan_onsite_edit :planOnsiteEdit,
-                        plan_install_edit :planInstallEdit,
-                        plan_comm_edit :planCommEdit,
+                        group_edit: groupEdit,
+                        quantity_edit: quantityEdit,
+                        unit_edit: unitEdit,
+                        plan_po_edit: planPoEdit,
+                        plan_fat_edit: planFatEdit,
+                        plan_rfs_edit: planRfsEdit,
+                        plan_onsite_edit: planOnsiteEdit,
+                        plan_install_edit: planInstallEdit,
+                        plan_comm_edit: planCommEdit,
                         // description_edit: descriptionEdit,
                         // plan_ifr_edit: planIfrEdit,
                         // plan_ifa_edit: planIfaEdit,
