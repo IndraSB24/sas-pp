@@ -70,6 +70,11 @@ $routes->get('procurement-doc-list/(:segment)', 'Project_detail_procurement::sho
 $routes->get('commentPdfProcurement/(:segment)/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2/$3');
 $routes->get('commentPdfProcurement/(:segment)/(:segment)', 'Project_detail_procurement::show_pdf/$1/$2');
 
+// contruction
+$routes->get('construction-dashboard', 'Project_detail_construction::index');
+$routes->get('construction-doc-list/(:segment)', 'Project_detail_construction::show_doc_list/$1');
+
+
 
 
 

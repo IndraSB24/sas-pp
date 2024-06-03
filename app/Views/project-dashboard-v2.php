@@ -206,7 +206,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="selectable" id="Detail-Procurement" style="border: 1px solid #E0E0E0; border-radius: 8px;">
+                                            <div class="selectable" id="Detail-Construction" style="border: 1px solid #E0E0E0; border-radius: 8px;">
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <div id="radial_chart_3" class="apex-charts m-0 p-0"></div>
@@ -1066,6 +1066,9 @@
         });
         $("#Detail-Procurement").click(function() {
             window.location.href = "procurement-dashboard"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
+        });
+        $("#Detail-Construction").click(function() {
+            window.location.href = "construction-dashboard"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });
     });
 </script>
