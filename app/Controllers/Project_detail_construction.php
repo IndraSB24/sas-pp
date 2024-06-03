@@ -76,6 +76,17 @@ class Project_detail_construction extends BaseController
 		// echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_construction_detail', $data);
 	}
+
+    public function yuhuu($project_id=null) {
+        $data = [
+			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
+			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Construction']),
+            'progressByLevel1' => $this->Model_doc_procurement->getProgressByLevel1(),
+            'getProgressByLevel1ForChart' => $this->Model_doc_procurement->getProgressByLevel1ForChart()
+		];
+        
+        return view('document_construction_detail_2', $data);
+    }
 	
 	public function show_project_list(){
 		$data = [

@@ -40,8 +40,8 @@
                         <a href="<?= base_url('construction-dashboard') ?>" class="btn btn-warning waves-effect waves-light">
                             Construction Dashboard
                         </a>
-                        <a href="<?= base_url('yuhuu') ?>" class="btn btn-success waves-effect waves-light">
-                            Yuhuu
+                        <a href="<?= base_url('construction-doc-list/1') ?>" class="btn btn-success waves-effect waves-light">
+                            Back
                         </a>
                     </div>
                 </div>
@@ -71,45 +71,22 @@
                                     <table id="scroll-vertical-datatable" class="table table-bordered nowrap">
                                         <thead style="border-top-width: 4px">
                                             <tr>
-                                                <th rowspan="3" style="background-color: #b0cbf7;">NO</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
-                                                <th rowspan="3" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
-                                                <th rowspan="3" style="width: 0px;background-color: #D6CCC2">QUANTITY</th>
-                                                <th rowspan="3" style="width: 0px;background-color: #D6CCC2">UNIT</th>
-                                                <th rowspan="1" colspan="2" style="width: 0px;background-color:#CF8BA9" class="desc text-center">HARGA SATUAN</th>
-                                                <th colspan="2" class="desc text-center" style="background-color:#FF8FAB">TOTAL HARGA</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7">TOTAL AMOUNT</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7">WF</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7">WF L4</th>
-                                                <th rowspan="1" colspan="10" class="text-center" style="background-color:#9dc9ae">PROGRESS (%)</th>
-                                                <th rowspan="2" colspan="3" class="text-center" style="background-color:#EDE580">BASELINE SCHEDULE</th>
-                                                <th rowspan="3" class="text-center" style="background-color: #b0cbf7">
+                                                <th rowspan="2" style="background-color: #b0cbf7;">NO</th>
+                                                <th rowspan="2" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
+                                                <th rowspan="2" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
+                                                <th rowspan="2" style="width: 0px;background-color: #D6CCC2">WF</th>
+                                                <th rowspan="1" colspan="6" class="text-center" style="background-color:#9dc9ae">PROGRESS</th>
+                                                <th rowspan="2" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th rowspan="2" class="text-center" style="background-color:#DCB6D5">MATERIAL (IDR)</th>
-                                                <th rowspan="2" class="text-center" style="background-color:#DCB6D5">JASA (IDR)</th>
-                                                <th rowspan="2" class="text-center" style="background-color:#FFC2D1">MATERIAL (IDR)</th>
-                                                <th rowspan="2" class="text-center" style="background-color:#FFC2D1">JASA (IDR)</th>
-                                                <th colspan="3" class="text-center" style="background-color:#C5EDAC">PLAN</th>
-                                                <th colspan="3" class="text-center" style="background-color:#57CC99">ACTUAL</th>
-                                                <th colspan="3" class="text-center" style="background-color:#80ED99">VARIANCE</th>
-                                                <th rowspan="2" class="text-center" style="background-color:#90BE6D">REMAINING (%)</th>
-                                            </tr>
-                                            <tr>
-                                                <th style="background-color:#C5EDAC">Last Week Cummulative Progress</th>
-                                                <th style="background-color:#C5EDAC">This Week</th>
-                                                <th style="background-color:#C5EDAC">Cummulative up to This Week</th>
-                                                <th style="background-color:#57CC99">Last Week Cummulative Progress</th>
-                                                <th style="background-color:#57CC99">This Week</th>
-                                                <th style="background-color:#57CC99">Cummulative up to This Week</th>
-                                                <th style="background-color:#80ED99">Last Week Cummulative Progress</th>
-                                                <th style="background-color:#80ED99">This Week</th>
-                                                <th style="background-color:#80ED99">Cummulative up to This Week</th>
-                                                <th  class="text-center" style="background-color:#EDE580">START</th>
-                                                <th  class="text-center" style="background-color:#EDE580">FINISH</th>
-                                                <th  class="text-center" style="background-color:#EDE580">DURATION</th>
+                                                <th style="background-color:#C5EDAC">1</th>
+                                                <th style="background-color:#C5EDAC">2</th>
+                                                <th style="background-color:#C5EDAC">3</th>
+                                                <th style="background-color:#C5EDAC">4</th>
+                                                <th style="background-color:#C5EDAC">5</th>
+                                                <th style="background-color:#C5EDAC">6</th>
                                             </tr>
                                         </thead>
                                         <tbody>
