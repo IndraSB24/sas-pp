@@ -68,7 +68,7 @@
                                 </div>
                                 <!-- <div style="overflow-x:auto;"> -->
                                 <font size="2">
-                                    <table id="scroll-vertical-datatable" class="table table-bordered nowrap">
+                                    <table id="datatable" class="table table-bordered nowrap">
                                         <thead style="border-top-width: 4px">
                                             <tr>
                                                 <th rowspan="2" style="background-color: #b0cbf7;">NO</th>
