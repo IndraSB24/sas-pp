@@ -69,64 +69,52 @@
                                         <thead style="border-top-width: 4px">
                                             <tr>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
-                                                <th rowspan="4" style="background-color: #b0cbf7;">ACTIVITY CODE</th>
+                                                <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
                                                 <th rowspan="4" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
-                                                <th rowspan="4" style="background-color: #D6CCC2;">GROUP</th>
-                                                <!-- <th rowspan="1" colspan="6" style="width: 0px;background-color:#fad8a2" class="desc text-center">DESCRIPTION OF WORK</th> -->
-                                                <th rowspan="4" style="width: 0px;background-color: #D6CCC2" class="desc">DETAIL/ SPECIFICATION</th>
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2">QUANTITY</th>
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2">UNIT</th>
                                                 <th rowspan="1" colspan="2" style="width: 0px;background-color:#CF8BA9" class="desc text-center">HARGA SATUAN</th>
                                                 <th colspan="2" class="desc text-center" style="background-color:#FF8FAB">TOTAL HARGA</th>
                                                 <th rowspan="4" style="background-color: #b0cbf7">TOTAL AMOUNT</th>
                                                 <th rowspan="4" style="background-color: #b0cbf7">WF</th>
-                                                <th rowspan="1" colspan="12" class="text-center" style="background-color:#9dc9ae">PROC</th>
-                                                <th rowspan="4" class="text-center" style="background-color: #b0cbf7">
-                                                    TIMELINE
-                                                </th>
+                                                <th rowspan="4" style="background-color: #b0cbf7">WF L4</th>
+                                                <th rowspan="1" colspan="10" class="text-center" style="background-color:#9dc9ae">PROGRESS (%)</th>
+                                                <th rowspan="2" colspan="3" class="text-center" style="background-color:#EDE580">BASELINE SCHEDULE</th>
                                                 <th rowspan="4" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <!-- <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 1</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 2</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Level 3</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 0;z-index: 1;">Level 4</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond;position: sticky;left: 13em;z-index: 1;">Level 5</th>
-                                                <th rowspan="3" class="text-center" style="background-color:blanchedalmond">Group</th> -->
                                                 <th rowspan="3" class="text-center" style="background-color:#DCB6D5">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center" style="background-color:#DCB6D5">JASA (IDR)</th>
                                                 <th rowspan="3" class="text-center" style="background-color:#FFC2D1">MATERIAL (IDR)</th>
                                                 <th rowspan="3" class="text-center" style="background-color:#FFC2D1">JASA (IDR)</th>
-                                                <th colspan="2" class="text-center" style="background-color:#C5EDAC">PO</th>
-                                                <th colspan="2" class="text-center" style="background-color:#BFD200">FAT</th>
-                                                <th colspan="2" class="text-center" style="background-color:#57CC99">RFS</th>
-                                                <th colspan="2" class="text-center" style="background-color:#80ED99">ONSITE</th>
-                                                <th colspan="2" class="text-center" style="background-color:#90BE6D">INSTALL</th>
-                                                <th colspan="2" class="text-center" style="background-color:#90BAAD">COMM</th>
+                                                <th colspan="3" class="text-center" style="background-color:#C5EDAC">PLAN</th>
+                                                <th colspan="3" class="text-center" style="background-color:#57CC99">ACTUAL</th>
+                                                <th colspan="3" class="text-center" style="background-color:#80ED99">VARIANCE</th>
+                                                <th rowspan="3" class="text-center" style="background-color:#90BE6D">REMAINING (%)</th>
                                             </tr>
                                             <tr>
-                                                <th colspan="2" class="text-center" style="background-color:#C5EDAC">10%</th>
-                                                <th colspan="2" class="text-center" style="background-color:#BFD200">10%</th>
-                                                <th colspan="2" class="text-center" style="background-color:#57CC99">20%</th>
-                                                <th colspan="2" class="text-center" style="background-color:#80ED99">35%</th>
-                                                <th colspan="2" class="text-center" style="background-color:#90BE6D">20%</th>
-                                                <th colspan="2" class="text-center" style="background-color:#90BAAD">5%</th>
+                                                <th colspan="3" class="text-center" style="background-color:#C5EDAC"></th>
+                                                <th colspan="3" class="text-center" style="background-color:#57CC99"></th>
+                                                <th colspan="3" class="text-center" style="background-color:#80ED99"></th>
+                                                <th  class="text-center" style="background-color:#EDE580"></th>
+                                                <th  class="text-center" style="background-color:#EDE580"></th>
+                                                <th  class="text-center" style="background-color:#EDE580"></th>
                                             </tr>
                                             <tr>
-                                                <th style="background-color:#C5EDAC">PLAN</th>
-                                                <th style="background-color:#C5EDAC">ACT</th>
-                                                <th style="background-color:#DDDF00">PLAN</th>
-                                                <th style="background-color:#DDDF00">ACT</th>
-                                                <th style="background-color:#57CC99">PLAN</th>
-                                                <th style="background-color:#57CC99">ACT</th>
-                                                <th style="background-color:#80ED99">PLAN</th>
-                                                <th style="background-color:#80ED99">ACT</th>
-                                                <th style="background-color:#90BE6D">PLAN</th>
-                                                <th style="background-color:#90BE6D">ACT</th>
-                                                <th style="background-color:#90BAAD">PLAN</th>
-                                                <th style="background-color:#90BAAD">ACT</th>
+                                                <th style="background-color:#C5EDAC">Last Week Cummulative Progress</th>
+                                                <th style="background-color:#C5EDAC">This Week</th>
+                                                <th style="background-color:#C5EDAC">Cummulative up to This Week</th>
+                                                <th style="background-color:#57CC99">Last Week Cummulative Progress</th>
+                                                <th style="background-color:#57CC99">This Week</th>
+                                                <th style="background-color:#57CC99">Cummulative up to This Week</th>
+                                                <th style="background-color:#80ED99">Last Week Cummulative Progress</th>
+                                                <th style="background-color:#80ED99">This Week</th>
+                                                <th style="background-color:#80ED99">Cummulative up to This Week</th>
+                                                <th  class="text-center" style="background-color:#EDE580">START</th>
+                                                <th  class="text-center" style="background-color:#EDE580">FINISH</th>
+                                                <th  class="text-center" style="background-color:#EDE580">DURATION</th>
                                             </tr>
                                         </thead>
                                         <tbody>
