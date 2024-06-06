@@ -70,7 +70,7 @@
                                             <tr>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
                                                 <th rowspan="4" style="background-color: #b0cbf7;">ACTIVITY CODE</th>
-                                                <th rowspan="4" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
+                                                <th rowspan="4" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;white-space: normal;word-wrap: break-word;max-width: 450px;">DESCRIPTION</th>
                                                 <th rowspan="4" style="background-color: #D6CCC2;">GROUP</th>
                                                 <!-- <th rowspan="1" colspan="6" style="width: 0px;background-color:#fad8a2" class="desc text-center">DESCRIPTION OF WORK</th> -->
                                                 <th rowspan="4" style="width: 0px;background-color: #D6CCC2" class="desc">DETAIL/ SPECIFICATION</th>
@@ -526,7 +526,7 @@
                                                 <tr>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $item->activity_code ?> </td>
-                                                    <td style="background-color:#faf1e3">
+                                                    <td style="background-color:#faf1e3; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?= $item->activity_name_lvl_1 ? 'Level 1: ' .  $item->activity_name_lvl_1 : '' ?> <br>
                                                         <?= $item->activity_name_lvl_2 ? 'Level 2: ' .  $item->activity_name_lvl_2 : '' ?> <br>
                                                         <?= $item->activity_name_lvl_3 ? 'Level 3: ' .  $item->activity_name_lvl_3 : '' ?> <br>
