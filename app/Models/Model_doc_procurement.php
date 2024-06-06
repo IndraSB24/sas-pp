@@ -61,7 +61,7 @@ class Model_doc_procurement extends Model
             project_detail_procurement.*,
             dh.name as group_name
         ')
-        ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group')
+        ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group', 'LEFT')
         ->where('project_detail_procurement.deleted_at', NULL);
 
         
