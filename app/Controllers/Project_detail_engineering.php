@@ -148,7 +148,7 @@ class Project_detail_engineering extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Engineering', 'pagetitle' => 'Document List']),
-			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
+			'list_doc_engineering' => $this->doc_engineering_model->get_all(sess('active_karawan_id')),
             'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight'),
             'list_doc_dicipline' => $this->Model_data_helper->get_by_type('doc_dicipline_engineering'),
             'doc_role' => $this->Model_karyawan_doc_role->get_by_id_karyawan(sess('active_user_id'))
