@@ -150,7 +150,8 @@ class Model_doc_engineering extends Model
             'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
             'LEFT'
         )
-        ->where('project_detail_engineering.deleted_at', NULL);
+        ->where('project_detail_engineering.deleted_at', NULL)
+        ->orderBy('project_detail_engineering.id');
         
         return $this->get()->getResult();
     }
