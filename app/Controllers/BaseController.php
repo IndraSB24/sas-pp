@@ -62,7 +62,7 @@ class BaseController extends Controller
     protected function checkSession()
     {
         // Set your session timeout in seconds (e.g., 600 seconds for 10 minutes)
-        $sessionTimeout = 10;
+        $sessionTimeout = 7200;
 
         // Check if the session has a timestamp
         if ($this->session->has('last_activity')) {
@@ -73,7 +73,7 @@ class BaseController extends Controller
             if (($currentTime - $lastActivity) > $sessionTimeout) {
                 // Destroy the session and redirect to the login page
                 $this->session->destroy();
-                return redirect()->to('/login')->send();
+                return redirect()->to('/')->send();
             }
         }
 
