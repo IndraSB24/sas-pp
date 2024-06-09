@@ -121,7 +121,7 @@ class Model_karyawan_doc_role extends Model
             r.name as role_name
         ')
         ->join('role r', 'r.id=karyawan_doc_role.id_doc_role', 'LEFT')
-        ->where('karyawan_doc_role.id_karyawan', $id_karyawand);
+        ->where('karyawan_doc_role.id_karyawan', $id_karyawan);
         
         return $this->get()->getResultArray();
     }
