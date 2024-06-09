@@ -18,7 +18,7 @@
                 return $session->get('username');
             case 'active_user_name':
                 return $session->get('nama');
-            case 'active_karawan_id':
+            case 'active_karyawan_id':
                 return $session->get('id_karyawan');
             default:
                 return null;

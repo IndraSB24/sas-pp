@@ -139,6 +139,7 @@ class Model_doc_engineering extends Model
 
     // get all
     public function get_all($id_karyawan) {
+        $id_karyawan = 21;
         $this->select('
             project_detail_engineering.*,
             dh.name as doc_dicipline,
