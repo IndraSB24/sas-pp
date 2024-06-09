@@ -56,42 +56,14 @@ class Model_doc_procurement extends Model
     }
 
     // get all man hour by dicipline per month
-    public function getAll_1(){
+    public function getAll(){
         $this->select('
             project_detail_procurement.*,
             dh.name as group_name
         ')
         ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group', 'LEFT')
         ->where('project_detail_procurement.deleted_at', NULL);
-        
-        return $this->get()->getResult();
-    }
 
-    public function getAll($id_karyawan=null) {
-        if($id_karyawan != null){
-            $this->select('
-                project_detail_procurement.*,
-                dh.name as doc_dicipline,
-                kdr.id_doc_role as procurement_role
-            ')
-            ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group', 'LEFT')
-            ->join('karyawan_doc_role kdr', 
-                'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "procurement"', 
-                'LEFT'
-            )
-            ->where('project_detail_procurement.deleted_at', NULL)
-            ->orderBy('project_detail_procurement.id');
-
-        }else{
-            $this->select('
-                project_detail_procurement.*,
-                dh.name as group_name,
-                null as procurement_role
-            ')
-            ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group', 'LEFT')
-            ->where('project_detail_procurement.deleted_at', NULL)
-            ->orderBy('project_detail_procurement.id');
-        }
         
         return $this->get()->getResult();
     }
