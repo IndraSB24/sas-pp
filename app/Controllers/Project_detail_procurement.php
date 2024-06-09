@@ -49,7 +49,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Procurement']),
-			'list_doc_procurement' => $this->Model_doc_engineering->findAll(),
+			'list_doc_procurement' => $this->Model_doc_engineering->findAll(sess('active_karyawan_id')),
             'progressChartData' => [
                 'percent_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
                 'percent_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
