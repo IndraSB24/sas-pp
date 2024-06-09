@@ -9,16 +9,22 @@
         }
     }
     
-    function sess($parameter){
+    function sess($parameter) {
         $session = session();
-        if($parameter == 'active_user_id'){
-            return $session->get('activeId');
-        }else if($parameter == 'active_username'){
-            return $session->get('username');
-        }else if($parameter == 'active_user_name'){
-            return $session->get('nama');
+        switch ($parameter) {
+            case 'active_user_id':
+                return $session->get('activeId');
+            case 'active_username':
+                return $session->get('username');
+            case 'active_user_name':
+                return $session->get('nama');
+            case 'active_karawan_id':
+                return $session->get('id_karyawan');
+            default:
+                return null;
         }
     }
+    
 
     function sessActiveRole(){
         $session = session();

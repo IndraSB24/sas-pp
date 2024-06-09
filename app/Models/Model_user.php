@@ -53,6 +53,7 @@ class Model_user extends Model
             user.*,
             r.name as role_name,
             k.name as nama_karyawan,
+            k.id as id_karyawan,
             k.signature_filename as signature_filename
         ')
         ->join('role r', 'r.id=user.id_role', 'LEFT')

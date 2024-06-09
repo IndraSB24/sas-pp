@@ -138,16 +138,19 @@ class Model_doc_engineering extends Model
     }
 
     // get all
-    public function get_all(){
+    public function get_all($id_karyawan) {
         $this->select('
             project_detail_engineering.*,
-            dh.name as doc_dicipline
+            dh.name as doc_dicipline,
+            kdr.id_doc as has_access
         ')
-        ->join('data_helper dh', 'dh.id=project_detail_engineering.id_doc_dicipline', 'LEFT')
+        ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
+        ->join('karyawan_doc_role kdr', 'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering"', 'LEFT')
         ->where('project_detail_engineering.deleted_at', NULL);
         
         return $this->get()->getResult();
     }
+    
 
     // get all man hour by dicipline
     public function getManHourPerDicipline(){

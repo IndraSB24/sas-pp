@@ -55,6 +55,7 @@ class Auth extends BaseController
                     'nama'      => $user_data->nama,
                     'role'      => $user_data->role_name,
                     'signatureFile' => $user_data->signature_filename,
+                    'id_karyawan' => $user_data->id_karyawan,
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
