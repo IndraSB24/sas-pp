@@ -70,7 +70,7 @@ class Project_detail_procurement extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_procurement->getAll(sess('active_id_karyawan')),
+			'list_doc_procurement' => $this->Model_doc_procurement->getAll(sess('active_karyawan_id')),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
 		// echo '<pre>'; print_r( $data );die; echo '</pre>';

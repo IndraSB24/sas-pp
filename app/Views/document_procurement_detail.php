@@ -1056,6 +1056,9 @@
 </html>
 
 <script>
+    console.log(<?= json_encode($list_doc_procurement) ?>, 'LIST DOC');
+    console.log(<?= json_encode(sess('active_karyawan_id')) ?>, 'SESSION DATA');
+
     $(document).ready(function() {
         $('#update_btn_choose_file').click(function(e) {
             e.preventDefault(); // Prevent default behavior
