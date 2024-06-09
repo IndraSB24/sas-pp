@@ -295,7 +295,7 @@
 
 <script>
 
-console.log(<?= sess('active_id_karyawan') ?>, 'ID KARYAWAN');
+    console.log(<?= json_encode(sess('active_id_karyawan')) ?>, 'ID KARYAWAN');
 
 
     // datatable
