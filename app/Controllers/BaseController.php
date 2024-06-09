@@ -53,31 +53,31 @@ class BaseController extends Controller
         $language->setLocale($this->session->lang);
 
         // Check for session expiration
-        $this->checkSession();
+        // $this->checkSession();
     }
 
     /**
      * Checks if the session has expired and logs out the user if necessary.
      */
-    // protected function checkSession()
-    // {
-    //     // Set your session timeout in seconds (e.g., 600 seconds for 10 minutes)
-    //     $sessionTimeout = 7200;
+    protected function checkSession()
+    {
+        // Set your session timeout in seconds (e.g., 600 seconds for 10 minutes)
+        $sessionTimeout = 7200;
 
-    //     // Check if the session has a timestamp
-    //     if ($this->session->has('last_activity')) {
-    //         $lastActivity = $this->session->get('last_activity');
-    //         $currentTime = time();
+        // Check if the session has a timestamp
+        if ($this->session->has('last_activity')) {
+            $lastActivity = $this->session->get('last_activity');
+            $currentTime = time();
 
-    //         // If the session has expired, log out the user
-    //         if (($currentTime - $lastActivity) > $sessionTimeout) {
-    //             // Destroy the session and redirect to the login page
-    //             $this->session->destroy();
-    //             return redirect()->to('/')->send();
-    //         }
-    //     }
+            // If the session has expired, log out the user
+            if (($currentTime - $lastActivity) > $sessionTimeout) {
+                // Destroy the session and redirect to the login page
+                $this->session->destroy();
+                return redirect()->to('/')->send();
+            }
+        }
 
-    //     // Update the last activity timestamp
-    //     $this->session->set('last_activity', time());
-    // }
+        // Update the last activity timestamp
+        $this->session->set('last_activity', time());
+    }
 }
