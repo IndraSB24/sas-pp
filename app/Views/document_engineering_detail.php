@@ -1353,7 +1353,7 @@ function generateWaitingBadge()
 <script src="<?= base_url('assets/js/pages/jquery-knob.init.js') ?>"></script>
 <script>
     console.log(<?= json_encode($list_doc_engineering) ?>, 'LIST DOC');
-    console.log('<?= sess('active_id_karyawan') ?>', 'ACTIVE ID KARYAWAN');
+    console.log(<?= json_encode(sess('active_karyawan_id')) ?>, 'SESSION DATA');
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {
