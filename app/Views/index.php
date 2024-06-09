@@ -294,6 +294,10 @@
 </div>
 
 <script>
+
+console.log(<?= sess('active_id_karyawan') ?>, 'ID KARYAWAN');
+
+
     // datatable
 //     $(document).ready( function () {
 // 		$('#table_list_project').DataTable({
