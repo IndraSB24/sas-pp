@@ -81,7 +81,7 @@ class Model_doc_procurement extends Model
                 'LEFT'
             )
             ->where('project_detail_procurement.deleted_at', NULL)
-            ->orderBy('project_detail_engineering.id');
+            ->orderBy('project_detail_procurement.id');
 
         }else{
             $this->select('
@@ -91,7 +91,7 @@ class Model_doc_procurement extends Model
             ')
             ->join('data_helper dh', 'dh.id=project_detail_procurement.id_group', 'LEFT')
             ->where('project_detail_procurement.deleted_at', NULL)
-            ->orderBy('project_detail_engineering.id');
+            ->orderBy('project_detail_procurement.id');
         }
         
         return $this->get()->getResult();
