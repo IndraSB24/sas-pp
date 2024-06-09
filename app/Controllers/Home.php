@@ -9,6 +9,7 @@ class Home extends BaseController
  
     function __construct(){
         $this->project_model = new Model_project();
+		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
 	public function index()

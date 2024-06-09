@@ -35,5 +35,11 @@
         $session = session();
         return $session->get('signatureFile');
     }
+
+    function allSession()
+{
+    $session = session();
+    return $session->get();
+}
     
 ?>
