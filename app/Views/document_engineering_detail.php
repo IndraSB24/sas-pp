@@ -1270,6 +1270,7 @@ function generateWaitingBadge()
 <script src="<?= base_url('assets/libs/jquery-knob/jquery.knob.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/pages/jquery-knob.init.js') ?>"></script>
 <script>
+    console.log(<?= json_encode($list_doc_engineering) ?>, 'LIST DOC');
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {
