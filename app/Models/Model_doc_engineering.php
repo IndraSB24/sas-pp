@@ -142,7 +142,7 @@ class Model_doc_engineering extends Model
         $this->select('
             project_detail_engineering.*,
             dh.name as doc_dicipline,
-            kdr.id_doc as has_access
+            kdr.id_doc_role as has_access
         ')
         ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
         ->join('karyawan_doc_role kdr', 'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering"', 'LEFT')
