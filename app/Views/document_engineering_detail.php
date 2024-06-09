@@ -687,7 +687,7 @@ function generateWaitingBadge()
                                                                 <br>
                                                                     no file yet
                                                                 <br>
-                                                                    <a href="javascript:" class="badge bg-secondary mt-1 p-2 w-xs"
+                                                                    <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                         data-id="' . $row->id . '"
                                                                         data-doc_desc="' . $row->description . '"
                                                                         data-path = "Project_detail_engineering/update/up_originator"
@@ -761,7 +761,7 @@ function generateWaitingBadge()
                                                             <br>
                                                                 no file yet
                                                             <br>
-                                                                <a href="javascript:" class="badge bg-secondary mt-1 p-2 w-xs"
+                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-path = "Project_detail_engineering/update/up_originator"
@@ -835,7 +835,7 @@ function generateWaitingBadge()
                                                             <br>
                                                                 no file yet
                                                             <br>
-                                                                <a href="javascript:" class="badge bg-secondary mt-1 p-2 w-xs"
+                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-path = "Project_detail_engineering/update/up_originator"
@@ -909,7 +909,7 @@ function generateWaitingBadge()
                                                             <br>
                                                                 no file yet
                                                             <br>
-                                                                <a href="javascript:" class="badge bg-secondary mt-1 p-2 w-xs"
+                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                     data-id="' . $row->id . '"
                                                                     data-doc_desc="' . $row->description . '"
                                                                     data-path = "Project_detail_engineering/update/up_originator"
@@ -1892,6 +1892,15 @@ function generateWaitingBadge()
             title: 'Nothing You Can Do Here!',
             icon: 'warning',
             text: 'The progress is not here yet',
+            timer: 5000,
+            confirmButtonColor: "#5664d2",
+        })
+    }
+    function noAccessSwal() {
+        Swal.fire({
+            title: 'Nothing You Can Do Here!',
+            icon: 'warning',
+            text: 'you have no access to this step!',
             timer: 5000,
             confirmButtonColor: "#5664d2",
         })
