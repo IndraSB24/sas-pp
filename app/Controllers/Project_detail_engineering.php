@@ -151,7 +151,7 @@ class Project_detail_engineering extends BaseController
 			'list_doc_engineering' => $this->doc_engineering_model->get_all(),
             'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight'),
             'list_doc_dicipline' => $this->Model_data_helper->get_by_type('doc_dicipline_engineering'),
-            'doc_role' => $this->$Model_karyawan_doc_role->get_by_id_karyawan(sess('active_user_id'))
+            'doc_role' => $this->Model_karyawan_doc_role->get_by_id_karyawan(sess('active_user_id'))
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_engineering_detail', $data);
