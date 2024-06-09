@@ -114,4 +114,16 @@ class Model_karyawan_doc_role extends Model
         return $this->get()->getResult();
     }
 
+    // get by id
+    public function get_by_id_karyawan($id_karyawan){
+        $this->select('
+            karyawan_doc_role.*,
+            r.name as role_name
+        ')
+        ->join('role r', 'r.id=karyawan_doc_role.id_doc_role', 'LEFT')
+        ->where('karyawan_doc_role.id', $id);
+        
+        return $this->get()->getResultArray();
+    }
+
 }
