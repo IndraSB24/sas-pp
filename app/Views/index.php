@@ -295,7 +295,7 @@
 
 <script>
 
-    console.log(<?= json_encode(allSession()) ?>, 'SESSION DATA');
+    console.log(<?= json_encode($session_data) ?>, 'SESSION DATA');
 
 
     // datatable

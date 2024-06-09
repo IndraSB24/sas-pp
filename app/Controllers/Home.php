@@ -17,7 +17,8 @@ class Home extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Dashboard']),
 			'page_title' => view('partials/page-title', ['title' => 'Overal', 'pagetitle' => 'Dashboard']),
-			'list_project' => $this->project_model->findAll()
+			'list_project' => $this->project_model->findAll(),
+			'session_data' => allSession()
 		];
 		return view('index', $data);
 	}
