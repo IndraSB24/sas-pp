@@ -37,9 +37,9 @@
     }
 
     function allSession()
-{
-    $session = session();
-    return $session->get();
-}
+    {
+        $session = session();
+        return json_encode($session->get());
+    }
     
 ?>
