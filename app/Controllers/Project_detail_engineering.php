@@ -10,6 +10,7 @@ use App\Models\Model_engineering_doc_file;
 use App\Models\Model_data_helper;
 use App\Models\Model_week;
 use App\Models\Model_karyawan_doc_role;
+use setasign\Fpdi\Fpdi;
 
 class Project_detail_engineering extends BaseController
 {
@@ -206,6 +207,101 @@ class Project_detail_engineering extends BaseController
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('reupload_doc_view', $data);
+    }
+
+    public function signDoc() {
+        // Path file PDF asli dan gambar yang akan menggantikan halaman C:\Development\laragon\www\inpormasi\public\upload\engineering_doc\comment
+        $pdfPath = 'upload/procurement_doc/list/A4-booklet-landscape.en.pdf';
+        $imagePath = 'upload/engineering_doc/comment/image.png';
+
+        // Menggunakan realpath untuk memastikan path benar
+        $realPdfPath = realpath($pdfPath);
+        $realImagePath = realpath($imagePath);
+ 
+         // Debugging: cetak path yang dihasilkan
+         echo "PDF Path: " . ($realPdfPath ?: $pdfPath) . "\n";
+         echo "Image Path: " . ($realImagePath ?: $imagePath) . "\n";
+ 
+         // Periksa apakah file PDF ada
+         if (!$realPdfPath || !file_exists($realPdfPath)) {
+             return $this->response->setJSON([
+                 'status' => 'error',
+                 'message' => 'File PDF tidak ditemukan di path: ' . ($realPdfPath ?: $pdfPath)
+             ]);
+         }
+ 
+         // Periksa apakah file gambar ada
+         if (!$realImagePath || !file_exists($realImagePath)) {
+             return $this->response->setJSON([
+                 'status' => 'error',
+                 'message' => 'File gambar tidak ditemukan di path: ' . ($realImagePath ?: $imagePath)
+             ]);
+         }
+ 
+         try {
+             // Inisialisasi FPDI
+            $pdf = new Fpdi();
+
+            // Baca halaman dari PDF asli
+            $pageCount = $pdf->setSourceFile($realPdfPath);
+
+            // Tambahkan halaman baru untuk halaman pertama
+            // $pdf->AddPage();
+
+            // Ukuran halaman PDF
+            // $pdfWidth = $pdf->GetPageWidth();
+            // $pdfHeight = $pdf->GetPageHeight();
+
+            // Ukuran gambar
+            list($imageWidth, $imageHeight) = getimagesize($realImagePath);
+
+            // Tentukan orientasi halaman
+            $tmp = $pdf->importPage(1); // Import the first page
+            $size = $pdf->getTemplateSize($tmp);
+            $pdfWidth = $size['width'];
+            $pdfHeight = $size['height'];
+            $orientation = $pdfWidth > $pdfHeight ? 'L' : 'P';
+            $pdf->AddPage($orientation);
+            // $templateId = $pdf->importPage(1); // Import the first page
+            // $size = $pdf->getTemplateSize($templateId);
+            // $pdfWidth = $size['width'];
+            // $pdfHeight = $size['height'];
+            // echo '<pre>'; print_r( $orientation );echo '</pre>';
+            // echo '<pre>'; print_r( $pdfWidth . ' lebar' );echo '</pre>';
+            // echo '<pre>'; print_r( $pdfHeight . ' tinggi' );die; echo '</pre>';
+            // Hitung skala gambar agar sesuai dengan halaman PDF tanpa terpotong
+            // $imageScale = min($pdfWidth / $imageWidth, $pdfHeight / $imageHeight);
+            $imageScale = min($pdfWidth / $imageWidth, $pdfHeight / $imageHeight);
+
+            // Koordinat untuk menempatkan gambar di tengah halaman
+            $x = ($pdfWidth - ($imageWidth * $imageScale)) / 2;
+            $y = ($pdfHeight - ($imageHeight * $imageScale)) / 2;
+
+            // Tambahkan gambar ke halaman PDF dengan skala yang sesuai
+            // $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale);
+            $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale, '', '', '', false);
+
+            // Import dan tambahkan sisa halaman dari PDF asli
+            for ($i = 2; $i <= $pageCount; $i++) {
+                $templateId = $pdf->importPage($i);
+                $pdf->AddPage($orientation);
+                $pdf->useTemplate($templateId);
+            }
+ 
+             // Path untuk menyimpan PDF baru
+             $newPdfPath = 'upload/modified.pdf';
+             $pdf->Output($newPdfPath, 'F');
+ 
+             return $this->response->setJSON([
+                 'status' => 'success',
+                 'message' => 'PDF telah berhasil dimodifikasi. File baru disimpan di: ' . $newPdfPath
+             ]);
+         } catch (\Exception $e) {
+             return $this->response->setJSON([
+                 'status' => 'error',
+                 'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+             ]);
+         }
     }
 	
 	public function show_doc_timeline($doc_id){
