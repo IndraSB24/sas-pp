@@ -138,20 +138,32 @@ class Model_doc_engineering extends Model
     }
 
     // get all
-    public function get_all($id_karyawan) {
-        $id_karyawan = 21;
-        $this->select('
-            project_detail_engineering.*,
-            dh.name as doc_dicipline,
-            kdr.id_doc_role as has_access
-        ')
-        ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
-        ->join('karyawan_doc_role kdr', 
-            'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
-            'LEFT'
-        )
-        ->where('project_detail_engineering.deleted_at', NULL)
-        ->orderBy('project_detail_engineering.id');
+    public function get_all($id_karyawan=null) {
+        // $id_karyawan = 21;
+        if($id_karyawan != null){
+            $this->select('
+                project_detail_engineering.*,
+                dh.name as doc_dicipline,
+                kdr.id_doc_role as has_access
+            ')
+            ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
+            ->join('karyawan_doc_role kdr', 
+                'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
+                'LEFT'
+            )
+            ->where('project_detail_engineering.deleted_at', NULL)
+            ->orderBy('project_detail_engineering.id');
+
+        }else{
+            $this->select('
+                project_detail_engineering.*,
+                dh.name as doc_dicipline,
+                dh.abcd as has_access
+            ')
+            ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
+            ->where('project_detail_engineering.deleted_at', NULL)
+            ->orderBy('project_detail_engineering.id');
+        }
         
         return $this->get()->getResult();
     }
