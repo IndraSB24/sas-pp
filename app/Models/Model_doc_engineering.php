@@ -139,7 +139,6 @@ class Model_doc_engineering extends Model
 
     // get all
     public function get_all($id_karyawan=null) {
-        // $id_karyawan = 21;
         if($id_karyawan != null){
             $this->select('
                 project_detail_engineering.*,
