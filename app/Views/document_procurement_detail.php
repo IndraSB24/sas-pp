@@ -135,32 +135,54 @@
                                             $status = '<span class="badge bg-success p-2 w-xs">DETAIL</span>';
                                             foreach ($list_doc_procurement as $index => $item) :
                                                 if ($item->po_status === 'uploaded') {
-                                                    $po_act = tgl_indo($item->po_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/po' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $po_act = tgl_indo($item->po_act) .   '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/po' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                            >
+                                                                &nbsp;DETAIL&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $po_act = '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->po_status === 'reject') {
-                                                    $po_act = tgl_indo($item->po_act) . '
-                                                <br>
-                                                    <span class="text-danger">REJECTED</span>
-                                                <br>
-                                                <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/po' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_po"
-                                                        data-step = ""
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;REUPLOAD&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $po_act = tgl_indo($item->po_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/po' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_po"
+                                                                data-step = ""
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $po_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->po_status === 'approve') {
                                                     $po_act = tgl_indo($item->po_act) .   '
                                                     <br>
@@ -174,50 +196,84 @@
                                                         </a>
                                                     ';
                                                 } else {
-                                                    $po_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "po"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $po_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "po"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $po_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 }
 
                                                 if ($item->fat_status === 'uploaded') {
-                                                    $fat_act = tgl_indo($item->fat_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/fat' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
+                                                    if ($item->procurement_role === '11') {
+                                                        $fat_act = tgl_indo($item->fat_act) .   '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/fat' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                            >
+                                                                &nbsp;DETAIL&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $fat_act = '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                        <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                            &nbsp;NO ACCESS&nbsp;
                                                         </a>
                                                     ';
+                                                    }
                                                 } else if ($item->fat_status === 'reject') {
-                                                    $fat_act = tgl_indo($item->fat_act) . '
-                                                    <br>
-                                                        <span class="text-danger">REJECTED</span>
-                                                    <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/fat' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                            data-path = "Project_detail_procurement/update/up_file"
-                                                            data-step = "fat"
-                                                            data-doc_name = "' . $item->description . '"
-                                                        >
-                                                            &nbsp;REUPLOAD&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $fat_act = tgl_indo($item->fat_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/fat' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "fat"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $fat_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->fat_status === 'approve') {
                                                     $fat_act = tgl_indo($item->fat_act) .   '
                                                     <br>
@@ -231,21 +287,33 @@
                                                         </a>
                                                     ';
                                                 } else if ($item->fat_status === 'progress') {
-                                                    $fat_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "fat"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $fat_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "fat"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $fat_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else {
                                                     $fat_act = '
                                                     no date yet
@@ -257,33 +325,56 @@
                                                         </a>
                                                     ';
                                                 }
+
                                                 if ($item->rfs_status === 'uploaded') {
-                                                    $rfs_act = tgl_indo($item->rfs_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/rfs' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $rfs_act = tgl_indo($item->rfs_act) .   '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/rfs' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                            >
+                                                                &nbsp;DETAIL&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $rfs_act = '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->rfs_status === 'reject') {
-                                                    $rfs_act = tgl_indo($item->rfs_act) . '
-                                                    <br>
-                                                        <span class="text-danger">REJECTED</span>
-                                                    <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/rfs' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                            data-path = "Project_detail_procurement/update/up_file"
-                                                            data-step = "rfs"
-                                                            data-doc_name = "' . $item->description . '"
-                                                        >
-                                                            &nbsp;REUPLOAD&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $rfs_act = tgl_indo($item->rfs_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/rfs' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "rfs"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $rfs_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->rfs_status === 'approve') {
                                                     $rfs_act = tgl_indo($item->rfs_act) .   '
                                                     <br>
@@ -297,21 +388,33 @@
                                                         </a>
                                                     ';
                                                 } else if ($item->rfs_status === 'progress') {
-                                                    $rfs_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "rfs"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $rfs_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "rfs"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $rfs_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else {
                                                     $rfs_act = '
                                                     no date yet
@@ -323,33 +426,56 @@
                                                         </a>
                                                     ';
                                                 }
+
                                                 if ($item->onsite_status === 'uploaded') {
-                                                    $onsite_act = tgl_indo($item->onsite_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/onsite' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $onsite_act = tgl_indo($item->onsite_act) .   '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/onsite' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                            >
+                                                                &nbsp;DETAIL&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $onsite_act = '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->onsite_status === 'reject') {
-                                                    $onsite_act = tgl_indo($item->onsite_act) . '
-                                                    <br>
-                                                        <span class="text-danger">REJECTED</span>
-                                                    <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/onsite' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                            data-path = "Project_detail_procurement/update/up_file"
-                                                            data-step = "onsite"
-                                                            data-doc_name = "' . $item->description . '"
-                                                        >
-                                                            &nbsp;REUPLOAD&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $onsite_act = tgl_indo($item->onsite_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/onsite' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "onsite"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $onsite_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->onsite_status === 'approve') {
                                                     $onsite_act = tgl_indo($item->onsite_act) .   '
                                                     <br>
@@ -363,21 +489,33 @@
                                                         </a>
                                                     ';
                                                 } else if ($item->onsite_status === 'progress') {
-                                                    $onsite_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "onsite"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $onsite_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "onsite"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $onsite_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else {
                                                     $onsite_act = '
                                                     no date yet
@@ -389,33 +527,56 @@
                                                         </a>
                                                     ';
                                                 }
+
                                                 if ($item->install_status === 'uploaded') {
-                                                    $install_act = tgl_indo($item->install_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/install' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $install_act = tgl_indo($item->install_act) .   '
+                                                            <br>
+                                                                <span class="text-primary">UPLOADED</span>
+                                                            <br>
+                                                                <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/install' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                    data-id="' . $item->id . '"
+                                                                    data-doc_desc="' . $item->description . '"
+                                                                >
+                                                                    &nbsp;DETAIL&nbsp;
+                                                                </a>
+                                                            ';
+                                                    } else {
+                                                        $install_act = '
+                                                            <br>
+                                                                <span class="text-primary">UPLOADED</span>
+                                                            <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->install_status === 'reject') {
-                                                    $install_act = tgl_indo($item->install_act) . '
-                                                    <br>
-                                                        <span class="text-danger">REJECTED</span>
-                                                    <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/install' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                            data-path = "Project_detail_procurement/update/up_file"
-                                                            data-step = "install"
-                                                            data-doc_name = "' . $item->description . '"
-                                                        >
-                                                            &nbsp;REUPLOAD&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $install_act = tgl_indo($item->install_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/install' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "install"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $install_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->install_status === 'approve') {
                                                     $install_act = tgl_indo($item->install_act) .   '
                                                     <br>
@@ -429,21 +590,33 @@
                                                         </a>
                                                     ';
                                                 } else if ($item->install_status === 'progress') {
-                                                    $install_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "install"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $install_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "install"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $install_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else {
                                                     $install_act = '
                                                     no date yet
@@ -457,32 +630,54 @@
                                                 }
 
                                                 if ($item->comm_status === 'uploaded') {
-                                                    $comm_act = tgl_indo($item->comm_act) .   '
-                                                    <br>
-                                                        <span class="text-primary">UPLOADED</span>
-                                                    <br>
-                                                        <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/comm' . ' class="badge bg-primary mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                        >
-                                                            &nbsp;DETAIL&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $comm_act = tgl_indo($item->comm_act) .   '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href=' . base_url('commentPdfProcurement/') . '/' . $item->id . '/comm' . ' class="badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                            >
+                                                                &nbsp;DETAIL&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $comm_act = '
+                                                        <br>
+                                                            <span class="text-primary">UPLOADED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->comm_status === 'reject') {
-                                                    $comm_act = tgl_indo($item->comm_act) . '
-                                                    <br>
-                                                        <span class="text-danger">REJECTED</span>
-                                                    <br>
-                                                    <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/comm' . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                            data-id="' . $item->id . '"
-                                                            data-doc_desc="' . $item->description . '"
-                                                            data-path = "Project_detail_procurement/update/up_file"
-                                                            data-step = "comm"
-                                                            data-doc_name = "' . $item->description . '"
-                                                        >
-                                                            &nbsp;REUPLOAD&nbsp;
-                                                        </a>
-                                                    ';
+                                                    if ($item->procurement_role === '10') {
+                                                        $comm_act = tgl_indo($item->comm_act) . '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                        <a href=' . base_url('reupload_procurement/') . '/' . $item->id  . '/comm' . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "comm"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;REUPLOAD&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $comm_act = '
+                                                        <br>
+                                                            <span class="text-danger">REJECTED</span>
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else if ($item->comm_status === 'approve') {
                                                     $comm_act = tgl_indo($item->comm_act) .   '
                                                     <br>
@@ -496,21 +691,33 @@
                                                         </a>
                                                     ';
                                                 } else if ($item->comm_status === 'progress') {
-                                                    $comm_act = '
-                                                    no date yet
-                                                <br>
-                                                    no file yet
-                                                <br>
-                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                        data-id="' . $item->id . '"
-                                                        data-doc_desc="' . $item->description . '"
-                                                        data-path = "Project_detail_procurement/update/up_file"
-                                                        data-step = "comm"
-                                                        data-doc_name = "' . $item->description . '"
-                                                    >
-                                                        &nbsp;UP FILE&nbsp;
-                                                    </a>
-                                                ';
+                                                    if ($item->procurement_role === '11') {
+                                                        $comm_act = '
+                                                        no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                data-id="' . $item->id . '"
+                                                                data-doc_desc="' . $item->description . '"
+                                                                data-path = "Project_detail_procurement/update/up_file"
+                                                                data-step = "comm"
+                                                                data-doc_name = "' . $item->description . '"
+                                                            >
+                                                                &nbsp;UP FILE&nbsp;
+                                                            </a>
+                                                        ';
+                                                    } else {
+                                                        $comm_act = '
+                                                            no date yet
+                                                        <br>
+                                                            no file yet
+                                                        <br>
+                                                            <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;NO ACCESS&nbsp;
+                                                            </a>
+                                                        ';
+                                                    }
                                                 } else {
                                                     $comm_act = '
                                                     no date yet
@@ -533,14 +740,14 @@
                                                         <?= $item->activity_name_lvl_4 ? 'Level 4: ' .  $item->activity_name_lvl_4 : '' ?> <br>
                                                         <?= $item->activity_name_lvl_5 ? 'Level 5: ' .  $item->activity_name_lvl_5 : '' ?>
                                                     </td>
-                                                    <td style="background-color:#faf1e3"><?= $item->group_name ?></td>
+                                                    <td style="background-color:#faf1e3"><?= isset($item->group_name) ?></td>
 
                                                     <!-- <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_1 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_2 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_3 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_4 ?> </td>
                                                     <td style="background-color:#faf1e3"> <?= $item->activity_name_lvl_5 ?> </td>
-                                                    <td style="background-color:#faf1e3"> <?= $item->group_name ?> </td> -->
+                                                    <td style="background-color:#faf1e3"> <?= isset($item->group_name) ?> </td> -->
 
                                                     <th style="background-color:#faf1e3"> <?= $item->detail_or_spesifikasi ?> </th>
                                                     <th style="background-color:#faf1e3" class="text-center"> <?= $item->quantity ?> </th>
@@ -570,7 +777,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-group="<?= $item->group_name ?>" data-quantity="<?= $item->quantity ?>" data-unit="<?= $item->unit ?>" data-weight_factor="<?= $item->wf ?>" data-plan_fat="<?= $item->fat_plan ?>" data-plan_rfs="<?= $item->rfs_plan ?>" data-plan_onsite="<?= $item->onsite_plan ?>" data-plan_install="<?= $item->install_plan ?>" data-plan_comm="<?= $item->comm_plan ?>" data-plan_po="<?= $item->po_plan ?>" data-level_code_5="<?= $item->activity_name_lvl_5 ?>" data-level_code_4="<?= $item->activity_name_lvl_4 ?>" data-level_code_3="<?= $item->activity_name_lvl_3 ?>" data-level_code_2="<?= $item->activity_name_lvl_2 ?>" data-level_code="<?= $item->activity_name_lvl_1 ?>" data-id="<?= $item->id ?>">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-group="<?= isset($item->group_name) ?>" data-quantity="<?= $item->quantity ?>" data-unit="<?= $item->unit ?>" data-weight_factor="<?= $item->wf ?>" data-plan_fat="<?= $item->fat_plan ?>" data-plan_rfs="<?= $item->rfs_plan ?>" data-plan_onsite="<?= $item->onsite_plan ?>" data-plan_install="<?= $item->install_plan ?>" data-plan_comm="<?= $item->comm_plan ?>" data-plan_po="<?= $item->po_plan ?>" data-level_code_5="<?= $item->activity_name_lvl_5 ?>" data-level_code_4="<?= $item->activity_name_lvl_4 ?>" data-level_code_3="<?= $item->activity_name_lvl_3 ?>" data-level_code_2="<?= $item->activity_name_lvl_2 ?>" data-level_code="<?= $item->activity_name_lvl_1 ?>" data-id="<?= $item->id ?>">
                                                             <i class="ri-pencil-fill text-info font-size-20"></i>
                                                         </a>
                                                         &nbsp;
@@ -1536,6 +1743,16 @@
             title: 'Nothing You Can Do Here!',
             icon: 'warning',
             text: 'The progress is not here yet',
+            timer: 5000,
+            confirmButtonColor: "#5664d2",
+        })
+    }
+
+    function noAccessSwal() {
+        Swal.fire({
+            title: 'Nothing You Can Do Here!',
+            icon: 'warning',
+            text: 'you have no access to this step!',
             timer: 5000,
             confirmButtonColor: "#5664d2",
         })
