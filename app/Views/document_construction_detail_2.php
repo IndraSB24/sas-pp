@@ -41,7 +41,7 @@
                             Construction Dashboard
                         </a>
                         <a href="<?= base_url('construction-doc-list/1') ?>" class="btn btn-success waves-effect waves-light">
-                            Back
+                            Construction List
                         </a>
                     </div>
                 </div>
