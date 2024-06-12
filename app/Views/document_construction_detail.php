@@ -40,8 +40,8 @@
                         <a href="<?= base_url('construction-dashboard') ?>" class="btn btn-warning waves-effect waves-light">
                             Construction Dashboard
                         </a>
-                        <a href="<?= base_url('yuhuu') ?>" class="btn btn-success waves-effect waves-light">
-                            Yuhuu
+                        <a href="<?= base_url('measurement_basis_list') ?>" class="btn btn-success waves-effect waves-light">
+                            Measurement Basis
                         </a>
                     </div>
                 </div>
@@ -107,9 +107,9 @@
                                                 <th style="background-color:#80ED99">Last Week Cummulative Progress</th>
                                                 <th style="background-color:#80ED99">This Week</th>
                                                 <th style="background-color:#80ED99">Cummulative up to This Week</th>
-                                                <th  class="text-center" style="background-color:#EDE580">START</th>
-                                                <th  class="text-center" style="background-color:#EDE580">FINISH</th>
-                                                <th  class="text-center" style="background-color:#EDE580">DURATION</th>
+                                                <th class="text-center" style="background-color:#EDE580">START</th>
+                                                <th class="text-center" style="background-color:#EDE580">FINISH</th>
+                                                <th class="text-center" style="background-color:#EDE580">DURATION</th>
                                             </tr>
                                         </thead>
                                         <tbody>

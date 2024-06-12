@@ -73,7 +73,7 @@ $routes->get('commentPdfProcurement/(:segment)/(:segment)', 'Project_detail_proc
 // contruction
 $routes->get('construction-dashboard', 'Project_detail_construction::index');
 $routes->get('construction-doc-list/(:segment)', 'Project_detail_construction::show_doc_list/$1');
-$routes->get('yuhuu', 'Project_detail_construction::yuhuu');
+$routes->get('measurement_basis_list', 'Project_detail_construction::measurement_basis_list');
 
 
 
