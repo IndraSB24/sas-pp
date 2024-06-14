@@ -418,6 +418,48 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-4">
+                            <div class="col-xl-12">
+                                <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
+                                    <div class="row" style="padding: 20px;padding-bottom:0">
+                                        <div class="col-6">
+                                            <h4>Schedule Analysis Biak</h4>
+                                        </div>
+                                        <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
+                                            <i class="fas fa-paperclip"></i>
+                                        </div>
+                                    </div>
+                                    <div style="padding: 20px">
+                                        <span style="font-weight: 700;">Schedule Analysis</span>
+                                        <p>
+                                            Berdasarkan schedule update di ketahui bahwa keterlambatan disebabkan oleh lambatnya persetujuan dokumen engineering sipil yg berhubungan dengan jetty yg disebabkan oleh Technical Query yg belum di jawab oleh Klien sehingga berdampak pada lambatnya pekerjaan Pilling Jetty Offshore, dan struktur.
+                                            Untuk saat ini, longest path yg menyebabkan keterlambatan proyek adalah pekerjaan struktur jetty sampai pemasangan pipa; dan penambahan pekerjaan seperti dredging dan preboring.
+                                        </p>
+                                        <span style="font-weight: 700;">Resiko pada schedule:</span>
+                                        <ul>
+                                            <li>
+                                                Schedule quality masih di pertanyakan terutama dengan adanya 180 open ended activity, dan 132 out of sequence yg disebabkan successor activity berjalan sebelum predecessor activity selesai. Disarankan error di perbaiki terutama untuk open ended dan out of sequence untuk mendapatkan schedule yg lebih akurat
+                                            </li>
+                                            <li>
+                                                Resiko berikutnya terdapat pada durasi konstruksi yg terasa terlalu pendek, namun kami tidak memiliki quatity dan duration basis sehingga perlu Analisa produktifitas lebih lanjut
+                                            </li>
+                                            <li>
+                                                Perlunya segera di finalisasi antara engineering PP dengan klien sehingga semua quantity, spec dan datasheet terselesaikan untuk dapat lebih lanjut ke tahap procurement
+                                            </li>
+                                        </ul>
+                                        <strong style="font-weight: 700;">Mitigasi :</strong>
+                                        <ul>
+                                            <li>
+                                                Diketahui bahwa adanya CO yg berhubungan dengan pekerjaan dredging yg mempengaruhi critical path, sehingga notifikasi dan indikasi sudah harus diberikan kepada klien atas dampak terhadap keterlambatan proyek. Dalam CO harus ada indikasi schedule impact dan harus di setujui oleh klien. Keterlambatan proyek ini bisa di absorb dengan aplikasi EOT yang disetujui nantinya. </li>
+                                            <li>
+                                                Untuk akselarasi konstruksi, saat ini di asumsikan menggunakan 2 pilling machine secara bersamaan, di sarankan untuk menambah pilling machine untuk menambah akselarasi. </li>
+                                            <li>
+                                                Pekerjaan pipa, diharapkan ada beberapa pipa yg bisa di buat secara fab shop sehingga mengurangi rendahnya produktifitas selama pekerjaan di lapangan </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-xl-4">
@@ -518,7 +560,6 @@
                                                         <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -588,23 +629,6 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-xl-12">
-                        <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
-                            <div class="row" style="padding: 20px;padding-bottom:0">
-                                <div class="col-6">
-                                    <h4>Schedule Analysis Biak</h4>
-                                </div>
-                                <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
-                                    <i class="fas fa-paperclip"></i>
-                                </div>
-                            </div>
-                            <div style="padding: 20px">
-                                Analisis terkait project akan ditampilkan disini.
                             </div>
                         </div>
                     </div>
