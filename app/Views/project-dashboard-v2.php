@@ -592,6 +592,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mb-5">
+                    <div class="col-xl-12">
+                        <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
+                            <div class="row" style="padding: 20px;padding-bottom:0">
+                                <div class="col-6">
+                                    <h4>Schedule Analysis Biak</h4>
+                                </div>
+                                <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
+                                    <i class="fas fa-paperclip"></i>
+                                </div>
+                            </div>
+                            <div style="padding: 20px">
+                                Analisis terkait project akan ditampilkan disini.
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- end row -->
             </div>
         </div>
