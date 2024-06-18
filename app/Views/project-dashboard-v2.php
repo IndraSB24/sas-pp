@@ -422,6 +422,66 @@
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
+                                    <div class="table-responsive">
+                                    <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead style="background-color: antiquewhite">
+                                            <tr>
+                                                <th style="text-align: left;">Title</th>
+                                                <th>BL Date</th>
+                                                <th>Actual/Forecast Date</th>
+                                                <th>Variance</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: left;">Contract Effective Date</td>
+                                                <td nowrap>28 Dec 23</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left;">Kick Off Meeting</td>
+                                                <td nowrap>18 Jan 24</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left;">Mechanical Completion</td>
+                                                <td nowrap>9 Jun 25</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left;">Commisioning</td>
+                                                <td nowrap>27 Jun 25</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left;">Operation Acceptance</td>
+                                                <td nowrap>27 Jun 25</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modal_add_project_milestone"><i class="fas fa-edit"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                         <div class="col-6">
                                             <h4>Schedule Analysis Biak</h4>
                                         </div>
