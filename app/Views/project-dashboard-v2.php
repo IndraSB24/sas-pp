@@ -422,9 +422,11 @@
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
+                                    <small>Schedule Update cut off 7 Juni 2024<small>
                                     <div class="table-responsive">
+                                        
                                     <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead style="background-color: antiquewhite">
+                                        <thead style="background-color: #00B4D8">
                                             <tr>
                                                 <th style="text-align: left;">Milestone</th>
                                                 <th>Baseline</th>
