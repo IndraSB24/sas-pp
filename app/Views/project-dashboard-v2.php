@@ -426,6 +426,9 @@
                                         <div class="col-6">
                                             <h4>Schedule Analysis Biak</h4>
                                         </div>
+                                        <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
+                                            <i class="fas fa-paperclip"></i>
+                                        </div>
                                         <span>Schedule Update cut off 7 Juni 2024<span>
                                     <div class="table-responsive">
                                         
@@ -451,9 +454,7 @@
                                         </tbody>
                                     </table>
                                     </div>
-                                        <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
-                                            <i class="fas fa-paperclip"></i>
-                                        </div>
+                                        
                                     </div>
                                     <div style="padding: 20px">
                                         <span style="font-weight: 700;">Schedule Analysis</span>
