@@ -422,7 +422,7 @@
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
-                                    <small>Schedule Update cut off 7 Juni 2024<small>
+                                    <span>Schedule Update cut off 7 Juni 2024<span>
                                     <div class="table-responsive">
                                         
                                     <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
