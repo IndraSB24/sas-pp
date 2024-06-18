@@ -422,7 +422,11 @@
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
-                                    <span>Schedule Update cut off 7 Juni 2024<span>
+                                    
+                                        <div class="col-6">
+                                            <h4>Schedule Analysis Biak</h4>
+                                        </div>
+                                        <span>Schedule Update cut off 7 Juni 2024<span>
                                     <div class="table-responsive">
                                         
                                     <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -446,10 +450,7 @@
             
                                         </tbody>
                                     </table>
-                                </div>
-                                        <div class="col-6">
-                                            <h4>Schedule Analysis Biak</h4>
-                                        </div>
+                                    </div>
                                         <div class="col-6" style="display: flex;justify-content: flex-end;font-size:2rem;color:#0096C7">
                                             <i class="fas fa-paperclip"></i>
                                         </div>
