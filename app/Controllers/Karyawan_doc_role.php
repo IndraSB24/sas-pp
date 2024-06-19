@@ -40,8 +40,8 @@ class Karyawan_doc_role extends BaseController
                 'id_karyawan', 'id_doc', 'id_doc_role'
             ])
         );
-        $data['doc_type'] = 'engineering';
-        $data['created_by'] = sess('active_user_id');
+        $data_add['doc_type'] = 'engineering';
+        $data_add['created_by'] = sess('active_user_id');
 		$add = $this->Model_karyawan_doc_role->save($data_add);
 
 		if ($add) {
