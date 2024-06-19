@@ -7,11 +7,12 @@ use App\Models\Model_engineering_doc_comment;
 use App\Models\Model_engineering_doc_file;
 use App\Models\Model_data_helper;
 use App\Models\Model_week;
+use App\Models\Model_doc_procurement;
 
 class Project extends BaseController
 {
     protected $main_model, $Model_doc_engineering, $Model_engineering_doc_comment, $Model_engineering_doc_file,
-		$Model_data_helper, $Model_week;
+		$Model_data_helper, $Model_week, $Model_doc_procurement;
  
     function __construct(){
         $this->main_model = new Model_project();
@@ -20,6 +21,7 @@ class Project extends BaseController
 		$this->Model_engineering_doc_file = new Model_engineering_doc_file();
 		$this->Model_data_helper = new Model_data_helper();
         $this->Model_week = new Model_week();
+		$this->Model_doc_procurement = new Model_doc_procurement();
 		helper(['session_helper', 'upload_path_helper']);
     }
     
@@ -34,7 +36,7 @@ class Project extends BaseController
 			'overal_variance' => 15,
 			'chart_pt_engineering_plan' => 50,
 			'chart_pt_engineering_actual' => 30,
-			'chart_pt_procurement_plan' => 70,
+			'chart_pt_procurement_plan' => 40,
 			'chart_pt_procurement_actual' => 15,
 		];
 
