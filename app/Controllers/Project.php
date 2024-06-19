@@ -22,7 +22,7 @@ class Project extends BaseController
 		$this->Model_data_helper = new Model_data_helper();
         $this->Model_week = new Model_week();
 		$this->Model_doc_procurement = new Model_doc_procurement();
-		helper(['session_helper', 'upload_path_helper']);
+		helper(['session_helper', 'upload_path_helper', 'NumberFormat_helper']);
     }
     
 	public function index($project_detail=""){
@@ -36,8 +36,8 @@ class Project extends BaseController
 			'overal_variance' => 15,
 			'chart_pt_engineering_plan' => 50,
 			'chart_pt_engineering_actual' => 30,
-			'chart_pt_procurement_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
-			'chart_pt_procurement_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
+			'chart_pt_procurement_plan' => angka( 2, $this->Model_doc_procurement->getCumDataPlanPerToday()),
+			'chart_pt_procurement_actual' => angka( 2, $this->Model_doc_procurement->getCumDataActualPerToday())
 		];
 
 		$data = [
