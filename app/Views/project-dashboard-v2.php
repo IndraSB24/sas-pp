@@ -192,11 +192,12 @@
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
-                                                            <small><strong>Plan <?= $data_page->chart_pt_procurement_plan ?>%</strong></small>
+                                                            <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
+                                                            
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
-                                                            <small><strong>Actual <?= $data_page->chart_pt_procurement_actual ?>%</strong></small>
+                                                            <small><strong>Actual <?= number_format(floatval($data_page->chart_pt_procurement_actual), 2) ?>%</strong></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,11 +215,11 @@
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
-                                                            <small><strong>Plan <?= $data_page->chart_pt_procurement_plan ?>%</strong></small>
+                                                            <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
-                                                            <small><strong>Actual <?= $data_page->chart_pt_procurement_actual ?>%</strong></small>
+                                                            <small><strong>Actual <?= number_format(floatval($data_page->chart_pt_procurement_actual), 2) ?>%</strong></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -422,7 +423,6 @@
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
-                                    
                                         <div class="col-6">
                                             <h4>Schedule Analysis Biak</h4>
                                         </div>
@@ -430,31 +430,27 @@
                                             <i class="fas fa-paperclip"></i>
                                         </div>
                                         <span>Schedule Update cut off 7 Juni 2024<span>
-                                    <div class="table-responsive">
-                                        
-                                    <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead style="background-color: #00B4D8">
-                                            <tr>
-                                                <th style="text-align: left;">Milestone</th>
-                                                <th>Baseline</th>
-                                                <th>Forecast</th>
-                                                <th>Delay</th>
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                        <thead style="background-color: #00B4D8">
+                                                            <tr>
+                                                                <th style="text-align: left;">Milestone</th>
+                                                                <th>Baseline</th>
+                                                                <th>Forecast</th>
+                                                                <th>Delay</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="text-align: left;">Operational Acceptance</td>
-                                                <td nowrap>27 Juni 25</td>
-                                                <td>20 Sept 25</td>
-                                                <td>-85 Hari</td>
-                
-                                            </tr>
-            
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                        
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="text-align: left;">Operational Acceptance</td>
+                                                                <td nowrap>27 Juni 25</td>
+                                                                <td>20 Sept 25</td>
+                                                                <td>-85 Hari</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                     </div>
                                     <div style="padding: 20px">
                                         <span style="font-weight: 700;">Schedule Analysis</span>
