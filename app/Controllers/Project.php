@@ -105,8 +105,29 @@ class Project extends BaseController
             $actual_cum_counted += $value->cum_actual_wf;
             $getScurveDataActualCum[$key] = $actual_cum_counted;
         }
-        // end of scurve data ===================================================================
+        // end of scurve data engineering ===================================================================
 		
+		// start of scurve data count procurement ============================================================
+        $getScurveDataPlanProcurement = $this->Model_doc_procurement->getScurveDataPlan(1);
+        $getScurveDataActualProcurement = $this->Model_doc_procurement->getScurveDataActual(1);
+
+        // count plan cum
+        $getScurveDataPlanCumProcurement = [];
+        $plan_cum_countedProcurement = 0;
+        foreach ($getScurveDataPlanProcurement as $key => $value) {
+            $plan_cum_countedProcurement += $value->cum_plan_wf;
+            $getScurveDataPlanCumProcurement[$key] = $plan_cum_countedProcurement;
+        }
+
+        // count act cum
+        $getScurveDataActualCumProcurement = [];
+        $actual_cum_countedProcurement = 0;
+        foreach ($getScurveDataActualProcurement as $key => $value) {
+            $actual_cum_countedProcurement += $value->cum_actual_wf;
+            $getScurveDataActualCumProcurement[$key] = $actual_cum_countedProcurement;
+        }
+		// end of scurve data procurement ===================================================================
+
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Progress by Week']),
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Progress by Week']),
@@ -117,7 +138,17 @@ class Project extends BaseController
                 'dataActual' => $getScurveDataActual,
                 'dataPlanCum' => $getScurveDataPlanCum,
                 'dataActualCum' => $getScurveDataActualCum
-            ]
+			],
+			'scurveDataProcurement' => [
+                'dataPlan' => $getScurveDataPlanProcurement,
+                'dataActual' => $getScurveDataActualProcurement,
+                'dataPlanCum' => $getScurveDataPlanCumProcurement,
+                'dataActualCum' => $getScurveDataActualCumProcurement
+            ],
+			'progressWeek' => [
+				'engineering' => $this->Model_doc_engineering->getProgressByDicipline(),
+				'procurement' => $this->Model_doc_procurement->getProgressByLevel1()
+			]
 		];
 		return view('project-dashboard-overal-prog-month', $data);
 	}
