@@ -44,30 +44,93 @@
                                         <div class="table-rep-plugin">
                                             <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                             <font size="2">
-                                            <table id="datatable" class="table table-bordered" style="border: 0px;">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
-                                                    <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W)</th>
-                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W)</th>
-                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W)</th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
-                                                    <th class="text-center" style="background-color:blanchedalmond">ACTUAL</th>
-                                                    <th class="text-center" style="background-color:blanchedalmond">VAR</th>
-                                                    <th class="text-center" style="background-color:#d3f5b0">PLAN</th>
-                                                    <th class="text-center" style="background-color:#d3f5b0">ACTUAL</th>
-                                                    <th class="text-center" style="background-color:#d3f5b0">VAR</th>
-                                                    <th class="text-center" style="background-color:#FFAFCC">PLAN</th>
-                                                    <th class="text-center" style="background-color:#FFAFCC">ACTUAL</th>
-                                                    <th class="text-center" style="background-color:#FFAFCC">VAR</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+                                                <table id="datatable" class="table table-bordered" style="border: 0px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
+                                                            <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
+                                                            <th rowspan="2" style="background-color: #b0cbf7;">WF</th>
+                                                            <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAST WEEK (W<?= $progressWeek['engineering']['lastWeek'] ?>)</th>
+                                                            <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W<?= $progressWeek['engineering']['currentWeek'] ?>)</th>
+                                                            <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W<?= $progressWeek['engineering']['currentWeek'] ?>)</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
+                                                            <th class="text-center" style="background-color:blanchedalmond">ACTUAL</th>
+                                                            <th class="text-center" style="background-color:blanchedalmond">VAR</th>
+                                                            <th class="text-center" style="background-color:#d3f5b0">PLAN</th>
+                                                            <th class="text-center" style="background-color:#d3f5b0">ACTUAL</th>
+                                                            <th class="text-center" style="background-color:#d3f5b0">VAR</th>
+                                                            <th class="text-center" style="background-color:#FFAFCC">PLAN</th>
+                                                            <th class="text-center" style="background-color:#FFAFCC">ACTUAL</th>
+                                                            <th class="text-center" style="background-color:#FFAFCC">VAR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $engeeneringList = [
+                                                            "cumPlan" => 0,
+                                                            "cumActual" => 0,
+                                                            "cumPlanCurrentWeek" => 0,
+                                                            "cumActualCurrentWeek" => 0,
+                                                            "cumPlanLastWeek" => 0,
+                                                            "cumActualLastWeek" => 0
+                                                        ];
+                                                        $procurementList = [
+                                                            "cumPlan" => 0,
+                                                            "cumActual" => 0,
+                                                            "cumPlanCurrentWeek" => 0,
+                                                            "cumActualCurrentWeek" => 0,
+                                                            "cumPlanLastWeek" => 0,
+                                                            "cumActualLastWeek" => 0
+                                                        ];
+                                                        $construction = [];
+
+                                                        foreach ($progressWeek['engineering']['data'] as $row) {
+                                                            foreach ($engeeneringList as $key => &$sum) {
+                                                                if (isset($row[$key])) {
+                                                                    $sum += $row[$key];
+                                                                }
+                                                            }
+                                                        }
+                                                        foreach ($progressWeek['procurement']['data'] as $row) {
+                                                            foreach ($procurementList as $key => &$sum) {
+                                                                if (isset($row[$key])) {
+                                                                    $sum += $row[$key];
+                                                                }
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <tr>
+                                                            <td style="background-color: #b0cbf7;">1</td>
+                                                            <td style="background-color: #b0cbf7;">Engineering</td>
+                                                            <td style="background-color: #b0cbf7;"></td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActual'], 2) - number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2) - number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualLastWeek'], 2) - number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #b0cbf7;">2</td>
+                                                            <td style="background-color: #b0cbf7;">Procurement</td>
+                                                            <td style="background-color: #b0cbf7;"></td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActual'], 2) - number_format($procurementList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActualCurrentWeek'], 2) - number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2) - number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </font>
                                         </div>
                                     </div>
@@ -336,7 +399,7 @@
     const actualsEngineering = [];
     const actualCumEngineering = [];
     const planCumEngineering = [];
-    for(let i = 0; i < scurveDataEngineering.dataPlan.length; i++) {
+    for (let i = 0; i < scurveDataEngineering.dataPlan.length; i++) {
         labelsEngineering.push(`Week ${scurveDataEngineering.dataPlan[i].week_number}`);
         plansEngineering.push(scurveDataEngineering.dataPlan[i].cum_plan_wf);
         actualsEngineering.push(scurveDataEngineering.dataActual[i].cum_actual_wf);
@@ -447,7 +510,7 @@
     const actualsProcurement = [];
     const actualCumProcurement = [];
     const planCumProcurement = [];
-    for(let i = 0; i < scurveDataProcurement.dataPlan.length; i++) {
+    for (let i = 0; i < scurveDataProcurement.dataPlan.length; i++) {
         labelsProcurement.push(`Week ${scurveDataProcurement.dataPlan[i].week_number}`);
         plansProcurement.push(scurveDataProcurement.dataPlan[i].cum_plan_wf);
         actualsProcurement.push(scurveDataProcurement.dataActual[i].cum_actual_wf);
