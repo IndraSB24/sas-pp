@@ -44,20 +44,30 @@
                                         <div class="table-rep-plugin">
                                             <div class="table-responsive mb-0" data-pattern="priority-columns"></div>
                                             <font size="2">
-                                                <table id="datatable" class="table table-bordered nowrap" style="border: 0px;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>NO</th>
-                                                            <th>Name</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td nowrap>1</td>
-                                                            <td nowrap>Lorem, ipsum dolor.</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <table id="datatable" class="table table-bordered" style="border: 0px;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="background-color: #b0cbf7;" rowspan="2">NO</th>
+                                                    <th rowspan="2" style="background-color: #b0cbf7;">DESCRIPTION</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#fad8a2">CUMM LAS WEEK (W)</th>
+                                                    <th class="text-center" colspan="3" style="background-color:#9dc9ae">THIS WEEK (W)</th>
+                                                    <th class="text-center" style="background-color:#CDB4DB" colspan="3">CUMM UP TO THIS WEEK (W)</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" style="background-color:blanchedalmond">PLAN</th>
+                                                    <th class="text-center" style="background-color:blanchedalmond">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:blanchedalmond">VAR</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">PLAN</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:#d3f5b0">VAR</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">PLAN</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">ACTUAL</th>
+                                                    <th class="text-center" style="background-color:#FFAFCC">VAR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                             </font>
                                         </div>
                                     </div>
@@ -320,45 +330,6 @@
     // );
     // chart.render();
     // Mixed chart ========================================================================================================
-    const labels_mixed_chart1 = [];
-
-    // data_weight_factor_plan.forEach(function(list) {
-    //     // Get the month name in short format (e.g., 'Jan', 'Feb', etc.)
-    //     const monthName = new Date(Date.parse(`${list.month} 1, ${list.year}`)).toLocaleString('default', {
-    //         month: 'short'
-    //     });
-
-    //     // Construct label in the desired format (e.g., 'MMM YYYY' for abbreviated month name and year)
-    //     const label = `${monthName} ${list.year}`;
-    //     labels_mixed_chart1.push(label);
-    // });
-
-    const data_weight_factor = [];
-    const actual_mixed_chart = [];
-    // data_weight_factor.forEach(function(list) {
-    //     actual_mixed_chart.push(list.weight_factor);
-    //     total_done_doc_counter += 1;
-    // });
-
-    const cum_actual_mixed_chart = [];
-    let sum = 0;
-    // actual_mixed_chart.forEach(function(value) {
-    //     sum += parseFloat(value);
-    //     cum_actual_mixed_chart.push(sum);
-    //     cum_percent_counter = sum;
-    // });
-
-    const plan_mixed_chart = [];
-    // data_weight_factor_plan.forEach(function(list) {
-    //     plan_mixed_chart.push(list.weight_factor_sum);
-    // });
-
-    const cum_plan_mixed_chart = [];
-    let sum_plan = 0;
-    // plan_mixed_chart.forEach(function(value) {
-    //     sum_plan += parseFloat(value);
-    //     cum_plan_mixed_chart.push(sum_plan);
-    // });
     const scurveDataEngineering = <?= json_encode($scurveDataEngineering) ?>;
     const labelsEngineering = [];
     const plansEngineering = [];
@@ -469,6 +440,20 @@
     );
     chartMixed.render();
 
+
+    const scurveDataProcurement = <?= json_encode($scurveDataProcurement) ?>;
+    const labelsProcurement = [];
+    const plansProcurement = [];
+    const actualsProcurement = [];
+    const actualCumProcurement = [];
+    const planCumProcurement = [];
+    for(let i = 0; i < scurveDataProcurement.dataPlan.length; i++) {
+        labelsProcurement.push(`Week ${scurveDataProcurement.dataPlan[i].week_number}`);
+        plansProcurement.push(scurveDataProcurement.dataPlan[i].cum_plan_wf);
+        actualsProcurement.push(scurveDataProcurement.dataActual[i].cum_actual_wf);
+        actualCumProcurement.push(scurveDataProcurement.dataActualCum[i]);
+        planCumProcurement.push(scurveDataProcurement.dataPlanCum[i]);
+    }
     var optionsMixedProc = {
         chart: {
             height: 300,
@@ -491,22 +476,22 @@
         series: [{
                 name: 'Plan',
                 type: 'column',
-                data: plan_mixed_chart
+                data: plansProcurement
             },
             {
                 name: 'Actual',
                 type: 'column',
-                data: actual_mixed_chart
+                data: actualsProcurement
             },
             {
                 name: 'Cum Plan',
                 type: 'line',
-                data: cum_plan_mixed_chart
+                data: planCumProcurement
             },
             {
                 name: 'Cum Actual',
                 type: 'line',
-                data: cum_actual_mixed_chart
+                data: actualCumProcurement
             }
         ],
         fill: {
@@ -520,7 +505,7 @@
                 stops: [0, 100, 100, 100]
             }
         },
-        labels: labels_mixed_chart1,
+        labels: labelsProcurement,
         markers: {
             size: 4
         },
