@@ -701,7 +701,7 @@ function generateWaitingBadge()
                                                                 ';
                                                         }
 
-                                                        if ($row->has_access === '2') {
+                                                        if ($row->has_access === '2' || sessActiveRole() == 'super_admin') {
                                                             if ($row->internal_engineering_status === 'approve') {
                                                                 $enginerPP = tgl_indo($row->internal_engineering_date) . '
                                                                 <br>
@@ -775,7 +775,7 @@ function generateWaitingBadge()
                                                             ';
                                                         }
 
-                                                        if ($row->has_access === '3') {
+                                                        if ($row->has_access === '3' || sessActiveRole() == 'super_admin') {
                                                             if ($row->internal_ho_status === 'approve') {
                                                                 $hoPP = tgl_indo($row->internal_ho_date) . '
                                                                 <br>
@@ -849,7 +849,7 @@ function generateWaitingBadge()
                                                             ';
                                                         }
 
-                                                        if ($row->has_access === '4') {
+                                                        if ($row->has_access === '4' || sessActiveRole() == 'super_admin') {
                                                             if ($row->internal_pem_status === 'approve') {
                                                                 $pemPP = tgl_indo($row->internal_pem_date) . '
                                                                 <br>
