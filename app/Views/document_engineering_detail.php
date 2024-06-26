@@ -628,7 +628,7 @@ function generateWaitingBadge()
                                                         // internal section
                                                         $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
                                                         $file_version = $row->file_version ? $row->file_version : 'nothing';
-                                                        if ($row->has_access === '1' || $row->has_access === '2') {
+                                                        if ($row->has_access === '1' || $row->has_access === '2' || sessActiveRole() == 'super_admin') {
                                                             if ($row->internal_originator_status === 'uploaded') {
                                                                 $actual_JEDHI = tgl_indo($row->internal_originator_date) .
                                                                     '
