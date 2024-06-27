@@ -87,7 +87,7 @@ class Project_detail_construction extends BaseController
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Construction Measurement Basis']),
 			'page_title' => view('partials/page-title', ['title' => 'Construction', 'pagetitle' => 'Measurement Basis']),
-            'list_data' => $this->Model_construction_measurement_basis->getMeasurementBasis()
+            'list_data' => $this->Model_construction->getMeasurementBasis()
 		];
        
         return view('document_construction_detail_2', $data);
