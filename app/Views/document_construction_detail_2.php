@@ -97,28 +97,112 @@
                                                     <td style="background-color:#faf1e3"> <?= $item->description ?> </td>
                                                     <td class="text-center" style="background-color:#faf1e3"> <?= $item->wf ?> </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_1_name  ?> <br>
-                                                        <?= $item->step_1_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="1"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_1_name . '</span><br>
+                                                         <span>' . $item->step_1_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_1_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_2_name  ?> <br>
-                                                        <?= $item->step_2_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="2"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_2_name . '</span><br>
+                                                         <span>' . $item->step_2_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_2_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_3_name  ?> <br>
-                                                        <?= $item->step_3_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="3"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_3_name . '</span><br>
+                                                         <span>' . $item->step_3_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_3_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_4_name  ?> <br>
-                                                        <?= $item->step_4_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="4"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_4_name . '</span><br>
+                                                         <span>' . $item->step_4_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_4_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_5_name  ?> <br>
-                                                        <?= $item->step_5_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="5"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_5_name . '</span><br>
+                                                         <span>' . $item->step_5_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_5_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
-                                                        <?= $item->step_6_name  ?> <br>
-                                                        <?= $item->step_6_wf  ?>% <br>
+                                                        <?php
+                                                        $button = '
+                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                                data-id="' . $item->id_construction . '"
+                                                                data-document-name="' . $item->description . '"
+                                                                data-step="6"
+                                                            >
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
+                                                        $label = '
+                                                         <span>' . $item->step_6_name . '</span><br>
+                                                         <span>' . $item->step_6_wf . '</span><br>
+                                                         '
+                                                        ?>
+                                                        <?= !$item->step_6_name ? $button : $label ?>
                                                     </td>
                                                     <td class="text-center" nowrap style="background-color: #d2e5f7">
                                                         <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
@@ -294,6 +378,49 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data" data-object="Project_detail_procurement/add/doc_procurement">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-add-progress" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form action="#" method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Progress</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Description</label>
+                            <input type="text" disabled class="form-control" name="level_code" id="description" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Progress Step</label>
+                            <input type="text" disabled class="form-control" name="level_code" id="progress_step" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Weight Factor</label>
+                            <input type="number" class="form-control" name="level_code_3" id="progress_wf" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Progress Name</label>
+                            <input type="text" class="form-control" name="level_code_2" id="progress_name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="id_construction">
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="btn-simpan-progress" title="Add Data" data-object="Project_detail_construction/addMeasurementBasis">Add</button>
                 </div>
             </div>
         </form>
@@ -638,6 +765,15 @@
         $('#modal-upload-file').modal('show');
     })
 
+    $(document).on('click', '.addProgress', function() {
+        $('#id_construction').val($(this).data('id'))
+        $('#description').val($(this).data('document-name'))
+        $('#progress_step').val($(this).data('step'))
+        $('#progress_wf').val('')
+        $('#progress_name').val('')
+        $('#modal-add-progress').modal('show');
+    });
+
     $(document).on('click', '#upload_btn_up', function() {
         const path = $(this).data('path');
         const fileDesc = $(this).data('step');
@@ -954,6 +1090,55 @@
                             title: 'Diedit!',
                             icon: 'success',
                             text: 'Document Berhasil Diedit.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    }
+                });
+            }
+        })
+    })
+
+    $(document).on('click', '#btn-simpan-progress', function() {
+        const objek = $(this).data('object');
+        const id_construction = $('#id_construction').val();
+        const progress_step = $('#progress_step').val();
+        const progress_name = $('#progress_name').val();
+        const progress_wf = $('#progress_wf').val();
+        Swal.fire({
+            title: 'Add Progress?',
+            icon: 'info',
+            text: 'Patikan Data yang Diketik Sudah Sesuai!',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: objek,
+                    method: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        id_construction: id_construction,
+                        progress_step: progress_step,
+                        progress_name: progress_name,
+                        progress_wf: progress_wf,
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Ditambahkan!',
+                            icon: 'success',
+                            text: 'Document Berhasil Ditambahkan.',
                             timer: 1000,
                             confirmButtonColor: "#5664d2",
                             onBeforeOpen: function() {
