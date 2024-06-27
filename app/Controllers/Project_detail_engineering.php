@@ -299,6 +299,9 @@ class Project_detail_engineering extends BaseController
              // Path untuk menyimpan PDF baru
              $newPdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
              $pdf->Output($newPdfPath, 'F');
+
+            // delete signature file
+            unlink($imagePath);
  
              return $this->response->setJSON([
                  'status' => 'success',
