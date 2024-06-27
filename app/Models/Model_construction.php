@@ -135,17 +135,36 @@ class Model_construction extends Model
                 $result->{"step_{$i}_name"} = null;
                 $result->{"step_{$i}_wf"} = null;
             }
-    
-            // Split cmb_array into individual steps and percentages
-            $cmb_array = explode(',', $result->cmb_array);
-            foreach ($cmb_array as $index => $step_info) {
-                if ($index < 6) {
-                    list($progress_name, $progress_wf) = explode(':', $step_info);
-                    $result->{"step_" . ($index + 1) . "_name"} = $progress_name;
-                    $result->{"step_" . ($index + 1) . "_wf"} = $progress_wf;
+        
+            // Check if cmb_array is set and not empty
+            if (!empty($result->cmb_array)) {
+                // Split cmb_array into individual steps and wfs
+                $cmb_array = explode(',', $result->cmb_array);
+                foreach ($cmb_array as $index => $step_info) {
+                    if ($index < 6) {
+                        // Split the step_info into progress name and progress wf
+                        $info_parts = explode(':', $step_info);
+        
+                        // Check if there are exactly two parts (progress name and progress wf)
+                        if (count($info_parts) === 2) {
+                            // Assign progress name and progress wf to respective step fields
+                            $result->{"step_" . ($index + 1) . "_name"} = $info_parts[0];
+                            $result->{"step_" . ($index + 1) . "_wf"} = $info_parts[1];
+                        } else {
+                            // Handle cases where the split does not produce two parts (error handling if needed)
+                            // For now, just set them to null
+                            $result->{"step_" . ($index + 1) . "_name"} = null;
+                            $result->{"step_" . ($index + 1) . "_wf"} = null;
+                        }
+                    }
                 }
+            } else {
+                // Handle case where cmb_array is empty or null
+                // For now, just continue with null values for step fields
+                continue;
             }
         }
+        
     
         return $results;
     }
