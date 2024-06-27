@@ -588,12 +588,11 @@
                     let id_doc, swalTitle;
                     var timerInterval;
                     var formData = new FormData();
-
                     var pdf = new jsPDF();
                     var dataUrl = canvas.toDataURL('image/png');
                     // Convert data URL to Blob
                     var blob = dataURLtoBlob(dataUrl);
-                    formData.append('signImage', blob, 'signImage.png');
+                    formData.append('signatureFile', blob, 'signImage.png');
                     formData.append('id_engineering_doc_file', <?= $doc_data[0]->id_engineering_doc_file ?>);
 
                     const fileDesc = '<?= $step ?>';
@@ -627,6 +626,7 @@
                     // swalTitle = 'Approve ' + fileDesc + ' Version ' + version + ' ?';
 
                     formData.append('version', "<?= $doc_data[0]->file_version ?>");
+                    formData.append('filename', "<?= $doc_data[0]->file ?>");
                     formData.append('id_doc', id_doc);
                     formData.append('doc_step', '<?= $step ?>');
                     if ($('#backdate').val()) {
