@@ -214,9 +214,11 @@ class Project_detail_engineering extends BaseController
         $pdfFilename = $this->request->getPost('filename');
         $signatureImage = $this->request->getFile('signatureFile');
 
+        $storeSignedPage = $signatureImage->move('upload/signed_page');
+
         // Path file PDF asli dan gambar yang akan menggantikan halaman C:\Development\laragon\www\inpormasi\public\upload\engineering_doc\comment
         $pdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
-        $imagePath = 'upload/engineering_doc/comment/image.png';
+        $imagePath = 'upload/signed_page/'. $signatureImage->getName();
 
         // Menggunakan realpath untuk memastikan path benar
         $realPdfPath = realpath($pdfPath);
