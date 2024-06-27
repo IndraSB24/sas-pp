@@ -72,7 +72,7 @@ class Project_detail_construction extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc' => $this->Model_construction->getAll(),
+			'list_doc' => $this->Model_construction->findAll(),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
 		// echo '<pre>'; print_r( $data );die; echo '</pre>';
