@@ -122,6 +122,7 @@ class Model_construction extends Model
                 construction.id as id_construction,
                 construction.document_number as document_number,
                 construction.level_5 as description,
+                construction.wf as wf,
                 subquery.cmb_array as cmb_array
             ')
             ->join("($subquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
