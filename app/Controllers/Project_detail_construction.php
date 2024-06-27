@@ -8,11 +8,12 @@ use App\Models\Model_data_helper;
 use App\Models\Model_procurement_doc_file;
 use App\Models\Model_timeline_doc;
 use App\Models\Model_procurement_doc_comment;
+use App\Models\Model_construction;
 
 class Project_detail_construction extends BaseController
 {
     protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
-		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment;
+		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment, $Model_construction;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
@@ -22,6 +23,7 @@ class Project_detail_construction extends BaseController
 		$this->Model_procurement_doc_file = new Model_procurement_doc_file();
 		$this->Model_timeline_doc = new Model_timeline_doc();
 		$this->Model_procurement_doc_comment = new Model_procurement_doc_comment();
+        $this->Model_construction = new Model_construction();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -70,7 +72,7 @@ class Project_detail_construction extends BaseController
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
 			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
-			'list_doc_procurement' => $this->Model_doc_procurement->getAll(),
+			'list_doc' => $this->Model_construction->getAll(),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
 		// echo '<pre>'; print_r( $data );die; echo '</pre>';
