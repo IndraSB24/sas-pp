@@ -214,8 +214,10 @@ class Project_detail_engineering extends BaseController
         $pdfFilename = $this->request->getPost('filename');
         $signatureImage = $this->request->getFile('signatureFile');
 
+        // store signed page
         $storeSignedPage = $signatureImage->move('upload/signed_page');
 
+        // get pdf and signed page
         $pdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
         $imagePath = 'upload/signed_page/'. $signatureImage->getName();
 
