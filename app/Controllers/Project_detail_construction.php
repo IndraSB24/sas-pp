@@ -101,7 +101,6 @@ class Project_detail_construction extends BaseController
                 'id_construction', 'progress_step', 'progress_name', 'progress_wf'
             ])
         );
-
         $data['created_by'] = sess('active_user_id');
         $insertData = $this->Model_construction_measurement_basis->save($data);
                 
