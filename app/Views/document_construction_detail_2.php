@@ -566,7 +566,7 @@
 </html>
 
 <script>
-    console.log(<?= $list_data ?>, 'MEASUREMENT BASIS');
+    console.log(<?= json_encode($list_data) ?>, 'MEASUREMENT BASIS');
 
     $(document).ready(function() {
         $('#update_btn_choose_file').click(function(e) {
