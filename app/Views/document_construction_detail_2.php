@@ -566,6 +566,8 @@
 </html>
 
 <script>
+    console.log(<?= $list_data ?>, 'MEASUREMENT BASIS');
+
     $(document).ready(function() {
         $('#update_btn_choose_file').click(function(e) {
             e.preventDefault(); // Prevent default behavior

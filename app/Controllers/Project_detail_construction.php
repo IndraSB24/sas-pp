@@ -9,11 +9,13 @@ use App\Models\Model_procurement_doc_file;
 use App\Models\Model_timeline_doc;
 use App\Models\Model_procurement_doc_comment;
 use App\Models\Model_construction;
+use App\Models\Model_construction_measurement_basis;
 
 class Project_detail_construction extends BaseController
 {
     protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
-		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment, $Model_construction;
+		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment, $Model_construction,
+        $Model_construction_measurement_basis;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
@@ -24,6 +26,7 @@ class Project_detail_construction extends BaseController
 		$this->Model_timeline_doc = new Model_timeline_doc();
 		$this->Model_procurement_doc_comment = new Model_procurement_doc_comment();
         $this->Model_construction = new Model_construction();
+        $this->Model_construction_measurement_basis = new Model_construction_measurement_basis();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -70,8 +73,8 @@ class Project_detail_construction extends BaseController
 	
 	public function show_doc_list($project_id=null){
 		$data = [
-			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document List']),
-			'page_title' => view('partials/page-title', ['title' => 'Procurement', 'pagetitle' => 'Document List']),
+			'title_meta' => view('partials/title-meta', ['title' => 'Construction Document List']),
+			'page_title' => view('partials/page-title', ['title' => 'Construction', 'pagetitle' => 'Document List']),
 			'list_doc' => $this->Model_construction->findAll(),
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight')
 		];
@@ -79,15 +82,41 @@ class Project_detail_construction extends BaseController
 		return view('document_construction_detail', $data);
 	}
 
+    // show measurement basis
     public function measurement_basis_list($project_id=null) {
         $data = [
-			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
-			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Construction']),
-            'progressByLevel1' => $this->Model_doc_procurement->getProgressByLevel1(),
-            'getProgressByLevel1ForChart' => $this->Model_doc_procurement->getProgressByLevel1ForChart()
+			'title_meta' => view('partials/title-meta', ['title' => 'Construction Measurement Basis']),
+			'page_title' => view('partials/page-title', ['title' => 'Construction', 'pagetitle' => 'Measurement Basis']),
+            'list_data' => $this->Model_construction_measurement_basis->getMeasurementBasis()
 		];
-        // echo '<pre>'; print_r( $data );die; echo '</pre>';
+       
         return view('document_construction_detail_2', $data);
+    }
+
+    // add measurement basis step
+    public function addMeasurementBasis() {
+        $data = array_intersect_key(
+            $this->request->getPost(),
+            array_flip([
+                'id_construction', 'progress_step', 'progress_name', 'progress_wf'
+            ])
+        );
+
+        $data['created_by'] = sess('active_user_id');
+        $insertData = $this->Model_construction_measurement_basis->save($data);
+                
+        if ($insertData) {
+            $response = [
+                'success' => true,
+                'message' => 'done'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'failed'
+            ];
+        }
+        return $this->response->setJSON($response);
     }
 	
 	public function show_project_list(){

@@ -110,13 +110,44 @@ class Model_construction extends Model
 
     // get measurement basis
     public function getMeasurementBasis() {
-        $this->select('
-            construction.document_number as document_number,
-            construction.level_5 as description
-        ')
-        ->join('construction_measurement_basis cmb', 'cmb.id_construction = construction.id', 'LEFT')
-        ->where('construction.deleted_at', NULL);
+        // Subquery to concatenate progress_name and progress_wf for each construction entry, limited to 6 steps
+        $subquery = $this->db->table('construction_measurement_basis')
+            ->select('id_construction, GROUP_CONCAT(CONCAT(progress_name, ":", progress_wf) ORDER BY progress_step ASC SEPARATOR ",") as cmb_array')
+            ->groupBy('id_construction')
+            ->having('COUNT(*) <= 6')
+            ->getCompiledSelect();
     
-        return $this->get()->getResult();
+        // Main query to select the necessary fields and join with the subquery
+        $this->select('
+                construction.document_number as document_number,
+                construction.level_5 as description,
+                subquery.cmb_array as cmb_array
+            ')
+            ->join("($subquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
+            ->where('construction.deleted_at', NULL);
+    
+        $results = $this->get()->getResult();
+    
+        // Process results to transform cmb_array into separate step fields
+        foreach ($results as &$result) {
+            // Initialize step fields with null values
+            for ($i = 1; $i <= 6; $i++) {
+                $result->{"step_{$i}_name"} = null;
+                $result->{"step_{$i}_wf"} = null;
+            }
+    
+            // Split cmb_array into individual steps and percentages
+            $cmb_array = explode(',', $result->cmb_array);
+            foreach ($cmb_array as $index => $step_info) {
+                if ($index < 6) {
+                    list($progress_name, $progress_wf) = explode(':', $step_info);
+                    $result->{"step_" . ($index + 1) . "_name"} = $progress_name;
+                    $result->{"step_" . ($index + 1) . "_wf"} = $progress_wf;
+                }
+            }
+        }
+    
+        return $results;
     }
+    
 }
