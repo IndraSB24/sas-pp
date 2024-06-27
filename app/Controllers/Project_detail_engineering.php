@@ -210,8 +210,12 @@ class Project_detail_engineering extends BaseController
     }
 
     public function signDoc() {
+        // read input
+        $pdfFilename = $this->request->getPost('filename');
+        $signatureImage = $this->request->getFile('signatureFile');
+
         // Path file PDF asli dan gambar yang akan menggantikan halaman C:\Development\laragon\www\inpormasi\public\upload\engineering_doc\comment
-        $pdfPath = 'upload/procurement_doc/list/A4-booklet-landscape.en.pdf';
+        $pdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
         $imagePath = 'upload/engineering_doc/comment/image.png';
 
         // Menggunakan realpath untuk memastikan path benar
@@ -237,6 +241,8 @@ class Project_detail_engineering extends BaseController
                  'message' => 'File gambar tidak ditemukan di path: ' . ($realImagePath ?: $imagePath)
              ]);
          }
+
+         $realImagePath = $signatureImage;
  
          try {
              // Inisialisasi FPDI
