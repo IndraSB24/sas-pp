@@ -216,7 +216,6 @@ class Project_detail_engineering extends BaseController
 
         $storeSignedPage = $signatureImage->move('upload/signed_page');
 
-        // Path file PDF asli dan gambar yang akan menggantikan halaman C:\Development\laragon\www\inpormasi\public\upload\engineering_doc\comment
         $pdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
         $imagePath = 'upload/signed_page/'. $signatureImage->getName();
 
@@ -243,8 +242,6 @@ class Project_detail_engineering extends BaseController
                  'message' => 'File gambar tidak ditemukan di path: ' . ($realImagePath ?: $imagePath)
              ]);
          }
-
-         $realImagePath = $signatureImage;
  
          try {
              // Inisialisasi FPDI
