@@ -119,6 +119,7 @@ class Model_construction extends Model
     
         // Main query to select the necessary fields and join with the subquery
         $this->select('
+                construction.id as id_construction,
                 construction.document_number as document_number,
                 construction.level_5 as description,
                 subquery.cmb_array as cmb_array
