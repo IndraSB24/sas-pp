@@ -297,7 +297,7 @@ class Project_detail_engineering extends BaseController
             }
  
              // Path untuk menyimpan PDF baru
-             $newPdfPath = 'upload/modified.pdf';
+             $newPdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
              $pdf->Output($newPdfPath, 'F');
  
              return $this->response->setJSON([
