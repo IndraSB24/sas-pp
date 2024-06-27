@@ -71,25 +71,64 @@
                                     <table id="datatable" class="table table-bordered nowrap">
                                         <thead style="border-top-width: 4px">
                                             <tr>
-                                                <th rowspan="2" style="background-color: #b0cbf7;">NO</th>
-                                                <th rowspan="2" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
+                                                <th rowspan="2" class="text-center" style="background-color: #b0cbf7;">NO</th>
+                                                <th rowspan="2" class="text-center" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
                                                 <th rowspan="2" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
-                                                <th rowspan="2" style="width: 0px;background-color: #D6CCC2">WF</th>
+                                                <th rowspan="2" class="text-center" style="width: 0px;background-color: #D6CCC2">WF</th>
                                                 <th rowspan="1" colspan="6" class="text-center" style="background-color:#9dc9ae">PROGRESS</th>
                                                 <th rowspan="2" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th style="background-color:#C5EDAC">1</th>
-                                                <th style="background-color:#C5EDAC">2</th>
-                                                <th style="background-color:#C5EDAC">3</th>
-                                                <th style="background-color:#C5EDAC">4</th>
-                                                <th style="background-color:#C5EDAC">5</th>
-                                                <th style="background-color:#C5EDAC">6</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">1</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">2</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">3</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">4</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">5</th>
+                                                <th class="text-center" style="background-color:#C5EDAC">6</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php foreach ($list_data as $index => $item) : ?>
+                                                <tr>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->document_number ?> </td>
+                                                    <td style="background-color:#faf1e3"> <?= $item->description ?> </td>
+                                                    <td class="text-center" style="background-color:#faf1e3"> <?= $item->wf ?> </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_1_name  ?> <br>
+                                                        <?= $item->step_1_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_2_name  ?> <br>
+                                                        <?= $item->step_2_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_3_name  ?> <br>
+                                                        <?= $item->step_3_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_4_name  ?> <br>
+                                                        <?= $item->step_4_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_5_name  ?> <br>
+                                                        <?= $item->step_5_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->step_6_name  ?> <br>
+                                                        <?= $item->step_6_wf  ?>% <br>
+                                                    </td>
+                                                    <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                                            <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                        </a>
+                                                        &nbsp;
+                                                    </td>
+
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </font>
