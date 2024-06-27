@@ -109,7 +109,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_1_name . '</span><br>
-                                                         <span>' . $item->step_1_wf . '</span><br>
+                                                         <span>' . $item->step_1_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_1_name ? $button : $label ?>
@@ -127,7 +127,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_2_name . '</span><br>
-                                                         <span>' . $item->step_2_wf . '</span><br>
+                                                         <span>' . $item->step_2_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_2_name ? $button : $label ?>
@@ -145,7 +145,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_3_name . '</span><br>
-                                                         <span>' . $item->step_3_wf . '</span><br>
+                                                         <span>' . $item->step_3_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_3_name ? $button : $label ?>
@@ -163,7 +163,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_4_name . '</span><br>
-                                                         <span>' . $item->step_4_wf . '</span><br>
+                                                         <span>' . $item->step_4_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_4_name ? $button : $label ?>
@@ -181,7 +181,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_5_name . '</span><br>
-                                                         <span>' . $item->step_5_wf . '</span><br>
+                                                         <span>' . $item->step_5_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_5_name ? $button : $label ?>
@@ -199,7 +199,7 @@
                                                          ';
                                                         $label = '
                                                          <span>' . $item->step_6_name . '</span><br>
-                                                         <span>' . $item->step_6_wf . '</span><br>
+                                                         <span>' . $item->step_6_wf . '%</span><br>
                                                          '
                                                         ?>
                                                         <?= !$item->step_6_name ? $button : $label ?>
