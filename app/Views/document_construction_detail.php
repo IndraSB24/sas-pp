@@ -80,7 +80,6 @@
                                                 <th colspan="2" class="desc text-center" style="background-color:#FF8FAB">TOTAL HARGA</th>
                                                 <th rowspan="3" style="background-color: #b0cbf7">TOTAL AMOUNT</th>
                                                 <th rowspan="3" style="background-color: #b0cbf7">WF</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7">WF L4</th>
                                                 <th rowspan="1" colspan="10" class="text-center" style="background-color:#9dc9ae">PROGRESS (%)</th>
                                                 <th rowspan="2" colspan="3" class="text-center" style="background-color:#EDE580">BASELINE SCHEDULE</th>
                                                 <th rowspan="3" class="text-center" style="background-color: #b0cbf7">
@@ -112,7 +111,49 @@
                                                 <th class="text-center" style="background-color:#EDE580">DURATION</th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>
+                                            <?php foreach ($list_doc as $index => $item) : ?>
+                                                <tr>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->document_number ?> </td>
+                                                    <td style="background-color:#faf1e3; white-space: normal;word-wrap: break-word;max-width: 450px;">
+                                                        <?= $item->level_1 ? 'Level 1: ' .  $item->level_1 : '' ?> <br>
+                                                        <?= $item->level_2 ? 'Level 2: ' .  $item->level_2 : '' ?> <br>
+                                                        <?= $item->level_3 ? 'Level 3: ' .  $item->level_3 : '' ?> <br>
+                                                        <?= $item->level_4 ? 'Level 4: ' .  $item->level_4 : '' ?> <br>
+                                                        <?= $item->level_5 ? 'Level 5: ' .  $item->level_5 : '' ?>
+                                                    </td>
+                                                    <td class="text-center" style="background-color:#faf1e3"> <?= $item->quantity ?> </td>
+                                                    <td class="text-center" style="background-color:#faf1e3"> <?= $item->unit ?> </td>
+                                                    <td class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_material ?> </td>
+                                                    <td class="text-center" style="background-color:#F4CAE0"> <?= $item->harga_satuan_jasa ?> </td>
+                                                    <td class="text-center" style="background-color:#FFE5EC"> <?= $item->total_harga_material ?> </td>
+                                                    <td class="text-center" style="background-color:#FFE5EC"> <?= $item->total_harga_jasa ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->total_amount ?> </td>
+                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->wf ?> </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> - </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> - </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> - </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> - </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> - </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> - </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
+                                                    <td class="text-center" style="background-color:#A1E5AB"> - </td>
+                                                    <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_start ?> </td>
+                                                    <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_finish ?> </td>
+                                                    <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_duration ?> </td>
+                                                    <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                                            <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                        </a>
+                                                        &nbsp;
+                                                    </td>
+
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </font>
