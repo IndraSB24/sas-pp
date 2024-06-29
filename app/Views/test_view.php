@@ -149,7 +149,7 @@
                                                 <div class="d-flex flex-column flex-sm-row" style="gap: 10px; align-items: center;">
                                                     <button class="btn btn-sm btn-danger waves-effect waves-light" id="rejectButton"><i class="fas fa-times"></i> Reject</button>
                                                     <button class="btn btn-sm btn-success waves-effect waves-light" id="approveButton"><i class="fas fa-check"></i> Approve</button>
-                                                    <button class="btn btn-sm btn-success waves-effect waves-light" id="signButton"><i class="fas fa-check"></i> Sign</button>
+                                                    <button class="btn btn-sm btn-warning waves-effect waves-light" id="signButton"><i class="fas fa-user"></i> Sign</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -596,43 +596,14 @@
                     formData.append('id_engineering_doc_file', <?= $doc_data[0]->id_engineering_doc_file ?>);
 
                     const fileDesc = '<?= $step ?>';
-                    let path;
-                    if (fileDesc === 'internal_engineering') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                    } else if (fileDesc === 'internal_ho') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                    } else if (fileDesc === 'internal_pem') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                        formData.append('plan_ifa', "<?= $doc_data[0]->plan_ifa ?>");
-                    } else if (fileDesc === 'external_ifa') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                        formData.append('plan_ifa', "<?= $doc_data[0]->plan_ifa ?>");
-                    } else if (fileDesc === 'external_ifc') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                        formData.append('plan_ifc', "<?= $doc_data[0]->plan_ifc ?>");
-                    } else if (fileDesc === 'external_asbuild') {
-                        path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
-                        formData.append('external_asbuild_plan', "<?= $doc_data[0]->external_asbuild_plan ?>");
-                    };
-                    // const version = $(this).data('version');
-
-
+                    const path = "<?= base_url('Project_detail_engineering/signDoc') ?>";
                     id_doc = <?= $doc_id ?>;
-                    // if (fileDesc == "IFA") {
-                    //     formData.append('file_status', 'ifa_approved');
-                    // } else if (fileDesc == "IFC") {
-                    //     formData.append('file_status', 'ifc_approved');
-                    // }
-                    // swalTitle = 'Approve ' + fileDesc + ' Version ' + version + ' ?';
 
                     formData.append('version', "<?= $doc_data[0]->file_version ?>");
                     formData.append('filename', "<?= $doc_data[0]->file ?>");
                     formData.append('id_doc', id_doc);
                     formData.append('doc_step', '<?= $step ?>');
-                    if ($('#backdate').val()) {
-                        formData.append('backdate', $('#backdate').val());
-                    }
-                    swalTitle = 'Approve Document?';
+                    swalTitle = 'Yakin sudah lampirkan tanda tangan?';
 
                     Swal.fire({
                         title: swalTitle,
@@ -650,28 +621,26 @@
                                 contentType: false,
                                 cache: false,
                                 processData: false,
-                                // success: function(response) {
-                                //     Swal.fire({
-                                //         title: 'Approved!',
-                                //         icon: 'success',
-                                //         text: 'This Version is Approved.',
-                                //         timer: 1000,
-                                //         confirmButtonColor: "#5664d2",
-                                //         // onBeforeOpen: function() {
-                                //         //     window.history.back();
-                                //         // },
-                                //         // onClose: function() {
-                                //         //     location.reload()
-                                //         // }
-                                //     }).then(() => {
-                                //         window.history.back();
-                                //     })
-                                // },
-                                // error: function(xhr, status, error) {
-                                //     // Aksi yang akan dilakukan jika terjadi kesalahan dalam permintaan
-                                //     console.error('Terjadi kesalahan:', status, error);
-                                //     // Tambahkan kode Anda di sini untuk menangani kesalahan
-                                // }
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Berhasil!',
+                                        icon: 'success',
+                                        text: 'Tanda tangan ber.',
+                                        timer: 1000,
+                                        confirmButtonColor: "#5664d2",
+                                        // onBeforeOpen: function() {
+                                        //     window.history.back();
+                                        // },
+                                        // onClose: function() {
+                                        //     location.reload()
+                                        // }
+                                    }).then(() => {
+                                        location.reload()
+                                    })
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Terjadi kesalahan:');
+                                }
                             });
 
                         }
