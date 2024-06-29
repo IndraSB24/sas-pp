@@ -99,7 +99,7 @@
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="1"
@@ -117,7 +117,7 @@
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="2"
@@ -128,14 +128,19 @@
                                                         $label = '
                                                          <span>' . $item->step_2_name . '</span><br>
                                                          <span>' . $item->step_2_wf . '%</span><br>
-                                                         '
+                                                         ';
+                                                        $disableButton = '
+                                                         <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
                                                         ?>
-                                                        <?= !$item->step_2_name ? $button : $label ?>
+                                                        <?= !$item->step_2_name ? ($item->step_1_name ? $button : $disableButton) : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="3"
@@ -146,14 +151,19 @@
                                                         $label = '
                                                          <span>' . $item->step_3_name . '</span><br>
                                                          <span>' . $item->step_3_wf . '%</span><br>
-                                                         '
+                                                         ';
+                                                         $disableButton = '
+                                                         <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
                                                         ?>
-                                                        <?= !$item->step_3_name ? $button : $label ?>
+                                                        <?= !$item->step_3_name ? ($item->step_2_name ? $button : $disableButton) : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="4"
@@ -164,14 +174,19 @@
                                                         $label = '
                                                          <span>' . $item->step_4_name . '</span><br>
                                                          <span>' . $item->step_4_wf . '%</span><br>
-                                                         '
+                                                         ';
+                                                         $disableButton = '
+                                                         <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
                                                         ?>
-                                                        <?= !$item->step_4_name ? $button : $label ?>
+                                                        <?= !$item->step_4_name ? ($item->step_3_name ? $button : $disableButton) : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="5"
@@ -182,14 +197,19 @@
                                                         $label = '
                                                          <span>' . $item->step_5_name . '</span><br>
                                                          <span>' . $item->step_5_wf . '%</span><br>
-                                                         '
+                                                         ';
+                                                         $disableButton = '
+                                                         <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
                                                         ?>
-                                                        <?= !$item->step_5_name ? $button : $label ?>
+                                                        <?= !$item->step_5_name ? ($item->step_4_name ? $button : $disableButton) : $label ?>
                                                     </td>
                                                     <td class="text-center" style="background-color:#C7F9CC; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?php
                                                         $button = '
-                                                         <a class="addProgress badge bg-primary mt-1 p-2 w-xs"
+                                                         <a href="javascript:" class="addProgress badge bg-primary mt-1 p-2 w-xs"
                                                                 data-id="' . $item->id_construction . '"
                                                                 data-document-name="' . $item->description . '"
                                                                 data-step="6"
@@ -200,9 +220,14 @@
                                                         $label = '
                                                          <span>' . $item->step_6_name . '</span><br>
                                                          <span>' . $item->step_6_wf . '%</span><br>
-                                                         '
+                                                         ';
+                                                         $disableButton = '
+                                                         <a href="javascript:waitingSwal();" class="badge bg-secondary mt-1 p-2 w-xs">
+                                                                &nbsp;ADD PROGRESS&nbsp;
+                                                            </a>
+                                                         ';
                                                         ?>
-                                                        <?= !$item->step_6_name ? $button : $label ?>
+                                                        <?= !$item->step_6_name ? ($item->step_5_name ? $button : $disableButton) : $label ?>
                                                     </td>
                                                     <td class="text-center" nowrap style="background-color: #d2e5f7">
                                                         <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
