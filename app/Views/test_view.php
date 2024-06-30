@@ -625,7 +625,7 @@
                                     Swal.fire({
                                         title: 'Berhasil!',
                                         icon: 'success',
-                                        text: 'Tanda tangan ber.',
+                                        text: 'Tanda tangan berhasil',
                                         timer: 1000,
                                         confirmButtonColor: "#5664d2",
                                         // onBeforeOpen: function() {

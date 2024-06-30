@@ -246,66 +246,40 @@ class Project_detail_engineering extends BaseController
          }
  
          try {
-             // Inisialisasi FPDI
             $pdf = new Fpdi();
-
-            // Baca halaman dari PDF asli
             $pageCount = $pdf->setSourceFile($realPdfPath);
-
-            // Tambahkan halaman baru untuk halaman pertama
-            // $pdf->AddPage();
-
-            // Ukuran halaman PDF
-            // $pdfWidth = $pdf->GetPageWidth();
-            // $pdfHeight = $pdf->GetPageHeight();
-
-            // Ukuran gambar
             list($imageWidth, $imageHeight) = getimagesize($realImagePath);
-
-            // Tentukan orientasi halaman
-            $tmp = $pdf->importPage(1); // Import the first page
+            $tmp = $pdf->importPage(1);
             $size = $pdf->getTemplateSize($tmp);
             $pdfWidth = $size['width'];
             $pdfHeight = $size['height'];
             $orientation = $pdfWidth > $pdfHeight ? 'L' : 'P';
-            $pdf->AddPage($orientation);
-            // $templateId = $pdf->importPage(1); // Import the first page
-            // $size = $pdf->getTemplateSize($templateId);
-            // $pdfWidth = $size['width'];
-            // $pdfHeight = $size['height'];
-            // echo '<pre>'; print_r( $orientation );echo '</pre>';
-            // echo '<pre>'; print_r( $pdfWidth . ' lebar' );echo '</pre>';
-            // echo '<pre>'; print_r( $pdfHeight . ' tinggi' );die; echo '</pre>';
-            // Hitung skala gambar agar sesuai dengan halaman PDF tanpa terpotong
-            // $imageScale = min($pdfWidth / $imageWidth, $pdfHeight / $imageHeight);
+            $pdf->AddPage($orientation, [$pdfWidth, $pdfHeight]);
             $imageScale = min($pdfWidth / $imageWidth, $pdfHeight / $imageHeight);
-
-            // Koordinat untuk menempatkan gambar di tengah halaman
+            echo '<pre>'; print_r( "Image Scale: $imageScale\n" ); echo '</pre>';
+            echo '<pre>'; print_r( "Image Width: $imageWidth, Image Height: $imageHeight\n" ); echo '</pre>';
+            echo '<pre>'; print_r( "PDF Width: $pdfWidth, PDF Height: $pdfHeight\n" ); echo '</pre>';
             $x = ($pdfWidth - ($imageWidth * $imageScale)) / 2;
             $y = ($pdfHeight - ($imageHeight * $imageScale)) / 2;
+            // echo '<pre>'; print_r( "X: $x, Y: $y\n" );die; echo '</pre>';
+            $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale);
+            // $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale, '', '', '', false);
 
-            // Tambahkan gambar ke halaman PDF dengan skala yang sesuai
-            // $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale);
-            $pdf->Image($realImagePath, $x, $y, $imageWidth * $imageScale, $imageHeight * $imageScale, '', '', '', false);
-
-            // Import dan tambahkan sisa halaman dari PDF asli
             for ($i = 2; $i <= $pageCount; $i++) {
                 $templateId = $pdf->importPage($i);
-                $pdf->AddPage($orientation);
+                $pdf->AddPage($orientation, [$pdfWidth, $pdfHeight]);
                 $pdf->useTemplate($templateId);
             }
  
-             // Path untuk menyimpan PDF baru
              $newPdfPath = 'upload/engineering_doc/list/'. $pdfFilename;
              $pdf->Output($newPdfPath, 'F');
 
-            // delete signature file
             unlink($imagePath);
  
-             return $this->response->setJSON([
-                 'status' => 'success',
-                 'message' => 'PDF telah berhasil dimodifikasi. File baru disimpan di: ' . $newPdfPath
-             ]);
+             return json_encode([
+                'success' => true,
+                'message' => 'successfully.'
+            ]);
          } catch (\Exception $e) {
              return $this->response->setJSON([
                  'status' => 'error',
