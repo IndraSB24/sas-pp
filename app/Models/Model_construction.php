@@ -215,8 +215,6 @@ class Model_construction extends Model
         // Main query to select the necessary fields and join with the subquery
         $this->select('
             construction.*,
-            construction.id as id_construction,
-            construction.level_5 as description,
             subquery.cmb_array as cmb_array
         ')
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
@@ -246,11 +244,13 @@ class Model_construction extends Model
                             // Assign progress name and progress wf to respective step fields
                             $result->{"step_" . ($index + 1) . "_name"} = $info_parts[0];
                             $result->{"step_" . ($index + 1) . "_wf"} = $info_parts[1];
+                            $result->{"step_" . ($index + 1) . "_actual_volume"} = $info_parts[2];
                         } else {
                             // Handle cases where the split does not produce two parts (error handling if needed)
                             // For now, just set them to null
                             $result->{"step_" . ($index + 1) . "_name"} = null;
                             $result->{"step_" . ($index + 1) . "_wf"} = null;
+                            $result->{"step_" . ($index + 1) . "_actual_volume"} = null;
                         }
                     }
                 }
