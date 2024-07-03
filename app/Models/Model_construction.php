@@ -228,6 +228,7 @@ class Model_construction extends Model
             for ($i = 1; $i <= 6; $i++) {
                 $result->{"step_{$i}_name"} = null;
                 $result->{"step_{$i}_wf"} = null;
+                $result->{"step_{$i}_actual_volume"} = null;
             }
         
             // Check if cmb_array is set and not empty
