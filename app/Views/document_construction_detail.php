@@ -914,7 +914,7 @@
         const progress = $('.progressVolumeStep1').text()
         const qty = $('#volume').val()
         const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep1Wf')
+        const wf = $('#activityStep1Wf').val()
         
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
