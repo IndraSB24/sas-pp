@@ -10,12 +10,13 @@ use App\Models\Model_timeline_doc;
 use App\Models\Model_procurement_doc_comment;
 use App\Models\Model_construction;
 use App\Models\Model_construction_measurement_basis;
+use App\Models\Model_construction_progress;
 
 class Project_detail_construction extends BaseController
 {
     protected $Model_doc_procurement, $Model_project, $Model_doc_engineering, $Model_data_helper,
 		$Model_procurement_doc_file, $Model_timeline_doc, $Model_procurement_doc_comment, $Model_construction,
-        $Model_construction_measurement_basis;
+        $Model_construction_measurement_basis, $Model_construction_progress;
  
     function __construct(){
         $this->Model_doc_procurement = new Model_doc_procurement();
@@ -27,6 +28,7 @@ class Project_detail_construction extends BaseController
 		$this->Model_procurement_doc_comment = new Model_procurement_doc_comment();
         $this->Model_construction = new Model_construction();
         $this->Model_construction_measurement_basis = new Model_construction_measurement_basis();
+        $this->Model_construction_progress = new Model_construction_progress();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
@@ -116,6 +118,38 @@ class Project_detail_construction extends BaseController
             ];
         }
         return $this->response->setJSON($response);
+    }
+
+    // add progress
+    public function addProgress() {
+        $progressData = $this->request->getPost('progressData');
+        $isDone = false;
+
+        if (!empty($progressData) && is_array($progressData)) {
+            foreach ($progressData as $list) {
+                $payload = [
+                    'id_construction' => $this->request->getPost('id_construction'),
+                    'step' =>  $list['step'],
+                    'actual_volume' => $list['actual_volume']
+                ];
+                $insert = $this->Model_construction_progress->save($payload);
+
+                $isDone = $insert ? true : false;
+            }
+        }
+
+        if ($isDone) {
+            $response = [
+                'success' => true,
+                'message' => 'done'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'failed'
+            ];
+        }
+        return json_encode($response);
     }
 	
 	public function show_project_list(){
