@@ -921,6 +921,8 @@
 
         if (parseFloat(val) > 0) {
             $('#progressStep1').val('50%')
+        } else {
+            $('#progressStep1').val('')
         }
     })
     $(document).on('input', '#volumeStep2', () => {
@@ -1019,12 +1021,12 @@
         $('#activityStep5Wf').val(data.step_5_wf ? `${data.step_5_wf}%`: '');
         $('#activityStep6Wf').val(data.step_6_wf ? `${data.step_6_wf}%`: '');
 
-        $('#progressStep1').val(data);
-        $('#progressStep2').val(data);
-        $('#progressStep3').val(data);
-        $('#progressStep4').val(data);
-        $('#progressStep5').val(data);
-        $('#progressStep6').val(data);
+        // $('#progressStep1').val(data);
+        // $('#progressStep2').val(data);
+        // $('#progressStep3').val(data);
+        // $('#progressStep4').val(data);
+        // $('#progressStep5').val(data);
+        // $('#progressStep6').val(data);
 
         $('#progressIndividual').val(data);
         $('#accumulativePrevious').val(data);
