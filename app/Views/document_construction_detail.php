@@ -111,9 +111,16 @@
                                                 <th class="text-center" style="background-color:#EDE580">DURATION</th>
                                             </tr>
                                         </thead>
-                                        
+
                                         <tbody>
-                                            <?php foreach ($list_doc as $index => $item) : ?>
+                                            <?php foreach ($list_doc as $index => $item) :
+                                                $update = "
+                                                    <a href='#' id='btn-edit-doc' data-detail='" . json_encode($item) . "'>
+                                                        <i class='ri-pencil-fill text-info font-size-20'></i>
+                                                    </a>
+                                                "
+
+                                            ?>
                                                 <tr>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $item->document_number ?> </td>
@@ -145,12 +152,7 @@
                                                     <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_start ?> </td>
                                                     <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_finish ?> </td>
                                                     <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_duration ?> </td>
-                                                    <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                        <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
-                                                            <i class="ri-pencil-fill text-info font-size-20"></i>
-                                                        </a>
-                                                        &nbsp;
-                                                    </td>
+                                                    <td class="text-center" nowrap style="background-color: #d2e5f7"><?= $update ?></td>
 
                                                 </tr>
                                             <?php endforeach; ?>
@@ -331,140 +333,148 @@
         <form action="#" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Construction Document</h5>
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Update Construction</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 1</label>
-                            <input type="text" class="form-control" name="level_code_edit" id="level_code_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 2</label>
-                            <input type="text" class="form-control" name="level_code_2_edit" id="level_code_2_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 3</label>
-                            <input type="text" class="form-control" name="level_code_3_edit" id="level_code_3_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 4</label>
-                            <input type="text" class="form-control" name="level_code_4_edit" id="level_code_4_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Level 5</label>
-                            <input type="text" class="form-control" name="level_code_5_edit" id="level_code_5_edit" />
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Group</label>
-                            <select class="form-control" id="group_edit">
-                                <option value="">--Select--</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- <div class="row mb-4">
-                        <div class="col-md-12">
-                            <label class="form-label">Description</label>
-                            <input type="text" class="form-control" name="description_edit" id="description_edit" />
-                        </div>
-                    </div> -->
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                            <label class="form-label">Weight Factor</label>
-                            <input type="number" class="form-control" name="weight_factor_edit" id="weight_factor_edit" />
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Quantity</label>
-                            <select class="form-control" id="quantity_edit">
-                                <option value="">--Select--</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Unit</label>
-                            <select class="form-control" id="unit_edit">
-                                <option value="">--Select--</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="form-label">Plan</label>
-                        <div class="col-md-4">
-                            <label class="form-label">PO</label>
-                            <div class="input-group" id="po_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#po_date_edit" data-provide="datepicker" name="po_date_edit" id="plan_po_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label>ACTIVITY:</label>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">DISCIPLINE</small>
+                                <input type="text" class="form-control" name="discipline" id="discipline" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">SUB-DISCIPLINE</small>
+                                <input type="text" class="form-control" name="subDiscipline" id="subDiscipline" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY</small>
+                                <input type="text" class="form-control" name="activity" id="activity" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">SUB ACTIVITY</small>
+                                <input type="text" class="form-control" name="subActivity" id="subActivity" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">DETAIL SUB ACTIVITY</small>
+                                <input type="text" class="form-control" name="detailSubActivity" id="detailSubActivity" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">WEIGHT FACTOR</small>
+                                <input type="text" class="form-control" name="weightfactor" id="weightfactor" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME/UNIT</small>
+                                <input type="text" class="form-control" name="volume" id="volume" disabled />
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">FAT</label>
-                            <div class="input-group" id="fat_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#fat_date_edit" data-provide="datepicker" name="fat_date_edit" id="plan_fat_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                        <div class="col-md-6">
+                            <label>DATA ACTUAL:</label>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 1</small>
+                                <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 2</small>
+                                <input type="number" class="form-control" name="volumeStep2" id="volumeStep2" />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 3</small>
+                                <input type="number" class="form-control" name="volumeStep3" id="volumeStep3" />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 4</small>
+                                <input type="number" class="form-control" name="volumeStep4" id="volumeStep4" />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 5</small>
+                                <input type="number" class="form-control" name="volumeStep5" id="volumeStep5" />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">VOLUME STEP - 6</small>
+                                <input type="number" class="form-control" name="volumeStep6" id="volumeStep6" />
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">RFS</label>
-                            <div class="input-group" id="rfs_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#rfs_date_edit" data-provide="datepicker" name="rfs_date_edit" id="plan_rfs_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-4">
-                            <label class="form-label">RFQ</label>
-                            <div class="input-group" id="ifr_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifr_date" data-provide="datepicker" name="plan_ifr" id="plan_ifr" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">TBE</label>
-                            <div class="input-group" id="ifa_date">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#ifa_date" data-provide="datepicker" name="plan_ifa" id="plan_ifa" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <label class="form-label">ONSITE</label>
-                            <div class="input-group" id="onsite_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#onsite_date_edit" data-provide="datepicker" name="onsite_date_edit" id="plan_onsite_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                        <div class="col-md-6">
+                            <label>ACTUAL WORK:</label>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 1</small>
+                                <input type="number" class="form-control" name="activityStep1" id="activityStep1" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 2</small>
+                                <input type="number" class="form-control" name="activityStep2" id="activityStep2" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 3</small>
+                                <input type="number" class="form-control" name="activityStep3" id="activityStep3" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 4</small>
+                                <input type="number" class="form-control" name="activityStep4" id="activityStep4" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 5</small>
+                                <input type="number" class="form-control" name="activityStep5" id="activityStep5" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">ACTIVITY STEP - 6</small>
+                                <input type="number" class="form-control" name="activityStep6" id="activityStep6" disabled />
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">INSTALL</label>
-                            <div class="input-group" id="install_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#install_date_edit" data-provide="datepicker" name="install_date_edit" id="plan_install_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                        <div class="col-md-6">
+                            <label>PERCENTAGE:</label>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 1</small>
+                                <input type="number" class="form-control" name="progressStep1" id="progressStep1" disabled />
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">COMM</label>
-                            <div class="input-group" id="comm_date_edit">
-                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#comm_date_edit" data-provide="datepicker" name="comm_date_edit" id="plan_comm_edit" />
-                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 2</small>
+                                <input type="number" class="form-control" name="progressStep2" id="progressStep2" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 3</small>
+                                <input type="number" class="form-control" name="progressStep3" id="progressStep3" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 4</small>
+                                <input type="number" class="form-control" name="progressStep4" id="progressStep4" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 5</small>
+                                <input type="number" class="form-control" name="progressStep5" id="progressStep5" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS STEP - 6</small>
+                                <input type="number" class="form-control" name="progressStep6" id="progressStep6" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">PROGRESS INDIVIDUAL</small>
+                                <input type="number" class="form-control" name="progressIndividual" id="progressIndividual" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">Accumulative Previous</small>
+                                <input type="number" class="form-control" name="accumulativePrevious" id="accumulativePrevious" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">Accumulative Todate</small>
+                                <input type="number" class="form-control" name="accumulativeTodate" id="accumulativeTodate" disabled />
+                            </div>
+                            <div class="mb-2 col-md-12">
+                                <small class="form-label">Incrimental Input</small>
+                                <input type="number" class="form-control" name="incrimentalInput" id="incrimentalInput" disabled />
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="id_construction" />
+                        <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="btn-update" title="Edit Document" data-object="Project_detail_construction/addProgress">Save</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <input type="hidden" id="id_doc_edit" />
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="btn-simpan-edit-doc" title="Edit Document" data-object="Project_detail_procurement/update/document_detail">Save</button>
-                </div>
-            </div>
         </form>
     </div>
 </div>
@@ -865,81 +875,75 @@
     // ==========================================================================================================================================================================    
     // get Edit document
     $(document).on('click', '#btn-edit-doc', function() {
-        // get data from button edit
-        const id_edit = $(this).data('id'),
-            levelCode = $(this).data('level_code'),
-            levelCode2 = $(this).data('level_code_2'),
-            levelCode3 = $(this).data('level_code_3'),
-            levelCode4 = $(this).data('level_code_4'),
-            levelCode5 = $(this).data('level_code_5'),
-            group = $(this).data('group'),
-            quantity = $(this).data('quantity'),
-            unit = $(this).data('unit'),
-            weightFactor = $(this).data('weight_factor');
-
-        // description = $(this).data('description'),
-
-        planPo = $(this).data('plan_po');
-        planFat = $(this).data('plan_fat');
-        planRfs = $(this).data('plan_rfs');
-        planOnsite = $(this).data('plan_onsite');
-        planInstall = $(this).data('plan_install');
-        planComm = $(this).data('plan_comm');
-        // planIfr = $(this).data('plan_ifr'),
-        // planIfa = $(this).data('plan_ifa'),
-        // planIfc = $(this).data('plan_ifc');
-
-        // Set data to Form Edit
-        $('#id_doc_edit').val(id_edit);
-        $('#level_code_edit').val(levelCode);
-        $('#level_code_2_edit').val(levelCode2);
-        $('#level_code_3_edit').val(levelCode3);
-        $('#level_code_4_edit').val(levelCode4);
-        $('#level_code_5_edit').val(levelCode5);
-        $('#group_edit').val(group);
-        $('#quantity_edit').val(quantity);
-        $('#unit_edit').val(unit);
-        $('#weight_factor_edit').val(weightFactor);
-        $('#plan_po_edit').val(planPo);
-        $('#plan_fat_edit').val(planFat);
-        $('#plan_rfs_edit').val(planRfs);
-        $('#plan_onsite_edit').val(planOnsite);
-        $('#plan_install_edit').val(planInstall);
-        $('#plan_comm_edit').val(planComm);
-        // $('#description_edit').val(description);
-        // $('#plan_ifr_edit').val(planIfr);
-        // $('#plan_ifa_edit').val(planIfa);
-        // $('#plan_ifc_edit').val(planIfc);
-
-        // Call Modal Edit
+        const data = $(this).data('detail')
+        console.log(data);
+        $('#id_construction').val(data.id);
+        $('#discipline').val(data.level_1);
+        $('#subDiscipline').val(data.level_2);
+        $('#activity').val(data.level_3);
+        $('#subActivity').val(data.level_4);
+        $('#detailSubActivity').val(data.level_5);
+        $('#weightfactor').val(`${data.wf}%`);
+        $('#volume').val(data.unit);
+        $('#volumeStep1').val(null);
+        $('#volumeStep2').val(null);
+        $('#volumeStep3').val(null);
+        $('#volumeStep4').val(null);
+        $('#volumeStep5').val(null);
+        $('#volumeStep6').val(null);
+        $('#activityStep1').val(data);
+        $('#activityStep2').val(data);
+        $('#activityStep3').val(data);
+        $('#activityStep4').val(data);
+        $('#activityStep5').val(data);
+        $('#activityStep6').val(data);
+        $('#progressStep1').val(data);
+        $('#progressStep2').val(data);
+        $('#progressStep3').val(data);
+        $('#progressStep4').val(data);
+        $('#progressStep5').val(data);
+        $('#progressStep6').val(data);
+        $('#progressIndividual').val(data);
+        $('#accumulativePrevious').val(data);
+        $('#accumulativeTodate').val(data);
+        $('#incrimentalInput').val(data);
         $('#modal-edit-document').modal('show');
     })
 
-    $(document).on('click', '#btn-simpan-edit-doc', function() {
-        const objek = $(this).data('object'),
-            id = document.getElementById("id_doc_edit").value,
-            levelCodeEdit = document.getElementById("level_code_edit").value,
-            weightFactorEdit = document.getElementById("weight_factor_edit").value,
-            levelCode2Edit = document.getElementById("level_code_2_edit").value,
-            levelCode3Edit = document.getElementById("level_code_3_edit").value,
-            levelCode4Edit = document.getElementById("level_code_4_edit").value,
-            levelCode5Edit = document.getElementById("level_code_5_edit").value,
-            groupEdit = document.getElementById("group_edit").value,
-            quantityEdit = document.getElementById("quantity_edit").value,
-            unitEdit = document.getElementById("unit_edit").value,
-            planPoEdit = document.getElementById("plan_po_edit").value,
-            planFatEdit = document.getElementById("plan_fat_edit").value,
-            planRfsEdit = document.getElementById("plan_rfs_edit").value,
-            planOnsiteEdit = document.getElementById("plan_onsite_edit").value,
-            planInstallEdit = document.getElementById("plan_install_edit").value,
-            planCommEdit = document.getElementById("plan_comm_edit").value,
-            // descriptionEdit = document.getElementById("description_edit").value,
-            // planIfrEdit = document.getElementById("plan_ifr_edit").value;
-            planIfaEdit = document.getElementById("plan_ifa_edit").value;
-        planIfcEdit = document.getElementById("plan_ifc_edit").value;
+    $(document).on('click', '#btn-update', function() {
+        const base = '<?= base_url() ?>'
+        const link = `${base}/${$(this).data('object')}`
+        
+        const id_construction = document.getElementById("id_construction").value;
+        const volumeStep1 = $('#volumeStep1').val();
+        const volumeStep2 = $('#volumeStep2').val();
+        const volumeStep3 = $('#volumeStep3').val();
+        const volumeStep4 = $('#volumeStep4').val();
+        const volumeStep5 = $('#volumeStep5').val();
+        const volumeStep6 = $('#volumeStep6').val();
+        const progressData = [];
+        if (volumeStep1) {
+            progressData.push({step: '1', actual_volume: volumeStep1})
+        }
+        if (volumeStep2) {
+            progressData.push({step: '2', actual_volume: volumeStep2})
+        }
+        if (volumeStep3) {
+            progressData.push({step: '3', actual_volume: volumeStep3})
+        }
+        if (volumeStep4) {
+            progressData.push({step: '4', actual_volume: volumeStep4})
+        }
+        if (volumeStep5) {
+            progressData.push({step: '5', actual_volume: volumeStep5})
+        }
+        if (volumeStep6) {
+            progressData.push({step: '6', actual_volume: volumeStep6})
+        }
+
         var timerInterval;
         Swal.fire({
-            title: 'Edit Document?',
+            title: 'Update Progress?',
             icon: 'info',
             text: 'Patikan Data yang Diketik Sudah Sesuai!',
             showCancelButton: true,
@@ -948,35 +952,18 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url: objek + '/' + id,
+                    url: link,
                     method: 'POST',
                     dataType: "JSON",
                     data: {
-                        level_code_edit: levelCodeEdit,
-                        level_code_2_edit: levelCode2Edit,
-                        level_code_3_edit: levelCode3Edit,
-                        level_code_4_edit: levelCode4Edit,
-                        level_code_5_edit: levelCode5Edit,
-                        weight_factor_edit: weightFactorEdit,
-                        group_edit: groupEdit,
-                        quantity_edit: quantityEdit,
-                        unit_edit: unitEdit,
-                        plan_po_edit: planPoEdit,
-                        plan_fat_edit: planFatEdit,
-                        plan_rfs_edit: planRfsEdit,
-                        plan_onsite_edit: planOnsiteEdit,
-                        plan_install_edit: planInstallEdit,
-                        plan_comm_edit: planCommEdit,
-                        // description_edit: descriptionEdit,
-                        // plan_ifr_edit: planIfrEdit,
-                        // plan_ifa_edit: planIfaEdit,
-                        // plan_ifc_edit: planIfcEdit
+                        id_construction: id_construction,
+                        progressData: progressData,
                     },
                     success: () => {
                         Swal.fire({
-                            title: 'Diedit!',
+                            title: 'Diupdate!',
                             icon: 'success',
-                            text: 'Document Berhasil Diedit.',
+                            text: 'Document Berhasil Diupdate.',
                             timer: 1000,
                             confirmButtonColor: "#5664d2",
                             onBeforeOpen: function() {
