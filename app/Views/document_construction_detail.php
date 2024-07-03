@@ -915,7 +915,7 @@
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
         if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep1').val(total)
+            $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep2', () => {
@@ -924,7 +924,7 @@
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
         if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep2').val(total)
+            $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep3', () => {
@@ -942,7 +942,7 @@
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
         if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep4').val(total)
+            $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep5', () => {
@@ -951,7 +951,7 @@
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
         if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep5').val(total)
+            $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep6', () => {
@@ -960,7 +960,7 @@
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
         if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep6').val(total)
+            $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
         }
     })
 
