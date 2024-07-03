@@ -914,7 +914,7 @@
         const progress = $('#progressVolumeStep1').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep1').val(total)
         }
     })
@@ -923,7 +923,7 @@
         const progress = $('#progressVolumeStep2').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep2').val(total)
         }
     })
@@ -932,7 +932,7 @@
         const progress = $('#progressVolumeStep3').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep3').val(total)
         }
     })
@@ -941,7 +941,7 @@
         const progress = $('#progressVolumeStep4').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep4').val(total)
         }
     })
@@ -950,7 +950,7 @@
         const progress = $('#progressVolumeStep5').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep5').val(total)
         }
     })
@@ -959,7 +959,7 @@
         const progress = $('#progressVolumeStep6').val() || 0
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
             $('#volumeStep6').val(total)
         }
     })
