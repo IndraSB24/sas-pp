@@ -935,6 +935,13 @@
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
         }
+
+        if (parseFloat(val) > 0) {
+            // const livePercent = ((progress + val) / total) * wf
+            $('#progressStep2').val('%')
+        } else {
+            $('#progressStep2').val('')
+        }
     })
     $(document).on('input', '#volumeStep3', () => {
         const val = $('#volumeStep3').val()
