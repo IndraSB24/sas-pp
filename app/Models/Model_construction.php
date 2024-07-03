@@ -203,13 +203,13 @@ class Model_construction extends Model
         $measurementSubquery = $this->db->table('construction_measurement_basis cmb')
             ->select('
                 cmb.id_construction, 
-                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf, ":", cp.total_inserted_volume) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array,
+                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf, ":", IFNULL(cp.total_inserted_volume, 0)) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array
             ')
             ->join("($progressSubquery) as cp", 'cp.id_construction = cmb.id_construction', 'LEFT')
-            ->groupBy('cmb.id_construction, cp.step')
+            ->groupBy('cmb.id_construction')
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
-    
+
         // Main query to select the necessary fields and join with the subquery
         $this->select('
             construction.*,
@@ -217,9 +217,9 @@ class Model_construction extends Model
         ')
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
         ->where('construction.deleted_at', NULL);
-    
+
         $results = $this->get()->getResult();
-    
+
         // Process results to transform cmb_array into separate step fields
         foreach ($results as &$result) {
             // Initialize step fields with null values
@@ -228,38 +228,26 @@ class Model_construction extends Model
                 $result->{"step_{$i}_wf"} = null;
                 $result->{"step_{$i}_actual_volume"} = null;
             }
-        
+            
             // Check if cmb_array is set and not empty
             if (!empty($result->cmb_array)) {
                 // Split cmb_array into individual steps and wfs
                 $cmb_array = explode(',', $result->cmb_array);
                 foreach ($cmb_array as $index => $step_info) {
                     if ($index < 6) {
-                        // Split the step_info into progress name and progress wf
+                        // Split the step_info into progress name, progress wf, and actual volume
                         $info_parts = explode(':', $step_info);
-        
-                        // Check if there are exactly two parts (progress name and progress wf)
-                        if (count($info_parts) === 2) {
-                            // Assign progress name and progress wf to respective step fields
+                        // Check if there are exactly three parts (progress name, progress wf, and actual volume)
+                        if (count($info_parts) === 3) {
+                            // Assign progress name, progress wf, and actual volume to respective step fields
                             $result->{"step_" . ($index + 1) . "_name"} = $info_parts[0];
                             $result->{"step_" . ($index + 1) . "_wf"} = $info_parts[1];
                             $result->{"step_" . ($index + 1) . "_actual_volume"} = $info_parts[2];
-                        } else {
-                            // Handle cases where the split does not produce two parts (error handling if needed)
-                            // For now, just set them to null
-                            $result->{"step_" . ($index + 1) . "_name"} = null;
-                            $result->{"step_" . ($index + 1) . "_wf"} = null;
-                            $result->{"step_" . ($index + 1) . "_actual_volume"} = null;
                         }
                     }
                 }
-            } else {
-                // Handle case where cmb_array is empty or null
-                // For now, just continue with null values for step fields
-                continue;
             }
         }
-        
     
         return $results;
     }
