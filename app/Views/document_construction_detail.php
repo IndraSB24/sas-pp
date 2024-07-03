@@ -465,27 +465,27 @@
                             <label>PERCENTAGE:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 1</small>
-                                <input type="number" class="form-control" name="progressStep1" id="progressStep1" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep1" id="progressStep1" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 2</small>
-                                <input type="number" class="form-control" name="progressStep2" id="progressStep2" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep2" id="progressStep2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 3</small>
-                                <input type="number" class="form-control" name="progressStep3" id="progressStep3" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep3" id="progressStep3" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 4</small>
-                                <input type="number" class="form-control" name="progressStep4" id="progressStep4" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep4" id="progressStep4" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 5</small>
-                                <input type="number" class="form-control" name="progressStep5" id="progressStep5" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep5" id="progressStep5" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 6</small>
-                                <input type="number" class="form-control" name="progressStep6" id="progressStep6" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep6" id="progressStep6" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS INDIVIDUAL</small>
@@ -914,12 +914,13 @@
         const progress = $('.progressVolumeStep1').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        console.log({val,
-progress,
-total});
         
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
+        }
+
+        if (parseFloat(val) > 0) {
+            $('#progressStep1').val('50%')
         }
     })
     $(document).on('input', '#volumeStep2', () => {
