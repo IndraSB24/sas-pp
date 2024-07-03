@@ -922,7 +922,7 @@
 
         if (parseFloat(val) > 0) {
             // const livePercent = ((progress + val) / total) * wf
-            $('#progressStep1').val(l'%')
+            $('#progressStep1').val('%')
         } else {
             $('#progressStep1').val('')
         }
