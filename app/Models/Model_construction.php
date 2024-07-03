@@ -110,26 +110,13 @@ class Model_construction extends Model
 
     // get measurement basis
     public function getMeasurementBasis() {
-        // Subquery to aggregate steps and sum actual_volume from construction_progress
-        $progressSubquery = $this->db->table('construction_progress')
-            ->select('
-                id_construction,
-                step,
-                SUM(actual_volume) as total_inserted_volume
-            ')
-            ->groupBy('id_construction, step')
-            ->getCompiledSelect();
-
         // Subquery to concatenate progress_name and progress_wf for each construction entry, limited to 6 steps
         $measurementSubquery = $this->db->table('construction_measurement_basis cmb')
             ->select('
                 cmb.id_construction, 
-                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array,
-                cp.step,
-                cp.total_inserted_volume
+                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array
             ')
-            ->join("($progressSubquery) as cp", 'cp.id_construction = cmb.id_construction', 'LEFT')
-            ->groupBy('cmb.id_construction, cp.step')
+            ->groupBy('cmb.id_construction')
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
     
