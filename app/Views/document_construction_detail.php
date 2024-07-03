@@ -910,17 +910,19 @@
     })
 
     $(document).on('input', '#volumeStep1', () => {
-        const val = $('#volumeStep1').val()
-        const progress = $('.progressVolumeStep1').text()
-        const qty = $('#volume').val();
+        const val = parseFloat($('#volumeStep1').val())
+        const progress = parseFloat($('.progressVolumeStep1').text())
+        const qty = parseFloat($('#volume').val());
         const total = qty ? qty.split(' ')[0].trim() : 0
+        const wf = parseFloat($('#activityStep1Wf'))
         
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
         }
 
         if (parseFloat(val) > 0) {
-            $('#progressStep1').val('50%')
+            const livePercent = ((progress + val) / total) * wf
+            $('#progressStep1').val(livePercent + '%')
         } else {
             $('#progressStep1').val('')
         }
