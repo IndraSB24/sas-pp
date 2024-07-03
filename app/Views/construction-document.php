@@ -840,6 +840,7 @@
 <script src="<?= base_url('assets/libs/select2/js/select2.min.js') ?>"></script>
 
 <script>
+    console.log(<?= json_encode($list_doc) ?>, 'LIST DOC');
     console.log(<?= json_encode($scurveData) ?>, 'scurveData');
     console.log(<?= json_encode($progressChartData) ?>, 'CHART PROGRESS');
     console.log(<?= json_encode($getProgressByLevel1ForChart) ?>, 'getProgressByLevel1ForChart');
