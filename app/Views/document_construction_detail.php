@@ -910,11 +910,11 @@
     })
 
     $(document).on('input', '#volumeStep1', () => {
-        const val = parseFloat($('#volumeStep1').val())
-        const progress = parseFloat($('.progressVolumeStep1').text())
-        const qty = parseFloat($('#volume').val());
+        const val = $('#volumeStep1').val()
+        const progress = $('.progressVolumeStep1').text()
+        const qty = $('#volume').val()
         const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = parseFloat($('#activityStep1Wf'))
+        const wf = $('#activityStep1Wf')
         
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
@@ -937,7 +937,6 @@
         }
 
         if (parseFloat(val) > 0) {
-            // const livePercent = ((progress + val) / total) * wf
             $('#progressStep2').val('%')
         } else {
             $('#progressStep2').val('')
