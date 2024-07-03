@@ -911,55 +911,59 @@
 
     $(document).on('input', '#volumeStep1', () => {
         const val = $('#volumeStep1').val()
-        const progress = $('#progressVolumeStep1').val() || 0
+        const progress = $('.progressVolumeStep1').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
+        console.log({val,
+progress,
+total});
+        
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep2', () => {
         const val = $('#volumeStep2').val()
-        const progress = $('#progressVolumeStep2').val() || 0
+        const progress = $('.progressVolumeStep2').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep3', () => {
         const val = $('#volumeStep3').val()
-        const progress = $('#progressVolumeStep3').val() || 0
+        const progress = $('.progressVolumeStep3').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
-            $('#volumeStep3').val(total)
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep4', () => {
         const val = $('#volumeStep4').val()
-        const progress = $('#progressVolumeStep4').val() || 0
+        const progress = $('.progressVolumeStep4').val()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep5', () => {
         const val = $('#volumeStep5').val()
-        const progress = $('#progressVolumeStep5').val() || 0
+        const progress = $('.progressVolumeStep5').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
         }
     })
     $(document).on('input', '#volumeStep6', () => {
         const val = $('#volumeStep6').val()
-        const progress = $('#progressVolumeStep6').val() || 0
+        const progress = $('.progressVolumeStep6').text()
         const qty = $('#volume').val();
         const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) <= parseFloat(val)) {
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
         }
     })
@@ -986,12 +990,12 @@
         $('#volumeStep5').val(null);
         $('#volumeStep6').val(null);
 
-        $('.progressVolumeStep1').html(data.step_1_actual_volume || '-');
-        $('.progressVolumeStep2').html(data.step_2_actual_volume || '-');
-        $('.progressVolumeStep3').html(data.step_3_actual_volume || '-');
-        $('.progressVolumeStep4').html(data.step_4_actual_volume || '-');
-        $('.progressVolumeStep5').html(data.step_5_actual_volume || '-');
-        $('.progressVolumeStep6').html(data.step_6_actual_volume || '-');
+        $('.progressVolumeStep1').html(data.step_1_actual_volume || '');
+        $('.progressVolumeStep2').html(data.step_2_actual_volume || '');
+        $('.progressVolumeStep3').html(data.step_3_actual_volume || '');
+        $('.progressVolumeStep4').html(data.step_4_actual_volume || '');
+        $('.progressVolumeStep5').html(data.step_5_actual_volume || '');
+        $('.progressVolumeStep6').html(data.step_6_actual_volume || '');
 
         $('#volumeStep1').prop('disabled', !data.step_1_name);
         $('#volumeStep2').prop('disabled', !data.step_2_name);
