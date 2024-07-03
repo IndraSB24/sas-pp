@@ -203,9 +203,7 @@ class Model_construction extends Model
         $measurementSubquery = $this->db->table('construction_measurement_basis cmb')
             ->select('
                 cmb.id_construction, 
-                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array,
-                cp.step,
-                cp.total_inserted_volume
+                GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf, ":", cp.total_inserted_volume) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array,
             ')
             ->join("($progressSubquery) as cp", 'cp.id_construction = cmb.id_construction', 'LEFT')
             ->groupBy('cmb.id_construction, cp.step')
