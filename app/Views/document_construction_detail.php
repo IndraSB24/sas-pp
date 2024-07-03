@@ -910,7 +910,7 @@
     })
 
     $(document).on('input', '#volumeStep1', () => {
-        const val = $('#volumeStep1').val()
+        let val = $('#volumeStep1').val()
         const progress = $('.progressVolumeStep1').text()
         const qty = $('#volume').val()
         const total = qty ? qty.split(' ')[0].trim() : 0
