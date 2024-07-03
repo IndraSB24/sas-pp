@@ -205,7 +205,7 @@ class Model_construction extends Model
                 cmb.id_construction, 
                 GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf, ":", IFNULL(cp.total_inserted_volume, 0)) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array
             ')
-            ->join("($progressSubquery) as cp", 'cp.id_construction = cmb.id_construction', 'LEFT')
+            ->join("($progressSubquery) as cp", 'cp.id_construction = cmb.id_construction AND cp.step = cmb.progress_step', 'LEFT')
             ->groupBy('cmb.id_construction')
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
