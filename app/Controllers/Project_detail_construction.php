@@ -54,7 +54,7 @@ class Project_detail_construction extends BaseController
         }
 
 		$data = [
-			'title_meta' => view('partials/title-meta', ['title' => 'Procurement Document']),
+			'title_meta' => view('partials/title-meta', ['title' => 'Construction Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Construction']),
 			'list_doc_procurement' => $this->Model_doc_engineering->findAll(),
             'progressChartData' => [
