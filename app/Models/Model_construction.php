@@ -116,7 +116,7 @@ class Model_construction extends Model
                 cmb.id_construction, 
                 GROUP_CONCAT(CONCAT(cmb.progress_name, ":", cmb.progress_wf) ORDER BY cmb.progress_step ASC SEPARATOR ",") as cmb_array
             ')
-            ->groupBy('cmb.id_construction, cp.step')
+            ->groupBy('cmb.id_construction')
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
     
