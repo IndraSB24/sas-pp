@@ -402,27 +402,27 @@
                             <label>ACTUAL WORK:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 1</small>
-                                <input type="number" class="form-control" name="activityStep1" id="activityStep1" disabled />
+                                <input type="text" class="form-control" name="activityStep1" id="activityStep1" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 2</small>
-                                <input type="number" class="form-control" name="activityStep2" id="activityStep2" disabled />
+                                <input type="text" class="form-control" name="activityStep2" id="activityStep2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 3</small>
-                                <input type="number" class="form-control" name="activityStep3" id="activityStep3" disabled />
+                                <input type="text" class="form-control" name="activityStep3" id="activityStep3" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 4</small>
-                                <input type="number" class="form-control" name="activityStep4" id="activityStep4" disabled />
+                                <input type="text" class="form-control" name="activityStep4" id="activityStep4" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 5</small>
-                                <input type="number" class="form-control" name="activityStep5" id="activityStep5" disabled />
+                                <input type="text" class="form-control" name="activityStep5" id="activityStep5" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY STEP - 6</small>
-                                <input type="number" class="form-control" name="activityStep6" id="activityStep6" disabled />
+                                <input type="text" class="form-control" name="activityStep6" id="activityStep6" disabled />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -886,19 +886,25 @@
         $('#subActivity').val(data.level_4);
         $('#detailSubActivity').val(data.level_5);
         $('#weightfactor').val(`${data.wf}%`);
-        $('#volume').val(data.unit);
+        $('#volume').val(`${data.quantity} ${data.unit}`);
         $('#volumeStep1').val(null);
         $('#volumeStep2').val(null);
         $('#volumeStep3').val(null);
         $('#volumeStep4').val(null);
         $('#volumeStep5').val(null);
         $('#volumeStep6').val(null);
-        $('#activityStep1').val(data);
-        $('#activityStep2').val(data);
-        $('#activityStep3').val(data);
-        $('#activityStep4').val(data);
-        $('#activityStep5').val(data);
-        $('#activityStep6').val(data);
+        $('#volumeStep1').prop('disabled', !data.step_1_name);
+        $('#volumeStep2').prop('disabled', !data.step_2_name);
+        $('#volumeStep3').prop('disabled', !data.step_3_name);
+        $('#volumeStep4').prop('disabled', !data.step_4_name);
+        $('#volumeStep5').prop('disabled', !data.step_5_name);
+        $('#volumeStep6').prop('disabled', !data.step_6_name);
+        $('#activityStep1').val(data.step_1_name);
+        $('#activityStep2').val(data.step_2_name);
+        $('#activityStep3').val(data.step_3_name);
+        $('#activityStep4').val(data.step_4_name);
+        $('#activityStep5').val(data.step_5_name);
+        $('#activityStep6').val(data.step_6_name);
         $('#progressStep1').val(data);
         $('#progressStep2').val(data);
         $('#progressStep3').val(data);
