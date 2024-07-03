@@ -372,27 +372,27 @@
                         <div class="col-md-6">
                             <label>DATA ACTUAL:</label>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 1</small>
+                                <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 2</small>
+                                <small class="form-label">VOLUME STEP - 2 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep2">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep2" id="volumeStep2" />
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 3</small>
+                                <small class="form-label">VOLUME STEP - 3 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep3">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep3" id="volumeStep3" />
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 4</small>
+                                <small class="form-label">VOLUME STEP - 4 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep4">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep4" id="volumeStep4" />
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 5</small>
+                                <small class="form-label">VOLUME STEP - 5 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep5">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep5" id="volumeStep5" />
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 6</small>
+                                <small class="form-label">VOLUME STEP - 6 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep6">-</span></small>
                                 <input type="number" class="form-control" name="volumeStep6" id="volumeStep6" />
                             </div>
                         </div>
@@ -400,29 +400,65 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>ACTUAL WORK:</label>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 1</small>
-                                <input type="text" class="form-control" name="activityStep1" id="activityStep1" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 1</small>
+                                    <input type="text" class="form-control" name="activityStep1" id="activityStep1" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep1Wf" id="activityStep1Wf" disabled />
+                                </div>
                             </div>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 2</small>
-                                <input type="text" class="form-control" name="activityStep2" id="activityStep2" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 2</small>
+                                    <input type="text" class="form-control" name="activityStep2" id="activityStep2" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep2Wf" id="activityStep2Wf" disabled />
+                                </div>
                             </div>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 3</small>
-                                <input type="text" class="form-control" name="activityStep3" id="activityStep3" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 3</small>
+                                    <input type="text" class="form-control" name="activityStep3" id="activityStep3" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep3Wf" id="activityStep3Wf" disabled />
+                                </div>
                             </div>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 4</small>
-                                <input type="text" class="form-control" name="activityStep4" id="activityStep4" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 4</small>
+                                    <input type="text" class="form-control" name="activityStep4" id="activityStep4" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep4Wf" id="activityStep4Wf" disabled />
+                                </div>
                             </div>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 5</small>
-                                <input type="text" class="form-control" name="activityStep5" id="activityStep5" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 5</small>
+                                    <input type="text" class="form-control" name="activityStep5" id="activityStep5" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep5Wf" id="activityStep5Wf" disabled />
+                                </div>
                             </div>
-                            <div class="mb-2 col-md-12">
-                                <small class="form-label">ACTIVITY STEP - 6</small>
-                                <input type="text" class="form-control" name="activityStep6" id="activityStep6" disabled />
+                            <div class="row mb-2">
+                                <div class="col-md-8">
+                                    <small class="form-label">ACTIVITY STEP - 6</small>
+                                    <input type="text" class="form-control" name="activityStep6" id="activityStep6" disabled />
+                                </div>
+                                <div class="col-md-4">
+                                    <small class="form-label">WEIGHT FACTOR</small>
+                                    <input type="text" class="form-control" name="activityStep6Wf" id="activityStep6Wf" disabled />
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -873,6 +909,61 @@
         })
     })
 
+    $(document).on('input', '#volumeStep1', () => {
+        const val = $('#volumeStep1').val()
+        const progress = $('#progressVolumeStep1').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep1').val(total)
+        }
+    })
+    $(document).on('input', '#volumeStep2', () => {
+        const val = $('#volumeStep2').val()
+        const progress = $('#progressVolumeStep2').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep2').val(total)
+        }
+    })
+    $(document).on('input', '#volumeStep3', () => {
+        const val = $('#volumeStep3').val()
+        const progress = $('#progressVolumeStep3').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep3').val(total)
+        }
+    })
+    $(document).on('input', '#volumeStep4', () => {
+        const val = $('#volumeStep4').val()
+        const progress = $('#progressVolumeStep4').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep4').val(total)
+        }
+    })
+    $(document).on('input', '#volumeStep5', () => {
+        const val = $('#volumeStep5').val()
+        const progress = $('#progressVolumeStep5').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep5').val(total)
+        }
+    })
+    $(document).on('input', '#volumeStep6', () => {
+        const val = $('#volumeStep6').val()
+        const progress = $('#progressVolumeStep6').val() || 0
+        const qty = $('#volume').val();
+        const total = qty ? qty.split(' ')[0].trim() : 0
+        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+            $('#volumeStep6').val(total)
+        }
+    })
+
     // update document detail
     // ==========================================================================================================================================================================    
     // get Edit document
@@ -887,30 +978,49 @@
         $('#detailSubActivity').val(data.level_5);
         $('#weightfactor').val(`${data.wf}%`);
         $('#volume').val(`${data.quantity} ${data.unit}`);
+
         $('#volumeStep1').val(null);
         $('#volumeStep2').val(null);
         $('#volumeStep3').val(null);
         $('#volumeStep4').val(null);
         $('#volumeStep5').val(null);
         $('#volumeStep6').val(null);
+
+        $('.progressVolumeStep1').html(data.step_1_actual_volume || '-');
+        $('.progressVolumeStep2').html(data.step_2_actual_volume || '-');
+        $('.progressVolumeStep3').html(data.step_3_actual_volume || '-');
+        $('.progressVolumeStep4').html(data.step_4_actual_volume || '-');
+        $('.progressVolumeStep5').html(data.step_5_actual_volume || '-');
+        $('.progressVolumeStep6').html(data.step_6_actual_volume || '-');
+
         $('#volumeStep1').prop('disabled', !data.step_1_name);
         $('#volumeStep2').prop('disabled', !data.step_2_name);
         $('#volumeStep3').prop('disabled', !data.step_3_name);
         $('#volumeStep4').prop('disabled', !data.step_4_name);
         $('#volumeStep5').prop('disabled', !data.step_5_name);
         $('#volumeStep6').prop('disabled', !data.step_6_name);
+
         $('#activityStep1').val(data.step_1_name);
         $('#activityStep2').val(data.step_2_name);
         $('#activityStep3').val(data.step_3_name);
         $('#activityStep4').val(data.step_4_name);
         $('#activityStep5').val(data.step_5_name);
         $('#activityStep6').val(data.step_6_name);
+
+        $('#activityStep1Wf').val(data.step_1_wf ? `${data.step_1_wf}%`: '');
+        $('#activityStep2Wf').val(data.step_2_wf ? `${data.step_2_wf}%`: '');
+        $('#activityStep3Wf').val(data.step_3_wf ? `${data.step_3_wf}%`: '');
+        $('#activityStep4Wf').val(data.step_4_wf ? `${data.step_4_wf}%`: '');
+        $('#activityStep5Wf').val(data.step_5_wf ? `${data.step_5_wf}%`: '');
+        $('#activityStep6Wf').val(data.step_6_wf ? `${data.step_6_wf}%`: '');
+
         $('#progressStep1').val(data);
         $('#progressStep2').val(data);
         $('#progressStep3').val(data);
         $('#progressStep4').val(data);
         $('#progressStep5').val(data);
         $('#progressStep6').val(data);
+
         $('#progressIndividual').val(data);
         $('#accumulativePrevious').val(data);
         $('#accumulativeTodate').val(data);
