@@ -45,3 +45,7 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+
+<script>
+    console.log(<?= json_encode(get_data_list_project()) ?>, "SIDEBAR -- LIST PROJECT");
+</script>
