@@ -33,7 +33,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <?php foreach($sidebar_data as $list): ?>
                             <li>
-                                <a href="<?= base_url('entitas-usaha-get-list') ?>">
+                                <a href="<?= base_url('project-dashboard') ?>">
                                     <?= $list->contract_no ?>
                                 </a>
                             </li>
