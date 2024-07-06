@@ -76,9 +76,9 @@
                                                 <th rowspan="2" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
                                                 <th rowspan="2" class="text-center" style="width: 0px;background-color: #D6CCC2">WF</th>
                                                 <th rowspan="1" colspan="6" class="text-center" style="background-color:#9dc9ae">PROGRESS</th>
-                                                <th rowspan="2" class="text-center" style="background-color: #b0cbf7">
+                                                <!-- <th rowspan="2" class="text-center" style="background-color: #b0cbf7">
                                                     ACTION
-                                                </th>
+                                                </th> -->
                                             </tr>
                                             <tr>
                                                 <th class="text-center" style="background-color:#C5EDAC">1</th>
@@ -229,12 +229,12 @@
                                                         ?>
                                                         <?= !$item->step_6_name ? ($item->step_5_name ? $button : $disableButton) : $label ?>
                                                     </td>
-                                                    <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                    <!-- <td class="text-center" nowrap style="background-color: #d2e5f7">
                                                         <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                                             <i class="ri-pencil-fill text-info font-size-20"></i>
                                                         </a>
                                                         &nbsp;
-                                                    </td>
+                                                    </td> -->
 
                                                 </tr>
                                             <?php endforeach; ?>
