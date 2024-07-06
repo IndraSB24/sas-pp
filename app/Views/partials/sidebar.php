@@ -24,7 +24,7 @@
                 </li>
 
                 <!-- list project -->
-                <?php $sidebar_data = get_data_list_project(); ?>
+                <?php //$sidebar_data = get_data_list_project(); ?>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-book-open"></i>
