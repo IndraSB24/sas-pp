@@ -311,7 +311,7 @@ class Model_construction extends Model
 
         // Generate dynamic CASE statements for each week number
         for ($i = 1; $i <= 78; $i++) {
-            $sql .= "WHEN dw.week_number = $i THEN COALESCE(SUM(cpiw.w$i), 0) ";
+            $sql .= "WHEN dw.week_number = $i THEN COALESCE(cpiw.w$i, 0) ";
         }
 
         $sql .= "
