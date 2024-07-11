@@ -203,12 +203,20 @@ class Model_construction extends Model
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
 
+        // build query to count plan to current week
+        $cumulativeColumns = [];
+        for ($i = 1; $i <= $currentWeek; $i++) {
+            $cumulativeColumns[] = 'IFNULL(cpiw.w' . $i . ', 0)';
+        }
+        $cumulativeField = implode(' + ', $cumulativeColumns);
+
         // Main query to select the necessary fields and join with the subquery
         $this->select("
             construction.*,
             subquery.cmb_array as cmb_array,
-            cpiw.w{$lastWeek} as plan_last_week,
-            cpiw.w{$currentWeek} as plan_current_week,
+            IFNULL($planLastWeekColumn, 0) as plan_last_week,
+            IFNULL($planCurrentWeekColumn, 0) as plan_current_week,
+            ($cumulativeField) as cumulative_to_current_week
             {$currentWeek} as current_week
         ")
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
