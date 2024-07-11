@@ -299,4 +299,108 @@ class Model_construction extends Model
         return $this->get()->getResult();
     }
     
+    // get scurve chart data plan
+    public function getScurveDataPlan($idProject = 1)
+    {
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                SUM(
+                    CASE 
+        ";
+
+        // Generate dynamic CASE statements for each week number
+        for ($i = 1; $i <= 78; $i++) {
+            $sql .= "WHEN dw.week_number = $i THEN COALESCE(cpiw.w$i, 0) ";
+        }
+
+        $sql .= "
+                    ELSE 0
+                END
+                ) AS cum_plan_wf
+            FROM 
+                data_week dw
+            LEFT JOIN 
+                construction_plan_in_week cpiw ON cpiw.id_project = dw.id_project
+            WHERE
+                dw.id_project = '$idProject'
+            GROUP BY 
+                dw.week_number
+            ORDER BY 
+                dw.week_number
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get scurve chart data actual
+    public function getScurveDataActual($idProject = 1)
+    {
+        $sql = "
+            SELECT 
+                dw.week_number AS week_number,
+                COALESCE(IFA.counted_actual, 0) AS counted_actual_ifa,
+                COALESCE(IFC.counted_actual, 0) AS counted_actual_ifc,
+                COALESCE(Asbuild.counted_actual, 0) AS counted_actual_asbuild,
+                (COALESCE(IFA.counted_actual, 0) + COALESCE(IFC.counted_actual, 0) + COALESCE(Asbuild.counted_actual, 0)) AS cum_actual_wf
+            FROM 
+                data_week dw
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.25
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.actual_ifa BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.id_project = '$idProject'
+                GROUP BY 
+                    dw.week_number
+            ) AS IFA ON dw.week_number = IFA.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.40
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.65
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.actual_ifc BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.id_project = '$idProject'
+                GROUP BY 
+                    dw.week_number
+            ) AS IFC ON dw.week_number = IFC.week_number
+            LEFT JOIN (
+                SELECT 
+                    dw.week_number AS week_number,
+                    CASE 
+                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
+                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.10
+                    END AS counted_actual
+                FROM 
+                    data_week dw
+                LEFT JOIN 
+                    project_detail_engineering pde ON (pde.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
+                WHERE
+                    dw.id_project = '$idProject'
+                GROUP BY 
+                    dw.week_number
+            ) AS Asbuild ON dw.week_number = Asbuild.week_number
+            WHERE
+                dw.id_project = '$idProject'
+            ORDER BY 
+                dw.week_number
+        ";
+
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
 }
