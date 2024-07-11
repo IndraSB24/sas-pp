@@ -139,15 +139,15 @@
                                                     <td class="text-center" style="background-color:#FFE5EC"> <?= $item->total_harga_jasa ?> </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $item->total_amount ?> </td>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $item->wf ?> </td>
-                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_cum_till_last_week ?> </td>
-                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_current_week ?> </td>
-                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_cum_till_current_week ?> </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_cum_till_last_week ?>% </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_current_week ?>% </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_cum_till_current_week ?>% </td>
                                                     <td class="text-center" style="background-color:#C7F9CC"> - </td>
                                                     <td class="text-center" style="background-color:#C7F9CC"> - </td>
                                                     <td class="text-center" style="background-color:#C7F9CC"> - </td>
-                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
-                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
-                                                    <td class="text-center" style="background-color:#D9FFF5"> - </td>
+                                                    <td class="text-center" style="background-color:#D9FFF5"> <?= 0 - (float)$item->plan_cum_till_last_week ?>% </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= 0 - (float)$item->plan_current_week ?>% </td>
+                                                    <td class="text-center" style="background-color:#DBFEB8"> <?= 0 - (float)$item->plan_cum_till_current_week ?>% </td>
                                                     <td class="text-center" style="background-color:#A1E5AB"> - </td>
                                                     <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_start ?> </td>
                                                     <td class="text-center" style="background-color:#faf5b6"> <?= $item->baseline_schedule_finish ?> </td>
