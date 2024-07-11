@@ -324,8 +324,6 @@ class Model_construction extends Model
                 construction_plan_in_week cpiw ON cpiw.id_project = '$idProject'
             WHERE
                 dw.id_project = '$idProject'
-            GROUP BY 
-                dw.week_number
             ORDER BY 
                 dw.week_number
         ";
