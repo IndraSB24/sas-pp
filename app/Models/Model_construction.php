@@ -175,7 +175,13 @@ class Model_construction extends Model
     }
 
     // get measurement basis
-    public function getConstructionList() {
+    public function getConstructionList($id_project = 1) {
+        $currentDate = date('Y-m-d');
+    
+        // Get the current week number and last week number
+        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $lastWeek = $currentWeek - 1;
+
         // Subquery to aggregate steps and sum actual_volume from construction_progress
         $progressSubquery = $this->db->table('construction_progress')
             ->select('
@@ -200,9 +206,12 @@ class Model_construction extends Model
         // Main query to select the necessary fields and join with the subquery
         $this->select('
             construction.*,
-            subquery.cmb_array as cmb_array
+            subquery.cmb_array as cmb_array,
+            cpiw.w{$lastWeek} as plan_last_week,
+            cpiw.w{$currentWeek} as plan_current_week
         ')
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
+        ->join('construction_plan_in_week cpiw', 'cpiw.id_construction=construction.id AND cpiw.id_project='. $id_project, 'LEFT')
         ->where('construction.deleted_at', NULL);
 
         $results = $this->get()->getResult();
@@ -237,6 +246,42 @@ class Model_construction extends Model
         }
     
         return $results;
+    }
+
+    // get week number
+    public function getWeekNumberByDate($date) {
+        $sql = "
+            SELECT
+                week_number
+            FROM
+                data_week
+            WHERE
+                start_date <= ? AND end_date >= ?
+        ";
+    
+        $query = $this->db->query($sql, [$date, $date]);
+        $result = $query->getRow();
+    
+        return $result ? $result->week_number : null;
+    }
+
+    // get with progress
+    public function getWithProgress($idProject = 1) {
+        $currentDate = date('Y-m-d');
+    
+        // Get the current week number and last week number
+        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $lastWeek = $currentWeek - 1;
+
+        $this->select('
+            construction.*,
+        ')
+        ->join('construction_plan_in_week cpiw', 'cpiw.id_project=1 AND cpiw.id_construction=construction.id AND ', 'LEFT')
+        ->where('construction.deleted_at', NULL)
+        ->groupBy('construction.id')
+        ->orderBy('construction.id');
+        
+        return $this->get()->getResult();
     }
     
 }
