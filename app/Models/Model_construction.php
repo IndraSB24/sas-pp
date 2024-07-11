@@ -209,7 +209,7 @@ class Model_construction extends Model
             subquery.cmb_array as cmb_array,
             cpiw.w{$lastWeek} as plan_last_week,
             cpiw.w{$currentWeek} as plan_current_week,
-            current_week as week_{$currentWeek}
+            {$currentWeek} as current_week
         ")
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
         ->join('construction_plan_in_week cpiw', 'cpiw.id_construction=construction.id AND cpiw.id_project='. $id_project, 'LEFT')
