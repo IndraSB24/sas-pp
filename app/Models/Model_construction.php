@@ -311,7 +311,7 @@ class Model_construction extends Model
 
         // Generate dynamic CASE statements for each week number
         for ($i = 1; $i <= 78; $i++) {
-            $sql .= "WHEN dw.week_number = $i THEN COALESCE(cpiw.w$i, 0) ";
+            $sql .= "WHEN dw.week_number = $i THEN COALESCE(SUM(cpiw.w$i), 0) ";
         }
 
         $sql .= "
@@ -321,7 +321,7 @@ class Model_construction extends Model
             FROM 
                 data_week dw
             LEFT JOIN 
-                construction_plan_in_week cpiw ON cpiw.id_project = dw.id_project
+                construction_plan_in_week cpiw ON cpiw.id_project = '$idProject'
             WHERE
                 dw.id_project = '$idProject'
             GROUP BY 
