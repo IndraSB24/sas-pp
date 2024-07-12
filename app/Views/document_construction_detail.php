@@ -491,14 +491,14 @@
                         <label>SUMMARY:</label>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">PROGRESS INDIVIDUAL</small>
+                                <small class="form-label">Progress Individual</small>
                                 <input type="number" class="form-control" name="progressIndividual" id="progressIndividual" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Previous</small>
-                                <input type="number" class="form-control" name="accumulativePrevious" id="accumulativePrevious" disabled />
+                                <input type="text" class="form-control" name="accumulativePrevious" id="accumulativePrevious" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -1110,6 +1110,14 @@
         $('#accumulativePrevious').val(data);
         $('#accumulativeTodate').val(data);
         $('#incrimentalInput').val(data);
+
+        const accumulativePrevious = ((parseFloat(data.step_1_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_1_wf || 0)) +
+            ((parseFloat(data.step_2_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_2_wf || 0)) +
+            ((parseFloat(data.step_3_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_3_wf || 0)) +
+            ((parseFloat(data.step_4_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_4_wf || 0)) +
+            ((parseFloat(data.step_5_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_5_wf || 0)) +
+            ((parseFloat(data.step_6_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_6_wf || 0));
+        $('#accumulativePrevious').val(`${accumulativePrevious}%`);
         $('#modal-edit-document').modal('show');
     })
 
