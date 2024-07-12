@@ -511,7 +511,7 @@
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Incrimental Input</small>
-                                <input type="number" class="form-control" name="incrimentalInput" id="incrimentalInput" disabled />
+                                <input type="text" class="form-control" name="incrimentalInput" v-model="incrimentalInput" id="incrimentalInput" disabled />
                             </div>
                         </div>
                     </div>
@@ -1341,6 +1341,7 @@
         data: {
             accumulativeTodate: '',
             progressIndividual: '',
+            incrimentalInput: '',
         },
         methods: {
             convertPercentageStringToFloat(percentageString) {
@@ -1358,7 +1359,8 @@
                     ((parseFloat($('#volumeStep5').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep5Wf').val() || '0%')) +
                     ((parseFloat($('#volumeStep6').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf').val() || '0%'));
                 this.accumulativeTodate = `${value.toFixed(2)}%`;
-                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}`;
+                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}%`;
+                this.incrimentalInput = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') - value).toFixed(2)}%`;
             },
         },
         mounted: function() {
