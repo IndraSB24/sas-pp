@@ -1169,47 +1169,46 @@
                 actual_percent_per_construction: (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()),
             })
         }
-        console.log(progressData, 'fuadi progressData');
         var timerInterval;
-        // Swal.fire({
-        //     title: 'Update Progress?',
-        //     icon: 'info',
-        //     text: 'Patikan Data yang Diketik Sudah Sesuai!',
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Ya',
-        //     cancelButtonText: 'Batal'
-        // }).then(function(result) {
-        //     if (result.value) {
-        //         $.ajax({
-        //             url: link,
-        //             method: 'POST',
-        //             dataType: "JSON",
-        //             data: {
-        //                 id_construction: id_construction,
-        //                 progressData: progressData,
-        //             },
-        //             success: () => {
-        //                 Swal.fire({
-        //                     title: 'Diupdate!',
-        //                     icon: 'success',
-        //                     text: 'Document Berhasil Diupdate.',
-        //                     timer: 1000,
-        //                     confirmButtonColor: "#5664d2",
-        //                     onBeforeOpen: function() {
-        //                         //Swal.showLoading()
-        //                         timerInterval = setInterval(function() {
-        //                             Swal.getContent().querySelector('strong')
-        //                                 .textContent = Swal.getTimerLeft()
-        //                         }, 100)
-        //                     },
-        //                     onClose: function() {
-        //                         location.reload()
-        //                     }
-        //                 })
-        //             }
-        //         });
-        //     }
-        // })
+        Swal.fire({
+            title: 'Update Progress?',
+            icon: 'info',
+            text: 'Patikan Data yang Diketik Sudah Sesuai!',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: link,
+                    method: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        id_construction: id_construction,
+                        progressData: progressData,
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diupdate!',
+                            icon: 'success',
+                            text: 'Document Berhasil Diupdate.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    }
+                });
+            }
+        })
     })
 
     // upload file
