@@ -338,7 +338,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label>ACTIVITY:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">DISCIPLINE</small>
@@ -485,18 +485,29 @@
                                 <small class="form-label">PROGRESS STEP - 6</small>
                                 <input type="text" class="form-control text-center" name="progressStep6" id="progressStep6" disabled />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <label>SUMMARY:</label>
+                        <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS INDIVIDUAL</small>
                                 <input type="number" class="form-control" name="progressIndividual" id="progressIndividual" disabled />
                             </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Previous</small>
                                 <input type="number" class="form-control" name="accumulativePrevious" id="accumulativePrevious" disabled />
                             </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Todate</small>
                                 <input type="number" class="form-control" name="accumulativeTodate" id="accumulativeTodate" disabled />
                             </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Incrimental Input</small>
                                 <input type="number" class="form-control" name="incrimentalInput" id="incrimentalInput" disabled />
@@ -675,7 +686,7 @@
 
 <script>
     console.log(<?= json_encode($list_doc) ?>, 'LIST DOC');
-    
+
     $(document).ready(function() {
         $('#update_btn_choose_file').click(function(e) {
             e.preventDefault(); // Prevent default behavior
@@ -913,7 +924,7 @@
         const qty = $('#volume').val()
         const total = qty ? qty.split(' ')[0].trim() : 0
         const wf = $('#activityStep1Wf').val()
-        
+
         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
             $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
         }
@@ -922,7 +933,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep1').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep1').val('')
@@ -942,7 +953,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep2').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep2').val('')
@@ -962,7 +973,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep3').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep3').val('')
@@ -982,7 +993,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep4').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep4').val('')
@@ -1003,7 +1014,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep5').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep5').val('')
@@ -1024,7 +1035,7 @@
             if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
                 val = parseFloat(total) - parseFloat(progress)
             }
-            const livePercent = ( (parseFloat(progress) + parseFloat(val)) / parseFloat(total) ) * parseFloat(wf)
+            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
             $('#progressStep6').val(livePercent.toFixed(2) + '%')
         } else {
             $('#progressStep6').val('')
@@ -1081,12 +1092,12 @@
         $('#activityStep5').val(data.step_5_name);
         $('#activityStep6').val(data.step_6_name);
 
-        $('#activityStep1Wf').val(data.step_1_wf ? `${data.step_1_wf}%`: '');
-        $('#activityStep2Wf').val(data.step_2_wf ? `${data.step_2_wf}%`: '');
-        $('#activityStep3Wf').val(data.step_3_wf ? `${data.step_3_wf}%`: '');
-        $('#activityStep4Wf').val(data.step_4_wf ? `${data.step_4_wf}%`: '');
-        $('#activityStep5Wf').val(data.step_5_wf ? `${data.step_5_wf}%`: '');
-        $('#activityStep6Wf').val(data.step_6_wf ? `${data.step_6_wf}%`: '');
+        $('#activityStep1Wf').val(data.step_1_wf ? `${data.step_1_wf}%` : '');
+        $('#activityStep2Wf').val(data.step_2_wf ? `${data.step_2_wf}%` : '');
+        $('#activityStep3Wf').val(data.step_3_wf ? `${data.step_3_wf}%` : '');
+        $('#activityStep4Wf').val(data.step_4_wf ? `${data.step_4_wf}%` : '');
+        $('#activityStep5Wf').val(data.step_5_wf ? `${data.step_5_wf}%` : '');
+        $('#activityStep6Wf').val(data.step_6_wf ? `${data.step_6_wf}%` : '');
 
         // $('#progressStep1').val(data);
         // $('#progressStep2').val(data);
@@ -1103,9 +1114,11 @@
     })
 
     $(document).on('click', '#btn-update', function() {
+        const volume = parseFloat($('#volume').val());
+
         const base = '<?= base_url() ?>'
         const link = `${base}/${$(this).data('object')}`
-        
+
         const id_construction = document.getElementById("id_construction").value;
         const volumeStep1 = $('#volumeStep1').val();
         const volumeStep2 = $('#volumeStep2').val();
@@ -1115,64 +1128,88 @@
         const volumeStep6 = $('#volumeStep6').val();
         const progressData = [];
         if (volumeStep1) {
-            progressData.push({step: '1', actual_volume: volumeStep1})
+            progressData.push({
+                step: '1',
+                actual_volume: volumeStep1,
+                actual_percent_per_construction: (parseFloat(volumeStep1) / volume) * parseFloat($('#activityStep1Wf').val()),
+            })
         }
         if (volumeStep2) {
-            progressData.push({step: '2', actual_volume: volumeStep2})
+            progressData.push({
+                step: '2',
+                actual_volume: volumeStep2,
+                actual_percent_per_construction: (parseFloat(volumeStep2) / volume) * parseFloat($('#activityStep2Wf').val()),
+            })
         }
         if (volumeStep3) {
-            progressData.push({step: '3', actual_volume: volumeStep3})
+            progressData.push({
+                step: '3',
+                actual_volume: volumeStep3,
+                actual_percent_per_construction: (parseFloat(volumeStep3) / volume) * parseFloat($('#activityStep3Wf').val()),
+            })
         }
         if (volumeStep4) {
-            progressData.push({step: '4', actual_volume: volumeStep4})
+            progressData.push({
+                step: '4',
+                actual_volume: volumeStep4,
+                actual_percent_per_construction: (parseFloat(volumeStep4) / volume) * parseFloat($('#activityStep4Wf').val()),
+            })
         }
         if (volumeStep5) {
-            progressData.push({step: '5', actual_volume: volumeStep5})
+            progressData.push({
+                step: '5',
+                actual_volume: volumeStep5,
+                actual_percent_per_construction: (parseFloat(volumeStep5) / volume) * parseFloat($('#activityStep5Wf').val()),
+            })
         }
         if (volumeStep6) {
-            progressData.push({step: '6', actual_volume: volumeStep6})
+            progressData.push({
+                step: '6',
+                actual_volume: volumeStep6,
+                actual_percent_per_construction: (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()),
+            })
         }
-
+        console.log(progressData, 'fuadi progressData');
         var timerInterval;
-        Swal.fire({
-            title: 'Update Progress?',
-            icon: 'info',
-            text: 'Patikan Data yang Diketik Sudah Sesuai!',
-            showCancelButton: true,
-            confirmButtonText: 'Ya',
-            cancelButtonText: 'Batal'
-        }).then(function(result) {
-            if (result.value) {
-                $.ajax({
-                    url: link,
-                    method: 'POST',
-                    dataType: "JSON",
-                    data: {
-                        id_construction: id_construction,
-                        progressData: progressData,
-                    },
-                    success: () => {
-                        Swal.fire({
-                            title: 'Diupdate!',
-                            icon: 'success',
-                            text: 'Document Berhasil Diupdate.',
-                            timer: 1000,
-                            confirmButtonColor: "#5664d2",
-                            onBeforeOpen: function() {
-                                //Swal.showLoading()
-                                timerInterval = setInterval(function() {
-                                    Swal.getContent().querySelector('strong')
-                                        .textContent = Swal.getTimerLeft()
-                                }, 100)
-                            },
-                            onClose: function() {
-                                location.reload()
-                            }
-                        })
-                    }
-                });
-            }
-        })
+        // Swal.fire({
+        //     title: 'Update Progress?',
+        //     icon: 'info',
+        //     text: 'Patikan Data yang Diketik Sudah Sesuai!',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Ya',
+        //     cancelButtonText: 'Batal'
+        // }).then(function(result) {
+        //     if (result.value) {
+        //         $.ajax({
+        //             url: link,
+        //             method: 'POST',
+        //             dataType: "JSON",
+        //             data: {
+        //                 id_construction: id_construction,
+        //                 progressData: progressData,
+        //             },
+        //             success: () => {
+        //                 Swal.fire({
+        //                     title: 'Diupdate!',
+        //                     icon: 'success',
+        //                     text: 'Document Berhasil Diupdate.',
+        //                     timer: 1000,
+        //                     confirmButtonColor: "#5664d2",
+        //                     onBeforeOpen: function() {
+        //                         //Swal.showLoading()
+        //                         timerInterval = setInterval(function() {
+        //                             Swal.getContent().querySelector('strong')
+        //                                 .textContent = Swal.getTimerLeft()
+        //                         }, 100)
+        //                     },
+        //                     onClose: function() {
+        //                         location.reload()
+        //                     }
+        //                 })
+        //             }
+        //         });
+        //     }
+        // })
     })
 
     // upload file
