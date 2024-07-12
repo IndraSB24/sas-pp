@@ -3,6 +3,7 @@
 <head>
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <style>
         td:nth-child(3) {
             position: sticky;
@@ -329,7 +330,7 @@
 
 <!--Modal Edit Document-->
 <div class="modal fade" id="modal-edit-document" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen modal-lg">
+    <div class="modal-dialog modal-fullscreen modal-lg" id="app">
         <form action="#" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
@@ -492,7 +493,7 @@
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Progress Individual</small>
-                                <input type="number" class="form-control" name="progressIndividual" id="progressIndividual" disabled />
+                                <input type="text" class="form-control" name="progressIndividual" v-model="progressIndividual" id="progressIndividual" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -504,7 +505,7 @@
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Todate</small>
-                                <input type="number" class="form-control" name="accumulativeTodate" id="accumulativeTodate" disabled />
+                                <input type="text" class="form-control" name="accumulativeTodate" v-model="accumulativeTodate" id="accumulativeTodate" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -918,129 +919,129 @@
         })
     })
 
-    $(document).on('input', '#volumeStep1', () => {
-        let val = $('#volumeStep1').val()
-        const progress = $('.progressVolumeStep1').text()
-        const qty = $('#volume').val()
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep1Wf').val()
+    // $(document).on('input', '#volumeStep1', () => {
+    //     let val = $('#volumeStep1').val()
+    //     const progress = $('.progressVolumeStep1').text()
+    //     const qty = $('#volume').val()
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     const wf = $('#activityStep1Wf').val()
 
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
-        }
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
+    //     }
 
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep1').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep1').val('')
-        }
-    })
-    $(document).on('input', '#volumeStep2', () => {
-        let val = $('#volumeStep2').val()
-        const progress = $('.progressVolumeStep2').text()
-        const qty = $('#volume').val();
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep2Wf').val()
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
-        }
-        console.log(val)
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep2').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep2').val('')
-        }
-    })
-    $(document).on('input', '#volumeStep3', () => {
-        let val = $('#volumeStep3').val()
-        const progress = $('.progressVolumeStep3').text()
-        const qty = $('#volume').val();
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep3Wf').val()
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
-        }
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep1').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep1').val('')
+    //     }
+    // })
+    // $(document).on('input', '#volumeStep2', () => {
+    //     let val = $('#volumeStep2').val()
+    //     const progress = $('.progressVolumeStep2').text()
+    //     const qty = $('#volume').val();
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     const wf = $('#activityStep2Wf').val()
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
+    //     }
+    //     console.log(val)
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep2').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep2').val('')
+    //     }
+    // })
+    // $(document).on('input', '#volumeStep3', () => {
+    //     let val = $('#volumeStep3').val()
+    //     const progress = $('.progressVolumeStep3').text()
+    //     const qty = $('#volume').val();
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     const wf = $('#activityStep3Wf').val()
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
+    //     }
 
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep3').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep3').val('')
-        }
-    })
-    $(document).on('input', '#volumeStep4', () => {
-        let val = $('#volumeStep4').val()
-        const progress = $('.progressVolumeStep4').val()
-        const qty = $('#volume').val();
-        const wf = $('#activityStep4Wf').val()
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
-        }
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep3').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep3').val('')
+    //     }
+    // })
+    // $(document).on('input', '#volumeStep4', () => {
+    //     let val = $('#volumeStep4').val()
+    //     const progress = $('.progressVolumeStep4').val()
+    //     const qty = $('#volume').val();
+    //     const wf = $('#activityStep4Wf').val()
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
+    //     }
 
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep4').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep4').val('')
-        }
-    })
-    $(document).on('input', '#volumeStep5', () => {
-        let val = $('#volumeStep5').val()
-        const progress = $('.progressVolumeStep5').text()
-        const qty = $('#volume').val();
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep5Wf').val()
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep4').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep4').val('')
+    //     }
+    // })
+    // $(document).on('input', '#volumeStep5', () => {
+    //     let val = $('#volumeStep5').val()
+    //     const progress = $('.progressVolumeStep5').text()
+    //     const qty = $('#volume').val();
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     const wf = $('#activityStep5Wf').val()
 
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
-        }
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
+    //     }
 
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep5').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep5').val('')
-        }
-    })
-    $(document).on('input', '#volumeStep6', () => {
-        let val = $('#volumeStep6').val()
-        const progress = $('.progressVolumeStep6').text()
-        const qty = $('#volume').val();
-        const total = qty ? qty.split(' ')[0].trim() : 0
-        const wf = $('#activityStep6Wf').val()
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep5').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep5').val('')
+    //     }
+    // })
+    // $(document).on('input', '#volumeStep6', () => {
+    //     let val = $('#volumeStep6').val()
+    //     const progress = $('.progressVolumeStep6').text()
+    //     const qty = $('#volume').val();
+    //     const total = qty ? qty.split(' ')[0].trim() : 0
+    //     const wf = $('#activityStep6Wf').val()
 
-        if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
-        }
+    //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //         $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
+    //     }
 
-        if (parseFloat(val) > 0) {
-            if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                val = parseFloat(total) - parseFloat(progress)
-            }
-            const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            $('#progressStep6').val(livePercent.toFixed(2) + '%')
-        } else {
-            $('#progressStep6').val('')
-        }
-    })
+    //     if (parseFloat(val) > 0) {
+    //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+    //             val = parseFloat(total) - parseFloat(progress)
+    //         }
+    //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+    //         $('#progressStep6').val(livePercent.toFixed(2) + '%')
+    //     } else {
+    //         $('#progressStep6').val('')
+    //     }
+    // })
 
     // update document detail
     // ==========================================================================================================================================================================    
@@ -1106,10 +1107,10 @@
         // $('#progressStep5').val(data);
         // $('#progressStep6').val(data);
 
-        $('#progressIndividual').val(data);
-        $('#accumulativePrevious').val(data);
-        $('#accumulativeTodate').val(data);
-        $('#incrimentalInput').val(data);
+        // $('#progressIndividual').val(data);
+        // $('#accumulativePrevious').val(data);
+        // $('#accumulativeTodate').val(data);
+        // $('#incrimentalInput').val(data);
 
         const accumulativePrevious = ((parseFloat(data.step_1_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_1_wf || 0)) +
             ((parseFloat(data.step_2_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_2_wf || 0)) +
@@ -1334,4 +1335,163 @@
             confirmButtonColor: "#5664d2",
         })
     }
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            accumulativeTodate: '',
+            progressIndividual: '',
+        },
+        methods: {
+            convertPercentageStringToFloat(percentageString) {
+                let numericString = percentageString.replace('%', '');
+                let numericFloat = parseFloat(numericString);
+                return numericFloat;
+            },
+            updateAccumulativeTodate: function() {
+                const qty = $('#volume').val();
+                const volume = qty ? qty.split(' ')[0].trim() : 0
+                const value = ((parseFloat($('#volumeStep1').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep1Wf').val() || '0%')) +
+                    ((parseFloat($('#volumeStep2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep2Wf').val() || '0%')) +
+                    ((parseFloat($('#volumeStep3').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep3Wf').val() || '0%')) +
+                    ((parseFloat($('#volumeStep4').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep4Wf').val() || '0%')) +
+                    ((parseFloat($('#volumeStep5').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep5Wf').val() || '0%')) +
+                    ((parseFloat($('#volumeStep6').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf').val() || '0%'));
+                this.accumulativeTodate = `${value.toFixed(2)}%`;
+                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}`;
+            },
+        },
+        mounted: function() {
+            console.log('Vue instance has been mounted!');
+            $(document).on('input', '#volumeStep1', () => {
+                let val = $('#volumeStep1').val()
+                const progress = $('.progressVolumeStep1').text()
+                const qty = $('#volume').val()
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep1Wf').val()
+
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
+                }
+
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep1').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep1').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep2', () => {
+                let val = $('#volumeStep2').val()
+                const progress = $('.progressVolumeStep2').text()
+                const qty = $('#volume').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep2Wf').val()
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
+                }
+                console.log(val)
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep3', () => {
+                let val = $('#volumeStep3').val()
+                const progress = $('.progressVolumeStep3').text()
+                const qty = $('#volume').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep3Wf').val()
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
+                }
+
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep3').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep3').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep4', () => {
+                let val = $('#volumeStep4').val()
+                const progress = $('.progressVolumeStep4').val()
+                const qty = $('#volume').val();
+                const wf = $('#activityStep4Wf').val()
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
+                }
+
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep4').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep4').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep5', () => {
+                let val = $('#volumeStep5').val()
+                const progress = $('.progressVolumeStep5').text()
+                const qty = $('#volume').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep5Wf').val()
+
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
+                }
+
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep5').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep5').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep6', () => {
+                let val = $('#volumeStep6').val()
+                const progress = $('.progressVolumeStep6').text()
+                const qty = $('#volume').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep6Wf').val()
+
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
+                }
+
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep6').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep6').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+        }
+    });
 </script>
