@@ -130,7 +130,8 @@ class Project_detail_construction extends BaseController
                 $payload = [
                     'id_construction' => $this->request->getPost('id_construction'),
                     'step' =>  $list['step'],
-                    'actual_volume' => $list['actual_volume']
+                    'actual_volume' => $list['actual_volume'],
+                    'actual_percent_per_construction' => $list['actual_percent_per_construction']
                 ];
                 $insert = $this->Model_construction_progress->save($payload);
 
