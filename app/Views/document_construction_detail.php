@@ -1360,7 +1360,7 @@
                     ((parseFloat($('#volumeStep6').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf').val() || '0%'));
                 this.accumulativeTodate = `${value.toFixed(2)}%`;
                 this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}%`;
-                this.incrimentalInput = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') - value).toFixed(2)}%`;
+                this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%')}`;
             },
         },
         mounted: function() {
