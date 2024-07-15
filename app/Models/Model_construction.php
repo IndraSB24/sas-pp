@@ -380,7 +380,6 @@ class Model_construction extends Model
                 construction c
                 ON 
                     cp.id_construction = c.id
-                    AND c.id_project = '$idProject'
             WHERE
                 dw.id_project = '$idProject'
             GROUP BY
