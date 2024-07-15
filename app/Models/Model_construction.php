@@ -367,7 +367,7 @@ class Model_construction extends Model
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
-                COALESCE(SUM(cp.actual_percent_per_construction), 0) AS cum_actual_wf
+                COALESCE(SUM((cp.actual_percent_per_construction / 100) * c.wf), 0) AS cum_actual_wf
             FROM 
                 data_week dw
             LEFT JOIN
@@ -376,6 +376,11 @@ class Model_construction extends Model
                     cp.created_at >= dw.start_date
                     AND cp.created_at < DATE_ADD(dw.end_date, INTERVAL 1 DAY)
                     AND cp.id_project = '$idProject'
+            LEFT JOIN
+                construction c
+                ON 
+                    cp.id_construction = c.id
+                    AND c.id_project = '$idProject'
             WHERE
                 dw.id_project = '$idProject'
             GROUP BY
@@ -387,4 +392,5 @@ class Model_construction extends Model
         $query = $this->db->query($sql);
         return $query->getResult();
     }
+
 }
