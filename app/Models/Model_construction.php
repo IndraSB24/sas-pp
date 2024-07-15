@@ -230,9 +230,9 @@ class Model_construction extends Model
                 ON 
                     cp.created_at >= dw.start_date
                     AND cp.created_at < DATE_ADD(dw.end_date, INTERVAL 1 DAY)
-                    AND cp.id_project = '$idProject'
+                    AND cp.id_project = '$id_project'
             WHERE
-                dw.id_project = '$idProject'
+                dw.id_project = '$id_project'
             GROUP BY
                 cp.id_construction
             ORDER BY 
