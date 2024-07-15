@@ -35,7 +35,7 @@ class Project_detail_construction extends BaseController
 	public function index($project_id=null){
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->Model_construction->getScurveDataPlan(1);
-        $getScurveDataActual = $this->Model_doc_procurement->getScurveDataActual(1);
+        $getScurveDataActual = $this->Model_construction->getScurveDataActual(1);
 
         // count plan cum
         $getScurveDataPlanCum = [];

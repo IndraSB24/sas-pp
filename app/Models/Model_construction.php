@@ -340,62 +340,15 @@ class Model_construction extends Model
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
-                COALESCE(IFA.counted_actual, 0) AS counted_actual_ifa,
-                COALESCE(IFC.counted_actual, 0) AS counted_actual_ifc,
-                COALESCE(Asbuild.counted_actual, 0) AS counted_actual_asbuild,
-                (COALESCE(IFA.counted_actual, 0) + COALESCE(IFC.counted_actual, 0) + COALESCE(Asbuild.counted_actual, 0)) AS cum_actual_wf
+                COALESCE(cp.actual_percent_per_construction, 0) AS cum_actual_wf
             FROM 
                 data_week dw
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.25
-                    END AS counted_actual
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_engineering pde ON (pde.actual_ifa BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY 
-                    dw.week_number
-            ) AS IFA ON dw.week_number = IFA.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.40
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.65
-                    END AS counted_actual
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_engineering pde ON (pde.actual_ifc BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY 
-                    dw.week_number
-            ) AS IFC ON dw.week_number = IFC.week_number
-            LEFT JOIN (
-                SELECT 
-                    dw.week_number AS week_number,
-                    CASE 
-                        WHEN pde.id_doc_dicipline IS NULL THEN SUM(COALESCE(pde.weight_factor, 0)) * 0.30
-                        ELSE SUM(COALESCE(pde.weight_factor, 0)) * 0.10
-                    END AS counted_actual
-                FROM 
-                    data_week dw
-                LEFT JOIN 
-                    project_detail_engineering pde ON (pde.external_asbuild_actual BETWEEN dw.start_date AND dw.end_date)
-                WHERE
-                    dw.id_project = '$idProject'
-                GROUP BY 
-                    dw.week_number
-            ) AS Asbuild ON dw.week_number = Asbuild.week_number
+            LEFT JOIN
+                construction_progress cp ON (cp.created_at BETWEEN dw.start_date AND dw.end_date)
             WHERE
                 dw.id_project = '$idProject'
+            GROUP BY
+                dw.week_number
             ORDER BY 
                 dw.week_number
         ";
