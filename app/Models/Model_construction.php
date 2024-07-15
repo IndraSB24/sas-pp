@@ -203,53 +203,29 @@ class Model_construction extends Model
             ->having('COUNT(*) <= 6')
             ->getCompiledSelect();
 
-        // Subquery to get cumulative actual progress per week
-        $actualProgressSubquery = "
-            SELECT 
-                dw.week_number AS week_number,
-                cp.id_construction,
-                COALESCE(SUM(cp.actual_percent_per_construction), 0) AS cum_actual_wf
-            FROM 
-                data_week dw
-            LEFT JOIN
-                construction_progress cp 
-                ON 
-                    cp.created_at >= dw.start_date
-                    AND cp.created_at < DATE_ADD(dw.end_date, INTERVAL 1 DAY)
-                    AND cp.id_project = '$id_project'
-            WHERE
-                dw.id_project = '$id_project'
-            GROUP BY
-                dw.week_number, cp.id_construction
-            ORDER BY 
-                dw.week_number
-        ";
-
-        // Build cumulative fields for the actual progress
-        $cumulativeActualFieldsTillCurrentWeek = [];
-        $cumulativeActualFieldsTillLastWeek = [];
+        // build query to count plan to current week
+        $cumulativeColumnsTillCurrentWeek = [];
         for ($i = 1; $i <= $currentWeek; $i++) {
-            $cumulativeActualFieldsTillCurrentWeek[] = 'IFNULL(actualProgress.cum_actual_wf' . $i . ', 0)';
-            if ($i < $currentWeek) {
-                $cumulativeActualFieldsTillLastWeek[] = 'IFNULL(actualProgress.cum_actual_wf' . $i . ', 0)';
-            }
+            $cumulativeColumnsTillCurrentWeek[] = 'IFNULL(cpiw.w' . $i . ', 0)';
         }
-        $cumulativeActualFieldTillCurrentWeek = implode(' + ', $cumulativeActualFieldsTillCurrentWeek);
-        $cumulativeActualFieldTillLastWeek = implode(' + ', $cumulativeActualFieldsTillLastWeek);
+        $cumulativeFieldTillCurrentWeek = implode(' + ', $cumulativeColumnsTillCurrentWeek);
 
-        // Main query to select the necessary fields and join with the subqueries
+        $cumulativeColumnsTillLastWeek = [];
+        for ($i = 1; $i < $currentWeek; $i++) {
+            $cumulativeColumnsTillLastWeek[] = 'IFNULL(cpiw.w' . $i . ', 0)';
+        }
+        $cumulativeFieldTillLastWeek = implode(' + ', $cumulativeColumnsTillLastWeek);
+
+        // Main query to select the necessary fields and join with the subquery
         $this->select("
             construction.*,
             subquery.cmb_array as cmb_array,
             IFNULL(cpiw.w{$currentWeek}, 0) as plan_current_week,
             ($cumulativeFieldTillCurrentWeek) as plan_cum_till_current_week,
             ($cumulativeFieldTillLastWeek) as plan_cum_till_last_week,
-            ($cumulativeActualFieldTillCurrentWeek) as actual_cum_till_current_week,
-            ($cumulativeActualFieldTillLastWeek) as actual_cum_till_last_week,
             {$currentWeek} as current_week
         ")
         ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
-        ->join("($actualProgressSubquery) as actualProgress", 'actualProgress.id_construction = construction.id', 'LEFT')
         ->join('construction_plan_in_week cpiw', 'cpiw.id_construction=construction.id AND cpiw.id_project='. $id_project, 'LEFT')
         ->where('construction.deleted_at', NULL);
 
