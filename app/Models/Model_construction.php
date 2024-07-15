@@ -247,8 +247,8 @@ class Model_construction extends Model
                 ($cumulativeFieldTillCurrentWeek) as plan_cum_till_current_week,
                 ($cumulativeFieldTillLastWeek) as plan_cum_till_last_week,
                 {$currentWeek} as current_week,
-                IFNULL(actualProgress.cum_actual_wf_till_current_week, 0) as actual_cum_till_current_week,
-                IFNULL(actualProgress.cum_actual_wf_till_last_week, 0) as actual_cum_till_last_week,
+                (IFNULL(actualProgress.cum_actual_wf_till_current_week, 0) / 100) * construction.wf as actual_cum_till_current_week,
+                (IFNULL(actualProgress.cum_actual_wf_till_last_week, 0) / 100) * construction.wf as actual_cum_till_last_week
             ")
             ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
             ->join("($actualProgressSubquery) as actualProgress", 'actualProgress.id_construction = construction.id', 'LEFT')
