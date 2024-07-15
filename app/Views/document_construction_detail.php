@@ -144,8 +144,8 @@
                                                     <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_current_week ?>% </td>
                                                     <td class="text-center" style="background-color:#DBFEB8"> <?= $item->plan_cum_till_current_week ?>% </td>
                                                     <td class="text-center" style="background-color:#C7F9CC"> <?= angka(2, $item->actual_cum_till_last_week) ?>% </td>
-                                                    <td class="text-center" style="background-color:#C7F9CC"> - </td>
-                                                    <td class="text-center" style="background-color:#C7F9CC"> - </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> <?= angka(2, ($item->actual_cum_till_current_week - $item->actual_cum_till_last_week)) ?>% </td>
+                                                    <td class="text-center" style="background-color:#C7F9CC"> <?= angka(2, $item->actual_cum_till_current_week) ?>% </td>
                                                     <td class="text-center" style="background-color:#D9FFF5"> <?= 0 - (float)$item->plan_cum_till_last_week ?>% </td>
                                                     <td class="text-center" style="background-color:#DBFEB8"> <?= 0 - (float)$item->plan_current_week ?>% </td>
                                                     <td class="text-center" style="background-color:#DBFEB8"> <?= 0 - (float)$item->plan_cum_till_current_week ?>% </td>
