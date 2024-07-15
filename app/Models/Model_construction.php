@@ -344,7 +344,11 @@ class Model_construction extends Model
             FROM 
                 data_week dw
             LEFT JOIN
-                construction_progress cp ON (cp.created_at BETWEEN dw.start_date AND dw.end_date AND cp.id_project=$idProject)
+                construction_progress cp 
+                ON 
+                    cp.created_at >= dw.start_date
+                    AND cp.created_at < DATE_ADD(dw.end_date, INTERVAL 1 DAY)
+                    AND cp.id_project = '$idProject'
             WHERE
                 dw.id_project = '$idProject'
             GROUP BY
