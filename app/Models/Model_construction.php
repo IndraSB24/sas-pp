@@ -118,18 +118,20 @@ class Model_construction extends Model
             ')
             ->groupBy('cmb.id_construction')
             ->having('COUNT(*) <= 6')
-            ->getCompiledSelect();
+            ->getCompiledSelect()
+        ;
     
         // Main query to select the necessary fields and join with the subquery
         $this->select('
-            construction.id as id_construction,
-            construction.document_number as document_number,
-            construction.level_5 as description,
-            construction.wf as wf,
-            subquery.cmb_array as cmb_array
-        ')
-        ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
-        ->where('construction.deleted_at', NULL);
+                construction.id as id_construction,
+                construction.document_number as document_number,
+                construction.level_5 as description,
+                construction.wf as wf,
+                subquery.cmb_array as cmb_array
+            ')
+            ->join("($measurementSubquery) as subquery", 'subquery.id_construction = construction.id', 'LEFT')
+            ->where('construction.deleted_at', NULL)
+        ;
     
         $results = $this->get()->getResult();
     
@@ -390,6 +392,24 @@ class Model_construction extends Model
 
         $query = $this->db->query($sql);
         return $query->getResult();
+    }
+
+    // get measurement basis
+    public function getLevel($levelToGet, $parentLevel=null, $parentLevelValue=null ) {
+        // check current level
+        if ($parentLevel != null) {
+            $this->where("level_$parentLevel", $parentLevelValue);
+        }
+
+        $this->select("
+                level_$level
+            ")
+            ->where('deleted_at', NULL)
+        ;
+    
+        $results = $this->get()->getResult();
+    
+        return $results;
     }
 
 }
