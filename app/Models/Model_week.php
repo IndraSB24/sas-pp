@@ -143,4 +143,21 @@ class Model_week extends Model
         return $result;
     }
 
+    // get week number
+    public function getWeekNumberByDate($date) {
+        $sql = "
+            SELECT
+                week_number
+            FROM
+                data_week
+            WHERE
+                start_date <= ? AND end_date >= ?
+        ";
+    
+        $query = $this->db->query($sql, [$date, $date]);
+        $result = $query->getRow();
+    
+        return $result ? $result->week_number : null;
+    }
+
 }

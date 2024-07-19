@@ -11,6 +11,7 @@ use App\Models\Model_procurement_doc_comment;
 use App\Models\Model_construction;
 use App\Models\Model_construction_measurement_basis;
 use App\Models\Model_construction_progress;
+use App\Models\Model_week;
 
 class Project_detail_construction extends BaseController
 {
@@ -29,10 +30,17 @@ class Project_detail_construction extends BaseController
         $this->Model_construction = new Model_construction();
         $this->Model_construction_measurement_basis = new Model_construction_measurement_basis();
         $this->Model_construction_progress = new Model_construction_progress();
+        $this->Model_week = new Model_week();
 		helper(['session_helper', 'upload_path_helper', 'wa_helper']);
     }
     
 	public function index($project_id=null){
+        // currentDate
+        $currentDate = date('Y-m-d');
+    
+        // Get the current week number and last week number
+        $currentWeek = $this->getWeekNumberByDate($currentDate);
+
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->Model_construction->getScurveDataPlan(1);
         $getScurveDataActual = $this->Model_construction->getScurveDataActual(1);
@@ -53,13 +61,18 @@ class Project_detail_construction extends BaseController
             $getScurveDataActualCum[$key] = $actual_cum_counted;
         }
 
+        $percent_plan_counted = 0;
+        foreach ($getScurveDataPlan as $key => $value) {
+            $key < $currentWeek ? $percent_plan_counted += $value->cum_plan_wf : "";   
+        }
+
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Construction Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Construction']),
 			'list_doc_procurement' => $this->Model_doc_engineering->findAll(),
             'progressChartData' => [
-                'percent_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
-                'percent_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
+                'percent_plan' => $percent_plan_counted,
+                'percent_actual' => $percent_plan_counted
             ],
             'scurveData' => [
                 'dataPlan' => $getScurveDataPlan,
