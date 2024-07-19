@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-12 mb-3">
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document">
-                            Add Document
+                            Add Progress
                         </button>
                         <a href="<?= base_url('construction-dashboard') ?>" class="btn btn-warning waves-effect waves-light">
                             Construction Dashboard
@@ -117,7 +117,7 @@
                                             <?php foreach ($list_doc as $index => $item) :
                                                 $update = "
                                                     <a href='#' id='btn-edit-doc' data-detail='" . json_encode($item) . "'>
-                                                        <i class='ri-pencil-fill text-info font-size-20'></i>
+                                                        <i class='fas fa-bars text-info font-size-20'></i>
                                                     </a>
                                                 "
 
