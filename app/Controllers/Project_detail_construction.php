@@ -66,13 +66,18 @@ class Project_detail_construction extends BaseController
             $key < $currentWeek ? $percent_plan_counted += $value->cum_plan_wf : "";   
         }
 
+        $percent_actual_counted = 0;
+        foreach ($getScurveDataActual as $key => $value) {
+            $key < $currentWeek ? $percent_actual_counted += $value->cum_actual_wf : "";   
+        }
+
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Construction Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'Construction']),
 			'list_doc_procurement' => $this->Model_doc_engineering->findAll(),
             'progressChartData' => [
                 'percent_plan' => $percent_plan_counted,
-                'percent_actual' => $percent_plan_counted
+                'percent_actual' => $percent_actual_counted
             ],
             'scurveData' => [
                 'dataPlan' => $getScurveDataPlan,
