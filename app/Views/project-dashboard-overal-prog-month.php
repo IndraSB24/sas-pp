@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 mb-4">
                                 <div class="card" style="height:100%;background-color:#B0E0E6;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #3f8bd9;">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #3f8bd9; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
@@ -156,6 +156,17 @@
                                         </div>
                                         <!--chart-->
                                         <div id="scurve_proc" class="apex-charts"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card" style="height:100%;background-color:#facdde;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #f25c93;">
+                                    <div class="card-body">
+                                        <div class="text-center" style="background-color: #f25c93; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
+                                        </div>
+                                        <!--chart-->
+                                        <div id="scurve_construction" class="apex-charts"></div>
                                     </div>
                                 </div>
                             </div>
@@ -704,6 +715,124 @@
     var chart = new ApexCharts(
         document.querySelector("#scurve-procurement"),
         options
+    );
+    chart.render();
+
+    const scurveData = <?= json_encode($scurveDataConstruction) ?>;
+    const labels = [];
+    const plans = [];
+    const actuals = [];
+    const actualCum = [];
+    const planCum = [];
+    for (let i = 0; i < scurveData.dataPlan.length; i++) {
+        labels.push(`W ${scurveData.dataPlan[i].week_number}`);
+        plans.push(scurveData.dataPlan[i].cum_plan_wf);
+        actuals.push(scurveData.dataActual[i].cum_actual_wf);
+        actualCum.push(scurveData.dataActualCum[i]);
+        planCum.push(scurveData.dataPlanCum[i]);
+    }
+
+    var options_scurve_construction = {
+        chart: {
+            height: 250,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [0, 0, 4, 4],
+            curve: 'straight'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+        colors: ['#fcb92c', "#4aa3ff", '#5664d2', '#1cbb8c'],
+        series: [{
+                name: 'Plan',
+                type: 'column',
+                data: plans
+            },
+            {
+                name: 'Actual',
+                type: 'column',
+                data: actuals
+            },
+            {
+                name: 'Cum Plan',
+                type: 'line',
+                data: planCum
+            },
+            {
+                name: 'Cum Actual',
+                type: 'line',
+                data: actualCum
+            }
+        ],
+        fill: {
+            opacity: [0.85, 0.85, 1, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: labels,
+        markers: {
+            size: 4
+        },
+        xaxis: {
+            type: 'month',
+            labels: {
+                rotate: -90, // Rotate labels to vertical
+                style: {
+                    fontSize: '12px',
+                    colors: []
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Percent (%)',
+            },
+            labels: {
+                formatter: function(value) {
+                    return Math.round(value); // Round the value to the nearest integer
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function(y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(2) + " %";
+                    }
+                    return y;
+
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            padding: {
+                bottom: 10
+            }
+        },
+        legend: {
+            offsetY: 7
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#scurve_construction"),
+        options_scurve_construction
     );
     chart.render();
 </script>
