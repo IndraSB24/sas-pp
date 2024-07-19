@@ -176,7 +176,8 @@ class Project extends BaseController
             ],
 			'progressWeek' => [
 				'engineering' => $this->Model_doc_engineering->getProgressByDicipline(),
-				'procurement' => $this->Model_doc_procurement->getProgressByLevel1()
+				'procurement' => $this->Model_doc_procurement->getProgressByLevel1(),
+				'construction' => $this->Model_construction->getConstructionList()
 			]
 		];
 		return view('project-dashboard-overal-prog-month', $data);
