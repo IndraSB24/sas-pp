@@ -84,7 +84,14 @@
                                                             "cumPlanLastWeek" => 0,
                                                             "cumActualLastWeek" => 0
                                                         ];
-                                                        $construction = [];
+                                                        $constructionList = [
+                                                            "cumPlan" => 0, // plan_current_week
+                                                            "cumActual" => 0, //  actual_cum_till_current_week - actual_cum_till_last_week
+                                                            "cumPlanCurrentWeek" => 0, // plan_cum_till_current_week
+                                                            "cumActualCurrentWeek" => 0, // actual_cum_till_current_week
+                                                            "cumPlanLastWeek" => 0, // plan_cum_till_last_week
+                                                            "cumActualLastWeek" => 0 // actual_cum_till_last_week
+                                                        ];
 
                                                         foreach ($progressWeek['engineering']['data'] as $row) {
                                                             foreach ($engeeneringList as $key => &$sum) {
@@ -100,9 +107,33 @@
                                                                 }
                                                             }
                                                         }
+                                                        // foreach ($progressWeek['construction'] as $row) {
+
+                                                        // }
+                                                        foreach ($progressWeek['construction'] as $item) {
+                                                            $constructionList["cumPlan"] += $item->plan_current_week;
+                                                            $constructionList["cumPlanCurrentWeek"] += $item->plan_cum_till_current_week;
+                                                            $constructionList["cumActualCurrentWeek"] += $item->actual_cum_till_current_week;
+                                                            $constructionList["cumPlanLastWeek"] += $item->plan_cum_till_last_week;
+                                                            $constructionList["cumActualLastWeek"] += $item->actual_cum_till_last_week;
+                                                        }
                                                         ?>
                                                         <tr>
                                                             <td style="background-color: #b0cbf7;">1</td>
+                                                            <td style="background-color: #b0cbf7;">Project Management</td>
+                                                            <td style="background-color: #b0cbf7;"></td>
+                                                            <td style="background-color: #FFEBCD;">100%</td>
+                                                            <td style="background-color: #FFEBCD;">100%</td>
+                                                            <td style="background-color: #FFEBCD;">0%</td>
+                                                            <td style="background-color: #d3f5b0;">100%</td>
+                                                            <td style="background-color: #d3f5b0;">100%</td>
+                                                            <td style="background-color: #d3f5b0;">0%</td>
+                                                            <td style="background-color: #FFAFCC;">100%</td>
+                                                            <td style="background-color: #FFAFCC;">100%</td>
+                                                            <td style="background-color: #FFAFCC;">0%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #b0cbf7;">2</td>
                                                             <td style="background-color: #b0cbf7;">Engineering</td>
                                                             <td style="background-color: #b0cbf7;"></td>
                                                             <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
@@ -116,7 +147,7 @@
                                                             <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualLastWeek'], 2) - number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="background-color: #b0cbf7;">2</td>
+                                                            <td style="background-color: #b0cbf7;">3</td>
                                                             <td style="background-color: #b0cbf7;">Procurement</td>
                                                             <td style="background-color: #b0cbf7;"></td>
                                                             <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumPlan'], 2)  ?>%</td>
@@ -128,6 +159,20 @@
                                                             <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
                                                             <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2)  ?>%</td>
                                                             <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2) - number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #b0cbf7;">4</td>
+                                                            <td style="background-color: #b0cbf7;">Construction</td>
+                                                            <td style="background-color: #b0cbf7;"></td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActual'], 2) - number_format($constructionList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActualCurrentWeek'], 2) - number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualLastWeek'], 2) - number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -163,7 +208,7 @@
                                 <div class="card" style="height:100%;background-color:#facdde;border-radius: 20px;box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);border: 1px solid #f25c93;">
                                     <div class="card-body">
                                         <div class="text-center" style="background-color: #f25c93; display: inline-flex; align-items: center; flex-direction:column; padding: 5px 15px; border-radius: 20px;font-size:4rem">
-                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Procurement S Curve</h4>
+                                            <h4 class="card-title mb-0" style="color:#ffffff"><i class="fas fa-chart-bar"></i> Construction S Curve</h4>
                                         </div>
                                         <!--chart-->
                                         <div id="scurve_construction" class="apex-charts"></div>
