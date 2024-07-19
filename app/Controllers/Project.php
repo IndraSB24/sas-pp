@@ -8,6 +8,7 @@ use App\Models\Model_engineering_doc_file;
 use App\Models\Model_data_helper;
 use App\Models\Model_week;
 use App\Models\Model_doc_procurement;
+use App\Models\Model_construction;
 
 class Project extends BaseController
 {
@@ -22,6 +23,7 @@ class Project extends BaseController
 		$this->Model_data_helper = new Model_data_helper();
         $this->Model_week = new Model_week();
 		$this->Model_doc_procurement = new Model_doc_procurement();
+		$this->Model_construction = new Model_construction();
 		helper(['session_helper', 'upload_path_helper', 'NumberFormat_helper']);
     }
     
@@ -128,6 +130,27 @@ class Project extends BaseController
         }
 		// end of scurve data procurement ===================================================================
 
+		// start of scurve data construction =====================================================
+        $getScurveDataPlanConstruction = $this->Model_construction->getScurveDataPlan(1);
+        $getScurveDataActualConstruction = $this->Model_construction->getScurveDataActual(1);
+
+        // count plan cum
+        $getScurveDataPlanCumConstruction = [];
+        $plan_cum_countedConstruction = 0;
+        foreach ($getScurveDataPlanConstruction as $key => $value) {
+            $plan_cum_countedConstruction += $value->cum_plan_wf;
+            $getScurveDataPlanCumConstruction[$key] = $plan_cum_countedConstruction;
+        }
+
+        // count act cum
+        $getScurveDataActualCumConstruction = [];
+        $actual_cum_countedConstruction = 0;
+        foreach ($getScurveDataActualConstruction as $key => $value) {
+            $actual_cum_countedConstruction += $value->cum_actual_wf;
+            $getScurveDataActualCumConstruction[$key] = $actual_cum_countedConstruction;
+        }
+		// end of scurve data construction =======================================================
+
 		$data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Progress by Week']),
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Progress by Week']),
@@ -144,6 +167,12 @@ class Project extends BaseController
                 'dataActual' => $getScurveDataActualProcurement,
                 'dataPlanCum' => $getScurveDataPlanCumProcurement,
                 'dataActualCum' => $getScurveDataActualCumProcurement
+            ],
+			'scurveDataConstruction' => [
+                'dataPlan' => $getScurveDataPlanConstruction,
+                'dataActual' => $getScurveDataActualConstruction,
+                'dataPlanCum' => $getScurveDataPlanCumConstruction,
+                'dataActualCum' => $getScurveDataActualCumConstruction
             ],
 			'progressWeek' => [
 				'engineering' => $this->Model_doc_engineering->getProgressByDicipline(),
