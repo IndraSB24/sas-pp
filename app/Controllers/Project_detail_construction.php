@@ -39,7 +39,7 @@ class Project_detail_construction extends BaseController
         $currentDate = date('Y-m-d');
     
         // Get the current week number and last week number
-        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $currentWeek = $this->Model_week->getWeekNumberByDate($currentDate);
 
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->Model_construction->getScurveDataPlan(1);
