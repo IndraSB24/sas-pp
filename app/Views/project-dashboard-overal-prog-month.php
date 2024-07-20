@@ -136,43 +136,45 @@
                                                             <td style="background-color: #b0cbf7;">2</td>
                                                             <td style="background-color: #b0cbf7;">Engineering</td>
                                                             <td style="background-color: #b0cbf7;"></td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActual'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActual'], 2) - number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2) - number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualLastWeek'], 2) - number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($engeeneringList['cumActualLastWeek'], 2) - number_format($engeeneringList['cumPlanLastWeek'], 2)  ?>%</td>
+
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($engeeneringList['cumActual'], 2) - number_format($engeeneringList['cumPlan'], 2)  ?>%</td>
+                                                            
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($engeeneringList['cumActualCurrentWeek'], 2) - number_format($engeeneringList['cumPlanCurrentWeek'], 2)  ?>%</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="background-color: #b0cbf7;">3</td>
                                                             <td style="background-color: #b0cbf7;">Procurement</td>
                                                             <td style="background-color: #b0cbf7;"></td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActual'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActual'], 2) - number_format($procurementList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActualCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActualCurrentWeek'], 2) - number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualLastWeek'], 2) - number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($procurementList['cumActualLastWeek'], 2) - number_format($procurementList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($procurementList['cumActual'], 2) - number_format($procurementList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($procurementList['cumActualCurrentWeek'], 2) - number_format($procurementList['cumPlanCurrentWeek'], 2)  ?>%</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="background-color: #b0cbf7;">4</td>
                                                             <td style="background-color: #b0cbf7;">Construction</td>
                                                             <td style="background-color: #b0cbf7;"></td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActual'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActual'], 2) - number_format($constructionList['cumPlan'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActualCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActualCurrentWeek'], 2) - number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualLastWeek'], 2)  ?>%</td>
-                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualLastWeek'], 2) - number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActualLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFEBCD;"><?= number_format($constructionList['cumActualLastWeek'], 2) - number_format($constructionList['cumPlanLastWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActual'], 2)  ?>%</td>
+                                                            <td style="background-color: #d3f5b0;"><?= number_format($constructionList['cumActual'], 2) - number_format($constructionList['cumPlan'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualCurrentWeek'], 2)  ?>%</td>
+                                                            <td style="background-color: #FFAFCC;"><?= number_format($constructionList['cumActualCurrentWeek'], 2) - number_format($constructionList['cumPlanCurrentWeek'], 2)  ?>%</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
