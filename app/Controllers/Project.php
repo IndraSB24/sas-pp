@@ -180,6 +180,7 @@ class Project extends BaseController
 				'construction' => $this->Model_construction->getConstructionList()
 			]
 		];
+		// echo '<pre>'; print_r( $data['progressWeek']['construction'] );die; echo '</pre>';
 		return view('project-dashboard-overal-prog-month', $data);
 	}
 
