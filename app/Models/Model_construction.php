@@ -410,6 +410,7 @@ class Model_construction extends Model
     
         // Exclude deleted records
         $this->where('deleted_at', NULL);
+        $this->groupBy("level_$levelToGet");
     
         // Check if there's data at the next level
         // $nextLevel = $levelToGet + 1;
