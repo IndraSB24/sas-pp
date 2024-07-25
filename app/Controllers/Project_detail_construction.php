@@ -758,25 +758,13 @@ class Project_detail_construction extends BaseController
             'message' => 'Success',
         ];
 
-        try {
-            // Fetch items for the specified level
-            $levelItems = $this->model->getLevel($levelToGet, $parentLevelsArray);
+        $levelItems = $this->Model_construction->getLevel($levelToGet, $parentLevelsArray);
 
-            // Populate response data
-            $response['data'] = $levelItems;
-
-        } catch (InvalidArgumentException $e) {
-            // Handle invalid level errors
-            $response['status'] = 400;
-            $response['message'] = 'An error occurred: ' . $e->getMessage();
-        } catch (\Exception $e) {
-            // Handle any other exceptions
-            $response['status'] = 500;
-            $response['message'] = 'An unexpected error occurred.';
-        }
+        // Populate response data
+        $response['data'] = $levelItems;
 
         // Return JSON response
-        return $this->respond($response, $response['status']);
+        return json_encode($response);
     }
 
 }
