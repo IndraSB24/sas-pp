@@ -746,17 +746,23 @@ class Project_detail_construction extends BaseController
     {
         // Retrieve parent level values from request query parameters
         $levelToGet = $this->request->getPost('levelToGet');
-        $parentLevels = $this->request->getPost('parentLevels');
+        $level1 = $this->request->getPost('level1');
+        $level2 = $this->request->getPost('level2');
+        $level3 = $this->request->getPost('level3');
+        $level4 = $this->request->getPost('level4');
 
-        // Convert the input to an associative array
-        parse_str($parentLevels, $parentLevelsArray);
-
-        // Initialize response data
-        $response = [
-            'status' => 200,
-            'data' => [],
-            'message' => 'Success',
-        ];
+        if (!is_null($level1)) {
+            $parentLevelsArray[1] = $level1;
+        }
+        if (!is_null($level2)) {
+            $parentLevelsArray[2] = $level2;
+        }
+        if (!is_null($level3)) {
+            $parentLevelsArray[3] = $level3;
+        }
+        if (!is_null($level4)) {
+            $parentLevelsArray[4] = $level4;
+        }
 
         $levelItems = $this->Model_construction->getLevel($levelToGet, $parentLevelsArray);
 
