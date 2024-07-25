@@ -396,10 +396,6 @@ class Model_construction extends Model
 
     // get measurement basis
     public function getLevel($levelToGet, $parentLevels = []) {
-        // Validate the level to get
-        if ($levelToGet < 1 || $levelToGet > 5) {
-            throw new InvalidArgumentException("Invalid level: $levelToGet. Level must be between 1 and 6.");
-        }
     
         // Build the select query
         $this->select("
@@ -409,9 +405,6 @@ class Model_construction extends Model
     
         // Add conditions for all specified parent levels
         foreach ($parentLevels as $level => $value) {
-            if ($level < 1 || $level > 5) {
-                throw new InvalidArgumentException("Invalid parent level: $level. Level must be between 1 and 6.");
-            }
             $this->where("level_$level", $value);
         }
     
