@@ -742,4 +742,41 @@ class Project_detail_construction extends BaseController
 		return view('timeline-document-procurement', $data);
 	}
 
+    public function fetchLevel()
+    {
+        // Retrieve parent level values from request query parameters
+        $levelToGet = $this->request->getPost('levelToGet');
+        $parentLevels = $this->request->getPost('parentLevels');
+
+        // Convert the input to an associative array
+        parse_str($parentLevels, $parentLevelsArray);
+
+        // Initialize response data
+        $response = [
+            'status' => 200,
+            'data' => [],
+            'message' => 'Success',
+        ];
+
+        try {
+            // Fetch items for the specified level
+            $levelItems = $this->model->getLevel($levelToGet, $parentLevelsArray);
+
+            // Populate response data
+            $response['data'] = $levelItems;
+
+        } catch (InvalidArgumentException $e) {
+            // Handle invalid level errors
+            $response['status'] = 400;
+            $response['message'] = 'An error occurred: ' . $e->getMessage();
+        } catch (\Exception $e) {
+            // Handle any other exceptions
+            $response['status'] = 500;
+            $response['message'] = 'An unexpected error occurred.';
+        }
+
+        // Return JSON response
+        return $this->respond($response, $response['status']);
+    }
+
 }

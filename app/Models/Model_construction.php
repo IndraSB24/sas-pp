@@ -395,21 +395,49 @@ class Model_construction extends Model
     }
 
     // get measurement basis
-    public function getLevel($levelToGet, $parentLevel=null, $parentLevelValue=null ) {
-        // check current level
-        if ($parentLevel != null) {
-            $this->where("level_$parentLevel", $parentLevelValue);
+    public function getLevel($levelToGet, $parentLevels = []) {
+        // Validate the level to get
+        if ($levelToGet < 1 || $levelToGet > 5) {
+            throw new InvalidArgumentException("Invalid level: $levelToGet. Level must be between 1 and 6.");
         }
-
-        $this->select("
-                level_$level
-            ")
-            ->where('deleted_at', NULL)
-        ;
     
+        // Build the select query
+        $this->select("
+            level_$levelToGet,
+            id
+        ");
+    
+        // Add conditions for all specified parent levels
+        foreach ($parentLevels as $level => $value) {
+            if ($level < 1 || $level > 5) {
+                throw new InvalidArgumentException("Invalid parent level: $level. Level must be between 1 and 6.");
+            }
+            $this->where("level_$level", $value);
+        }
+    
+        // Exclude deleted records
+        $this->where('deleted_at', NULL);
+    
+        // Check if there's data at the next level
+        $nextLevel = $levelToGet + 1;
+        $nextLevelExists = $this->select("COUNT(*) as count")
+                                ->where('deleted_at', NULL)
+                                ->where("level_$nextLevel IS NOT NULL")
+                                ->get()
+                                ->getRow()
+                                ->count > 0;
+    
+        // If there's no data for the next level, return all data for the current level with max_level
+        if (!$nextLevelExists) {
+            $this->select("*, $levelToGet as max_level");
+        }
+    
+        // Get the results
         $results = $this->get()->getResult();
     
         return $results;
     }
+    
+    
 
 }
