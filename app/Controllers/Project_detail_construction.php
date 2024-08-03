@@ -158,19 +158,12 @@ class Project_detail_construction extends BaseController
             $progressData[] = $eachData;
         };
 
-        // $progressData = [
-        //     'step' => $this->request->getPost('step'),
-        //     'actual_volume' => $this->request->getPost('actual_volume'),
-        //     'actual_percent_per_construction' => $this->request->getPost('actual_percent_per_construction'),
-        //     'evidence_filename' => $this->request->getFile('evidence_filename')
-        // ];
-
         if (!empty($progressData) && is_array($progressData)) {
             foreach ($progressData as $list) {
                 $uploaded_file = $list['evidence_filename'];
                 $evidence_filename = "";
 
-                if($uploaded_file->size != 0){
+                if($uploaded_file->getSizeI() != 0){
                     $store_file = $uploaded_file->move('upload/construction_doc/evidence');
                     $evidence_filename = $uploaded_file->getName();
                 }
