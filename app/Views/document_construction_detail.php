@@ -324,27 +324,75 @@
                             <label>DATA ACTUAL:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep1_2" id="volumeStep1_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep1_2" id="volumeStep1_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 2 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep2">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep2_2" id="volumeStep2_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep2_2" id="volumeStep2_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 3 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep3">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep3_2" id="volumeStep3_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep3_2" id="volumeStep3_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 4 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep4">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep4_2" id="volumeStep4_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep4_2" id="volumeStep4_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 5 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep5">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep5_2" id="volumeStep5_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep5_2" id="volumeStep5_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 6 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep6">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep6_2" id="volumeStep6_2" />
+                                <!-- <input type="number" class="form-control" name="volumeStep6_2" id="volumeStep6_2" /> -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" id="evidence_filename1">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -1647,11 +1695,11 @@
             // accumulativeTodate: '',
             // progressIndividual: '',
             // incrimentalInput: '',
-            discipline2: null,
-            subDiscipline2: null,
-            activity2: null,
-            subActivity2: null,
-            detailSubActivity2: null,
+            discipline2: '',
+            subDiscipline2: '',
+            activity2: '',
+            subActivity2: '',
+            detailSubActivity2: '',
             listDiscipline2: [],
             listSubDiscipline2: [],
             listActivity2: [],
@@ -1687,10 +1735,10 @@
                 var formData = new FormData();
                 formData.append('levelToGet', levelToGet);
                 formData.append('level1', this.discipline2);
-                formData.append('level2', subDiscipline2);
-                formData.append('level3', activity2);
-                formData.append('level4', subActivity2);
-                formData.append('level5', detailSubActivity2);
+                // formData.append('level2', this.subDiscipline2);
+                // formData.append('level3', this.activity2);
+                // formData.append('level4', this.subActivity2);
+                // formData.append('level5', this.detailSubActivity2);
                 $.ajax({
                     url: "<?= base_url('Project_detail_construction/fetchLevel') ?>",
                     method: 'POST',
@@ -1700,6 +1748,9 @@
                     processData: false,
                     success: (resp) => {
                         console.log(resp, 'fuadi resp');
+                        if (levelToGet === 2) {
+                            this.listSubDiscipline2 = resp.data
+                        }
                     },
                     error: err => console.log(err),
                 });
