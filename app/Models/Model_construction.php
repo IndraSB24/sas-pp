@@ -440,7 +440,7 @@ class Model_construction extends Model
         $this->select('
             construction.level_1
         ')
-        ->dsitinct()
+        ->distinct()
         ->where('construction.deleted_at', NULL)
         ->orderBy('construction.level_1', 'ASC');
         
