@@ -14,7 +14,8 @@ class Model_construction_progress extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'id_project', 'id_construction', 'step', 'actual_volume', 'actual_percent_per_construction', 'created_by'
+        'id_project', 'id_construction', 'step', 'actual_volume', 'actual_percent_per_construction', 'created_by',
+        'evidence_filename'
     ];
 
     protected $useTimestamps = true;
