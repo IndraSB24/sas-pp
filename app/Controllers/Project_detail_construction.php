@@ -163,7 +163,7 @@ class Project_detail_construction extends BaseController
                 $uploaded_file = $list['evidence_filename'];
                 $evidence_filename = "";
 
-                if($uploaded_file->getSizeI() != 0){
+                if($uploaded_file->getSize() != 0){
                     $store_file = $uploaded_file->move('upload/construction_doc/evidence');
                     $evidence_filename = $uploaded_file->getName();
                 }
