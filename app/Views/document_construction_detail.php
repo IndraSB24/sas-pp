@@ -1273,53 +1273,43 @@
         const volumeStep6 = $('#volumeStep6').val();
 
         const progressData = [];
+        var formData = new FormData();
+        formData.append('id_construction', id_construction);
         if (volumeStep1) {
-            progressData.push({
-                step: '1',
-                actual_volume: volumeStep1,
-                actual_percent_per_construction: (parseFloat(volumeStep1) / volume) * parseFloat($('#activityStep1Wf').val()),
-                evidence_filename: $('#evidence_filename1').val(),
-            })
+            formData.append('step[]', '1');
+            formData.append('actual_volume[]', volumeStep1);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep1) / volume) * parseFloat($('#activityStep1Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename1')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         if (volumeStep2) {
-            progressData.push({
-                step: '2',
-                actual_volume: volumeStep2,
-                actual_percent_per_construction: (parseFloat(volumeStep2) / volume) * parseFloat($('#activityStep2Wf').val()),
-                evidence_filename: $('#evidence_filename2').val(),
-            })
+            formData.append('step[]', '2');
+            formData.append('actual_volume[]', volumeStep2);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep2) / volume) * parseFloat($('#activityStep2Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename2')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         if (volumeStep3) {
-            progressData.push({
-                step: '3',
-                actual_volume: volumeStep3,
-                actual_percent_per_construction: (parseFloat(volumeStep3) / volume) * parseFloat($('#activityStep3Wf').val()),
-                evidence_filename: $('#evidence_filename3').val(),
-            })
+            formData.append('step[]', '3');
+            formData.append('actual_volume[]', volumeStep3);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep3) / volume) * parseFloat($('#activityStep3Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename3')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         if (volumeStep4) {
-            progressData.push({
-                step: '4',
-                actual_volume: volumeStep4,
-                actual_percent_per_construction: (parseFloat(volumeStep4) / volume) * parseFloat($('#activityStep4Wf').val()),
-                evidence_filename: $('#evidence_filename4').val(),
-            })
+            formData.append('step[]', '4');
+            formData.append('actual_volume[]', volumeStep4);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep4) / volume) * parseFloat($('#activityStep4Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename4')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         if (volumeStep5) {
-            progressData.push({
-                step: '5',
-                actual_volume: volumeStep5,
-                actual_percent_per_construction: (parseFloat(volumeStep5) / volume) * parseFloat($('#activityStep5Wf').val()),
-                evidence_filename: $('#evidence_filename5').val(),
-            })
+            formData.append('step[]', '5');
+            formData.append('actual_volume[]', volumeStep5);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep5) / volume) * parseFloat($('#activityStep5Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename5')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         if (volumeStep6) {
-            progressData.push({
-                step: '6',
-                actual_volume: volumeStep6,
-                actual_percent_per_construction: (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()),
-                evidence_filename: $('#evidence_filename6').val(),
-            })
+            formData.append('step[]', '6');
+            formData.append('actual_volume[]', volumeStep6);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename6')[0].files[0] || new Blob([], { type: 'text/plain' }));
         }
         var timerInterval;
         Swal.fire({
@@ -1334,11 +1324,11 @@
                 $.ajax({
                     url: link,
                     method: 'POST',
-                    dataType: "JSON",
-                    data: {
-                        id_construction: id_construction,
-                        progressData: progressData,
-                    },
+                    // dataType: "JSON",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                     success: () => {
                         Swal.fire({
                             title: 'Diupdate!',
