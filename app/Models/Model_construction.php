@@ -413,18 +413,21 @@ class Model_construction extends Model
         $this->groupBy("level_$levelToGet");
     
         // Check if there's data at the next level
-        // $nextLevel = $levelToGet + 1;
-        // $nextLevelExists = $this->select("COUNT(*) as count")
-        //                         ->where('deleted_at', NULL)
-        //                         ->where("level_$nextLevel IS NOT NULL")
-        //                         ->get()
-        //                         ->getRow()
-        //                         ->count > 0;
+        $nextLevel = $levelToGet + 1;
+        $nextLevelExists = $this->select("COUNT(*) as count")
+                                ->where('deleted_at', NULL)
+                                ->where("level_$nextLevel IS NOT NULL")
+                                ->get()
+                                ->getRow()
+                                ->count > 0;
     
-        // // If there's no data for the next level, return all data for the current level with max_level
-        // if (!$nextLevelExists) {
-        //     $this->select("*, $levelToGet as max_level");
-        // }
+        // If there's no data for the next level, return all data for the current level with max_level
+        if (!$nextLevelExists) {
+            $this->select("
+                *,
+                $levelToGet as max_level
+            ");
+        }
     
         // Get the results
         $results = $this->get()->getResult();
