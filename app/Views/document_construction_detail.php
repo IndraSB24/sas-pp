@@ -1201,12 +1201,12 @@
         $('#volumeStep5').val(null);
         $('#volumeStep6').val(null);
 
-        $('.progressVolumeStep1').html(data.step_1_actual_volume ? data.step_1_actual_volume.toFixed(2) : '');
-        $('.progressVolumeStep2').html(data.step_2_actual_volume ? data.step_2_actual_volume.toFixed(2) : '');
-        $('.progressVolumeStep3').html(data.step_3_actual_volume ? data.step_3_actual_volume.toFixed(2) : '');
-        $('.progressVolumeStep4').html(data.step_4_actual_volume ? data.step_4_actual_volume.toFixed(2) : '');
-        $('.progressVolumeStep5').html(data.step_5_actual_volume ? data.step_5_actual_volume.toFixed(2) : '');
-        $('.progressVolumeStep6').html(data.step_6_actual_volume ? data.step_6_actual_volume.toFixed(2) : '');
+        $('.progressVolumeStep1').html(data.step_1_actual_volume ? parseFloat(data.step_1_actual_volume).toFixed(2) : '');
+        $('.progressVolumeStep2').html(data.step_2_actual_volume ? parseFloat(data.step_2_actual_volume).toFixed(2) : '');
+        $('.progressVolumeStep3').html(data.step_3_actual_volume ? parseFloat(data.step_3_actual_volume).toFixed(2) : '');
+        $('.progressVolumeStep4').html(data.step_4_actual_volume ? parseFloat(data.step_4_actual_volume).toFixed(2) : '');
+        $('.progressVolumeStep5').html(data.step_5_actual_volume ? parseFloat(data.step_5_actual_volume).toFixed(2) : '');
+        $('.progressVolumeStep6').html(data.step_6_actual_volume ? parseFloat(data.step_6_actual_volume).toFixed(2) : '');
 
         $('#volumeStep1').prop('disabled', !data.step_1_name);
         $('#volumeStep2').prop('disabled', !data.step_2_name);
