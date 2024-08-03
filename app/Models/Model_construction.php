@@ -434,6 +434,18 @@ class Model_construction extends Model
     
         return $results;
     }
+
+    // get with progress
+    public function getListLevel1($idProject = 1) {
+        $this->select('
+            construction.level_1
+        ')
+        ->dsitinct()
+        ->where('construction.deleted_at', NULL)
+        ->orderBy('construction.level_1', 'ASC');
+        
+        return $this->get()->getResult();
+    }
     
     
 
