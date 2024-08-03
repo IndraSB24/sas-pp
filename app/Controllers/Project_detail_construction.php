@@ -140,7 +140,12 @@ class Project_detail_construction extends BaseController
 
     // add progress
     public function addProgress() {
-        $progressData = $this->request->getPost('progressData');
+        $progressData = [
+            'step' => $this->request->getPost('step'),
+            'actual_volume' => $this->request->getPost('actual_volume'),
+            'actual_percent_per_construction' => $this->request->getPost('actual_percent_per_construction'),
+            'evidence_filename' => $this->request->getFile('evidence_filename')
+        ];
         $isDone = false;
 
         if (!empty($progressData) && is_array($progressData)) {
@@ -751,6 +756,7 @@ class Project_detail_construction extends BaseController
 		return view('timeline-document-procurement', $data);
 	}
 
+    // fetch level
     public function fetchLevel()
     {
         // Retrieve parent level values from request query parameters
