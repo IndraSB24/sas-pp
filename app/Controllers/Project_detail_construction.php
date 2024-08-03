@@ -145,11 +145,20 @@ class Project_detail_construction extends BaseController
 
         if (!empty($progressData) && is_array($progressData)) {
             foreach ($progressData as $list) {
+                $uploaded_file = $list['evidence_filename'];
+                $evidence_filename = "";
+
+                if($uploaded_file){
+                    $store_file = $uploaded_file->move('upload/construction_doc/evidence');
+                    $evidence_filename = $uploaded_file->getName();
+                }
+
                 $payload = [
                     'id_construction' => $this->request->getPost('id_construction'),
                     'step' =>  $list['step'],
                     'actual_volume' => $list['actual_volume'],
-                    'actual_percent_per_construction' => $list['actual_percent_per_construction']
+                    'actual_percent_per_construction' => $list['actual_percent_per_construction'],
+                    'evidence_filename' => $evidence_filename
                 ];
                 $insert = $this->Model_construction_progress->save($payload);
 
