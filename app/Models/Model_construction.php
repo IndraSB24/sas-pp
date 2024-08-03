@@ -402,6 +402,7 @@ class Model_construction extends Model
             level_$levelToGet,
             id
         ");
+        $this->distinct();
     
         // Add conditions for all specified parent levels
         foreach ($parentLevels as $level => $value) {
