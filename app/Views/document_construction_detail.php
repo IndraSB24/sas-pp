@@ -213,7 +213,7 @@
                                 <!-- <input type="text" class="form-control" name="subDiscipline2" id="subDiscipline2" disabled /> -->
                                 <select class="form-control select2" name="subDiscipline2" id="subDiscipline2">
                                     <option>Select</option>
-                                    <option v-for="option in listSubDiscipline2" :value="option">{{ option }}</option>
+                                    <option v-for="option in listSubDiscipline2" :value="JSON.stringify(option)">{{ option.level_2 }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
@@ -221,7 +221,7 @@
                                 <!-- <input type="text" class="form-control" name="activity2" id="activity2" disabled /> -->
                                 <select class="form-control select2" name="activity2" id="activity2">
                                     <option>Select</option>
-                                    <option v-for="option in listActivity2" :value="option">{{ option }}</option>
+                                    <option v-for="option in listActivity2" :value="JSON.stringify(option)">{{ option.level_3 }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
@@ -229,7 +229,7 @@
                                 <!-- <input type="text" class="form-control" name="subActivity2" id="subActivity2" disabled /> -->
                                 <select class="form-control select2" name="subActivity2" id="subActivity2">
                                     <option>Select</option>
-                                    <option v-for="option in listSubActivity2" :value="option">{{ option }}</option>
+                                    <option v-for="option in listSubActivity2" :value="JSON.stringify(option)">{{ option.level_4 }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
@@ -237,7 +237,7 @@
                                 <!-- <input type="text" class="form-control" name="detailSubActivity2" id="detailSubActivity2" disabled /> -->
                                 <select class="form-control select2" name="detailSubActivity2" id="detailSubActivity2">
                                     <option>Select</option>
-                                    <option v-for="option in listDetailSubActivity2" :value="option">{{ option }}</option>
+                                    <option v-for="option in listDetailSubActivity2" :value="JSON.stringify(option)">{{ option.level_5 }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
@@ -1731,14 +1731,23 @@
                 this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%')}`;
             },
             fetchLevel: function(levelToGet) {
-                console.log('fuadi masuk');
+                console.log(levelToGet, 'fuadi levelToGet');
                 var formData = new FormData();
                 formData.append('levelToGet', levelToGet);
                 formData.append('level1', this.discipline2);
-                // formData.append('level2', this.subDiscipline2);
-                // formData.append('level3', this.activity2);
-                // formData.append('level4', this.subActivity2);
-                // formData.append('level5', this.detailSubActivity2);
+                console.log(this.subDiscipline2, 'fuadi this.subDiscipline2')
+                if (this.subDiscipline2) {
+                    formData.append('level2', this.subDiscipline2.level_2);
+                }
+                if (this.activity2) {
+                    formData.append('level3', this.activity2.level_3);
+                }
+                if (this.subActivity2) {
+                    formData.append('level4', this.subActivity2.level_4);
+                }
+                if (this.detailSubActivity2) {
+                    formData.append('level5', this.detailSubActivity2.level_5);
+                }
                 $.ajax({
                     url: "<?= base_url('Project_detail_construction/fetchLevel') ?>",
                     method: 'POST',
@@ -1747,9 +1756,17 @@
                     cache: false,
                     processData: false,
                     success: (resp) => {
-                        console.log(resp, 'fuadi resp');
+                        console.log(JSON.parse(resp).data, 'fuadi resp');
                         if (levelToGet === 2) {
-                            this.listSubDiscipline2 = resp.data
+                            this.listSubDiscipline2 = JSON.parse(resp).data
+                        } else if (levelToGet === 3) {
+                            this.listActivity2 = JSON.parse(resp).data
+                        } else if (levelToGet === 4) {
+                            this.listSubActivity2 = JSON.parse(resp).data
+                        } else if (levelToGet === 5) {
+                            this.listDetailSubActivity2 = JSON.parse(resp).data
+                        } else {
+                            return null
                         }
                     },
                     error: err => console.log(err),
@@ -1768,6 +1785,26 @@
             $(document).on('change', '#discipline2', (evt) => {
                 this.discipline2 = evt.target.value
                 this.fetchLevel(2);
+            });
+            $(document).on('change', '#subDiscipline2', (evt) => {
+                const data = evt.target.value;
+                this.subDiscipline2 = JSON.parse(data)
+                this.fetchLevel(3);
+            });
+            $(document).on('change', '#activity2', (evt) => {
+                const data = evt.target.value;
+                this.activity2 = JSON.parse(data)
+                this.fetchLevel(4);
+            });
+            $(document).on('change', '#subActivity2', (evt) => {
+                const data = evt.target.value;
+                this.subActivity2 = JSON.parse(data)
+                this.fetchLevel(5);
+            });
+            $(document).on('change', '#detailSubActivity2', (evt) => {
+                const data = evt.target.value;
+                this.detailSubActivity2 = JSON.parse(data)
+                // this.fetchLevel(6);
             });
             // $(document).on('input', '#volumeStep1', () => {
             //     let val = $('#volumeStep1').val()
