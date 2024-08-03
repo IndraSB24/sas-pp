@@ -146,14 +146,14 @@ class Project_detail_construction extends BaseController
         $list_step = $this->request->getPost('step');
         $list_actual_volume = $this->request->getPost('actual_volume');
         $list_actual_percent_per_construction = $this->request->getPost('actual_percent_per_construction');
-        $list_evidence_filename = $this->request->getFileMultiple('evidence_filename');
+        $list_evidence_filename = $this->request->getFiles('evidence_filename');
 
         foreach ($list_step as $index => $value) {
             $eachData = [
                 'step' => $value,
                 'actual_volume' => $list_actual_volume[$index],
                 'actual_percent_per_construction' => $list_actual_percent_per_construction[$index],
-                'evidence_filename' => $list_evidence_filename[$index]
+                'evidence_filename' => $list_evidence_filename['evidence_filename'][$index]
             ];
             $progressData[] = $eachData;
         };
