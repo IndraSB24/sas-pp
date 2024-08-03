@@ -140,13 +140,30 @@ class Project_detail_construction extends BaseController
 
     // add progress
     public function addProgress() {
-        $progressData = [
-            'step' => $this->request->getPost('step'),
-            'actual_volume' => $this->request->getPost('actual_volume'),
-            'actual_percent_per_construction' => $this->request->getPost('actual_percent_per_construction'),
-            'evidence_filename' => $this->request->getFile('evidence_filename')
-        ];
         $isDone = false;
+        $progressData = [];
+
+        $list_step = $this->request->getPost('step');
+        $list_actual_volume = $this->request->getPost('actual_volume');
+        $list_actual_percent_per_construction = $this->request->getPost('actual_percent_per_construction');
+        $list_evidence_filename = $this->request->getPost('evidence_filename');
+
+        foreach ($list_step as $index => $value) {
+            $eachData = [
+                'step' => $value,
+                'actual_volume' => $list_actual_volume[$index],
+                'actual_percent_per_construction' => $list_actual_percent_per_construction[$index],
+                'evidence_filename' => $list_evidence_filename[$index]
+            ];
+            $progressData[] = $eachData;
+        };
+
+        // $progressData = [
+        //     'step' => $this->request->getPost('step'),
+        //     'actual_volume' => $this->request->getPost('actual_volume'),
+        //     'actual_percent_per_construction' => $this->request->getPost('actual_percent_per_construction'),
+        //     'evidence_filename' => $this->request->getFile('evidence_filename')
+        // ];
 
         if (!empty($progressData) && is_array($progressData)) {
             foreach ($progressData as $list) {
