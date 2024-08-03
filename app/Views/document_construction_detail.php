@@ -203,7 +203,7 @@
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">DISCIPLINE</small>
                                 <!-- <input type="text" class="form-control" name="discipline2" id="discipline2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="discipline2" id="discipline2" v-model="discipline2">
                                     <option>Select</option>
                                     <option v-for="option in listDiscipline2" :value="option">{{ option }}</option>
                                 </select>
@@ -211,39 +211,39 @@
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">SUB-DISCIPLINE</small>
                                 <!-- <input type="text" class="form-control" name="subDiscipline2" id="subDiscipline2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="subDiscipline2" id="subDiscipline2">
                                     <option>Select</option>
-                                    <option value="EL">select</option>
+                                    <option v-for="option in listSubDiscipline2" :value="option">{{ option }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="activity2" id="activity2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="activity2" id="activity2">
                                     <option>Select</option>
-                                    <option value="EL">select</option>
+                                    <option v-for="option in listActivity2" :value="option">{{ option }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">SUB ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="subActivity2" id="subActivity2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="subActivity2" id="subActivity2">
                                     <option>Select</option>
-                                    <option value="EL">select</option>
+                                    <option v-for="option in listSubActivity2" :value="option">{{ option }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">DETAIL SUB ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="detailSubActivity2" id="detailSubActivity2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="detailSubActivity2" id="detailSubActivity2">
                                     <option>Select</option>
-                                    <option value="EL">select</option>
+                                    <option v-for="option in listDetailSubActivity2" :value="option">{{ option }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">WEIGHT FACTOR</small>
                                 <!-- <input type="text" class="form-control" name="weightfactor2" id="weightfactor2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="weightfactor2" id="weightfactor2">
                                     <option>Select</option>
                                     <option value="EL">select</option>
                                 </select>
@@ -251,157 +251,157 @@
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME/UNIT</small>
                                 <!-- <input type="text" class="form-control" name="volume2" id="volume2" disabled /> -->
-                                <select class="form-control select2">
+                                <select class="form-control select2" name="volume2" id="volume2">
                                     <option>Select</option>
                                     <option value="EL">select</option>
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="col-md-2">
+                        <div class="col-md-2">
                             <label>ACTUAL WORK:</label>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 1</small>
-                                    <input type="text" class="form-control" name="activityStep1" id="activityStep1" disabled />
+                                    <input type="text" class="form-control" name="activityStep1_2" id="activityStep1_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep1Wf" id="activityStep1Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep1Wf_2" id="activityStep1Wf_2" disabled />
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 2</small>
-                                    <input type="text" class="form-control" name="activityStep2" id="activityStep2" disabled />
+                                    <input type="text" class="form-control" name="activityStep2_2" id="activityStep2_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep2Wf" id="activityStep2Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep2Wf_2" id="activityStep2Wf_2" disabled />
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 3</small>
-                                    <input type="text" class="form-control" name="activityStep3" id="activityStep3" disabled />
+                                    <input type="text" class="form-control" name="activityStep3_2" id="activityStep3_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep3Wf" id="activityStep3Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep3Wf_2" id="activityStep3Wf_2" disabled />
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 4</small>
-                                    <input type="text" class="form-control" name="activityStep4" id="activityStep4" disabled />
+                                    <input type="text" class="form-control" name="activityStep4_2" id="activityStep4_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep4Wf" id="activityStep4Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep4Wf_2" id="activityStep4Wf_2" disabled />
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 5</small>
-                                    <input type="text" class="form-control" name="activityStep5" id="activityStep5" disabled />
+                                    <input type="text" class="form-control" name="activityStep5_2" id="activityStep5_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep5Wf" id="activityStep5Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep5Wf_2" id="activityStep5Wf_2" disabled />
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-8">
                                     <small class="form-label">ACTIVITY STEP - 6</small>
-                                    <input type="text" class="form-control" name="activityStep6" id="activityStep6" disabled />
+                                    <input type="text" class="form-control" name="activityStep6_2" id="activityStep6_2" disabled />
                                 </div>
                                 <div class="col-md-4">
                                     <small class="form-label">WF</small>
-                                    <input type="text" class="form-control" name="activityStep6Wf" id="activityStep6Wf" disabled />
+                                    <input type="text" class="form-control" name="activityStep6Wf_2" id="activityStep6Wf_2" disabled />
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
                             <label>DATA ACTUAL:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                <input type="number" class="form-control" name="volumeStep1_2" id="volumeStep1_2" />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 2 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep2">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep2" id="volumeStep2" />
+                                <input type="number" class="form-control" name="volumeStep2_2" id="volumeStep2_2" />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 3 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep3">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep3" id="volumeStep3" />
+                                <input type="number" class="form-control" name="volumeStep3_2" id="volumeStep3_2" />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 4 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep4">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep4" id="volumeStep4" />
+                                <input type="number" class="form-control" name="volumeStep4_2" id="volumeStep4_2" />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 5 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep5">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep5" id="volumeStep5" />
+                                <input type="number" class="form-control" name="volumeStep5_2" id="volumeStep5_2" />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 6 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep6">-</span></small>
-                                <input type="number" class="form-control" name="volumeStep6" id="volumeStep6" />
+                                <input type="number" class="form-control" name="volumeStep6_2" id="volumeStep6_2" />
                             </div>
-                        </div> -->
-                        <!-- <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
                             <label>PERCENTAGE:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 1</small>
-                                <input type="text" class="form-control text-center" name="progressStep1" id="progressStep1" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep1_2" id="progressStep1_2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 2</small>
-                                <input type="text" class="form-control text-center" name="progressStep2" id="progressStep2" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep2_2" id="progressStep2_2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 3</small>
-                                <input type="text" class="form-control text-center" name="progressStep3" id="progressStep3" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep3_2" id="progressStep3_2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 4</small>
-                                <input type="text" class="form-control text-center" name="progressStep4" id="progressStep4" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep4_2" id="progressStep4_2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 5</small>
-                                <input type="text" class="form-control text-center" name="progressStep5" id="progressStep5" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep5_2" id="progressStep5_2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">PROGRESS STEP - 6</small>
-                                <input type="text" class="form-control text-center" name="progressStep6" id="progressStep6" disabled />
+                                <input type="text" class="form-control text-center" name="progressStep6_2" id="progressStep6_2" disabled />
                             </div>
-                        </div> -->
+                        </div>
                     </div>
-                    <!-- <div class="row mt-3 mb-3">
+                    <div class="row mt-3 mb-3">
                         <label>SUMMARY:</label>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Progress Individual</small>
-                                <input type="text" class="form-control" name="progressIndividual" v-model="progressIndividual" id="progressIndividual" disabled />
+                                <input type="text" class="form-control" name="progressIndividual_2" v-model="progressIndividual_2" id="progressIndividual_2" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Previous</small>
-                                <input type="text" class="form-control" name="accumulativePrevious" id="accumulativePrevious" disabled />
+                                <input type="text" class="form-control" name="accumulativePrevious_2" id="accumulativePrevious_2" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Accumulative Todate</small>
-                                <input type="text" class="form-control" name="accumulativeTodate" v-model="accumulativeTodate" id="accumulativeTodate" disabled />
+                                <input type="text" class="form-control" name="accumulativeTodate_2" v-model="accumulativeTodate_2" id="accumulativeTodate_2" disabled />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Incrimental Input</small>
-                                <input type="text" class="form-control" name="incrimentalInput" v-model="incrimentalInput" id="incrimentalInput" disabled />
+                                <input type="text" class="form-control" name="incrimentalInput_2" v-model="incrimentalInput_2" id="incrimentalInput_2" disabled />
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="modal-footers" style="display: flex;justify-content: center">
                         <input type="hidden" id="id_construction2" />
                         <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
@@ -1279,37 +1279,49 @@
             formData.append('step[]', '1');
             formData.append('actual_volume[]', volumeStep1);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep1) / volume) * parseFloat($('#activityStep1Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename1')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename1')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         if (volumeStep2) {
             formData.append('step[]', '2');
             formData.append('actual_volume[]', volumeStep2);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep2) / volume) * parseFloat($('#activityStep2Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename2')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename2')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         if (volumeStep3) {
             formData.append('step[]', '3');
             formData.append('actual_volume[]', volumeStep3);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep3) / volume) * parseFloat($('#activityStep3Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename3')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename3')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         if (volumeStep4) {
             formData.append('step[]', '4');
             formData.append('actual_volume[]', volumeStep4);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep4) / volume) * parseFloat($('#activityStep4Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename4')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename4')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         if (volumeStep5) {
             formData.append('step[]', '5');
             formData.append('actual_volume[]', volumeStep5);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep5) / volume) * parseFloat($('#activityStep5Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename5')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename5')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         if (volumeStep6) {
             formData.append('step[]', '6');
             formData.append('actual_volume[]', volumeStep6);
             formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()));
-            formData.append('evidence_filename[]', $('#evidence_filename6')[0].files[0] || new Blob([], { type: 'text/plain' }));
+            formData.append('evidence_filename[]', $('#evidence_filename6')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
         }
         var timerInterval;
         Swal.fire({
@@ -1635,6 +1647,11 @@
             // accumulativeTodate: '',
             // progressIndividual: '',
             // incrimentalInput: '',
+            discipline2: null,
+            subDiscipline2: null,
+            activity2: null,
+            subActivity2: null,
+            detailSubActivity2: null,
             listDiscipline2: [],
             listSubDiscipline2: [],
             listActivity2: [],
@@ -1649,6 +1666,9 @@
                 let numericFloat = parseFloat(numericString);
                 return numericFloat;
             },
+            handleChangeDiscipline: function() {
+                console.log('fuadi');
+            },
             updateAccumulativeTodate: function() {
                 const qty = $('#volume').val();
                 const volume = qty ? qty.split(' ')[0].trim() : 0
@@ -1662,14 +1682,15 @@
                 this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}%`;
                 this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%')}`;
             },
-            fetchLevel: function() {
+            fetchLevel: function(levelToGet) {
                 console.log('fuadi masuk');
                 var formData = new FormData();
-                formData.append('levelToGet', 3);
-                formData.append('level1', 'D5. PEKERJAAN INSTRUMENT');
-                formData.append('level2', 'D.5.7.1 Support Steel for Cable Tray and Conduit Installation.');
-                // formData.append('level3', 'D.1.4.. Sewa CCTV');
-                // formData.append('level4', 'D.1.4.. Sewa CCTV');
+                formData.append('levelToGet', levelToGet);
+                formData.append('level1', this.discipline2);
+                formData.append('level2', subDiscipline2);
+                formData.append('level3', activity2);
+                formData.append('level4', subActivity2);
+                formData.append('level5', detailSubActivity2);
                 $.ajax({
                     url: "<?= base_url('Project_detail_construction/fetchLevel') ?>",
                     method: 'POST',
@@ -1683,10 +1704,20 @@
                     error: err => console.log(err),
                 });
             },
+            populateLevel1: function() {
+                const temp = <?= json_encode($data_list_level1) ?>;
+                const data = [];
+                temp.map(item => data.push(item.level_1));
+                this.listDiscipline2 = data;
+            },
         },
         mounted: function() {
             console.log('Vue instance has been mounted2!');
-            this.fetchLevel()
+            this.populateLevel1();
+            $(document).on('change', '#discipline2', (evt) => {
+                this.discipline2 = evt.target.value
+                this.fetchLevel(2);
+            });
             // $(document).on('input', '#volumeStep1', () => {
             //     let val = $('#volumeStep1').val()
             //     const progress = $('.progressVolumeStep1').text()

@@ -99,7 +99,7 @@ class Project_detail_construction extends BaseController
 			'data_weight' => $this->Model_data_helper->get_by_type('procurement_doc_weight'),
             'data_list_level1' => $this->Model_construction->getListLevel1()
 		];
-		// echo '<pre>'; print_r( $data );die; echo '</pre>';
+		// echo '<pre>'; print_r( $data['data_list_level1'] );die; echo '</pre>';
 		return view('document_construction_detail', $data);
 	}
 
