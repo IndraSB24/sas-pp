@@ -146,6 +146,70 @@ class Project_detail_construction extends BaseController
         $list_step = $this->request->getPost('step');
         $list_actual_volume = $this->request->getPost('actual_volume');
         $list_actual_percent_per_construction = $this->request->getPost('actual_percent_per_construction');
+        $list_evidence_filename = $this->request->getFiles('evidence_filename');
+
+        foreach ($list_step as $index => $value) {
+            $eachData = [
+                'step' => $value,
+                'actual_volume' => $list_actual_volume[$index],
+                'actual_percent_per_construction' => $list_actual_percent_per_construction[$index],
+                'evidence_filename' => $list_evidence_filename[$index]
+            ];
+            $progressData[] = $eachData;
+        };
+
+        // $progressData = [
+        //     'step' => $this->request->getPost('step'),
+        //     'actual_volume' => $this->request->getPost('actual_volume'),
+        //     'actual_percent_per_construction' => $this->request->getPost('actual_percent_per_construction'),
+        //     'evidence_filename' => $this->request->getFile('evidence_filename')
+        // ];
+
+        if (!empty($progressData) && is_array($progressData)) {
+            foreach ($progressData as $list) {
+                $uploaded_file = $list['evidence_filename'];
+                $evidence_filename = "";
+
+                if($uploaded_file->size != 0){
+                    $store_file = $uploaded_file->move('upload/construction_doc/evidence');
+                    $evidence_filename = $uploaded_file->getName();
+                }
+
+                $payload = [
+                    'id_construction' => $this->request->getPost('id_construction'),
+                    'step' =>  $list['step'],
+                    'actual_volume' => $list['actual_volume'],
+                    'actual_percent_per_construction' => $list['actual_percent_per_construction'],
+                    'evidence_filename' => $evidence_filename
+                ];
+                $insert = $this->Model_construction_progress->save($payload);
+
+                $isDone = $insert ? true : false;
+            }
+        }
+
+        if ($isDone) {
+            $response = [
+                'success' => true,
+                'message' => 'done'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'failed'
+            ];
+        }
+        return json_encode($response);
+    }
+
+    // add progress
+    public function addProgressSingle() {
+        $isDone = false;
+        $progressData = [];
+
+        $list_step = $this->request->getPost('step');
+        $list_actual_volume = $this->request->getPost('actual_volume');
+        $list_actual_percent_per_construction = $this->request->getPost('actual_percent_per_construction');
         $list_evidence_filename = $this->request->getPost('evidence_filename');
 
         foreach ($list_step as $index => $value) {
