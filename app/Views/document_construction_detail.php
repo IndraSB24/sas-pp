@@ -204,7 +204,7 @@
                                 <small class="form-label">DISCIPLINE</small>
                                 <!-- <input type="text" class="form-control" name="discipline2" id="discipline2" disabled /> -->
                                 <select class="form-control select2" name="discipline2" id="discipline2" v-model="discipline2">
-                                    <option>Select</option>
+                                    <option>-- Pilih Opsi -- </option>
                                     <option v-for="option in listDiscipline2" :value="option">{{ option }}</option>
                                 </select>
                             </div>
@@ -212,7 +212,7 @@
                                 <small class="form-label">SUB-DISCIPLINE</small>
                                 <!-- <input type="text" class="form-control" name="subDiscipline2" id="subDiscipline2" disabled /> -->
                                 <select class="form-control select2" name="subDiscipline2" id="subDiscipline2">
-                                    <option>Select</option>
+                                    <option>-- Pilih Opsi -- </option>
                                     <option v-for="option in listSubDiscipline2" :value="JSON.stringify(option)">{{ option.level_2 }}</option>
                                 </select>
                             </div>
@@ -220,7 +220,7 @@
                                 <small class="form-label">ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="activity2" id="activity2" disabled /> -->
                                 <select class="form-control select2" name="activity2" id="activity2">
-                                    <option>Select</option>
+                                    <option>-- Pilih Opsi -- </option>
                                     <option v-for="option in listActivity2" :value="JSON.stringify(option)">{{ option.level_3 }}</option>
                                 </select>
                             </div>
@@ -228,7 +228,7 @@
                                 <small class="form-label">SUB ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="subActivity2" id="subActivity2" disabled /> -->
                                 <select class="form-control select2" name="subActivity2" id="subActivity2">
-                                    <option>Select</option>
+                                    <option>-- Pilih Opsi -- </option>
                                     <option v-for="option in listSubActivity2" :value="JSON.stringify(option)">{{ option.level_4 }}</option>
                                 </select>
                             </div>
@@ -236,25 +236,17 @@
                                 <small class="form-label">DETAIL SUB ACTIVITY</small>
                                 <!-- <input type="text" class="form-control" name="detailSubActivity2" id="detailSubActivity2" disabled /> -->
                                 <select class="form-control select2" name="detailSubActivity2" id="detailSubActivity2">
-                                    <option>Select</option>
+                                    <option>-- Pilih Opsi -- </option>
                                     <option v-for="option in listDetailSubActivity2" :value="JSON.stringify(option)">{{ option.level_5 }}</option>
                                 </select>
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">WEIGHT FACTOR</small>
-                                <!-- <input type="text" class="form-control" name="weightfactor2" id="weightfactor2" disabled /> -->
-                                <select class="form-control select2" name="weightfactor2" id="weightfactor2">
-                                    <option>Select</option>
-                                    <option value="EL">select</option>
-                                </select>
+                                <input type="text" class="form-control" name="weightfactor2" id="weightfactor2" disabled />
                             </div>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME/UNIT</small>
-                                <!-- <input type="text" class="form-control" name="volume2" id="volume2" disabled /> -->
-                                <select class="form-control select2" name="volume2" id="volume2">
-                                    <option>Select</option>
-                                    <option value="EL">select</option>
-                                </select>
+                                <input type="text" class="form-control" name="volume2" id="volume2" disabled />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -323,74 +315,74 @@
                         <div class="col-md-2">
                             <label>DATA ACTUAL:</label>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1">-</span></small>
+                                <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep1_2" id="volumeStep1_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep1_2" id="volumeStep1_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename1_2">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 2 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep2">-</span></small>
+                                <small class="form-label">VOLUME STEP - 2 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep2_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep2_2" id="volumeStep2_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep2_2" id="volumeStep2_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename2_2">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 3 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep3">-</span></small>
+                                <small class="form-label">VOLUME STEP - 3 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep3_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep3_2" id="volumeStep3_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep3_2" id="volumeStep3_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename3_2">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 4 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep4">-</span></small>
+                                <small class="form-label">VOLUME STEP - 4 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep4_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep4_2" id="volumeStep4_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep4_2" id="volumeStep4_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename4_2">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 5 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep5">-</span></small>
+                                <small class="form-label">VOLUME STEP - 5 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep5_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep5_2" id="volumeStep5_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep5_2" id="volumeStep5_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename5_2">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-12">
-                                <small class="form-label">VOLUME STEP - 6 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep6">-</span></small>
+                                <small class="form-label">VOLUME STEP - 6 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep6_2">-</span></small>
                                 <!-- <input type="number" class="form-control" name="volumeStep6_2" id="volumeStep6_2" /> -->
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="number" class="form-control" name="volumeStep1" id="volumeStep1" />
+                                        <input type="number" class="form-control" name="volumeStep6_2" id="volumeStep6_2" />
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control" id="evidence_filename1">
+                                        <input type="file" class="form-control" id="evidence_filename6_2">
                                     </div>
                                 </div>
                             </div>
@@ -1242,13 +1234,6 @@
         $('#volumeStep5').val(null);
         $('#volumeStep6').val(null);
 
-        $('#volumeStep1').val(null);
-        $('#volumeStep2').val(null);
-        $('#volumeStep3').val(null);
-        $('#volumeStep4').val(null);
-        $('#volumeStep5').val(null);
-        $('#volumeStep6').val(null);
-
         $('.progressVolumeStep1').html(data.step_1_actual_volume ? parseFloat(data.step_1_actual_volume).toFixed(2) : '');
         $('.progressVolumeStep2').html(data.step_2_actual_volume ? parseFloat(data.step_2_actual_volume).toFixed(2) : '');
         $('.progressVolumeStep3').html(data.step_3_actual_volume ? parseFloat(data.step_3_actual_volume).toFixed(2) : '');
@@ -1692,9 +1677,9 @@
     var app = new Vue({
         el: '#app2',
         data: {
-            // accumulativeTodate: '',
-            // progressIndividual: '',
-            // incrimentalInput: '',
+            accumulativeTodate_2: '',
+            progressIndividual_2: '',
+            incrimentalInput_2: '',
             discipline2: '',
             subDiscipline2: '',
             activity2: '',
@@ -1718,17 +1703,17 @@
                 console.log('fuadi');
             },
             updateAccumulativeTodate: function() {
-                const qty = $('#volume').val();
+                const qty = $('#volume2').val();
                 const volume = qty ? qty.split(' ')[0].trim() : 0
-                const value = ((parseFloat($('#volumeStep1').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep1Wf').val() || '0%')) +
-                    ((parseFloat($('#volumeStep2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep2Wf').val() || '0%')) +
-                    ((parseFloat($('#volumeStep3').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep3Wf').val() || '0%')) +
-                    ((parseFloat($('#volumeStep4').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep4Wf').val() || '0%')) +
-                    ((parseFloat($('#volumeStep5').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep5Wf').val() || '0%')) +
-                    ((parseFloat($('#volumeStep6').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf').val() || '0%'));
+                const value = ((parseFloat($('#volumeStep1_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep1Wf_2').val() || '0%')) +
+                    ((parseFloat($('#volumeStep2_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep2Wf_2').val() || '0%')) +
+                    ((parseFloat($('#volumeStep3_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep3Wf_2').val() || '0%')) +
+                    ((parseFloat($('#volumeStep4_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep4Wf_2').val() || '0%')) +
+                    ((parseFloat($('#volumeStep5_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep5Wf_2').val() || '0%')) +
+                    ((parseFloat($('#volumeStep6_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf_2').val() || '0%'));
                 this.accumulativeTodate = `${value.toFixed(2)}%`;
-                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%') + value).toFixed(2)}%`;
-                this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%')}`;
+                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%') + value).toFixed(2)}%`;
+                this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%')}`;
             },
             fetchLevel: function(levelToGet) {
                 var formData = new FormData();
@@ -1792,6 +1777,76 @@
                 temp.map(item => data.push(item.level_1));
                 this.listDiscipline2 = data;
             },
+            populateConstractionData: function(d) {
+                const data = d
+                console.log(data, 'fuadi d');
+                $('#id_construction').val(data.id);
+                $('#weightfactor2').val(`${data.wf}%`);
+                $('#volume2').val(`${data.quantity} ${data.unit}`);
+
+                $('#volumeStep1_2').val(null);
+                $('#volumeStep2_2').val(null);
+                $('#volumeStep3_2').val(null);
+                $('#volumeStep4_2').val(null);
+                $('#volumeStep5_2').val(null);
+                $('#volumeStep6_2').val(null);
+
+                $('.progressVolumeStep1_2').html(data.step_1_actual_volume ? parseFloat(data.step_1_actual_volume).toFixed(2) : '');
+                $('.progressVolumeStep2_2').html(data.step_2_actual_volume ? parseFloat(data.step_2_actual_volume).toFixed(2) : '');
+                $('.progressVolumeStep3_2').html(data.step_3_actual_volume ? parseFloat(data.step_3_actual_volume).toFixed(2) : '');
+                $('.progressVolumeStep4_2').html(data.step_4_actual_volume ? parseFloat(data.step_4_actual_volume).toFixed(2) : '');
+                $('.progressVolumeStep5_2').html(data.step_5_actual_volume ? parseFloat(data.step_5_actual_volume).toFixed(2) : '');
+                $('.progressVolumeStep6_2').html(data.step_6_actual_volume ? parseFloat(data.step_6_actual_volume).toFixed(2) : '');
+
+                $('#volumeStep1_2').prop('disabled', !data.step_1_name);
+                $('#volumeStep2_2').prop('disabled', !data.step_2_name);
+                $('#volumeStep3_2').prop('disabled', !data.step_3_name);
+                $('#volumeStep4_2').prop('disabled', !data.step_4_name);
+                $('#volumeStep5_2').prop('disabled', !data.step_5_name);
+                $('#volumeStep6_2').prop('disabled', !data.step_6_name);
+
+                $('#evidence_filename1_2').prop('disabled', !data.step_1_name);
+                $('#evidence_filename2_2').prop('disabled', !data.step_2_name);
+                $('#evidence_filename3_2').prop('disabled', !data.step_3_name);
+                $('#evidence_filename4_2').prop('disabled', !data.step_4_name);
+                $('#evidence_filename5_2').prop('disabled', !data.step_5_name);
+                $('#evidence_filename6_2').prop('disabled', !data.step_6_name);
+
+                $('#activityStep1_2').val(data.step_1_name);
+                $('#activityStep2_2').val(data.step_2_name);
+                $('#activityStep3_2').val(data.step_3_name);
+                $('#activityStep4_2').val(data.step_4_name);
+                $('#activityStep5_2').val(data.step_5_name);
+                $('#activityStep6_2').val(data.step_6_name);
+
+                $('#activityStep1Wf_2').val(data.step_1_wf ? `${data.step_1_wf}%` : '');
+                $('#activityStep2Wf_2').val(data.step_2_wf ? `${data.step_2_wf}%` : '');
+                $('#activityStep3Wf_2').val(data.step_3_wf ? `${data.step_3_wf}%` : '');
+                $('#activityStep4Wf_2').val(data.step_4_wf ? `${data.step_4_wf}%` : '');
+                $('#activityStep5Wf_2').val(data.step_5_wf ? `${data.step_5_wf}%` : '');
+                $('#activityStep6Wf_2').val(data.step_6_wf ? `${data.step_6_wf}%` : '');
+
+                // $('#progressStep1').val(data);
+                // $('#progressStep2').val(data);
+                // $('#progressStep3').val(data);
+                // $('#progressStep4').val(data);
+                // $('#progressStep5').val(data);
+                // $('#progressStep6').val(data);
+
+                // $('#progressIndividual').val(data);
+                // $('#accumulativePrevious').val(data);
+                // $('#accumulativeTodate').val(data);
+                // $('#incrimentalInput').val(data);
+
+                const accumulativePrevious = ((parseFloat(data.step_1_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_1_wf || 0)) +
+                    ((parseFloat(data.step_2_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_2_wf || 0)) +
+                    ((parseFloat(data.step_3_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_3_wf || 0)) +
+                    ((parseFloat(data.step_4_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_4_wf || 0)) +
+                    ((parseFloat(data.step_5_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_5_wf || 0)) +
+                    ((parseFloat(data.step_6_actual_volume || 0) / parseFloat(data.quantity || 0)) * parseFloat(data.step_6_wf || 0));
+                $('#accumulativePrevious_2').val(`${accumulativePrevious}%`);
+                // $('#modal-edit-document').modal('show');
+            },
             fetchConstructinData: function(param) {
                 const levelToGet = param - 1;
                 let id_construction;
@@ -1814,7 +1869,11 @@
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success: (resp) => {},
+                    success: (resp) => {
+                        console.log(JSON.parse(resp), 'fuadi resp lagi');
+
+                        this.populateConstractionData(JSON.parse(resp)[0])
+                    },
                     error: err => console.log(err),
                 });
             },
@@ -1880,49 +1939,50 @@
                 this.detailSubActivity2 = JSON.parse(data)
                 this.fetchConstructinData(6);
             });
-            // $(document).on('input', '#volumeStep1', () => {
-            //     let val = $('#volumeStep1').val()
-            //     const progress = $('.progressVolumeStep1').text()
-            //     const qty = $('#volume').val()
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     const wf = $('#activityStep1Wf').val()
+            //
+            $(document).on('input', '#volumeStep1_2', () => {
+                let val = $('#volumeStep1_2').val()
+                const progress = $('.progressVolumeStep1_2').text()
+                const qty = $('#volume2').val()
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep1Wf_2').val()
 
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
-            //     }
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep1_2').val(parseFloat(total) - parseFloat(progress))
+                }
 
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep1').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep1').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
-            // $(document).on('input', '#volumeStep2', () => {
-            //     let val = $('#volumeStep2').val()
-            //     const progress = $('.progressVolumeStep2').text()
-            //     const qty = $('#volume').val();
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     const wf = $('#activityStep2Wf').val()
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
-            //     }
-            //     console.log(val)
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep2').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep2').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep1_2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep1_2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep2_2', () => {
+                let val = $('#volumeStep2_2').val()
+                const progress = $('.progressVolumeStep2_2').text()
+                const qty = $('#volume2').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep2Wf').val()
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
+                }
+                console.log(val)
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
             // $(document).on('input', '#volumeStep3', () => {
             //     let val = $('#volumeStep3').val()
             //     const progress = $('.progressVolumeStep3').text()
@@ -2014,7 +2074,7 @@
 
     $(document).ready(function() {
         $('.select2').select2({
-            placeholder: 'Pilih opsi',
+            placeholder: '-- Pilih opsi --',
             maximumSelectionLength: 2 // contoh konfigurasi tambahan
         });
     });
