@@ -863,4 +863,17 @@ class Project_detail_construction extends BaseController
         return json_encode($response);
     }
 
+    // fetch level
+    public function fetchConstructinData()
+    {
+        // Retrieve parent level values from request query parameters
+        $id_construction = $this->request->getPost('id_construction');
+
+        // Populate response data
+        $response = $this->Model_construction->getConstructionData(1, $id_construction);
+
+        // Return JSON response
+        return json_encode($response);
+    }
+
 }

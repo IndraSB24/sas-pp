@@ -177,7 +177,7 @@ class Model_construction extends Model
     }
 
     // get measurement basis
-    public function getConstructionList($id_project = 1) {
+    public function getConstructionData($id_project = 1, $id_construction) {
         $currentDate = date('Y-m-d');
     
         // Get the current week number and last week number
@@ -256,6 +256,7 @@ class Model_construction extends Model
             ->join("($actualProgressSubquery) as actualProgress", 'actualProgress.id_construction = construction.id', 'LEFT')
             ->join('construction_plan_in_week cpiw', 'cpiw.id_construction=construction.id AND cpiw.id_project='. $id_project, 'LEFT')
             ->where('construction.deleted_at', NULL)
+            ->where('construction.id', $id_construction)
         ;
 
         $results = $this->get()->getResult();
@@ -435,6 +436,49 @@ class Model_construction extends Model
     
         return $results;
     }
+
+    // get measurement basis
+    public function getLevel_($levelToGet, $parentLevels = []) {
+        // Build the select query
+        $this->select("level_$levelToGet");
+        $this->distinct();
+        
+        // Add conditions for all specified parent levels
+        foreach ($parentLevels as $level => $value) {
+            $this->where("level_$level", $value);
+        }
+        
+        // Exclude deleted records
+        $this->where('deleted_at', NULL);
+        
+        // Check if there's data at the next level
+        $nextLevel = $levelToGet + 1;
+        $sql_nextLevel = "SELECT COUNT(*) as count FROM your_table_name WHERE deleted_at IS NULL";
+        
+        // Add dynamic conditions from $parentLevels
+        foreach ($parentLevels as $level => $value) {
+            $sql_nextLevel .= " AND level_$level = " . $this->db->escape($value);
+        }
+        
+        // Add the condition for the next level
+        $sql_nextLevel .= " AND level_$nextLevel IS NOT NULL";
+        
+        $query_nextLevel = $this->db->query($sql_nextLevel);
+        $result = $query_nextLevel->getRow();
+        $nextLevelExists = $result->count > 0;
+        
+        // If there's no data for the next level, return all data for the current level with max_level
+        if (!$nextLevelExists) {
+            // Get the results for the current level
+            $results = $this->get()->getResult();
+            return $results;
+        } else {
+            // There is a possible next level, so return the desired level list only
+            $results = $this->get()->getResult();
+            return $results;
+        }
+    }
+
 
     // get with progress
     public function getListLevel1($idProject = 1) {
