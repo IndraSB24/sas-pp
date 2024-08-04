@@ -1731,11 +1731,9 @@
                 this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious').val() || '0%')}`;
             },
             fetchLevel: function(levelToGet) {
-                console.log(levelToGet, 'fuadi levelToGet');
                 var formData = new FormData();
                 formData.append('levelToGet', levelToGet);
                 formData.append('level1', this.discipline2);
-                console.log(this.subDiscipline2, 'fuadi this.subDiscipline2')
                 if (this.subDiscipline2) {
                     formData.append('level2', this.subDiscipline2.level_2);
                 }
@@ -1756,15 +1754,31 @@
                     cache: false,
                     processData: false,
                     success: (resp) => {
-                        console.log(JSON.parse(resp).data, 'fuadi resp');
+                        const data = JSON.parse(resp).data
                         if (levelToGet === 2) {
-                            this.listSubDiscipline2 = JSON.parse(resp).data
+                            if (data.lengt === 0) {
+                                this.fetchConstructinData(levelToGet)
+                            } else {
+                                this.listSubDiscipline2 = JSON.parse(resp).data
+                            }
                         } else if (levelToGet === 3) {
-                            this.listActivity2 = JSON.parse(resp).data
+                            if (data.lengt === 0) {
+                                this.fetchConstructinData(levelToGet)
+                            } else {
+                                this.listActivity2 = JSON.parse(resp).data
+                            }
                         } else if (levelToGet === 4) {
-                            this.listSubActivity2 = JSON.parse(resp).data
+                            if (data.lengt === 0) {
+                                this.fetchConstructinData(levelToGet)
+                            } else {
+                                this.listSubActivity2 = JSON.parse(resp).data
+                            }
                         } else if (levelToGet === 5) {
-                            this.listDetailSubActivity2 = JSON.parse(resp).data
+                            if (data.lengt === 0) {
+                                this.fetchConstructinData(levelToGet)
+                            } else {
+                                this.listDetailSubActivity2 = JSON.parse(resp).data
+                            }
                         } else {
                             return null
                         }
@@ -1778,25 +1792,85 @@
                 temp.map(item => data.push(item.level_1));
                 this.listDiscipline2 = data;
             },
+            fetchConstructinData: function(param) {
+                const levelToGet = param - 1;
+                let id_construction;
+                if (levelToGet === 2) {
+                    id_construction = this.subDiscipline2.id;
+                } else if (levelToGet === 3) {
+                    id_construction = this.activity2.id;
+                } else if (levelToGet === 4) {
+                    id_construction = this.subActivity2.id;
+                } else if (levelToGet === 5) {
+                    id_construction = this.detailSubActivity2.id;
+                }
+                console.log(id_construction, 'faudi id_construction');
+                var formData = new FormData();
+                formData.append('id_construction', id_construction);
+                $.ajax({
+                    url: "<?= base_url('Project_detail_construction/fetchConstructinData') ?>",
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: (resp) => {},
+                    error: err => console.log(err),
+                });
+            },
         },
         mounted: function() {
             console.log('Vue instance has been mounted2!');
             this.populateLevel1();
             $(document).on('change', '#discipline2', (evt) => {
+                this.subDiscipline2 = ''
+                this.activity2 = ''
+                this.subActivity2 = ''
+                this.detailSubActivity2 = ''
+                $('#subDiscipline2').val('');
+                $('#activity2').val('');
+                $('#subActivity2').val('');
+                $('#detailSubActivity2').val('');
+                this.listSubDiscipline2 = []
+                this.listActivity2 = []
+                this.listSubActivity2 = []
+                this.listDetailSubActivity2 = []
+
                 this.discipline2 = evt.target.value
                 this.fetchLevel(2);
             });
             $(document).on('change', '#subDiscipline2', (evt) => {
+                this.activity2 = ''
+                this.subActivity2 = ''
+                this.detailSubActivity2 = ''
+                $('#activity2').val('');
+                $('#subActivity2').val('');
+                $('#detailSubActivity2').val('');
+                this.listActivity2 = []
+                this.listSubActivity2 = []
+                this.listDetailSubActivity2 = []
+
                 const data = evt.target.value;
                 this.subDiscipline2 = JSON.parse(data)
                 this.fetchLevel(3);
             });
             $(document).on('change', '#activity2', (evt) => {
+                this.subActivity2 = ''
+                this.detailSubActivity2 = ''
+                $('#subActivity2').val('');
+                $('#detailSubActivity2').val('');
+                this.listSubActivity2 = []
+                this.listDetailSubActivity2 = []
+
                 const data = evt.target.value;
                 this.activity2 = JSON.parse(data)
                 this.fetchLevel(4);
             });
             $(document).on('change', '#subActivity2', (evt) => {
+                this.detailSubActivity2 = ''
+                $('#detailSubActivity2').val('');
+                this.listDetailSubActivity2 = []
+
                 const data = evt.target.value;
                 this.subActivity2 = JSON.parse(data)
                 this.fetchLevel(5);
@@ -1804,7 +1878,7 @@
             $(document).on('change', '#detailSubActivity2', (evt) => {
                 const data = evt.target.value;
                 this.detailSubActivity2 = JSON.parse(data)
-                // this.fetchLevel(6);
+                this.fetchConstructinData(6);
             });
             // $(document).on('input', '#volumeStep1', () => {
             //     let val = $('#volumeStep1').val()
