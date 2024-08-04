@@ -198,7 +198,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>ACTIVITY:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">DISCIPLINE</small>
@@ -312,7 +312,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <label>DATA ACTUAL:</label>
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">VOLUME STEP - 1 &nbsp; <span class="text-warning">Progressed: </span><span class="text-warning progressVolumeStep1_2">-</span></small>
@@ -445,7 +445,7 @@
                     <div class="modal-footers" style="display: flex;justify-content: center">
                         <input type="hidden" id="id_construction2" />
                         <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                        <button type="button" style="margin-left: 10px" class="btn btn-success" id="btn-update" title="Edit Document" data-object="Project_detail_construction/addProgress">Save</button>
+                        <button type="button" style="margin-left: 10px" class="btn btn-success" id="btn-update2" title="Edit Document" data-object="Project_detail_construction/addProgress">Save</button>
                     </div>
                 </div>
             </div>
@@ -1397,6 +1397,113 @@
             }
         })
     })
+    $(document).on('click', '#btn-update2', function() {
+        const volume = parseFloat($('#volume2').val());
+
+        const base = '<?= base_url() ?>'
+        const link = `${base}/${$(this).data('object')}`
+
+        const id_construction = document.getElementById("id_construction2").value;
+        const volumeStep1 = $('#volumeStep1_2').val();
+        const volumeStep2 = $('#volumeStep2_2').val();
+        const volumeStep3 = $('#volumeStep3_2').val();
+        const volumeStep4 = $('#volumeStep4_2').val();
+        const volumeStep5 = $('#volumeStep5_2').val();
+        const volumeStep6 = $('#volumeStep6_2').val();
+
+        const progressData = [];
+        var formData = new FormData();
+        formData.append('id_construction', id_construction);
+        if (volumeStep1) {
+            formData.append('step[]', '1');
+            formData.append('actual_volume[]', volumeStep1);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep1) / volume) * parseFloat($('#activityStep1Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename1')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+        if (volumeStep2) {
+            formData.append('step[]', '2');
+            formData.append('actual_volume[]', volumeStep2);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep2) / volume) * parseFloat($('#activityStep2Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename2')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+        if (volumeStep3) {
+            formData.append('step[]', '3');
+            formData.append('actual_volume[]', volumeStep3);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep3) / volume) * parseFloat($('#activityStep3Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename3')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+        if (volumeStep4) {
+            formData.append('step[]', '4');
+            formData.append('actual_volume[]', volumeStep4);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep4) / volume) * parseFloat($('#activityStep4Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename4')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+        if (volumeStep5) {
+            formData.append('step[]', '5');
+            formData.append('actual_volume[]', volumeStep5);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep5) / volume) * parseFloat($('#activityStep5Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename5')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+        if (volumeStep6) {
+            formData.append('step[]', '6');
+            formData.append('actual_volume[]', volumeStep6);
+            formData.append('actual_percent_per_construction[]', (parseFloat(volumeStep6) / volume) * parseFloat($('#activityStep6Wf').val()));
+            formData.append('evidence_filename[]', $('#evidence_filename6')[0].files[0] || new Blob([], {
+                type: 'text/plain'
+            }));
+        }
+
+        var timerInterval;
+        Swal.fire({
+            title: 'Update Progress?',
+            icon: 'info',
+            text: 'Patikan Data yang Diketik Sudah Sesuai!',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: link,
+                    method: 'POST',
+                    // dataType: "JSON",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: () => {
+                        Swal.fire({
+                            title: 'Diupdate!',
+                            icon: 'success',
+                            text: 'Document Berhasil Diupdate.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                location.reload()
+                            }
+                        })
+                    }
+                });
+            }
+        })
+    })
 
     // upload file
     // ==========================================================================================================================================================================    
@@ -1704,6 +1811,8 @@
             },
             updateAccumulativeTodate: function() {
                 const qty = $('#volume2').val();
+                console.log(qty, 'fuadi qty');
+
                 const volume = qty ? qty.split(' ')[0].trim() : 0
                 const value = ((parseFloat($('#volumeStep1_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep1Wf_2').val() || '0%')) +
                     ((parseFloat($('#volumeStep2_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep2Wf_2').val() || '0%')) +
@@ -1711,9 +1820,9 @@
                     ((parseFloat($('#volumeStep4_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep4Wf_2').val() || '0%')) +
                     ((parseFloat($('#volumeStep5_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep5Wf_2').val() || '0%')) +
                     ((parseFloat($('#volumeStep6_2').val() || 0) / volume) * this.convertPercentageStringToFloat($('#activityStep6Wf_2').val() || '0%'));
-                this.accumulativeTodate = `${value.toFixed(2)}%`;
-                this.progressIndividual = `${(this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%') + value).toFixed(2)}%`;
-                this.incrimentalInput = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%')}`;
+                this.accumulativeTodate_2 = `${value.toFixed(2)}%`;
+                this.progressIndividual_2 = `${(this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%') + value).toFixed(2)}%`;
+                this.incrimentalInput_2 = `${value.toFixed(2) - this.convertPercentageStringToFloat($('#accumulativePrevious_2').val() || '0%')}`;
             },
             fetchLevel: function(levelToGet) {
                 var formData = new FormData();
@@ -1942,6 +2051,7 @@
             //
             $(document).on('input', '#volumeStep1_2', () => {
                 let val = $('#volumeStep1_2').val()
+                console.log(val, 'fuadi val')
                 const progress = $('.progressVolumeStep1_2').text()
                 const qty = $('#volume2').val()
                 const total = qty ? qty.split(' ')[0].trim() : 0
@@ -1967,9 +2077,9 @@
                 const progress = $('.progressVolumeStep2_2').text()
                 const qty = $('#volume2').val();
                 const total = qty ? qty.split(' ')[0].trim() : 0
-                const wf = $('#activityStep2Wf').val()
+                const wf = $('#activityStep2Wf_2').val()
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-                    $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
+                    $('#volumeStep2_2').val(parseFloat(total) - parseFloat(progress))
                 }
                 console.log(val)
                 if (parseFloat(val) > 0) {
@@ -1977,98 +2087,98 @@
                         val = parseFloat(total) - parseFloat(progress)
                     }
                     const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-                    $('#progressStep2').val(livePercent.toFixed(2) + '%')
+                    $('#progressStep2_2').val(livePercent.toFixed(2) + '%')
                 } else {
-                    $('#progressStep2').val('')
+                    $('#progressStep2_2').val('')
                 }
                 this.updateAccumulativeTodate()
             })
-            // $(document).on('input', '#volumeStep3', () => {
-            //     let val = $('#volumeStep3').val()
-            //     const progress = $('.progressVolumeStep3').text()
-            //     const qty = $('#volume').val();
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     const wf = $('#activityStep3Wf').val()
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
-            //     }
+            $(document).on('input', '#volumeStep3_2', () => {
+                let val = $('#volumeStep3_2').val()
+                const progress = $('.progressVolumeStep3_2').text()
+                const qty = $('#volume2').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep3Wf_2').val()
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep3_2').val(parseFloat(total) - parseFloat(progress))
+                }
 
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep3').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep3').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
-            // $(document).on('input', '#volumeStep4', () => {
-            //     let val = $('#volumeStep4').val()
-            //     const progress = $('.progressVolumeStep4').val()
-            //     const qty = $('#volume').val();
-            //     const wf = $('#activityStep4Wf').val()
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
-            //     }
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep3_2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep3_2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep4_2', () => {
+                let val = $('#volumeStep4_2').val()
+                const progress = $('.progressVolumeStep4_2').val()
+                const qty = $('#volume2').val();
+                const wf = $('#activityStep4Wf_2').val()
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep4_2').val(parseFloat(total) - parseFloat(progress))
+                }
 
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep4').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep4').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
-            // $(document).on('input', '#volumeStep5', () => {
-            //     let val = $('#volumeStep5').val()
-            //     const progress = $('.progressVolumeStep5').text()
-            //     const qty = $('#volume').val();
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     const wf = $('#activityStep5Wf').val()
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep4_2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep4_2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep5_2', () => {
+                let val = $('#volumeStep5_2').val()
+                const progress = $('.progressVolumeStep5_2').text()
+                const qty = $('#volume2').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep5Wf_2').val()
 
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
-            //     }
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep5_2').val(parseFloat(total) - parseFloat(progress))
+                }
 
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep5').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep5').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
-            // $(document).on('input', '#volumeStep6', () => {
-            //     let val = $('#volumeStep6').val()
-            //     const progress = $('.progressVolumeStep6').text()
-            //     const qty = $('#volume').val();
-            //     const total = qty ? qty.split(' ')[0].trim() : 0
-            //     const wf = $('#activityStep6Wf').val()
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep5_2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep5_2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
+            $(document).on('input', '#volumeStep6_2', () => {
+                let val = $('#volumeStep6_2').val()
+                const progress = $('.progressVolumeStep6_2').text()
+                const qty = $('#volume2').val();
+                const total = qty ? qty.split(' ')[0].trim() : 0
+                const wf = $('#activityStep6Wf_2').val()
 
-            //     if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //         $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
-            //     }
+                if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    $('#volumeStep6_2').val(parseFloat(total) - parseFloat(progress))
+                }
 
-            //     if (parseFloat(val) > 0) {
-            //         if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
-            //             val = parseFloat(total) - parseFloat(progress)
-            //         }
-            //         const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
-            //         $('#progressStep6').val(livePercent.toFixed(2) + '%')
-            //     } else {
-            //         $('#progressStep6').val('')
-            //     }
-            //     this.updateAccumulativeTodate()
-            // })
+                if (parseFloat(val) > 0) {
+                    if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                        val = parseFloat(total) - parseFloat(progress)
+                    }
+                    const livePercent = ((parseFloat(progress) + parseFloat(val)) / parseFloat(total)) * parseFloat(wf)
+                    $('#progressStep6_2').val(livePercent.toFixed(2) + '%')
+                } else {
+                    $('#progressStep6_2').val('')
+                }
+                this.updateAccumulativeTodate()
+            })
         }
     });
 
