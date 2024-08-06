@@ -1241,19 +1241,19 @@
         $('.progressVolumeStep5').html(data.step_5_actual_volume ? parseFloat(data.step_5_actual_volume).toFixed(2) : '');
         $('.progressVolumeStep6').html(data.step_6_actual_volume ? parseFloat(data.step_6_actual_volume).toFixed(2) : '');
 
-        $('#volumeStep1').prop('disabled', !data.step_1_name);
-        $('#volumeStep2').prop('disabled', !data.step_2_name);
-        $('#volumeStep3').prop('disabled', !data.step_3_name);
-        $('#volumeStep4').prop('disabled', !data.step_4_name);
-        $('#volumeStep5').prop('disabled', !data.step_5_name);
-        $('#volumeStep6').prop('disabled', !data.step_6_name);
+        $('#volumeStep1').prop('disabled', !data.step_1_name || data.quantity === data.step_1_actual_volume);
+        $('#volumeStep2').prop('disabled', !data.step_2_name || data.quantity === data.step_2_actual_volume);
+        $('#volumeStep3').prop('disabled', !data.step_3_name || data.quantity === data.step_3_actual_volume);
+        $('#volumeStep4').prop('disabled', !data.step_4_name || data.quantity === data.step_4_actual_volume);
+        $('#volumeStep5').prop('disabled', !data.step_5_name || data.quantity === data.step_5_actual_volume);
+        $('#volumeStep6').prop('disabled', !data.step_6_name || data.quantity === data.step_6_actual_volume);
 
-        $('#evidence_filename1').prop('disabled', !data.step_1_name);
-        $('#evidence_filename2').prop('disabled', !data.step_2_name);
-        $('#evidence_filename3').prop('disabled', !data.step_3_name);
-        $('#evidence_filename4').prop('disabled', !data.step_4_name);
-        $('#evidence_filename5').prop('disabled', !data.step_5_name);
-        $('#evidence_filename6').prop('disabled', !data.step_6_name);
+        $('#evidence_filename1').prop('disabled', !data.step_1_name || data.quantity === data.step_1_actual_volume);
+        $('#evidence_filename2').prop('disabled', !data.step_2_name || data.quantity === data.step_2_actual_volume);
+        $('#evidence_filename3').prop('disabled', !data.step_3_name || data.quantity === data.step_3_actual_volume);
+        $('#evidence_filename4').prop('disabled', !data.step_4_name || data.quantity === data.step_4_actual_volume);
+        $('#evidence_filename5').prop('disabled', !data.step_5_name || data.quantity === data.step_5_actual_volume);
+        $('#evidence_filename6').prop('disabled', !data.step_6_name || data.quantity === data.step_6_actual_volume);
 
         $('#activityStep1').val(data.step_1_name);
         $('#activityStep2').val(data.step_2_name);
@@ -1907,19 +1907,19 @@
                 $('.progressVolumeStep5_2').html(data.step_5_actual_volume ? parseFloat(data.step_5_actual_volume).toFixed(2) : '');
                 $('.progressVolumeStep6_2').html(data.step_6_actual_volume ? parseFloat(data.step_6_actual_volume).toFixed(2) : '');
 
-                $('#volumeStep1_2').prop('disabled', !data.step_1_name);
-                $('#volumeStep2_2').prop('disabled', !data.step_2_name);
-                $('#volumeStep3_2').prop('disabled', !data.step_3_name);
-                $('#volumeStep4_2').prop('disabled', !data.step_4_name);
-                $('#volumeStep5_2').prop('disabled', !data.step_5_name);
-                $('#volumeStep6_2').prop('disabled', !data.step_6_name);
+                $('#volumeStep1_2').prop('disabled', !data.step_1_name || data.quantity === data.step_1_actual_volume);
+                $('#volumeStep2_2').prop('disabled', !data.step_2_name || data.quantity === data.step_2_actual_volume);
+                $('#volumeStep3_2').prop('disabled', !data.step_3_name || data.quantity === data.step_3_actual_volume);
+                $('#volumeStep4_2').prop('disabled', !data.step_4_name || data.quantity === data.step_4_actual_volume);
+                $('#volumeStep5_2').prop('disabled', !data.step_5_name || data.quantity === data.step_5_actual_volume);
+                $('#volumeStep6_2').prop('disabled', !data.step_6_name || data.quantity === data.step_6_actual_volume);
 
-                $('#evidence_filename1_2').prop('disabled', !data.step_1_name);
-                $('#evidence_filename2_2').prop('disabled', !data.step_2_name);
-                $('#evidence_filename3_2').prop('disabled', !data.step_3_name);
-                $('#evidence_filename4_2').prop('disabled', !data.step_4_name);
-                $('#evidence_filename5_2').prop('disabled', !data.step_5_name);
-                $('#evidence_filename6_2').prop('disabled', !data.step_6_name);
+                $('#evidence_filename1_2').prop('disabled', !data.step_1_name || data.quantity === data.step_1_actual_volume);
+                $('#evidence_filename2_2').prop('disabled', !data.step_2_name || data.quantity === data.step_2_actual_volume);
+                $('#evidence_filename3_2').prop('disabled', !data.step_3_name || data.quantity === data.step_3_actual_volume);
+                $('#evidence_filename4_2').prop('disabled', !data.step_4_name || data.quantity === data.step_4_actual_volume);
+                $('#evidence_filename5_2').prop('disabled', !data.step_5_name || data.quantity === data.step_5_actual_volume);
+                $('#evidence_filename6_2').prop('disabled', !data.step_6_name || data.quantity === data.step_6_actual_volume);
 
                 $('#activityStep1_2').val(data.step_1_name);
                 $('#activityStep2_2').val(data.step_2_name);
