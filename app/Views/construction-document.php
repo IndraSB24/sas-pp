@@ -1764,7 +1764,14 @@
     var options = {
         series: [{
             // data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual, ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual, ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual, ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'].cumActual, ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual]
-            data: [ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual, 0, 0, 0, 0, 0]
+            data: [
+                parseFloat(ProgressByLevel1.data['PEKERJAAN SIPIL'].cumActual).toFixed(2),
+                parseFloat(ProgressByLevel1.data['PEKERJAAN PERPIPAAN'].cumActual).toFixed(2),
+                parseFloat(ProgressByLevel1.data['PEKERJAAN MECHANICAL'].cumActual).toFixed(2),
+                parseFloat(ProgressByLevel1.data['PEKERJAAN INSTRUMENT'].cumActual).toFixed(2),
+                parseFloat(ProgressByLevel1.data['PEKERJAAN FASILITAS HSSE'].cumActual).toFixed(2),
+                parseFloat(ProgressByLevel1.data['PEKERJAAN ELECTRICAL'].cumActual).toFixed(2),
+            ]
             // data: [pekerjaanSipil, pekerjaanPerpipaan, pekerjaanMechanical, pekerjaanInstrument, pekerjaanFasilitasHse, pekerjaanElectrical]
         }],
         chart: {
@@ -1805,11 +1812,11 @@
         },
         xaxis: {
             categories: [
-                'Pekerjaan Sipil', 
-                'Pekerjaan Perpipaan', 
-                'Pekerjaan Mechanical', 
-                'Pekerjaan Instrument', 
-                'Pekerjaan Electrical', 
+                'Pekerjaan Sipil',
+                'Pekerjaan Perpipaan',
+                'Pekerjaan Mechanical',
+                'Pekerjaan Instrument',
+                'Pekerjaan Electrical',
                 'Pekerjaan Fasilitas Hsse'
             ]
             // categories: [ProgressByLevel1.data['PEKERJAAN SIPIL'], ProgressByLevel1.data['PEKERJAAN PERPIPAAN'], ProgressByLevel1.data['PEKERJAAN MECHANICAL'], ProgressByLevel1.data['PEKERJAAN INSTRUMENT'], ProgressByLevel1.data['PEKERJAAN FASILITAS HSE'], ProgressByLevel1.data['PEKERJAAN ELECTRICAL']],

@@ -7,7 +7,7 @@
     <?= $this->include('partials/head-css') ?>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <style>
-        td:nth-child(3) {
+        td:nth-child(2) {
             position: sticky;
             left: 0;
             z-index: 1;
@@ -75,7 +75,7 @@
                                         <thead style="border-top-width: 4px">
                                             <tr>
                                                 <th rowspan="3" style="background-color: #b0cbf7;">NO</th>
-                                                <th rowspan="3" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th>
+                                                <!-- <th rowspan="3" style="background-color: #b0cbf7;">DOCUMENT NUMBER</th> -->
                                                 <th rowspan="3" style="background-color: #D6CCC2;position: sticky;left: 0;z-index: 1;">DESCRIPTION</th>
                                                 <th rowspan="3" style="width: 0px;background-color: #D6CCC2">QUANTITY</th>
                                                 <th rowspan="3" style="width: 0px;background-color: #D6CCC2">UNIT</th>
@@ -126,7 +126,7 @@
                                             ?>
                                                 <tr>
                                                     <td class="text-center" style="background-color:#d2e5f7"> <?= $index + 1 ?> </td>
-                                                    <td class="text-center" style="background-color:#d2e5f7"> <?= $item->document_number ?> </td>
+                                                    <!-- <td class="text-center" style="background-color:#d2e5f7"> <?= $item->document_number ?> </td> -->
                                                     <td style="background-color:#faf1e3; white-space: normal;word-wrap: break-word;max-width: 450px;">
                                                         <?= $item->level_1 ? 'Level 1: ' .  $item->level_1 : '' ?> <br>
                                                         <?= $item->level_2 ? 'Level 2: ' .  $item->level_2 : '' ?> <br>
@@ -435,7 +435,7 @@
                                 <input type="text" class="form-control" name="accumulativeTodate_2" v-model="accumulativeTodate_2" id="accumulativeTodate_2" disabled />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="display: none;">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Incrimental Input</small>
                                 <input type="text" class="form-control" name="incrimentalInput_2" v-model="incrimentalInput_2" id="incrimentalInput_2" disabled />
@@ -675,7 +675,7 @@
                                 <input type="text" class="form-control" name="accumulativeTodate" v-model="accumulativeTodate" id="accumulativeTodate" disabled />
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="display: none;">
                             <div class="mb-2 col-md-12">
                                 <small class="form-label">Incrimental Input</small>
                                 <input type="text" class="form-control" name="incrimentalInput" v-model="incrimentalInput" id="incrimentalInput" disabled />
