@@ -1650,6 +1650,63 @@
         },
         mounted: function() {
             console.log('Vue instance has been mounted!');
+            $('#modal-edit-document').on('hidden.bs.modal', (e) => {
+                this.accumulativeTodate = '';
+                this.progressIndividual = '';
+                this.incrimentalInput = '';
+                $('#accumulativeTodate').val('')
+                $('#progressIndividual').val('')
+                $('#incrimentalInput').val('')
+                $('#accumulativePrevious').val('')
+
+                $('#id_construction').val('');
+                $('#weightfactor').val('');
+                $('#volume').val('');
+
+                $('#volumeStep1').val(null);
+                $('#volumeStep2').val(null);
+                $('#volumeStep3').val(null);
+                $('#volumeStep4').val(null);
+                $('#volumeStep5').val(null);
+                $('#volumeStep6').val(null);
+
+                $('.progressVolumeStep1').html('');
+                $('.progressVolumeStep2').html('');
+                $('.progressVolumeStep3').html('');
+                $('.progressVolumeStep4').html('');
+                $('.progressVolumeStep5').html('');
+                $('.progressVolumeStep6').html('');
+
+                $('#volumeStep1').prop('disabled', false);
+                $('#volumeStep2').prop('disabled', false);
+                $('#volumeStep3').prop('disabled', false);
+                $('#volumeStep4').prop('disabled', false);
+                $('#volumeStep5').prop('disabled', false);
+                $('#volumeStep6').prop('disabled', false);
+
+                $('#evidence_filename1').prop('disabled', false);
+                $('#evidence_filename2').prop('disabled', false);
+                $('#evidence_filename3').prop('disabled', false);
+                $('#evidence_filename4').prop('disabled', false);
+                $('#evidence_filename5').prop('disabled', false);
+                $('#evidence_filename6').prop('disabled', false);
+
+                $('#activityStep1').val('');
+                $('#activityStep2').val('');
+                $('#activityStep3').val('');
+                $('#activityStep4').val('');
+                $('#activityStep5').val('');
+                $('#activityStep6').val('');
+
+                $('#activityStep1Wf').val('');
+                $('#activityStep2Wf').val('');
+                $('#activityStep3Wf').val('');
+                $('#activityStep4Wf').val('');
+                $('#activityStep5Wf').val('');
+                $('#activityStep6Wf').val('');
+
+                $('#accumulativePrevious').val('');
+            });
             $(document).on('input', '#volumeStep1', () => {
                 let val = $('#volumeStep1').val()
                 const progress = $('.progressVolumeStep1').text()
@@ -1989,6 +2046,75 @@
         },
         mounted: function() {
             console.log('Vue instance has been mounted2!');
+            $('#modal-add-progress').on('hidden.bs.modal', (e) => {
+                this.accumulativeTodate_2 = '';
+                this.progressIndividual_2 = '';
+                this.incrimentalInput_2 = '';
+                this.discipline2 = '';
+                this.subDiscipline2 = '';
+                this.activity2 = '';
+                this.subActivity2 = '';
+                this.detailSubActivity2 = '';
+                this.listDiscipline2 = [];
+                this.listSubDiscipline2 = [];
+                this.listActivity2 = [];
+                this.listSubActivity2 = [];
+                this.listDetailSubActivity2 = [];
+                this.listWeightfactor2 = [];
+                this.listVolume2 = [];
+                $('#accumulativeTodate_2').val('')
+                $('#progressIndividual_2').val('')
+                $('#incrimentalInput_2').val('')
+                $('#accumulativePrevious_2').val('')
+
+                $('#id_construction').val('');
+                $('#weightfactor2').val('');
+                $('#volume2').val('');
+
+                $('#volumeStep1_2').val(null);
+                $('#volumeStep2_2').val(null);
+                $('#volumeStep3_2').val(null);
+                $('#volumeStep4_2').val(null);
+                $('#volumeStep5_2').val(null);
+                $('#volumeStep6_2').val(null);
+
+                $('.progressVolumeStep1_2').html('');
+                $('.progressVolumeStep2_2').html('');
+                $('.progressVolumeStep3_2').html('');
+                $('.progressVolumeStep4_2').html('');
+                $('.progressVolumeStep5_2').html('');
+                $('.progressVolumeStep6_2').html('');
+
+                $('#volumeStep1_2').prop('disabled', false);
+                $('#volumeStep2_2').prop('disabled', false);
+                $('#volumeStep3_2').prop('disabled', false);
+                $('#volumeStep4_2').prop('disabled', false);
+                $('#volumeStep5_2').prop('disabled', false);
+                $('#volumeStep6_2').prop('disabled', false);
+
+                $('#evidence_filename1_2').prop('disabled', false);
+                $('#evidence_filename2_2').prop('disabled', false);
+                $('#evidence_filename3_2').prop('disabled', false);
+                $('#evidence_filename4_2').prop('disabled', false);
+                $('#evidence_filename5_2').prop('disabled', false);
+                $('#evidence_filename6_2').prop('disabled', false);
+
+                $('#activityStep1_2').val('');
+                $('#activityStep2_2').val('');
+                $('#activityStep3_2').val('');
+                $('#activityStep4_2').val('');
+                $('#activityStep5_2').val('');
+                $('#activityStep6_2').val('');
+
+                $('#activityStep1Wf_2').val('');
+                $('#activityStep2Wf_2').val('');
+                $('#activityStep3Wf_2').val('');
+                $('#activityStep4Wf_2').val('');
+                $('#activityStep5Wf_2').val('');
+                $('#activityStep6Wf_2').val('');
+
+                $('#accumulativePrevious_2').val('');
+            });
             this.populateLevel1();
             $(document).on('change', '#discipline2', (evt) => {
                 this.subDiscipline2 = ''
