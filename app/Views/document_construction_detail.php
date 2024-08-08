@@ -1715,6 +1715,11 @@
                 const wf = $('#activityStep1Wf').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep1').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -1736,6 +1741,11 @@
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 const wf = $('#activityStep2Wf').val()
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep2').val(parseFloat(total) - parseFloat(progress))
                 }
                 console.log(val)
@@ -1757,6 +1767,11 @@
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 const wf = $('#activityStep3Wf').val()
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep3').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -1778,6 +1793,11 @@
                 const wf = $('#activityStep4Wf').val()
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep4').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -1800,6 +1820,11 @@
                 const wf = $('#activityStep5Wf').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep5').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -1822,6 +1847,11 @@
                 const wf = $('#activityStep6Wf').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep6').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -2055,7 +2085,7 @@
                 this.activity2 = '';
                 this.subActivity2 = '';
                 this.detailSubActivity2 = '';
-                this.listDiscipline2 = [];
+                // this.listDiscipline2 = [];
                 this.listSubDiscipline2 = [];
                 this.listActivity2 = [];
                 this.listSubActivity2 = [];
@@ -2184,6 +2214,13 @@
                 const wf = $('#activityStep1Wf_2').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
+                    console.log('fuad');
+                    
                     $('#volumeStep1_2').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -2205,6 +2242,11 @@
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 const wf = $('#activityStep2Wf_2').val()
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep2_2').val(parseFloat(total) - parseFloat(progress))
                 }
                 console.log(val)
@@ -2226,6 +2268,11 @@
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 const wf = $('#activityStep3Wf_2').val()
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep3_2').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -2247,6 +2294,11 @@
                 const wf = $('#activityStep4Wf_2').val()
                 const total = qty ? qty.split(' ')[0].trim() : 0
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep4_2').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -2269,6 +2321,11 @@
                 const wf = $('#activityStep5Wf_2').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep5_2').val(parseFloat(total) - parseFloat(progress))
                 }
 
@@ -2291,6 +2348,11 @@
                 const wf = $('#activityStep6Wf_2').val()
 
                 if ((parseFloat(total) - parseFloat(progress)) < parseFloat(val)) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Nilai melebihi progress",
+                        icon: "error",
+                    });
                     $('#volumeStep6_2').val(parseFloat(total) - parseFloat(progress))
                 }
 
