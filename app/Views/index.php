@@ -3,23 +3,23 @@
 <head>
     <?= $title_meta ?>
     <?= $this->include('partials/head-css') ?>
-    
+
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script> 
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 
     <style>
         .equal-height-card-1 {
             min-height: 90%;
             max-height: 90%;
         }
-        
+
         .equal-height-card-2 {
             min-height: 33%;
             max-height: 33%;
         }
-        
+
         .equal-height-card-3 {
             min-height: 20%;
             max-height: 20%;
@@ -37,7 +37,7 @@
 
     <div class="main-content">
         <!--message loader-->
-        <div class="flash-data" data-flashdata="<?php echo pesan('message');?>"></div>
+        <div class="flash-data" data-flashdata="<?php echo pesan('message'); ?>"></div>
         <div class="page-content">
             <div class="container-fluid">
 
@@ -157,9 +157,8 @@
                                     <div class="card-body">
                                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".modal-project-add">Add Project</button>
                                         <div class="table-responsive">
-                                            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" 
-                                                style="border-collapse: collapse; border-spacing: 0; width: 100%;"
-                                            >
+                                            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap"
+                                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Contract No</th>
@@ -174,7 +173,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach($list_project as $row) : ?>
+                                                    <?php foreach ($list_project as $row) : ?>
                                                         <tr>
                                                             <td><a href="project-dashboard" class="text-info fw-bold"><?= $row->contract_no ?></a> </td>
                                                             <td><?= tgl_indo($row->award_date) ?></td>
@@ -185,11 +184,11 @@
                                                             <td><?= ($row->progress  -  $row->plan) ?>%</td>
                                                             <td>
                                                                 <?php
-                                                                    if($row->status == "Delayed"){
-                                                                        echo '<div class="badge badge-soft-danger font-size-12">'.$row->status.'</div>';
-                                                                    }else{
-                                                                        echo '<div class="badge badge-soft-success font-size-12">'.$row->status.'</div>';
-                                                                    }
+                                                                if ($row->status == "Delayed") {
+                                                                    echo '<div class="badge badge-soft-danger font-size-12">' . $row->status . '</div>';
+                                                                } else {
+                                                                    echo '<div class="badge badge-soft-success font-size-12">' . $row->status . '</div>';
+                                                                }
                                                                 ?>
                                                             </td>
                                                             <td id="tooltip-container9">
@@ -225,24 +224,24 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title mt-0 mb-4">Manpower By Month</h4>
-                                    <div id="column_chart" class="apex-charts mb-5" dir="ltr"></div>                                      
+                                    <div id="column_chart" class="apex-charts mb-5" dir="ltr"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
 
-        </div>
-        <!-- End Page-content -->
-
-        <?= $this->include('partials/footer') ?>
-
     </div>
-    <!-- end main content-->
+    <!-- End Page-content -->
+
+    <?= $this->include('partials/footer') ?>
+
+</div>
+<!-- end main content-->
 
 </div>
 <!-- END layout-wrapper -->
@@ -259,91 +258,109 @@
 <div class="modal fade modal-project-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <form action="#" method="POST">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Project Detail</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <label class="form-label">Contract No</label>
-                    <input type="text" class="form-control" name="contract_no" id="contract_no" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Project Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div>
+                <div class="modal-body">
+                    <div>
+                        <label class="form-label">Contract No</label>
+                        <input type="text" class="form-control" name="contract_no" id="contract_no" />
+                    </div>
+                    <!-- <div>
                     <label class="form-label">Award Date</label>
                     <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
                         <input type="text" class="form-control" name="award_date" id="award_date" placeholder="Award Date" />
                     </div>
+                </div> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Start At</label>
+                            <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                <input type="text" class="form-control" name="start_date" id="start_date" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Finist At</label>
+                            <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
+                                <input type="text" class="form-control" name="end_date" id="end_date" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">Project Manager</label>
+                        <input type="text" class="form-control" name="project_manager" id="project_manager" />
+                    </div>
+                    <div>
+                        <label class="form-label">Project Value</label>
+                        <input type="number" class="form-control" name="value" id="value" />
+                    </div>
+                    <div>
+                        <label class="form-label">Project Name</label>
+                        <input type="text" class="form-control" name="nama_project" id="nama_project" />
+                    </div>
+                    <div>
+                        <label class="form-label">Description </label>
+                        <input type="text" class="form-control" name="description " id="description " />
+                    </div>
                 </div>
-                <div>
-                    <label class="form-label">Project Manager</label>
-                    <input type="text" class="form-control" name="project_manager" id="project_manager" />
-                </div>
-                <div>
-                    <label class="form-label">Project Value</label>
-                    <input type="number" class="form-control" name="project_value" id="project_value" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success btn-simpan" id="btn-simpan" title="Add Data" data-object="Project/add">Add</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success btn-simpan" id="btn-simpan" title="Add Data" data-object="Project/add">Add</button>
-            </div>
-        </div>
         </form>
     </div>
 </div>
 
 <script>
-
-
-
-
     // datatable
-//     $(document).ready( function () {
-// 		$('#table_list_project').DataTable({
-// 		    "processing": true,
-//             "serverSide": true,
-//             // "responsive": true,
-// 			language: {
-// 				"paginate": {
-// 					"first":      "&laquo",
-// 					"last":       "&raquo",
-// 					"next":       "&gt",
-// 					"previous":   "&lt"
-// 				},
-// 			},
-// 			dom:'lfBrtip',
-// 			buttons: [
-//                 'copyHtml5',
-//                 'excelHtml5',
-//                 'csvHtml5',
-//                 'pdfHtml5'
-//             ],
-//             lengthMenu: [ 
-//                 [10, 20, 50, -1],
-//                 [ '10', '25', '50', 'ALL' ]
-//             ],
-//             ajax: {
-//                 "url": "<?= base_url('Home/get_datatable') ?>",
-//                 "type": "POST",
-//                 "data": function (data) {
-//                     data.searchValue = $('#datatable_filter input').val();
-//                 }
-//             },
-//             columnDefs: [
-//                 { 
-//                     "targets": [ 0, 5 ],
-//                     "orderable": false,
-//                 },
-//             ],
-// 		});
-// 	});
+    //     $(document).ready( function () {
+    // 		$('#table_list_project').DataTable({
+    // 		    "processing": true,
+    //             "serverSide": true,
+    //             // "responsive": true,
+    // 			language: {
+    // 				"paginate": {
+    // 					"first":      "&laquo",
+    // 					"last":       "&raquo",
+    // 					"next":       "&gt",
+    // 					"previous":   "&lt"
+    // 				},
+    // 			},
+    // 			dom:'lfBrtip',
+    // 			buttons: [
+    //                 'copyHtml5',
+    //                 'excelHtml5',
+    //                 'csvHtml5',
+    //                 'pdfHtml5'
+    //             ],
+    //             lengthMenu: [ 
+    //                 [10, 20, 50, -1],
+    //                 [ '10', '25', '50', 'ALL' ]
+    //             ],
+    //             ajax: {
+    //                 "url": "<?= base_url('Home/get_datatable') ?>",
+    //                 "type": "POST",
+    //                 "data": function (data) {
+    //                     data.searchValue = $('#datatable_filter input').val();
+    //                 }
+    //             },
+    //             columnDefs: [
+    //                 { 
+    //                     "targets": [ 0, 5 ],
+    //                     "orderable": false,
+    //                 },
+    //             ],
+    // 		});
+    // 	});
 
-    $(document).on('click','.btn-simpan',function(){
-        const contract_no       = document.getElementById("contract_no").value;
-        const award_date        = document.getElementById("award_date").value;
-        const project_manager   = document.getElementById("project_manager").value;
-        const project_value     = document.getElementById("project_value").value;
+    $(document).on('click', '.btn-simpan', function() {
+        // const contract_no = document.getElementById("contract_no").value;
+        // const award_date = document.getElementById("award_date").value;
+        // const project_manager = document.getElementById("project_manager").value;
+        // const value = document.getElementById("value").value;
         const objek = $(this).data('object')
         var timerInterval;
         Swal.fire({
@@ -356,14 +373,21 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek,
+                    url: objek,
                     method: 'POST',
                     dataType: "JSON",
-                    data : {
-                        contract_no : contract_no,
-                        award_date  : award_date,
-                        project_manager : project_manager,
-                        project_value   : project_value
+                    data: {
+                        // contract_no: contract_no,
+                        // award_date: award_date,
+                        // project_manager: project_manager,
+                        // value: value
+                        contract_no : $('#contract_no').val(),
+                        start_date : $('#start_date').val(),
+                        end_date : $('#end_date').val(),
+                        project_manager : $('#project_manager').val(),
+                        value : $('#value').val(),
+                        nama_project : $('#nama_project').val(),
+                        description : $('#description').val(),
                     }
                 });
                 Swal.fire({
@@ -372,14 +396,14 @@
                     text: 'Data berhasil disimpan.',
                     timer: 1000,
                     confirmButtonColor: "#5664d2",
-                    onBeforeOpen:function () {
+                    onBeforeOpen: function() {
                         //Swal.showLoading()
                         timerInterval = setInterval(function() {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
+                            Swal.getContent().querySelector('strong')
+                                .textContent = Swal.getTimerLeft()
                         }, 100)
                     },
-                    onClose: function () {
+                    onClose: function() {
                         location.reload()
                     }
                 })
@@ -387,8 +411,8 @@
         })
     })
 
-    $(document).on('click','.btn-hapus',function(){
-        const id    = $(this).data('id')
+    $(document).on('click', '.btn-hapus', function() {
+        const id = $(this).data('id')
         const objek = $(this).data('object')
         var timerInterval;
         Swal.fire({
@@ -401,11 +425,11 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek+'/'+id,
+                    url: objek + '/' + id,
                     method: 'POST',
                     dataType: "JSON",
-                    data : {
-                        id_project : id
+                    data: {
+                        id_project: id
                     }
                 });
                 Swal.fire({
@@ -414,23 +438,23 @@
                     text: 'Data berhasil dihapus.',
                     timer: 1000,
                     confirmButtonColor: "#5664d2",
-                    onBeforeOpen:function () {
+                    onBeforeOpen: function() {
                         //Swal.showLoading()
                         timerInterval = setInterval(function() {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
+                            Swal.getContent().querySelector('strong')
+                                .textContent = Swal.getTimerLeft()
                         }, 100)
                     },
-                    onClose: function () {
+                    onClose: function() {
                         location.reload()
                     }
                 })
             }
         })
     })
-    
-    $(document).on('click','.btn-logout',function(){
-        const id    = $(this).data('id')
+
+    $(document).on('click', '.btn-logout', function() {
+        const id = $(this).data('id')
         const objek = $(this).data('object')
         var timerInterval;
         Swal.fire({
@@ -443,11 +467,11 @@
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    url:  objek,
+                    url: objek,
                     method: 'POST',
                     dataType: "JSON",
-                    data : {
-                        id_project : id
+                    data: {
+                        id_project: id
                     }
                 });
                 Swal.fire({
@@ -456,21 +480,21 @@
                     text: 'Anda berhasil Logout.',
                     timer: 1000,
                     confirmButtonColor: "#5664d2",
-                    onBeforeOpen:function () {
+                    onBeforeOpen: function() {
                         //Swal.showLoading()
                         timerInterval = setInterval(function() {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
+                            Swal.getContent().querySelector('strong')
+                                .textContent = Swal.getTimerLeft()
                         }, 100)
                     },
-                    onClose: function () {
-                        location.href="<?php echo base_url(); ?>";
+                    onClose: function() {
+                        location.href = "<?php echo base_url(); ?>";
                     }
                 })
             }
         })
     })
-    
+
     // cash in chart
     var radialoptions = {
         series: [72],
@@ -498,7 +522,7 @@
                 track: {
                     margin: 0,
                 },
-    
+
                 dataLabels: {
                     show: false
                 }
@@ -507,13 +531,13 @@
     };
     var radialchart = new ApexCharts(document.querySelector("#radialchart-1"), radialoptions);
     radialchart.render();
-    
+
     // cash flow chart
-    (function () {
+    (function() {
         let totalCashIn = 1000000000,
             totalCashOut = 700000000;
         let total = totalCashIn + totalCashOut;
-            
+
         Highcharts.chart('cash-flow-chart', {
             chart: {
                 type: 'pie',
@@ -535,30 +559,26 @@
                     depth: 20
                 }
             },
-            series: [
-                {
-                    name: 'Cash',
-                    data: [
-                        {
-                            name: 'Cash In '+ totalCashIn,
-                            y: totalCashIn,
-                            color: '#5dbd8d',
-                        },
-                        {
-                            name: 'Cash Out '+ totalCashOut,
-                            y: totalCashOut,
-                            color: '#e9425d',
-                        }
-                    ]
-                }
-            ]
+            series: [{
+                name: 'Cash',
+                data: [{
+                        name: 'Cash In ' + totalCashIn,
+                        y: totalCashIn,
+                        color: '#5dbd8d',
+                    },
+                    {
+                        name: 'Cash Out ' + totalCashOut,
+                        y: totalCashOut,
+                        color: '#e9425d',
+                    }
+                ]
+            }]
         });
     })();
-    
+
     // Sebaran Project Chart
-    (function () {
-        var sebaranProjectData = [
-            {
+    (function() {
+        var sebaranProjectData = [{
                 name: 'Sumatera',
                 y: 20,
                 color: '#beddad' // Customize the color for Sumatera
@@ -584,17 +604,17 @@
                 color: '#1cbb8c' // Customize the color for Papua
             }
         ];
-        
+
         var totalY = 0;
         for (var i = 0; i < sebaranProjectData.length; i++) {
             totalY += sebaranProjectData[i].y;
         }
-        
+
         for (var i = 0; i < sebaranProjectData.length; i++) {
             // var percentage = (sebaranProjectData[i].y / totalY * 100).toFixed(0);
             sebaranProjectData[i].name = sebaranProjectData[i].name + ' - ' + sebaranProjectData[i].y;
         }
-        
+
         Highcharts.chart('projectByIsland-chart', {
             chart: {
                 type: 'pie',
@@ -602,7 +622,7 @@
                     enabled: true,
                     alpha: 45
                 },
-                marginTop: 5,     
+                marginTop: 5,
                 marginBottom: 0,
                 height: 200
             },
@@ -616,15 +636,13 @@
                     center: ['50%', '50%'],
                 }
             },
-            series: [
-                {
-                    name: 'Projects',
-                    data: sebaranProjectData
-                }
-            ]
+            series: [{
+                name: 'Projects',
+                data: sebaranProjectData
+            }]
         });
     })();
-    
+
     // indonesian map
     var map = new GMaps({
         div: '#indo-maps-markers',
@@ -634,22 +652,81 @@
     });
 
     // List of cities in Indonesia with coordinates
-    var cities = [
-        { lat: 0.510440, lng: 101.438309, name: 'Pekanbaru' },
-        { lat: -0.942942, lng: 100.371857, name: 'Padang' },
-        { lat: -5.450000, lng: 105.266670, name: 'Lampung' },
-        { lat: -6.200000, lng: 106.816666, name: 'Jakarta' },
-        { lat: -6.905977, lng: 107.613144, name: 'Bandung' },
-        { lat: -6.966667, lng: 110.416664, name: 'Semarang' },
-        { lat: -1.265386, lng: 116.831200, name: 'Balikpapan' },
-        { lat: -2.2136, lng: 113.9108, name: 'Palangkaraya' },
-        { lat: -0.502106, lng: 117.153709, name: 'Samarinda' },
-        { lat: -5.135399, lng: 119.423790, name: 'Makassar' },
-        { lat: -5.310289, lng: 119.742604, name: 'Gowa' },
-        { lat: -3.87000000, lng: 119.62000000, name: 'Pare-Pare' },
-        { lat: -2.53, lng: 140.72, name: 'Jayapura' },
-        { lat: -8.499112, lng: 140.404984, name: 'Merauke' },
-        { lat: -0.88, lng: 131.26, name: 'Sorong' },
+    var cities = [{
+            lat: 0.510440,
+            lng: 101.438309,
+            name: 'Pekanbaru'
+        },
+        {
+            lat: -0.942942,
+            lng: 100.371857,
+            name: 'Padang'
+        },
+        {
+            lat: -5.450000,
+            lng: 105.266670,
+            name: 'Lampung'
+        },
+        {
+            lat: -6.200000,
+            lng: 106.816666,
+            name: 'Jakarta'
+        },
+        {
+            lat: -6.905977,
+            lng: 107.613144,
+            name: 'Bandung'
+        },
+        {
+            lat: -6.966667,
+            lng: 110.416664,
+            name: 'Semarang'
+        },
+        {
+            lat: -1.265386,
+            lng: 116.831200,
+            name: 'Balikpapan'
+        },
+        {
+            lat: -2.2136,
+            lng: 113.9108,
+            name: 'Palangkaraya'
+        },
+        {
+            lat: -0.502106,
+            lng: 117.153709,
+            name: 'Samarinda'
+        },
+        {
+            lat: -5.135399,
+            lng: 119.423790,
+            name: 'Makassar'
+        },
+        {
+            lat: -5.310289,
+            lng: 119.742604,
+            name: 'Gowa'
+        },
+        {
+            lat: -3.87000000,
+            lng: 119.62000000,
+            name: 'Pare-Pare'
+        },
+        {
+            lat: -2.53,
+            lng: 140.72,
+            name: 'Jayapura'
+        },
+        {
+            lat: -8.499112,
+            lng: 140.404984,
+            name: 'Merauke'
+        },
+        {
+            lat: -0.88,
+            lng: 131.26,
+            name: 'Sorong'
+        },
     ];
 
     // Add markers for each city
@@ -667,7 +744,4 @@
             },
         });
     });
-
-
-    
 </script>
