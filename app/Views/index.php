@@ -157,14 +157,17 @@
                                     <div class="card-body">
                                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".modal-project-add">Add Project</button>
                                         <div class="table-responsive">
-                                            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap"
+                                            <table id="scroll-vertical-datatable" class="table table-bordered nowrap"
                                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Contract No</th>
-                                                        <th>Award Date</th>
+                                                        <th>Start At </th>
+                                                        <th>Finist At </th>
+                                                        <th>Project Name</th>
                                                         <th>Project Manager</th>
                                                         <th>Project Value</th>
+                                                        <th>Description</th>
                                                         <th>Plan</th>
                                                         <th>Actual</th>
                                                         <th>Variance</th>
@@ -176,9 +179,12 @@
                                                     <?php foreach ($list_project as $row) : ?>
                                                         <tr>
                                                             <td><a href="project-dashboard" class="text-info fw-bold"><?= $row->contract_no ?></a> </td>
-                                                            <td><?= tgl_indo($row->award_date) ?></td>
+                                                            <td><?= tgl_indo($row->start_date) ?></td>
+                                                            <td><?= tgl_indo($row->end_date) ?></td>
+                                                            <td><?= $row->nama_project ?></td>
                                                             <td><?= $row->manager ?></td>
                                                             <td><?= rupiah($row->value) ?></td>
+                                                            <td><?= $row->deskripsi ?></td>
                                                             <td><?= $row->plan ?>%</td>
                                                             <td><?= $row->progress ?>%</td>
                                                             <td><?= ($row->progress  -  $row->plan) ?>%</td>
@@ -192,7 +198,8 @@
                                                                 ?>
                                                             </td>
                                                             <td id="tooltip-container9">
-                                                                <button type="button" class="btn btn-sm btn-danger btn-hapus" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete"><i class="mdi mdi-trash-can font-size-18"></i></button>
+                                                                <a type="button" href="project-dashboard" class="btn btn-sm btn-success btn-detail" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete">Detail</a>
+                                                                <!-- <button type="button" class="btn btn-sm btn-danger btn-hapus" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete"><i class="mdi mdi-trash-can font-size-18"></i></button> -->
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
