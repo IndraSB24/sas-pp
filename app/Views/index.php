@@ -297,7 +297,7 @@
                     </div>
                     <div>
                         <label class="form-label">Project Manager</label>
-                        <input type="text" class="form-control" name="project_manager" id="project_manager" />
+                        <input type="text" class="form-control" name="manager" id="manager" />
                     </div>
                     <div>
                         <label class="form-label">Project Value</label>
@@ -309,7 +309,7 @@
                     </div>
                     <div>
                         <label class="form-label">Description </label>
-                        <input type="text" class="form-control" name="description " id="description " />
+                        <input type="text" class="form-control" name="deskripsi " id="deskripsi " />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -366,7 +366,7 @@
     $(document).on('click', '.btn-simpan', function() {
         // const contract_no = document.getElementById("contract_no").value;
         // const award_date = document.getElementById("award_date").value;
-        // const project_manager = document.getElementById("project_manager").value;
+        // const manager = document.getElementById("manager").value;
         // const value = document.getElementById("value").value;
         const objek = $(this).data('object')
         var timerInterval;
@@ -386,34 +386,34 @@
                     data: {
                         // contract_no: contract_no,
                         // award_date: award_date,
-                        // project_manager: project_manager,
+                        // manager: manager,
                         // value: value
                         contract_no : $('#contract_no').val(),
                         start_date : $('#start_date').val(),
                         end_date : $('#end_date').val(),
-                        project_manager : $('#project_manager').val(),
+                        manager : $('#manager').val(),
                         value : $('#value').val(),
                         nama_project : $('#nama_project').val(),
-                        description : $('#description').val(),
+                        deskripsi : $('#deskripsi').val(),
                     }
                 });
-                Swal.fire({
-                    title: 'Disimpan!',
-                    icon: 'success',
-                    text: 'Data berhasil disimpan.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen: function() {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                            Swal.getContent().querySelector('strong')
-                                .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function() {
-                        location.reload()
-                    }
-                })
+                // Swal.fire({
+                //     title: 'Disimpan!',
+                //     icon: 'success',
+                //     text: 'Data berhasil disimpan.',
+                //     timer: 1000,
+                //     confirmButtonColor: "#5664d2",
+                //     onBeforeOpen: function() {
+                //         //Swal.showLoading()
+                //         timerInterval = setInterval(function() {
+                //             Swal.getContent().querySelector('strong')
+                //                 .textContent = Swal.getTimerLeft()
+                //         }, 100)
+                //     },
+                //     onClose: function() {
+                //         location.reload()
+                //     }
+                // })
             }
         })
     })

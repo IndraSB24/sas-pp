@@ -194,6 +194,7 @@ class Project extends BaseController
 			'start_date'    => date_db_format($this->request->getPost('start_date')), // Format start date
 			'end_date'      => date_db_format($this->request->getPost('end_date'))
 		];
+		// echo '<pre>'; print_r( $data );die; echo '</pre>';
     	$this->main_model->save($data);
     }
     
