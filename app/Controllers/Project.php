@@ -186,14 +186,14 @@ class Project extends BaseController
 
 	public function add(){
     	$data = [
-    		'contract_no'   => $this->request->getPost('contract_no'), 
-    		'award_date'    => date_db_format($this->request->getPost('award_date')),
-    		'manager'       => $this->request->getPost('project_manager'),
-    		'value'         => $this->request->getPost('project_value'),
-    		'progress'      => '50',
-    		'created_by'    => 'okokok'
-    	];
-    	$this->main_model->reset_increment();
+			'contract_no'   => $this->request->getPost('contract_no'),
+			'manager'       => $this->request->getPost('manager'), // Assuming 'project_manager' is renamed to 'manager'
+			'value'         => $this->request->getPost('value'), // Assuming 'project_value' is renamed to 'value'
+			'nama_project'  => $this->request->getPost('nama_project'), // New field for project name
+			'deskripsi'     => $this->request->getPost('deskripsi'), // New field for description
+			'start_date'    => date_db_format($this->request->getPost('start_date')), // Format start date
+			'end_date'      => date_db_format($this->request->getPost('end_date'))
+		];
     	$this->main_model->save($data);
     }
     
