@@ -13,7 +13,10 @@ class Model_project extends Model
     protected $useSoftDeletes = true;
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['contract_no', 'award_date', 'manager', 'value', 'progress', 'created_by'];
+    protected $allowedFields = [
+        'contract_no', 'award_date', 'manager', 'value', 'progress', 'created_by',
+        'nama_project', 'deskripsi', 'start_date', 'end_date'
+    ];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

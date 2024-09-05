@@ -32,8 +32,6 @@ class Home extends BaseController
 		return view('test_view', $data);
 	}
 	
-	
-	
 	public function show_project_list()
 	{
 		$data = [
